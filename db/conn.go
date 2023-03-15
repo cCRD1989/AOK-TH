@@ -13,8 +13,6 @@ import (
 
 var Conn *gorm.DB
 
-var Conn_WLK *gorm.DB
-
 func ConnectDB() {
 	//user:pass@tcp
 	dsn := os.Getenv("DATABASE_DSN")

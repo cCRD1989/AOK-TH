@@ -2,49 +2,53 @@ package main
 
 import (
 	"ccrd/controller"
-	"ccrd/middleware"
 
 	"github.com/gin-gonic/gin"
 )
 
 func serveRoutes(r *gin.Engine) {
 
-	//category
-	categoryController := controller.Categroy{}
-	categoryGroup := r.Group("/categorys")
-	categoryGroup.GET("", categoryController.FindAll)
-	categoryGroup.GET("/:id", categoryController.FindOne)
-	categoryGroup.POST("", categoryController.Create)
-	categoryGroup.PATCH("/:id", categoryController.Update)
-	categoryGroup.DELETE("/:id", categoryController.Delete)
+	// frontend_user
+	frontend_user := controller.Frontend{}
+	frontend_userGroup := r.Group("/")
+	frontend_userGroup.GET("", frontend_user.UserGetHome)
 
-	//Products
-	productController := controller.Products{}
-	productGroup := r.Group("/products")
-	productGroup.GET("", productController.FindAll)
-	productGroup.GET("/:id", productController.FindOne)
-	productGroup.POST("", productController.Create)
-	productGroup.PATCH("/:id", productController.Update)
-	productGroup.DELETE("/:id", productController.Delete)
+	// //category
+	// categoryController := controller.Categroy{}
+	// categoryGroup := r.Group("/categorys")
+	// categoryGroup.GET("", categoryController.FindAll)
+	// categoryGroup.GET("/:id", categoryController.FindOne)
+	// categoryGroup.POST("", categoryController.Create)
+	// categoryGroup.PATCH("/:id", categoryController.Update)
+	// categoryGroup.DELETE("/:id", categoryController.Delete)
 
-	//orders
-	orderController := controller.Order{}
-	orderGroup := r.Group("/orders")
-	orderGroup.GET("", orderController.FindAll)
-	orderGroup.GET("/:id", orderController.FindOne)
-	orderGroup.POST("", orderController.Create)
+	// //Products
+	// productController := controller.Products{}
+	// productGroup := r.Group("/products")
+	// productGroup.GET("", productController.FindAll)
+	// productGroup.GET("/:id", productController.FindOne)
+	// productGroup.POST("", productController.Create)
+	// productGroup.PATCH("/:id", productController.Update)
+	// productGroup.DELETE("/:id", productController.Delete)
 
-	//WeloveKhan
-	userController := controller.User{}
-	userGroup := r.Group("")
+	// //orders
+	// orderController := controller.Order{}
+	// orderGroup := r.Group("/orders")
+	// orderGroup.GET("", orderController.FindAll)
+	// orderGroup.GET("/:id", orderController.FindOne)
+	// orderGroup.POST("", orderController.Create)
 
-	userGroup.POST("/login", userController.ChaeckLogin_jwt)
-	userGroup.POST("/registered", userController.Registered)
+	// //WeloveKhan
+	// userController := controller.User{}
+	// userGroup := r.Group("")
 
-	userAll := r.Group("/users", middleware.JWTAuth())
-	userAll.GET("/readallprofile", userController.ChaeckLoginAll)
-	userAll.GET("/profile", userController.Profile)
+	// userGroup.POST("/login", userController.ChaeckLogin_jwt)
+	// userGroup.POST("/registered", userController.Registered)
 
-	userAll.GET("/111", userController.FFFFF)
+	// userAll := r.Group("/users", middleware.JWTAuth())
+	// userAll.GET("/readallprofile", userController.ChaeckLoginAll)
+	// userAll.GET("/profile", userController.Profile)
+
+	// userAll.GET("/111", userController.FFFFF)
 
 }

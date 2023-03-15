@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+
+body{
+  font-family: 'Chakra Petch', sans-serif;
+  background-color: #630cc71f;
+}
+
+
+fieldset {
+  margin: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: block;
+  border: none;
+  border: solid 1px #CCC;
+  min-width: 0;
+  background-color: #FFF;
+}
+
+fieldset legend {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  width: 100%;
+  float: left;
+  display: table;
+  font-size: 1.5rem;
+  line-height: 140%;
+  font-weight: 600;
+  color: #333;
+}
+
+fieldset legend+* {
+  clear: both;
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+  display: table-cell;
+}
+
+
+
+
+body {
+  padding: 1rem;
+  color: #797e86;
+}
+
+h1 {
+  color: #18191b;
+  margin-bottom: 2rem;
+}
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+section>div {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+input[type=radio]:not(:disabled)~label {
+  cursor: pointer;
+}
+
+input[type=radio]:disabled~label {
+  color: #bcc2bf;
+  border-color: #bcc2bf;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+label {
+  height: 100%;
+  display: block;
+  /* background: rgba(255, 255, 255, 0); */
+  border: 2px solid #20df80;
+  border-radius: 20px;
+  padding: 1rem;
+  /* margin-bottom: 1rem; */
+  text-align: center;
+  /* box-shadow: 0px 3px 10px -2px rgba(161, 170, 166, 0.5); */
+  position: relative;
+}
+
+input[type=radio]:checked+label {
+  background: #20df80;
+  color: white;
+  box-shadow: 0px 0px 20px rgba(0, 255, 128, 0.75);
+}
+
+input[type=radio]:checked+label::after {
+  color: #3d3f43;
+  font-family: FontAwesome;
+  border: 2px solid #1dc973;
+  font-size: 24px;
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+
+p {
+  font-weight: 900;
+}
+
+@media only screen and (max-width: 700px) {
+  section {
+    flex-direction: column;
+  }
+}

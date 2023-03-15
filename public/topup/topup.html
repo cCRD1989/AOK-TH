@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="../data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/AOKLogo.png">
+
+    <title>Topup AOK</title>
+    <link rel="stylesheet" href="topup.css">
+</head>
+
+<body>
+
+    <form onsubmit="return topup()">
+        <div class="w-50 container pt-5" form="topup">
+
+            <fieldset>
+                <h3>ข้อมูลผู้ใช้ ID</h3>
+                <div class="form-floating mb-3">
+                    <input onchange="" type="text" class="form-control" id="usernameId" value="" placeholder="Username"
+                        required>
+                    <label for="usernameId">Username</label>
+                </div>
+            </fieldset>
+
+
+            <fieldset>
+                <h3>เลือกจำนวน</h3>
+                <section>
+                    <div>
+                        <input type="radio" id="pack_01" name="price" value="50THB" required>
+                        <label for="pack_01">
+                            50THB
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="pack_02" name="price" value="100THB">
+                        <label for="pack_02">
+                            100THB
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="pack_03" name="price" value="300THB">
+                        <label for="pack_03">
+                            300THB
+                        </label>
+                    </div>
+
+
+                    <div>
+                        <input type="radio" id="pack_04" name="price" value="500THB">
+                        <label for="pack_04">
+                            500THB
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="pack_05" name="price" value="1000THB">
+                        <label for="pack_05">
+                            1,000THB
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="pack_06" name="price" value="3000THB">
+                        <label for="pack_06">
+                            3,000THB
+                        </label>
+                    </div>
+
+
+                    <div>
+                        <input type="radio" id="pack_07" name="price" value="5000THB">
+                        <label for="pack_07">
+                            5,000THB
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="pack_08" name="price" value="1000THB">
+                        <label for="pack_08">
+                            10,000THB
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="pack_09" name="price" value="20000THB">
+                        <label for="pack_09">
+                            20,000THB
+                        </label>
+                    </div>
+
+                </section>
+
+            </fieldset>
+
+
+
+            <fieldset>
+                <h3>เลือกวิธีการชำระเงิน</h3>
+                <section>
+                    <div>
+                        <input type="radio" id="channel_01" name="channel" value="truewallet" required>
+                        <label for="channel_01">
+                            Truemoney Wallet
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="channel_02" name="channel" value="bay">
+                        <label for="channel_02">
+                            Bank of Ayudhya (Krungsri)
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="channel_03" name="channel" value="bbl">
+                        <label for="channel_03">
+                            Bangkok Bank
+                        </label>
+                    </div>
+
+
+                    <div>
+                        <input type="radio" id="channel_04" name="channel" value="ktb">
+                        <label for="channel_04">
+                            Krung Thai Bank
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="channel_05" name="channel" value="scb">
+                        <label for="channel_05">
+                            Siam Commercial Bank
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="channel_06" name="channel" value="kbank">
+                        <label for="channel_06">
+                            Kasikorn Bank
+                        </label>
+                    </div>
+
+
+                    <div>
+                        <input type="radio" id="channel_07" name="channel" value="promptpay">
+                        <label for="channel_07">
+                            QR Promptpay
+                        </label>
+                    </div>
+                </section>
+            </fieldset>
+            <fieldset>
+                <button type="submit" class="btn btn-primary container mt-4">Primary</button>
+            </fieldset>
+
+        </div>
+    </form>
+
+
+
+    <script src="topup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
