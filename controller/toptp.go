@@ -57,7 +57,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	//------------------------------------------------------------------------------
 	// -- แบบที่ 2
 	var channel = request.Channel
-	var forr = "_AGEOFKHAGAN-" + request.Orderid
+	var forr = os.Getenv("FOR") + "-" + request.Orderid
 	var operator = ""
 	var orderid = request.Orderid
 	var price = request.Amount + request.Currency
