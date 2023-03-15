@@ -8,9 +8,9 @@ import (
 
 type Frontend struct{}
 
-func (u *Frontend) UserGetHome(c *gin.Context) {
+func (u *Frontend) UserGetHome(ctx *gin.Context) {
 
-	c.HTML(http.StatusOK, "frontend/index.html", gin.H{
+	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
 		"title": "Age Of Khagan Thailand",
 	})
 }

@@ -11,7 +11,14 @@ func serveRoutes(r *gin.Engine) {
 	// frontend_user
 	frontend_user := controller.Frontend{}
 	frontend_userGroup := r.Group("/")
-	frontend_userGroup.GET("", frontend_user.UserGetHome)
+	frontend_userGroup.GET("", frontend_user.UserGetHome) //index.html
+
+	// AIP Razer notify
+	topup_user := controller.Topup{}
+	topup_Group := r.Group("/topup")
+	topup_Group.GET("", topup_user.Paytopup)
+
+	//r.GET("/topups", controller.Paytopups)
 
 	// //category
 	// categoryController := controller.Categroy{}
