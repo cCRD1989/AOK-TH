@@ -18,7 +18,7 @@ func serveRoutes(r *gin.Engine) {
 	topup_Group := r.Group("/topup")
 	topup_Group.GET("", topup_user.Paytopup)
 
-	//r.GET("/topups", controller.Paytopups)
+	r.GET("/topups", controller.Paytopups)
 
 	// //category
 	// categoryController := controller.Categroy{}

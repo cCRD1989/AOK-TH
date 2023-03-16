@@ -39,6 +39,7 @@ func main() {
 	r := gin.Default()
 	r.HTMLRender = createViews()
 	r.Static("/public", "./public")
+	r.StaticFile("/favicon.ico", "./public/favicon.ico")
 
 	r.Use(cors.New(corsConfig))
 
