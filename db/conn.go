@@ -31,9 +31,10 @@ func ConnectDB() {
 }
 func Migrate() {
 	Conn.AutoMigrate(
-		&model.Category{},
-		&model.Product{},
-		&model.Order{},
-		&model.OrderItem{},
+		&model.LogWeb{},
+		// &model.Category{},
+		// &model.Product{},
+		// &model.Order{},
+		// &model.OrderItem{},
 	)
 }

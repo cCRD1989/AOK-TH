@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ccrd/db"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -28,17 +29,22 @@ func main() {
 		fmt.Println("SetMode = ReleaseMode")
 	}
 
-	//db.ConnectDB()
-	//db.Migrate()
+	// Create and Connect DB
+	db.ConnectDB()
+	db.Migrate()
 
+	// set cors all port
 	corsConfig := cors.DefaultConfig()
 	corsConfig.AllowAllOrigins = true
 
-	//os.MkdirAll("uploads/products", 0755)
+	//create Folder
+	os.MkdirAll("public/download", 0755)
 
 	r := gin.Default()
 	r.HTMLRender = createViews()
 	r.Static("/public", "./public")
+	r.Static("/download/public", "./public")
+
 	r.StaticFile("/favicon.ico", "./public/favicon.ico")
 
 	r.Use(cors.New(corsConfig))
