@@ -44,28 +44,29 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	//
 	//------------------------------------------------------------------------------
 	// -- แบบที่ 1
-	// var channel = request.Channel
-	// var forr = ""
-	// var operator = ""
-	// var orderid = request.Orderid
-	// var price = request.Amount
-	// var sid = os.Getenv("SID")
-	// var uid = ""
-	// var SECRET_KEY = os.Getenv("SECRET_KEY")
-	// data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
-
-	//------------------------------------------------------------------------------
-	// -- แบบที่ 2
 	var channel = request.Channel
-	var forr = os.Getenv("FOR") + "-" + request.Orderid
+	var forr = ""
 	var operator = ""
 	var orderid = request.Orderid
-	var price = request.Amount + request.Currency
+	var price = request.Amount
 	var sid = os.Getenv("SID")
 	var uid = ""
 	var SECRET_KEY = os.Getenv("SECRET_KEY")
-	data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
+
 	//------------------------------------------------------------------------------
+	// -- แบบที่ 2
+	// var channel = request.Channel
+	// var forr = os.Getenv("FOR") + "-" + request.Orderid
+	// var operator = ""
+	// var orderid = request.Orderid
+	// var price = request.Amount + request.Currency
+	// var sid = os.Getenv("SID")
+	// var uid = ""
+	// var SECRET_KEY = os.Getenv("SECRET_KEY")
+	//
+	//------------------------------------------------------------------------------
+
+	data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
 
 	h := md5.New()
 	io.WriteString(h, data)

@@ -81,7 +81,6 @@
         </fieldset>
 
 
-
         <fieldset>
             <h3>เลือกวิธีการชำระเงิน</h3>
             <section>
@@ -149,6 +148,7 @@
         var username = document.getElementById("usernameId").value;
         var price = "";
         var channel_s = "";
+    
 
         var ele = document.getElementsByName('price');
         for (i = 0; i < ele.length; i++) {
@@ -162,8 +162,14 @@
                 channel_s = ele[i].value;
         }
 
+        console.log(username)
+        console.log(price)
+        console.log(channel_s)
+
+
+
         if (username == "" || price == "" || channel_s == "") {
-            return true
+            return false;
         }
 
 
@@ -181,7 +187,7 @@
             url = new URL("https://sea-api.gold-sandbox.razer.com/ewallet/pay");
         }
         else {
-            url = new URL("https://sea-api.gold-sandbox.razer.com/ewallet/pay");
+            url = new URL("https://sea-api.gold-sandbox.razer.com/ibanking/pay");
         }
 
 
@@ -192,18 +198,14 @@
         var sig = MD5(sum);
 
 
-        var url = new URL("https://sea-api.gold-sandbox.razer.com/ewallet/pay");
         url.searchParams.set("for", for1 + "-" + orderid);
         url.searchParams.set("channel", channel);
         url.searchParams.set("orderid", orderid);
         url.searchParams.set("sid", sid);
         url.searchParams.set("uid", uid);
-        url.searchParams.set("denotype", "");
-        url.searchParams.set("mid", "");
         url.searchParams.set("price", price);
         url.searchParams.set("sig", sig);
 
-        console.log(url.href)
         window.location.href = url;
 
 
