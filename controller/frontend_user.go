@@ -50,5 +50,4 @@ func (f *Frontend) UserGetDownload(ctx *gin.Context) {
 	} else {
 		ctx.Redirect(http.StatusFound, "/")
 	}
-
 }

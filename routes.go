@@ -24,7 +24,8 @@ func serveRoutes(r *gin.Engine) {
 	//admin
 	admin_user := controller.Admin{}
 	admin_userGroup := r.Group("/admin")
-	admin_userGroup.GET("", admin_user.UserGetAdmin) //index.html
+	admin_userGroup.GET("", admin_user.UserGetAdmin)      //index.html
+	admin_userGroup.GET("/items", admin_user.GetItemsAll) //index.html
 
 	// //category
 	// categoryController := controller.Categroy{}
