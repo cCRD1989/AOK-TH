@@ -30,15 +30,18 @@ func ConnectDB() {
 
 }
 func Migrate() {
-	err := Conn.AutoMigrate(
-		&model.LogWeb{},
-		// &model.Category{},
-		// &model.Product{},
-		// &model.Order{},
-		// &model.OrderItem{},
-	)
+
+	err := Conn.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&model.LogWeb{})
+
+	// err := Conn.AutoMigrate(
+	// 	&model.LogWeb{},
+	// 	// &model.Category{},
+	// 	// &model.Product{},
+	// 	// &model.Order{},
+	// 	// &model.OrderItem{},
+	// )
 	if err != nil {
-		log.Fatal("Connot ")
+		log.Fatal("Connot AutoMigrate Error.")
 		return
 	}
 }
