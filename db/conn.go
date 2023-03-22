@@ -30,11 +30,15 @@ func ConnectDB() {
 
 }
 func Migrate() {
-	Conn.AutoMigrate(
+	err := Conn.AutoMigrate(
 		&model.LogWeb{},
 		// &model.Category{},
 		// &model.Product{},
 		// &model.Order{},
 		// &model.OrderItem{},
 	)
+	if err != nil {
+		log.Fatal("Connot ")
+		return
+	}
 }
