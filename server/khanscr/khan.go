@@ -147,9 +147,7 @@ func Init() {
 		itemName := line[1]
 		itemNamesMsg = append(itemNamesMsg, itemName)
 	})
-
 	// End load items --------------------------------------------
-
 }
 
 // GetAllItemNames returns all items

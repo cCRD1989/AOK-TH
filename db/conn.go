@@ -12,6 +12,7 @@ import (
 )
 
 var Conn *gorm.DB
+var AOK_DB *gorm.DB
 
 func ConnectDB() {
 	//user:pass@tcp
@@ -27,6 +28,19 @@ func ConnectDB() {
 	}
 	Conn = db
 	fmt.Println("Database Connect Dons.")
+
+	// AOK DB
+	db1, err1 := gorm.Open(
+		mysql.Open(os.Getenv("DATABASEAOK_DSN")),
+		&gorm.Config{Logger: logger.Default.LogMode(logger.Info)},
+	)
+	if err1 != nil {
+
+		log.Fatal(" Connect to The AOK_DB")
+		return
+	}
+	AOK_DB = db1
+	fmt.Println("AOK_DB Connect Dons.")
 
 }
 func Migrate() {
