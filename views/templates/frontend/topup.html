@@ -1,13 +1,13 @@
 {{ define "content" }}
 
 <!-- return topup() -->
-<form onsubmit="return topup()">
+<form action="/topups/play" method="get">
     <div class="w-50 container pt-5" form="topup">
 
         <fieldset>
             <h3>ข้อมูลผู้ใช้ ID</h3>
             <div class="form-floating mb-3">
-                <input onchange="" type="text" class="form-control" id="usernameId" value="" placeholder="Username"
+                <input onchange="" type="text" class="form-control" id="usernameId" name="usernameId" value="" placeholder="Username"
                     required>
                 <label for="usernameId">Username</label>
             </div>

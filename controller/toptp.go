@@ -6,7 +6,9 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -15,11 +17,68 @@ import (
 type Topup struct{}
 
 func Paytopups(ctx *gin.Context) {
+
 	ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
 		"title": "Age Of Khagan Thailand | Topup เติมเงิน",
 		"css":   "topup.css",
 	})
 }
+func Payment(ctx *gin.Context) {
+
+	usernameId := ctx.Query("usernameId")
+	channel := ctx.Query("channel")
+	price := ctx.Query("price")
+
+	if usernameId == "" || channel == "" || price == "" {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"error": "input error.",
+		})
+		return
+	}
+
+	var forr = os.Getenv("FOR") + "-" + "1210603103"
+	var operator = ""
+	var orderid = "1210603103"
+	var sid = os.Getenv("SID")
+	var uid = usernameId
+	var SECRET_KEY = os.Getenv("SECRET_KEY")
+
+	var urlA *url.URL
+	var err error
+	if channel == "truewallet" {
+		urlA, err = url.Parse("https://sea-api.gold-sandbox.razer.com/ewallet/pay?channel=&for=&orderid=&sid=&uid=&price=&sig=")
+		if err != nil {
+			log.Fatal("RUL Payment error :", err)
+		}
+	} else {
+		urlA, err = url.Parse("https://sea-api.gold-sandbox.razer.com/ibanking/pay?channel=&for=&orderid=&sid=&uid=&price=&sig=")
+		if err != nil {
+			log.Fatal("RUL Payment error :", err)
+		}
+	}
+
+	data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
+
+	h := md5.New()
+	io.WriteString(h, data)
+	sumSig := hex.EncodeToString(h.Sum(nil))
+
+	urladdpara := urlA.Query()
+	urladdpara.Set("channel", channel)
+	urladdpara.Set("for", forr)
+	urladdpara.Set("orderid", orderid)
+	urladdpara.Set("sid", sid)
+	urladdpara.Set("uid", uid)
+	urladdpara.Set("price", price)
+	urladdpara.Set("sig", sumSig)
+
+	urlA.RawQuery = urladdpara.Encode()
+
+	//fmt.Println(urlA.String())
+	ctx.Redirect(http.StatusTemporaryRedirect, urlA.String())
+
+}
+
 func (t *Topup) Paytopup(ctx *gin.Context) {
 
 	// var request dto.TopupRequest

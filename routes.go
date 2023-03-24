@@ -20,6 +20,7 @@ func serveRoutes(r *gin.Engine) {
 	topup_Group.GET("", topup_user.Paytopup)
 
 	r.GET("/topups", controller.Paytopups)
+	r.GET("/topups/play", controller.Payment)
 
 	//admin
 	admin_user := controller.Admin{}
