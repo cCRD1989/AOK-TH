@@ -85,8 +85,8 @@ func Payment(ctx *gin.Context) {
 }
 
 // notification Paytopup
-func (t *Topup) PayProcess(ctx *gin.Context) {
-	fmt.Println("notification")
+func (t *Topup) Paytopup(ctx *gin.Context) {
+	fmt.Println("notification In")
 	// var request dto.TopupRequest
 	// if err := ctx.ShouldBindJSON(&request); err != nil {
 	// 	ctx.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
@@ -159,49 +159,49 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 }
 
 // Redirect PayProcess
-func (t *Topup) Paytopup(ctx *gin.Context) {
+func (t *Topup) PayProcess(ctx *gin.Context) {
 
-	fmt.Println("Redirect PayProcess")
-	request := dto.TopupRequest{
-		Txid:     ctx.Query("txid"),
-		Orderid:  ctx.Query("orderid"),
-		Status:   ctx.Query("status"),
-		Detail:   ctx.Query("detail"),
-		Channel:  ctx.Query("channel"),
-		Amount:   ctx.Query("amount"),
-		Currency: ctx.Query("currency"),
-		Sig:      ctx.Query("sig"),
-	}
-	fmt.Println("Redirect PayProcess data all: ", request)
+	// fmt.Println("Redirect PayProcess")
+	// request := dto.TopupRequest{
+	// 	Txid:     ctx.Query("txid"),
+	// 	Orderid:  ctx.Query("orderid"),
+	// 	Status:   ctx.Query("status"),
+	// 	Detail:   ctx.Query("detail"),
+	// 	Channel:  ctx.Query("channel"),
+	// 	Amount:   ctx.Query("amount"),
+	// 	Currency: ctx.Query("currency"),
+	// 	Sig:      ctx.Query("sig"),
+	// }
+	// fmt.Println("Redirect PayProcess data all: ", request)
 
-	if request.Status == "200" {
-		fmt.Println("PayProcess: ", "Succeeding")
-		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
-			"title":    "Age Of Khagan | Succeeding.",
-			"sum":      "Succeeding",
-			"Txid":     request.Txid,
-			"Orderid":  request.Orderid,
-			"Status":   request.Status,
-			"Detail":   request.Detail,
-			"Channel":  request.Channel,
-			"Amount":   request.Amount,
-			"Currency": request.Currency,
-			"Sig":      request.Sig,
-		})
-	} else {
-		fmt.Println("PayProcess: ", "Failed")
-		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
-			"title":    "Age Of Khagan | Failed.",
-			"sum":      "Failed",
-			"txid":     "Failed",
-			"orderid":  "Failed",
-			"status":   "Failed",
-			"detail":   "Failed",
-			"channel":  "Failed",
-			"amount":   "Failed",
-			"currency": "Failed",
-			"sig":      "Failed",
-		})
-	}
+	// if request.Status == "200" {
+	// 	fmt.Println("PayProcess: ", "Succeeding")
+	// 	ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+	// 		"title":    "Age Of Khagan | Succeeding.",
+	// 		"sum":      "Succeeding",
+	// 		"Txid":     request.Txid,
+	// 		"Orderid":  request.Orderid,
+	// 		"Status":   request.Status,
+	// 		"Detail":   request.Detail,
+	// 		"Channel":  request.Channel,
+	// 		"Amount":   request.Amount,
+	// 		"Currency": request.Currency,
+	// 		"Sig":      request.Sig,
+	// 	})
+	// } else {
+	// 	fmt.Println("PayProcess: ", "Failed")
+	// 	ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+	// 		"title":    "Age Of Khagan | Failed.",
+	// 		"sum":      "Failed",
+	// 		"txid":     "Failed",
+	// 		"orderid":  "Failed",
+	// 		"status":   "Failed",
+	// 		"detail":   "Failed",
+	// 		"channel":  "Failed",
+	// 		"amount":   "Failed",
+	// 		"currency": "Failed",
+	// 		"sig":      "Failed",
+	// 	})
+	// }
 
 }
