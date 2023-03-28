@@ -1,15 +1,23 @@
 {{ define "content" }}
 
-<div class="container">
-    <p>{{ .txid }}</p>
-    <p>{{ .orderid }}</p>
-    <p>{{ .status }}</p>
-    <p>{{ .detail }}</p>
-    <p>{{ .channel }}</p>
-    <p>{{ .amount }}</p>
-    <p>{{ .currency }}</p>
-    <p>{{ .sig }}</p>
+<div class="container p-10">
 
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xl-5 text-center">
+
+            <h1>ผลการเติมเงิน</h1>
+            <h2>{{ .sum }}</h2>
+            <p>{{ .txid }}</p>
+            <p>{{ .orderid }}</p>
+            <p>{{ .status }}</p>
+            <p>{{ .detail }}</p>
+            <p>{{ .channel }}</p>
+            <p>{{ .amount }}</p>
+            <p>{{ .currency }}</p>
+            <p>{{ .sig }}</p>
+            
+        </div>
+    </div>
 </div>
 
 {{ end }}

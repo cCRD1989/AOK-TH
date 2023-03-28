@@ -78,7 +78,7 @@ func Payment(ctx *gin.Context) {
 
 	urlA.RawQuery = urladdpara.Encode()
 
-	//fmt.Println(urlA.String())
+	fmt.Println("sendURL: ", urlA.String())
 	ctx.Redirect(http.StatusTemporaryRedirect, urlA.String())
 }
 
@@ -152,8 +152,8 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		fmt.Println("old", request.Sig)
 		fmt.Println("new", sumSig)
 		ctx.JSON(http.StatusBadRequest, gin.H{
-			"message": "issue Sig",
-			"status":  "609",
+			"txid":   request.Txid,
+			"status": "609",
 		})
 	}
 }
@@ -177,7 +177,8 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 		fmt.Println("PayProcess: ", "Succeeding")
 		fmt.Println("request:", request)
 		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
-			"title":    "Age Of Khagan Thailand | Succeeding.",
+			"title":    "Age Of Khagan | Succeeding.",
+			"sum":      "Succeeding",
 			"Txid":     request.Txid,
 			"Orderid":  request.Orderid,
 			"Status":   request.Status,
@@ -190,7 +191,8 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 	} else {
 		fmt.Println("PayProcess: ", "Failed")
 		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
-			"title":    "Age Of Khagan Thailand | Succeeding.",
+			"title":    "Age Of Khagan | Failed.",
+			"sum":      "Failed",
 			"txid":     "Failed",
 			"orderid":  "Failed",
 			"status":   "Failed",
