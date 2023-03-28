@@ -84,8 +84,8 @@ func Payment(ctx *gin.Context) {
 	ctx.Redirect(http.StatusTemporaryRedirect, urlA.String())
 }
 
-// notification
-func (t *Topup) Paytopup(ctx *gin.Context) {
+// notification Paytopup
+func (t *Topup) PayProcess(ctx *gin.Context) {
 	fmt.Println("notification")
 	// var request dto.TopupRequest
 	// if err := ctx.ShouldBindJSON(&request); err != nil {
@@ -158,8 +158,8 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	}
 }
 
-// Redirect
-func (t *Topup) PayProcess(ctx *gin.Context) {
+// Redirect PayProcess
+func (t *Topup) Paytopup(ctx *gin.Context) {
 
 	fmt.Println("Redirect PayProcess")
 	request := dto.TopupRequest{
