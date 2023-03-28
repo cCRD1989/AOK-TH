@@ -4,6 +4,7 @@ import (
 	"ccrd/controller"
 
 	"github.com/gin-gonic/gin"
+	"github.com/zalando/gin-oauth2/google"
 )
 
 func serveRoutes(r *gin.Engine) {
@@ -14,21 +15,29 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("", frontend_user.UserGetHome) //index.html
 	frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
 
+	// auth
+	auth_user := r.Group("/auth")
+	auth_user.GET("/", google.LoginHandler) //google
+	auth_user.GET("/google/registered", frontend_user.Auth_google_Regis)
+
+	private := r.Group("/auth")
+	private.Use(google.Auth())
+	private.GET("/google", frontend_user.Auth_google) //index.html
+
 	// AIP Razer notify
 	topup_user := controller.Topup{}
 	topup_Group := r.Group("/topup")
-	topup_Group.GET("", topup_user.Paytopup)
+	topup_Group.GET("", topup_user.Paytopup)                 // API notify url
+	topup_Group.GET("/processingpay", topup_user.PayProcess) //redirect url
 
-	r.GET("/topups", controller.Paytopups)
-	r.GET("/topups/play", controller.Payment)
+	r.GET("/topups", controller.Paytopups)    // เปิดหน้าเติมเงิน
+	r.GET("/topups/play", controller.Payment) // เมื่อลูกค้า กด ออเดอร์ เข้ามา
 
 	//admin
 	admin_user := controller.Admin{}
 	admin_userGroup := r.Group("/admin")
 	admin_userGroup.GET("", admin_user.UserGetAdmin)      //index.html
 	admin_userGroup.GET("/items", admin_user.GetItemsAll) //index.html
-
-
 
 	// //category
 	// categoryController := controller.Categroy{}

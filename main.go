@@ -3,14 +3,33 @@ package main
 import (
 	"ccrd/db"
 	"ccrd/server/khanscr"
+	"flag"
 	"fmt"
 	"log"
 	"os"
+	"path"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/zalando/gin-oauth2/google"
 )
+
+var redirectURL, credFile string
+
+// init web google api
+func init() {
+	bin := path.Base(os.Args[0])
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, `
+Usage of %s
+================
+`, bin)
+		flag.PrintDefaults()
+	}
+	flag.StringVar(&redirectURL, "redirect", "http://127.0.0.1:80/auth/google/", "URL to be redirected to after authorization.")
+	flag.StringVar(&credFile, "cred-file", "./test-clientid.google.json", "Credential JSON file")
+}
 
 func main() {
 	khanscr.Init()
@@ -45,6 +64,17 @@ func main() {
 	r.StaticFile("/favicon.ico", "./public/favicon.ico")
 
 	r.Use(cors.New(corsConfig))
+
+	// google
+	scopes := []string{
+		"https://www.googleapis.com/auth/userinfo.email",
+		"https://www.googleapis.com/auth/userinfo.profile",
+	}
+	secret := []byte("secret")
+	sessionName := "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"
+	// init settings for google auth
+	google.Setup(redirectURL, credFile, scopes, secret)
+	r.Use(google.Session(sessionName))
 
 	serveRoutes(r)
 

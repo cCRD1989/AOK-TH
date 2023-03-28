@@ -1,8 +1,8 @@
 {{ define "top" }}
 <!-- START: Page Background -->
 
-<img class="nk-page-background-top" src="public/assets/images/bg-top-5.png" alt="">
-<img class="nk-page-background-bottom" src="public/assets/images/bg-top-2.png" alt="">
+<img class="nk-page-background-top" src="/public/assets/images/bg-top-5.png" alt="">
+<img class="nk-page-background-bottom" src="/public/assets/images/bg-top-2.png" alt="">
 
 <!-- END: Page Background -->
 
@@ -50,7 +50,7 @@
 
                             <div class="nk-widget-post">
                                 <a href="store-product.html" class="nk-post-image">
-                                    <img src="public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/AOKLogo.png"
+                                    <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/AOKLogo.png"
                                         alt="In all revolutions of">
                                 </a>
                                 <h3 class="nk-post-title">
@@ -62,12 +62,12 @@
                             </div>
 
                             <!-- <div class="nk-widget-post">
-                                <a href="public/store-product.html" class="nk-post-image">
-                                    <img src="public/assets/images/product-7-xs.jpg" alt="With what mingled joy">
+                                <a href="/public/store-product.html" class="nk-post-image">
+                                    <img src="/public/assets/images/product-7-xs.jpg" alt="With what mingled joy">
                                 </a>
                                 <h3 class="nk-post-title">
                                     <a href="#" class="nk-cart-remove-item"><span class="ion-android-close"></span></a>
-                                    <a href="public/store-product.html">With what mingled joy</a>
+                                    <a href="/public/store-product.html">With what mingled joy</a>
                                 </h3>
                                 <div class="nk-gap-1"></div>
                                 <div class="nk-product-price">€ 14.00</div>
@@ -75,7 +75,7 @@
 
                             <div class="nk-gap-2"></div>
                             <div class="text-center">
-                                <a href="public/store-checkout.html"
+                                <a href="/public/store-checkout.html"
                                     class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Proceed
                                     to Checkout</a>
                             </div> -->
@@ -103,7 +103,7 @@
             <div class="nk-nav-table">
 
                 <a href="/" class="nk-nav-logo">
-                    <img src="public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/Logo Age of Khagan_1.png" alt="AOK"
+                    <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/Logo Age of Khagan_1.png" alt="AOK"
                         width="150">
                 </a>
 
@@ -299,13 +299,12 @@
                 </button>
 
                 <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
+                <div class="nk-gap"></div>
 
-                <div class="nk-gap-1"></div>
-
-                <form action="/" class="nk-form text-white">
-                    <div class="row vertical-gap">
-                        <div class="col-md-6">
-                            Use email and password:
+                <div class="row vertical-gap">
+                    <div class="col-md-6">
+                        <form action="/data" method="get">
+                            <span class="text-main-1">Use email and password:</span>
 
                             <div class="nk-gap"></div>
                             <input type="email" value="" name="email" class=" form-control" placeholder="Email">
@@ -315,39 +314,21 @@
                                 placeholder="Password">
 
                             <div class="nk-gap-1"></div>
-                            <div class="row vertical-gap">
-                                <div class="col-md-12">
-                                    <a href="#"
-                                        class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">Login</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            New Register:
-
-                            <div class="nk-gap"></div>
-
-                            <input type="email" value="" name="email" class=" form-control" placeholder="Email">
-                            <div class="nk-gap"></div>
-
-                            <input type="password" value="" name="password" class="required form-control"
-                                placeholder="Password">
-
-                            <div class="nk-gap"></div>
-                            <input type="password" value="" name="repassword" class="required form-control"
-                                placeholder="Re-Password">
-
-                            <div class="nk-gap-1"></div>
-                            <div class="row vertical-gap">
-                                <div class="col-md-12">
-                                    <a href="#"
-                                        class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">Register</a>
-                                </div>
-                            </div>
-                        </div>
+                            <button type="submit"
+                                class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">Login</button>
+                        </form>
                     </div>
-                </form>
+                    <div class="col-md-6">
+                        <span class="text-main-1">Or social account:</span>
+                        <div class="nk-gap"></div>
+
+                        <ul class="nk-social-links-2">
+                            <li><a class="nk-social-facebook" href="/"><span class="fab fa-facebook"></span></a></li>
+                            <li><a class="nk-social-google" href="/auth"><span class="fab fa-google"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -360,7 +341,7 @@
     <div class="nano">
         <div class="nano-content">
             <a href="/" class="nk-nav-logo">
-                <img src="public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/Logo Age of Khagan.png" alt="" width="120">
+                <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/Logo Age of Khagan.png" alt="" width="120">
             </a>
             <div class="nk-navbar-mobile-content">
                 <ul class="nk-nav">

@@ -7,9 +7,11 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math/rand"
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -28,7 +30,10 @@ func Payment(ctx *gin.Context) {
 	usernameId := ctx.Query("usernameId")
 	channel := ctx.Query("channel")
 	price := ctx.Query("price")
-
+	h := md5.New()
+	io.WriteString(h, strconv.Itoa(rand.Int()))
+	orderid := hex.EncodeToString(h.Sum(nil))
+	fmt.Println("orderid:", orderid)
 	if usernameId == "" || channel == "" || price == "" {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error": "input error.",
@@ -36,9 +41,8 @@ func Payment(ctx *gin.Context) {
 		return
 	}
 
-	var forr = os.Getenv("FOR") + "-" + "1210603103"
+	var forr = os.Getenv("FOR") + "-" + orderid
 	var operator = ""
-	var orderid = "1210603103"
 	var sid = os.Getenv("SID")
 	var uid = usernameId
 	var SECRET_KEY = os.Getenv("SECRET_KEY")
@@ -59,7 +63,7 @@ func Payment(ctx *gin.Context) {
 
 	data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
 
-	h := md5.New()
+	h = md5.New()
 	io.WriteString(h, data)
 	sumSig := hex.EncodeToString(h.Sum(nil))
 
@@ -76,11 +80,10 @@ func Payment(ctx *gin.Context) {
 
 	//fmt.Println(urlA.String())
 	ctx.Redirect(http.StatusTemporaryRedirect, urlA.String())
-
 }
 
+// notification
 func (t *Topup) Paytopup(ctx *gin.Context) {
-
 	// var request dto.TopupRequest
 	// if err := ctx.ShouldBindJSON(&request); err != nil {
 	// 	ctx.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
@@ -151,5 +154,9 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			"message": "issue Sig",
 		})
 	}
+}
+
+// Redirect
+func (t *Topup) PayProcess(ctx *gin.Context) {
 
 }
