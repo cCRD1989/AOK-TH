@@ -33,7 +33,9 @@ func Payment(ctx *gin.Context) {
 	h := md5.New()
 	io.WriteString(h, strconv.Itoa(rand.Int()))
 	orderid := hex.EncodeToString(h.Sum(nil))
-	fmt.Println("orderid:", orderid)
+
+	//fmt.Println("orderid:", orderid)
+
 	if usernameId == "" || channel == "" || price == "" {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error": "input error.",
@@ -109,7 +111,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	//------------------------------------------------------------------------------
 	// -- แบบที่ 1
 	// var channel = request.Channel
-	// var forr = ""
+	// var forr = os.Getenv("FOR")
 	// var operator = ""
 	// var orderid = request.Orderid
 	// var price = request.Amount
@@ -139,10 +141,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	if request.Sig == sumSig {
 		//
 		//Code..
-		fmt.Println("Pass ")
-		fmt.Println("data", data)
-		fmt.Println("old", request.Sig)
-		fmt.Println("new", sumSig)
+		fmt.Println("Pass Sig")
 		//
 		ctx.JSON(http.StatusOK, dto.TopupResponse{
 			Txid:   request.Txid,
@@ -152,9 +151,9 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		fmt.Println("data", data)
 		fmt.Println("old", request.Sig)
 		fmt.Println("new", sumSig)
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"txid":   request.Txid,
-			"status": "609",
+		ctx.JSON(http.StatusOK, dto.TopupResponse{
+			Txid:   request.Txid,
+			Status: "609",
 		})
 	}
 }
