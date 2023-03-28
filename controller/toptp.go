@@ -121,16 +121,33 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 	//------------------------------------------------------------------------------
 	// -- แบบที่ 2
-	var channel = request.Channel
-	var forr = os.Getenv("FOR") + "-" + request.Orderid
-	var operator = ""
-	var orderid = request.Orderid
-	var price = request.Amount + request.Currency
-	var sid = os.Getenv("SID")
-	var uid = ""
-	var SECRET_KEY = os.Getenv("SECRET_KEY")
+	// var channel = request.Channel
+	// var forr = os.Getenv("FOR") + "-" + request.Orderid
+	// var operator = ""
+	// var orderid = request.Orderid
+	// var price = request.Amount + request.Currency
+	// var sid = os.Getenv("SID")
+	// var uid = ""
+	// var SECRET_KEY = os.Getenv("SECRET_KEY")
 	//
 	//------------------------------------------------------------------------------
+	// txid=10d803fc2b8b940602dd659ce808fe3b
+	// orderid=f98e90953cb50d3fa64b6af0b6457212
+	// status=200
+	// detail=Success
+	// channel=truewallet
+	// amount=50
+	// currency=THB
+	// sig= f0be656c35f7cc8c6c38622aa6c4eff0
+
+	var channel = ""
+	var forr = ""
+	var operator = ""
+	var orderid = ""
+	var price = ""
+	var sid = ""
+	var uid = ""
+	var SECRET_KEY = ""
 
 	data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
 
@@ -141,13 +158,14 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	if request.Sig == sumSig {
 		//
 		//Code..
-		fmt.Println("Pass Sig")
+		fmt.Println("Sig ตรง ผ่าน")
 		//
 		ctx.JSON(http.StatusOK, dto.TopupResponse{
 			Txid:   request.Txid,
 			Status: "200",
 		})
 	} else {
+		fmt.Println("Sig ไม่ตรง")
 		fmt.Println("data", data)
 		fmt.Println("old", request.Sig)
 		fmt.Println("new", sumSig)
@@ -161,47 +179,47 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 // Redirect PayProcess
 func (t *Topup) PayProcess(ctx *gin.Context) {
 
-	// fmt.Println("Redirect PayProcess")
-	// request := dto.TopupRequest{
-	// 	Txid:     ctx.Query("txid"),
-	// 	Orderid:  ctx.Query("orderid"),
-	// 	Status:   ctx.Query("status"),
-	// 	Detail:   ctx.Query("detail"),
-	// 	Channel:  ctx.Query("channel"),
-	// 	Amount:   ctx.Query("amount"),
-	// 	Currency: ctx.Query("currency"),
-	// 	Sig:      ctx.Query("sig"),
-	// }
-	// fmt.Println("Redirect PayProcess data all: ", request)
+	fmt.Println("Redirect PayProcess")
+	request := dto.TopupRequest{
+		Txid:     ctx.Query("txid"),
+		Orderid:  ctx.Query("orderid"),
+		Status:   ctx.Query("status"),
+		Detail:   ctx.Query("detail"),
+		Channel:  ctx.Query("channel"),
+		Amount:   ctx.Query("amount"),
+		Currency: ctx.Query("currency"),
+		Sig:      ctx.Query("sig"),
+	}
+	fmt.Println("Redirect PayProcess data all: ", request)
 
-	// if request.Status == "200" {
-	// 	fmt.Println("PayProcess: ", "Succeeding")
-	// 	ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
-	// 		"title":    "Age Of Khagan | Succeeding.",
-	// 		"sum":      "Succeeding",
-	// 		"Txid":     request.Txid,
-	// 		"Orderid":  request.Orderid,
-	// 		"Status":   request.Status,
-	// 		"Detail":   request.Detail,
-	// 		"Channel":  request.Channel,
-	// 		"Amount":   request.Amount,
-	// 		"Currency": request.Currency,
-	// 		"Sig":      request.Sig,
-	// 	})
-	// } else {
-	// 	fmt.Println("PayProcess: ", "Failed")
-	// 	ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
-	// 		"title":    "Age Of Khagan | Failed.",
-	// 		"sum":      "Failed",
-	// 		"txid":     "Failed",
-	// 		"orderid":  "Failed",
-	// 		"status":   "Failed",
-	// 		"detail":   "Failed",
-	// 		"channel":  "Failed",
-	// 		"amount":   "Failed",
-	// 		"currency": "Failed",
-	// 		"sig":      "Failed",
-	// 	})
-	// }
+	if request.Status == "200" {
+		fmt.Println("PayProcess: ", "Succeeding")
+		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+			"title":    "Age Of Khagan | Succeeding.",
+			"sum":      "Succeeding",
+			"Txid":     request.Txid,
+			"Orderid":  request.Orderid,
+			"Status":   request.Status,
+			"Detail":   request.Detail,
+			"Channel":  request.Channel,
+			"Amount":   request.Amount,
+			"Currency": request.Currency,
+			"Sig":      request.Sig,
+		})
+	} else {
+		fmt.Println("PayProcess: ", "Failed")
+		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+			"title":    "Age Of Khagan | Failed.",
+			"sum":      "Failed",
+			"txid":     "Failed",
+			"orderid":  "Failed",
+			"status":   "Failed",
+			"detail":   "Failed",
+			"channel":  "Failed",
+			"amount":   "Failed",
+			"currency": "Failed",
+			"sig":      "Failed",
+		})
+	}
 
 }
