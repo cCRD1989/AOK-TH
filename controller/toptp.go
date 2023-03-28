@@ -158,5 +158,15 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 // Redirect
 func (t *Topup) PayProcess(ctx *gin.Context) {
-
+	request := dto.TopupRequest{
+		Txid:     ctx.Query("txid"),
+		Orderid:  ctx.Query("orderid"),
+		Status:   ctx.Query("status"),
+		Detail:   ctx.Query("detail"),
+		Channel:  ctx.Query("channel"),
+		Amount:   ctx.Query("amount"),
+		Currency: ctx.Query("currency"),
+		Sig:      ctx.Query("sig"),
+	}
+	fmt.Println("PayProcess: ", request)
 }
