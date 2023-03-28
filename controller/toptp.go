@@ -84,6 +84,7 @@ func Payment(ctx *gin.Context) {
 
 // notification
 func (t *Topup) Paytopup(ctx *gin.Context) {
+	fmt.Println("notification")
 	// var request dto.TopupRequest
 	// if err := ctx.ShouldBindJSON(&request); err != nil {
 	// 	ctx.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
@@ -152,12 +153,15 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		fmt.Println("new", sumSig)
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"message": "issue Sig",
+			"status":  "609",
 		})
 	}
 }
 
 // Redirect
 func (t *Topup) PayProcess(ctx *gin.Context) {
+
+	fmt.Println("Redirect PayProcess")
 	request := dto.TopupRequest{
 		Txid:     ctx.Query("txid"),
 		Orderid:  ctx.Query("orderid"),
@@ -168,5 +172,34 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 		Currency: ctx.Query("currency"),
 		Sig:      ctx.Query("sig"),
 	}
-	fmt.Println("PayProcess: ", request)
+
+	if request.Status == "200" {
+		fmt.Println("PayProcess: ", "Succeeding")
+		fmt.Println("request:", request)
+		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+			"title":    "Age Of Khagan Thailand | Succeeding.",
+			"Txid":     request.Txid,
+			"Orderid":  request.Orderid,
+			"Status":   request.Status,
+			"Detail":   request.Detail,
+			"Channel":  request.Channel,
+			"Amount":   request.Amount,
+			"Currency": request.Currency,
+			"Sig":      request.Sig,
+		})
+	} else {
+		fmt.Println("PayProcess: ", "Failed")
+		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+			"title":    "Age Of Khagan Thailand | Succeeding.",
+			"txid":     "Failed",
+			"orderid":  "Failed",
+			"status":   "Failed",
+			"detail":   "Failed",
+			"channel":  "Failed",
+			"amount":   "Failed",
+			"currency": "Failed",
+			"sig":      "Failed",
+		})
+	}
+
 }
