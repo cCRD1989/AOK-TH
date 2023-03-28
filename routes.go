@@ -15,9 +15,9 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("", frontend_user.UserGetHome) //index.html
 	frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
 
-	// auth
+	// auth https://console.cloud.google.com/
 	auth_user := r.Group("/auth")
-	auth_user.GET("/", google.LoginHandler) //google
+	auth_user.GET("/", google.LoginHandler) //google add 	ctx.Redirect(http.StatusTemporaryRedirect, GetLoginURL(state))
 	auth_user.GET("/google/registered", frontend_user.Auth_google_Regis)
 
 	private := r.Group("/auth")
