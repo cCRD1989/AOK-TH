@@ -27,9 +27,10 @@ Usage of %s
 `, bin)
 		flag.PrintDefaults()
 	}
+	// auth https://console.cloud.google.com/
 	// https://127.0.0.1:80/auth/google/
 	// https://www.ageofkhaganth.com/auth/google/
-	flag.StringVar(&redirectURL, "redirect", "http://ageofkhaganth.com/auth/google/", "URL to be redirected to after authorization.")
+	flag.StringVar(&redirectURL, "redirect", "http://127.0.0.1:5000/auth/google/", "URL to be redirected to after authorization.")
 	flag.StringVar(&credFile, "cred-file", "./test-clientid.google.json", "Credential JSON file")
 }
 
