@@ -180,6 +180,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 func (t *Topup) PayProcess(ctx *gin.Context) {
 
 	fmt.Println("Redirect PayProcess")
+
 	request := dto.TopupRequest{
 		Txid:     ctx.Query("txid"),
 		Orderid:  ctx.Query("orderid"),
@@ -197,14 +198,14 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
 			"title":    "Age Of Khagan | Succeeding.",
 			"sum":      "Succeeding",
-			"Txid":     request.Txid,
-			"Orderid":  request.Orderid,
-			"Status":   request.Status,
-			"Detail":   request.Detail,
-			"Channel":  request.Channel,
-			"Amount":   request.Amount,
-			"Currency": request.Currency,
-			"Sig":      request.Sig,
+			"txid":     request.Txid,
+			"orderid":  request.Orderid,
+			"status":   request.Status,
+			"detail":   request.Detail,
+			"channel":  request.Channel,
+			"amount":   request.Amount,
+			"currency": request.Currency,
+			"sig":      request.Sig,
 		})
 	} else {
 		fmt.Println("PayProcess: ", "Failed")
