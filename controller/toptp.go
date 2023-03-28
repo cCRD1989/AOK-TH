@@ -101,6 +101,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		Currency: ctx.Query("currency"),
 		Sig:      ctx.Query("sig"),
 	}
+	fmt.Println("notification data all :", request)
 
 	//
 	// Code...
@@ -172,10 +173,10 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 		Currency: ctx.Query("currency"),
 		Sig:      ctx.Query("sig"),
 	}
+	fmt.Println("Redirect PayProcess data all: ", request)
 
 	if request.Status == "200" {
 		fmt.Println("PayProcess: ", "Succeeding")
-		fmt.Println("request:", request)
 		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
 			"title":    "Age Of Khagan | Succeeding.",
 			"sum":      "Succeeding",
