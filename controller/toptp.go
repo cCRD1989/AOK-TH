@@ -25,11 +25,38 @@ func Paytopups(ctx *gin.Context) {
 		"css":   "topup.css",
 	})
 }
+
+func UserCheck(ctx *gin.Context) {
+
+	user := ctx.Param("user")
+	userId := ctx.DefaultQuery("username", "nil")
+
+	fmt.Println("user: ", user)
+	fmt.Println("userId: ", userId)
+
+	if user == "user" {
+
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+			"title":      "Age Of Khagan | Topup เติมเงิน",
+			"status":     "true",
+			"userId":     userId,
+			"bg_success": "bg-success",
+		})
+	} else {
+		fmt.Println("ไม่เจอข้อมูลไดๆ")
+	}
+
+	// ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+	// 	"title": "Age Of Khagan | Topup เติมเงิน",
+	// })
+}
+
 func Payment(ctx *gin.Context) {
 
 	usernameId := ctx.Query("usernameId")
 	channel := ctx.Query("channel")
 	price := ctx.Query("price")
+
 	h := md5.New()
 	io.WriteString(h, strconv.Itoa(rand.Int()))
 	orderid := hex.EncodeToString(h.Sum(nil))
@@ -37,9 +64,10 @@ func Payment(ctx *gin.Context) {
 	//fmt.Println("orderid:", orderid)
 
 	if usernameId == "" || channel == "" || price == "" {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"error": "input error.",
-		})
+		// ctx.JSON(http.StatusBadRequest, gin.H{
+		// 	"error": "input error.",
+		// })
+		
 		return
 	}
 

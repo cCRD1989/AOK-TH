@@ -30,7 +30,9 @@ func serveRoutes(r *gin.Engine) {
 	topup_Group.GET("", topup_user.Paytopup)                 // API notify url
 	topup_Group.GET("/processingpay", topup_user.PayProcess) //redirect url
 
+	// 
 	r.GET("/topups", controller.Paytopups)    // เปิดหน้าเติมเงิน
+	r.GET("/topups/:user", controller.UserCheck)
 	r.GET("/topups/play", controller.Payment) // เมื่อลูกค้า กด ออเดอร์ เข้ามา
 
 	//admin

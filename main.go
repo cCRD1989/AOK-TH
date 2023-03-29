@@ -73,8 +73,10 @@ func main() {
 		"https://www.googleapis.com/auth/userinfo.email",
 		"https://www.googleapis.com/auth/userinfo.profile",
 	}
+
 	secret := []byte("secret")
-	sessionName := "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"
+	sessionName := "GOCSPX"
+	
 	// init settings for google auth
 	google.Setup(redirectURL, credFile, scopes, secret)
 	r.Use(google.Session(sessionName))

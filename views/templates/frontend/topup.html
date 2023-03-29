@@ -1,142 +1,271 @@
 {{ define "content" }}
 
-<!-- return topup() -->
-<form action="/topups/play" method="get">
-    <div class="w-50 container pt-5" form="topup">
+<style>
+    html,
+    body {
+        min-height: 100vh;
+        min-width: 100vw;
+    }
 
-        <fieldset>
-            <h3>ข้อมูลผู้ใช้ ID</h3>
-            <div class="form-floating mb-3">
-                <input onchange="" type="text" class="form-control" id="usernameId" name="usernameId" value="" placeholder="Username"
-                    required>
-                <label for="usernameId">Username</label>
-            </div>
-        </fieldset>
+    .parent>.row {
+        display: flex;
+        align-items: center;
+        /* height: 100%; */
+    }
 
-        <fieldset>
-            <h3>เลือกจำนวน</h3>
-            <section>
-                <div>
-                    <input type="radio" id="pack_01" name="price" value="50THB" required>
-                    <label for="pack_01">
-                        50THB
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="pack_02" name="price" value="100THB">
-                    <label for="pack_02">
-                        100THB
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="pack_03" name="price" value="300THB">
-                    <label for="pack_03">
-                        300THB
-                    </label>
-                </div>
+    .col img {
+        height: 100px;
+        /* width: 100%; */
+        cursor: pointer;
+        transition: transform 1s;
+        object-fit: cover;
+    }
 
+    .col label {
+        overflow: hidden;
+        position: relative;
+    }
 
-                <div>
-                    <input type="radio" id="pack_04" name="price" value="500THB">
-                    <label for="pack_04">
-                        500THB
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="pack_05" name="price" value="1000THB">
-                    <label for="pack_05">
-                        1,000THB
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="pack_06" name="price" value="3000THB">
-                    <label for="pack_06">
-                        3,000THB
-                    </label>
-                </div>
+    .imgbgchk:checked+label>.tick_container {
+        opacity: 1;
+    }
 
+    /*         aNIMATION */
+    .imgbgchk:checked+label>img {
+        transform: scale(1.25);
+        opacity: 0.3;
+    }
 
-                <div>
-                    <input type="radio" id="pack_07" name="price" value="5000THB">
-                    <label for="pack_07">
-                        5,000THB
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="pack_08" name="price" value="1000THB">
-                    <label for="pack_08">
-                        10,000THB
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="pack_09" name="price" value="20000THB">
-                    <label for="pack_09">
-                        20,000THB
-                    </label>
-                </div>
+    .sho {
+        position: absolute;
+        top: 30%;
+        left: 45%;
+    }
 
-            </section>
+    .tick_container {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        cursor: pointer;
+        text-align: center;
+    }
 
-        </fieldset>
+    .tick {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 6px 12px;
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+    }
+</style>
 
+<div class="container p-10 nk-footer">
 
-        <fieldset>
-            <h3>เลือกวิธีการชำระเงิน</h3>
-            <section>
-                <div>
-                    <input type="radio" id="channel_01" name="channel" value="truewallet" required>
-                    <label for="channel_01">
-                        Truemoney Wallet
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="channel_02" name="channel" value="bay">
-                    <label for="channel_02">
-                        Bank of Ayudhya (Krungsri)
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="channel_03" name="channel" value="bbl">
-                    <label for="channel_03">
-                        Bangkok Bank
-                    </label>
-                </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xl-5 text-center">
+
+            {{ if eq .status "true" }}
+
+            <form action="/topups/play" method="get">
+                <hr class="bg-white">
+                <h4 class="text-main-6">เลือกแพ็กเกจที่ต้องการ</h4>
+
+                <input class="text-center m-10 nk-footer br-6" type="text" name="usernameId" id="usernameId"
+                    value="{{ .userId }}" required readonly>
 
 
-                <div>
-                    <input type="radio" id="channel_04" name="channel" value="ktb">
-                    <label for="channel_04">
-                        Krung Thai Bank
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="channel_05" name="channel" value="scb">
-                    <label for="channel_05">
-                        Siam Commercial Bank
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" id="channel_06" name="channel" value="kbank">
-                    <label for="channel_06">
-                        Kasikorn Bank
-                    </label>
+                <div class="container parent">
+                    <div class="row">
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price1" class="imgbgchk sho" value="50THB" required>
+                            <label for="price1">
+                                <img src="/public/data/imgtopup/01.png" alt="50THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">50THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price2" class="imgbgchk sho" value="100THB" required>
+                            <label for="price2">
+                                <img src="/public/data/imgtopup/02.png" alt="100THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">100THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price3" class="imgbgchk sho" value="300THB" required>
+                            <label for="price3">
+                                <img src="/public/data/imgtopup/03.png" alt="300THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">300THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price4" class="imgbgchk sho" value="500THB" required>
+                            <label for="price4">
+                                <img src="/public/data/imgtopup/04.png" alt="500THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">500THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price5" class="imgbgchk sho" value="1000THB" required>
+                            <label for="price5">
+                                <img src="/public/data/imgtopup/05.png" alt="1000THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">1,000THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price6" class="imgbgchk sho" value="3000THB" required>
+                            <label for="price6">
+                                <img src="/public/data/imgtopup/06.png" alt="3000THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">3,000THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price7" class="imgbgchk sho" value="5000THB" required>
+                            <label for="price7">
+                                <img src="/public/data/imgtopup/07.png" alt="5000THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">5,000THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price8" class="imgbgchk sho" value="1000THB" required>
+                            <label for="price8">
+                                <img src="/public/data/imgtopup/08.png" alt="1000THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">10,00THB</i>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="price" id="price9" class="imgbgchk sho" value="20000THB" required>
+                            <label for="price9">
+                                <img src="/public/data/imgtopup/09.png" alt="20000THB">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                            <i class="text-main-6">20,000THB</i>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- -------------------------------------------------------------------- -->
 
-                <div>
-                    <input type="radio" id="channel_07" name="channel" value="promptpay">
-                    <label for="channel_07">
-                        QR Promptpay
-                    </label>
+                <hr class="bg-white">
+                <h4 class="text-main-6">เลือกวิธีการชำระเงิน</h4>
+                <div class="container parent">
+                    <div class="row">
+                        <div class="col text-center">
+                            <input type="radio" name="channel" id="img1" class="imgbgchk sho" value="truewallet" required>
+                            <label for="img1">
+                                <img src="/public/data/imgtopup/truewallet.png" alt="truewallet">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="channel" id="img2" class="imgbgchk sho" value="bay" required>
+                            <label for="img2">
+                                <img src="/public/data/imgtopup/bay.png" alt="bay">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="channel" id="img3" class="imgbgchk sho" value="bbl" required>
+                            <label for="img3">
+                                <img src="/public/data/imgtopup/bbl.png" alt="bbl">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="channel" id="img4" class="imgbgchk sho" value="ktb" required>
+                            <label for="img4">
+                                <img src="/public/data/imgtopup/ktb.png" alt="ktb">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="channel" id="img5" class="imgbgchk sho" value="scb" required>
+                            <label for="img5">
+                                <img src="/public/data/imgtopup/scb.png" alt="scb">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="channel" id="img6" class="imgbgchk sho" value="kbank" required>
+                            <label for="img6">
+                                <img src="/public/data/imgtopup/kbank.png" alt="kbank">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col text-center">
+                            <input type="radio" name="channel" id="img7" class="imgbgchk sho" value="promptpay" required>
+                            <label for="img7">
+                                <img src="/public/data/imgtopup/promptpay.png" alt="promptpay">
+                                <div class="tick_container">
+                                    <div class="tick"><i class="fa fa-check"></i></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </fieldset>
-        <fieldset>
-            <button type="submit" class="btn btn-primary container mt-4">Primary</button>
-        </fieldset>
+                <button type="submit" class="btn btn-primary container mt-4">Primary</button>
 
+            </form>
+
+            {{ else }}
+
+            <form action="/topups/user" method="get">
+                <div class="input-group input-group-sm m-10">
+                    <span class="input-group-text {{ .bg_success }}" id="inputGroup-sizing-sm">Username</span>
+                    <input type="text" class="form-control text-primary" id="username" name="username"
+                        value="{{ .userId }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Check Username</button>
+            </form>
+
+            {{ end }}
+        </div>
     </div>
-</form>
+
+</div>
 
 <script>
 
@@ -147,7 +276,7 @@
         var username = document.getElementById("usernameId").value;
         var price = "";
         var channel_s = "";
-    
+
 
         var ele = document.getElementsByName('price');
         for (i = 0; i < ele.length; i++) {
