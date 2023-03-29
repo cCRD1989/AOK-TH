@@ -86,6 +86,7 @@ func Payment(ctx *gin.Context) {
 
 // notification Paytopup
 func (t *Topup) Paytopup(ctx *gin.Context) {
+
 	fmt.Println("notification In")
 	// var request dto.TopupRequest
 	// if err := ctx.ShouldBindJSON(&request); err != nil {
@@ -105,51 +106,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	}
 	fmt.Println("notification data all :", request)
 
-	//
-	// Code...
-	//
-	//------------------------------------------------------------------------------
-	// -- แบบที่ 1
-	// var channel = request.Channel
-	// var forr = os.Getenv("FOR")
-	// var operator = ""
-	// var orderid = request.Orderid
-	// var price = request.Amount
-	// var sid = os.Getenv("SID")
-	// var uid = ""
-	// var SECRET_KEY = os.Getenv("SECRET_KEY")
-
-	//------------------------------------------------------------------------------
-	// -- แบบที่ 2
-	// var channel = request.Channel
-	// var forr = os.Getenv("FOR") + "-" + request.Orderid
-	// var operator = ""
-	// var orderid = request.Orderid
-	// var price = request.Amount + request.Currency
-	// var sid = os.Getenv("SID")
-	// var uid = ""
-	// var SECRET_KEY = os.Getenv("SECRET_KEY")
-	//
-	//------------------------------------------------------------------------------
-	// txid=10d803fc2b8b940602dd659ce808fe3b
-	// orderid=f98e90953cb50d3fa64b6af0b6457212
-	// status=200
-	// detail=Success
-	// channel=truewallet
-	// amount=50
-	// currency=THB
-	// sig= f0be656c35f7cc8c6c38622aa6c4eff0
-
-	var channel = ""
-	var forr = ""
-	var operator = ""
-	var orderid = ""
-	var price = ""
-	var sid = ""
-	var uid = ""
-	var SECRET_KEY = ""
-
-	data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
+	data := request.Amount + request.Channel + request.Currency + request.Detail + request.Orderid + request.Status + request.Txid + os.Getenv("SECRET_KEY")
 
 	h := md5.New()
 	io.WriteString(h, data)
