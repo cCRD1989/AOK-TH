@@ -179,10 +179,10 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 	fmt.Println("Redirect PayProcess data all: ", request)
 
 	if request.Status == "200" {
-		fmt.Println("PayProcess: ", "Succeeding")
+		fmt.Println("PayProcess: ", "Success")
 		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
-			"title":    "Age Of Khagan | Succeeding.",
-			"sum":      "Succeeding",
+			"title":    "Age Of Khagan | Success.",
+			"sum":      "Success",
 			"txid":     request.Txid,
 			"orderid":  request.Orderid,
 			"status":   request.Status,

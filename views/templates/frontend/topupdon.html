@@ -1,21 +1,27 @@
 {{ define "content" }}
 
-<div class="container p-10">
+<div class="container p-10 nk-footer">
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-xl-5 text-center">
 
-            <h1>ผลการเติมเงิน</h1>
-            <h2>{{ .sum }}</h2>
-            <p>{{ .txid }}</p>
+            <div>
+               <img src="/public/data/imgtopup/Success.png" alt="">
+            </div>
+
+            <h2 class="text-main-6">{{ .sum }}</h2>
+         
+            <p3 class="text-main-6">{{ .detail }}</p3>
+            <p3 class="text-main-6">{{ .channel }}</p3>
+            <p3 class="text-main-6">{{ .amount .currency }}</p3>
+   
+         
+            
+
+            <!-- <p>{{ .txid }}</p>
             <p>{{ .orderid }}</p>
             <p>{{ .status }}</p>
-            <p>{{ .detail }}</p>
-            <p>{{ .channel }}</p>
-            <p>{{ .amount }}</p>
-            <p>{{ .currency }}</p>
-            <p>{{ .sig }}</p>
-            
+            <p>{{ .sig }}</p> -->
         </div>
     </div>
 </div>
