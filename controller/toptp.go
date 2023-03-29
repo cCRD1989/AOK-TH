@@ -195,9 +195,9 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 		fmt.Println("sig ตรง กัน ทั้งสองขา และได้ข้อมูล", data)
 
-		idcash := aokmodel.Userlogin{Username: data.UserId}
+		idcash := aokmodel.Userlogin{}
 
-		if err := db.AOK_DB.First(&idcash).Error; err != nil {
+		if err := db.AOK_DB.Where("Username = ?", data.UserId).First(&idcash).Error; err != nil {
 			fmt.Println("ค้นหาเลข ID Cahs ไม่เจอ")
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
 				Txid:   request.Txid,
@@ -210,6 +210,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 		caseint, err := strconv.Atoi(data.Price)
 		if err != nil {
+			fmt.Println("str to int ไม่ได้ ", data.Price)
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
 				Txid:   request.Txid,
 				Status: "609",
@@ -222,20 +223,6 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		fmt.Println("รวม", idcash.Cash)
 
 		db.AOK_DB.Save(&idcash)
-
-		// RequestTopup := model.LogTopup{
-		// 	DataType:  "RequestTopup",
-		// 	UserId:    topup.Username,
-		// 	Txid:      "",
-		// 	Orderid:   orderid,
-		// 	Status:    "",
-		// 	Detail:    "",
-		// 	Channel:   channel,
-		// 	Price:     price,
-		// 	Sig:       sumSig,
-		// 	IPAddress: ctx.ClientIP(),
-		// }
-		// db.Conn.Save(&RequestTopup)
 
 		ctx.JSON(http.StatusOK, dto.TopupResponse{
 			Txid:   request.Txid,
