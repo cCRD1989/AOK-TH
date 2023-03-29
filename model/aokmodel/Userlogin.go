@@ -25,7 +25,7 @@ type Userlogin struct {
 	Gold            int
 	Cash            int
 	Email           string `gorm:"type:varchar(50);not null;default:"`
-	IsEmailVerified int
+	Isemailverified int
 	AuthType        int
 	AccessToken     string `gorm:"type:varchar(36);not null;default:"`
 	UserLevel       int
