@@ -30,8 +30,8 @@ type Userlogin struct {
 	Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
 	Userlevel       int
 	Unbantime       int
-	CreateAt        time.Time
-	UpdateAt        time.Time
+	Createat        time.Time
+	Updateat        time.Time
 }
 
 func (n *Userlogin) TableName() string {
