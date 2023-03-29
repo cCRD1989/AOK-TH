@@ -26,10 +26,10 @@ type Userlogin struct {
 	Cash            int
 	Email           string `gorm:"type:varchar(50);not null;default:"`
 	Isemailverified int
-	AuthType        int
-	AccessToken     string `gorm:"type:varchar(36);not null;default:"`
-	UserLevel       int
-	UnbanTime       int
+	Authtype        int
+	Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
+	Userlevel       int
+	Unbantime       int
 	CreateAt        time.Time
 	UpdateAt        time.Time
 }
