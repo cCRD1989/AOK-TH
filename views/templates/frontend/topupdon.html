@@ -1,17 +1,17 @@
 {{ define "content" }}
 
-<div class="container p-10 nk-footer">
+<div class="containernk-footer">
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-xl-5 text-center">
 
-            <img class="rounded mx-auto d-block p-10" src="/public/data/imgtopup/Success.png" alt="">
+            <img class="img-fluid p-10" src="/public/data/imgtopup/Success.png" alt="">
             <div class="nk-gap"></div>
             <h2 class="text-main-6">{{ .sum }}</h2>
          
             <h5 class="text-main-6">{{ .detail }}</h5>
             <h5 class="text-main-6">{{ .channel }}</h5>
-            <h5 class="text-main-6">{{ .amount .currency }}</h5>
+            <h5 class="text-main-6">{{ .amount }} {{ .currency }}</h5>
             <div class="nk-gap"></div>
          
             
