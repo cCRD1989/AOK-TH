@@ -222,7 +222,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		idcash.Cash += caseint
 		fmt.Println("รวม", idcash.Cash)
 
-		if err := db.AOK_DB.Save(&idcash).Error; err != nil {
+		if err := db.AOK_DB.Save(&aokmodel.Userlogin{Cash: idcash.Cash}).Error; err != nil {
 			fmt.Println("บันทึกข้อมูลไม่สำเร็จ")
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
 				Txid:   request.Txid,
