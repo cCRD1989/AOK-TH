@@ -5,7 +5,7 @@ type Userlogin struct {
 	Username string
 	// Password        string
 	// Gold            int
-	// Cash            int
+	Cash int
 	// Email           string
 	// IsEmailVerified int
 	// AuthType        int

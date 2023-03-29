@@ -253,6 +253,7 @@
             {{ else }}
 
             <form action="/topups/user" method="get">
+                <h3 class="text-danger">{{ .message }}</h3>
                 <div class="input-group input-group-sm m-10">
                     <span class="input-group-text {{ .bg_success }}" id="inputGroup-sizing-sm">Username</span>
                     <input type="text" class="form-control text-primary" id="username" name="username"

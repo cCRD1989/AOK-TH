@@ -76,7 +76,7 @@ func main() {
 
 	secret := []byte("secret")
 	sessionName := "GOCSPX"
-	
+
 	// init settings for google auth
 	google.Setup(redirectURL, credFile, scopes, secret)
 	r.Use(google.Session(sessionName))

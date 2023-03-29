@@ -1,7 +1,10 @@
 package controller
 
 import (
+	"ccrd/db"
 	"ccrd/dto"
+	"ccrd/model"
+	"ccrd/model/aokmodel"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
@@ -31,8 +34,21 @@ func UserCheck(ctx *gin.Context) {
 	user := ctx.Param("user")
 	userId := ctx.DefaultQuery("username", "nil")
 
-	fmt.Println("user: ", user)
-	fmt.Println("userId: ", userId)
+	// fmt.Println("user: ", user)
+	// fmt.Println("userId: ", userId)
+
+	// เช็คไอดี
+
+	topup := aokmodel.Userlogin{}
+	if err := db.AOK_DB.Where("username =?", userId).First(&topup).Error; err != nil {
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+			"title":      "Age Of Khagan | Topup เติมเงิน",
+			"status":     "false",
+			"userId":     "",
+			"bg_success": "",
+			"message":    "ไอดีไม่มีอยู่ในระบบ โปรดลองใหม่อีกครั้ง",
+		})
+	}
 
 	if user == "user" {
 
@@ -57,19 +73,31 @@ func Payment(ctx *gin.Context) {
 	channel := ctx.Query("channel")
 	price := ctx.Query("price")
 
+	if usernameId == "" || channel == "" || price == "" {
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+			"title":      "Age Of Khagan | Topup เติมเงิน",
+			"status":     "false",
+			"userId":     "",
+			"bg_success": "",
+			"message":    "ไอดีไม่มีอยู่ในระบบ โปรดลองใหม่อีกครั้ง",
+		})
+		return
+	}
+
+	topup := aokmodel.Userlogin{}
+	if err := db.AOK_DB.Where("username =?", usernameId).First(&topup).Error; err != nil {
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+			"title":      "Age Of Khagan | Topup เติมเงิน",
+			"status":     "false",
+			"userId":     "",
+			"bg_success": "",
+			"message":    "ไอดีไม่มีอยู่ในระบบ โปรดลองใหม่อีกครั้ง",
+		})
+	}
+
 	h := md5.New()
 	io.WriteString(h, strconv.Itoa(rand.Int()))
 	orderid := hex.EncodeToString(h.Sum(nil))
-
-	//fmt.Println("orderid:", orderid)
-
-	if usernameId == "" || channel == "" || price == "" {
-		// ctx.JSON(http.StatusBadRequest, gin.H{
-		// 	"error": "input error.",
-		// })
-		
-		return
-	}
 
 	var forr = os.Getenv("FOR") + "-" + orderid
 	var operator = ""
@@ -97,6 +125,20 @@ func Payment(ctx *gin.Context) {
 	io.WriteString(h, data)
 	sumSig := hex.EncodeToString(h.Sum(nil))
 
+	RequestTopup := model.LogTopup{
+		DataType:  "RequestTopup",
+		UserId:    topup.Username,
+		Txid:      "",
+		Orderid:   orderid,
+		Status:    "",
+		Detail:    "",
+		Channel:   channel,
+		Price:     price,
+		Sig:       sumSig,
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&RequestTopup)
+
 	urladdpara := urlA.Query()
 	urladdpara.Set("channel", channel)
 	urladdpara.Set("for", forr)
@@ -114,13 +156,6 @@ func Payment(ctx *gin.Context) {
 
 // notification Paytopup
 func (t *Topup) Paytopup(ctx *gin.Context) {
-
-	fmt.Println("notification In")
-	// var request dto.TopupRequest
-	// if err := ctx.ShouldBindJSON(&request); err != nil {
-	// 	ctx.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
-	// 	return
-	// }
 
 	request := dto.TopupRequest{
 		Txid:     ctx.Query("txid"),
@@ -143,8 +178,61 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	if request.Sig == sumSig {
 		//
 		//Code..
-		fmt.Println("Sig ตรง ผ่าน")
 		//
+
+		//ดึง เลข ออเดอร์ จากตารางมาเทียบ
+
+		data := model.LogTopup{}
+
+		if err := db.Conn.Where("orderid = ?", request.Orderid).First(&data).Error; err != nil {
+			fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
+			ctx.JSON(http.StatusOK, dto.TopupResponse{
+				Txid:   request.Txid,
+				Status: "609",
+			})
+			return
+		}
+
+		fmt.Println("sig ตรง กัน ทั้งสองขา และได้ข้อมูล", data)
+
+		idcash := aokmodel.Userlogin{Username: data.UserId}
+		if err := db.AOK_DB.First(&idcash).Error; err != nil {
+			fmt.Println("ค้นหาเลข ID Cahs ไม่เจอ")
+			ctx.JSON(http.StatusOK, dto.TopupResponse{
+				Txid:   request.Txid,
+				Status: "609",
+			})
+			return
+		}
+
+		caseint, err := strconv.Atoi(data.Price)
+		if err != nil {
+			ctx.JSON(http.StatusOK, dto.TopupResponse{
+				Txid:   request.Txid,
+				Status: "609",
+			})
+			return
+		}
+
+		// แอดแคช ตรงนี้
+		idcash.Cash += caseint
+
+		db.AOK_DB.Save(&idcash)
+
+		// RequestTopup := model.LogTopup{
+		// 	DataType:  "RequestTopup",
+		// 	UserId:    topup.Username,
+		// 	Txid:      "",
+		// 	Orderid:   orderid,
+		// 	Status:    "",
+		// 	Detail:    "",
+		// 	Channel:   channel,
+		// 	Price:     price,
+		// 	Sig:       sumSig,
+		// 	IPAddress: ctx.ClientIP(),
+		// }
+		// db.Conn.Save(&RequestTopup)
+
 		ctx.JSON(http.StatusOK, dto.TopupResponse{
 			Txid:   request.Txid,
 			Status: "200",
@@ -158,6 +246,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			Txid:   request.Txid,
 			Status: "609",
 		})
+		return
 	}
 }
 
