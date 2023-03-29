@@ -208,7 +208,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 		fmt.Println("ค้นหาidในAOK", idcash)
 
-		caseint, err := strconv.Atoi(data.Price)
+		caseint, err := strconv.Atoi(request.Amount)
 		if err != nil {
 			fmt.Println("str to int ไม่ได้ ", data.Price)
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
