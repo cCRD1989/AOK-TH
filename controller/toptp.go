@@ -196,6 +196,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		fmt.Println("sig ตรง กัน ทั้งสองขา และได้ข้อมูล", data)
 
 		idcash := aokmodel.Userlogin{Username: data.UserId}
+
 		if err := db.AOK_DB.First(&idcash).Error; err != nil {
 			fmt.Println("ค้นหาเลข ID Cahs ไม่เจอ")
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
@@ -205,6 +206,8 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			return
 		}
 
+		fmt.Println("ค้นหาidในAOK", idcash)
+
 		caseint, err := strconv.Atoi(data.Price)
 		if err != nil {
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
@@ -213,9 +216,10 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			})
 			return
 		}
-
 		// แอดแคช ตรงนี้
+		fmt.Println("แคชมีตอนนี้ ", idcash.Cash, " +ที่เติม ", caseint)
 		idcash.Cash += caseint
+		fmt.Println("รวม", idcash.Cash)
 
 		db.AOK_DB.Save(&idcash)
 
