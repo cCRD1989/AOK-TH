@@ -63,6 +63,9 @@
         width: 40px;
         border-radius: 100%;
     }
+    .iio{
+        width: 200px;
+    }
 </style>
 
 <div class="container p-10 nk-footer">
@@ -252,14 +255,19 @@
 
             {{ else }}
 
+            <img class="img-fluid p-10 iio" src="/public/data/imgtopup/Success.png" alt="">
+            <div class="nk-gap"></div>
+
             <form action="/topups/user" method="get">
-                <h3 class="text-danger">{{ .message }}</h3>
+                <h4 class="text-danger">{{ .message }}</h4>
                 <div class="input-group input-group-sm m-10">
                     <span class="input-group-text {{ .bg_success }}" id="inputGroup-sizing-sm">Username</span>
                     <input type="text" class="form-control text-primary" id="username" name="username"
                         value="{{ .userId }}" required>
                 </div>
+                <div class="nk-gap"></div>
                 <button type="submit" class="btn btn-primary mb-3">Check Username</button>
+                <div class="nk-gap"></div>
             </form>
 
             {{ end }}
