@@ -1,7 +1,5 @@
 package aokmodel
 
-import "time"
-
 // `id` varchar(50) NOT NULL,
 // `username` varchar(32) NOT NULL,
 // `password` varchar(72) NOT NULL,
@@ -19,19 +17,19 @@ import "time"
 // UNIQUE KEY `username` (`username`)
 
 type Userlogin struct {
-	Id              string `gorm:"type:varchar(50);not null;primaryKey"`
-	Username        string `gorm:"type:varchar(32);not null;uniqueIndex"`
-	Password        string `gorm:"type:varchar(72);not null"`
-	Gold            int
-	Cash            int
-	Email           string `gorm:"type:varchar(50);not null;default:"`
-	Isemailverified int
-	Authtype        int
-	Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
-	Userlevel       int
-	Unbantime       int
-	Createat        time.Time
-	Updateat        time.Time
+	// Id              string `gorm:"type:varchar(50);not null;primaryKey"`
+	Username string `gorm:"type:varchar(32);not null;uniqueIndex"`
+	// Password        string `gorm:"type:varchar(72);not null"`
+	// Gold            int
+	Cash int
+	// Email           string `gorm:"type:varchar(50);not null;default:"`
+	// Isemailverified int
+	// Authtype        int
+	// Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
+	// Userlevel       int
+	// Unbantime       int
+	// Createat        time.Time
+	// Updateat        time.Time
 }
 
 func (n *Userlogin) TableName() string {

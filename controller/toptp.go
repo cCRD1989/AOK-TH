@@ -29,6 +29,7 @@ func Paytopups(ctx *gin.Context) {
 	})
 }
 
+// หน้าเช็ค UserCheck ID ที่กรอกเข้ามา
 func UserCheck(ctx *gin.Context) {
 
 	user := ctx.Param("user")
@@ -67,6 +68,7 @@ func UserCheck(ctx *gin.Context) {
 	// })
 }
 
+// ลูก ค้ากด ออเดอร์ ออกไป ให้ Razer
 func Payment(ctx *gin.Context) {
 
 	usernameId := ctx.Query("usernameId")
@@ -137,7 +139,10 @@ func Payment(ctx *gin.Context) {
 		Sig:       sumSig,
 		IPAddress: ctx.ClientIP(),
 	}
-	db.Conn.Save(&RequestTopup)
+	if err := db.Conn.Save(&RequestTopup).Error; err != nil {
+		fmt.Println("RequestTopup Error", err.Error())
+		return
+	}
 
 	urladdpara := urlA.Query()
 	urladdpara.Set("channel", channel)
@@ -181,9 +186,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		//
 
 		//ดึง เลข ออเดอร์ จากตารางมาเทียบ
-
 		data := model.LogTopup{}
-
 		if err := db.Conn.Where("orderid = ?", request.Orderid).First(&data).Error; err != nil {
 			fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
@@ -193,21 +196,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			return
 		}
 
-		fmt.Println("sig ตรง กัน ทั้งสองขา และได้ข้อมูล", data)
-
-		idcash := aokmodel.Userlogin{}
-
-		if err := db.AOK_DB.Where("Username = ?", data.UserId).First(&idcash).Error; err != nil {
-			fmt.Println("ค้นหาเลข ID Cahs ไม่เจอ")
-			ctx.JSON(http.StatusOK, dto.TopupResponse{
-				Txid:   request.Txid,
-				Status: "609",
-			})
-			return
-		}
-
-		fmt.Println("ค้นหาidในAOK", idcash)
-
+		// เงินที่จะเติม
 		caseint, err := strconv.Atoi(request.Amount)
 		if err != nil {
 			fmt.Println("str to int ไม่ได้ ", data.Price)
@@ -217,18 +206,19 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			})
 			return
 		}
-		// แอดแคช ตรงนี้
-		fmt.Println("แคชมีตอนนี้ ", idcash.Cash, " +ที่เติม ", caseint)
-		idcash.Cash += caseint
-		fmt.Println("รวม", idcash.Cash)
 
-		if err := db.AOK_DB.Save(&aokmodel.Userlogin{Cash: idcash.Cash}).Where("username = ?", idcash.Username).Error; err != nil {
-			fmt.Println("บันทึกข้อมูลไม่สำเร็จ")
+		//ดึงเงินที่อยู่ใน id นั้น
+		idcash := aokmodel.Userlogin{}
+		db.AOK_DB.First(&idcash, "username = ?", data.UserId)
+
+		idcash.Cash += caseint
+
+		if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("username = ?", idcash.Username).Update("cash", idcash.Cash).Error; err != nil {
+			fmt.Println("บันทึกแคชไม่สำเร็จ", err.Error())
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
 				Txid:   request.Txid,
 				Status: "609",
 			})
-			return
 		}
 
 		ctx.JSON(http.StatusOK, dto.TopupResponse{
@@ -250,8 +240,6 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 // Redirect PayProcess
 func (t *Topup) PayProcess(ctx *gin.Context) {
-
-	fmt.Println("Redirect PayProcess")
 
 	request := dto.TopupRequest{
 		Txid:     ctx.Query("txid"),

@@ -37,6 +37,7 @@ Usage of %s
 func main() {
 	khanscr.Init()
 
+	// load env
 	if os.Getenv("APP_ENV") != "ReleaseMode" {
 		if err := godotenv.Load(); err != nil {
 			log.Fatal("Error Loading File")
