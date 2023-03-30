@@ -68,7 +68,7 @@ func UserCheck(ctx *gin.Context) {
 	// })
 }
 
-// ลูก ค้ากด ออเดอร์ ออกไป ให้ Razer
+// ลูกค้ากด ออเดอร์ ออกไป ให้ Razer
 func Payment(ctx *gin.Context) {
 
 	usernameId := ctx.Query("usernameId")
@@ -256,7 +256,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 	}
 }
 
-// Redirect PayProcess
+// Redirect PayProcess จาก Razer รายงานผลการเติมเงิน
 func (t *Topup) PayProcess(ctx *gin.Context) {
 
 	request := dto.TopupRequest{
