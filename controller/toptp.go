@@ -21,11 +21,13 @@ import (
 
 type Topup struct{}
 
+// เปิดหน้าเติมเงิน
 func Paytopups(ctx *gin.Context) {
 
 	ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
-		"title": "Age Of Khagan Thailand | Topup เติมเงิน",
-		"css":   "topup.css",
+		"title":    "Age Of Khagan Thailand | Topup เติมเงิน",
+		"css":      "topup.css",
+		"message1": "ระบุไอดีเกมของท่าน",
 	})
 }
 
@@ -58,7 +60,6 @@ func UserCheck(ctx *gin.Context) {
 			"status":     "true",
 			"userId":     userId,
 			"bg_success": "bg-success",
-			"message":    "ระบุไอดีเกมของท่าน",
 		})
 	} else {
 		fmt.Println("ไม่เจอข้อมูลไดๆ")
