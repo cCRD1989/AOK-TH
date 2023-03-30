@@ -187,7 +187,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 		//ดึง เลข ออเดอร์ จากตารางมาเทียบ
 		data := model.LogTopup{}
-		if err := db.Conn.Where("orderid = ?", request.Orderid).First(&data).Error; err != nil {
+		if err := db.Conn.Where("orderid = ?", request.Orderid).Where("DataType = ?", "RequestTopup").First(&data).Error; err != nil {
 			fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
 				Txid:   request.Txid,
@@ -195,6 +195,20 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			})
 			return
 		}
+
+		//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:    "Wait"
+		db.Conn.Save(&model.LogTopup{
+			DataType:  "NotificationTopup",
+			UserId:    data.UserId,
+			Txid:      request.Txid,
+			Orderid:   request.Orderid,
+			Status:    "Wait",
+			Detail:    "",
+			Channel:   request.Channel,
+			Price:     request.Amount + request.Currency,
+			Sig:       request.Sig,
+			IPAddress: ctx.ClientIP(),
+		})
 
 		// เงินที่จะเติม
 		caseint, err := strconv.Atoi(request.Amount)
@@ -221,6 +235,11 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			})
 		}
 
+		return
+		//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
+		db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("dataType = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success")
+
+		// Send  200  Ok Success
 		ctx.JSON(http.StatusOK, dto.TopupResponse{
 			Txid:   request.Txid,
 			Status: "200",
