@@ -132,7 +132,7 @@ func Payment(ctx *gin.Context) {
 		UserId:    topup.Username,
 		Txid:      "",
 		Orderid:   orderid,
-		Status:    "",
+		Status:    "Order",
 		Detail:    "",
 		Channel:   channel,
 		Price:     price,
@@ -235,7 +235,6 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			})
 		}
 
-		return
 		//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
 		db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success")
 
