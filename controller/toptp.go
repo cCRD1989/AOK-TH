@@ -58,6 +58,7 @@ func UserCheck(ctx *gin.Context) {
 			"status":     "true",
 			"userId":     userId,
 			"bg_success": "bg-success",
+			"message":    "ระบุไอดีเกมของท่าน",
 		})
 	} else {
 		fmt.Println("ไม่เจอข้อมูลไดๆ")
