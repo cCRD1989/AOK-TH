@@ -8,5 +8,5 @@ type LogWeb struct {
 	gorm.Model
 	DataType  string `gorm:"not null"`
 	IPAddress string `gorm:"not null"`
-	Message   string `gorm:"default:"`
+	Message   string `gorm:"default:''"`
 }

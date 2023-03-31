@@ -191,10 +191,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		data := model.LogTopup{}
 		if err := db.Conn.Where("orderid = ?", request.Orderid).Where("data_type = ?", "RequestTopup").First(&data).Error; err != nil {
 			fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
-			ctx.JSON(http.StatusOK, dto.TopupResponse{
-				Txid:   request.Txid,
-				Status: "609",
-			})
+			ctx.Status(http.StatusBadRequest)
 			return
 		}
 
@@ -216,10 +213,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		caseint, err := strconv.Atoi(request.Amount)
 		if err != nil {
 			fmt.Println("str to int ไม่ได้ ", data.Price)
-			ctx.JSON(http.StatusOK, dto.TopupResponse{
-				Txid:   request.Txid,
-				Status: "609",
-			})
+			ctx.Status(http.StatusBadRequest)
 			return
 		}
 
@@ -231,10 +225,8 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 		if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("username = ?", idcash.Username).Update("cash", idcash.Cash).Error; err != nil {
 			fmt.Println("บันทึกแคชไม่สำเร็จ", err.Error())
-			ctx.JSON(http.StatusOK, dto.TopupResponse{
-				Txid:   request.Txid,
-				Status: "609",
-			})
+			ctx.Status(http.StatusBadRequest)
+			return
 		}
 
 		//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
@@ -250,10 +242,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		fmt.Println("data", data)
 		fmt.Println("old", request.Sig)
 		fmt.Println("new", sumSig)
-		ctx.JSON(http.StatusOK, dto.TopupResponse{
-			Txid:   request.Txid,
-			Status: "609",
-		})
+		ctx.Status(http.StatusBadRequest)
 		return
 	}
 }
