@@ -142,7 +142,7 @@ func (f *Frontend) Auth_google_Regis(ctx *gin.Context) {
 	}
 
 	//บันทึก Log  LogRegister Success
-	db.Conn.Model(&model.LogRegister{}).Where("sub = ?", idcode).Update("status", "Success").Update("username ", username1).Update("password", passSig)
+	db.Conn.Model(&model.LogRegister{}).Where("sub = ?", idcode).Updates(model.LogRegister{Status: "Success", Username: username1, Password: passSig})
 
 	ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
 		"title":  "Age Of Khagan Thailand | Sign up successfully",
