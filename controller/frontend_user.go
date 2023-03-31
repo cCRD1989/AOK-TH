@@ -66,6 +66,17 @@ func (f *Frontend) Auth_google(ctx *gin.Context) {
 	//ctx.JSON(http.StatusOK, gin.H{"Hello": "from private", "user": name})
 	//fmt.Println("Auth_google: ", name)
 
+	//บันทึก Log  LogRegister Wait
+	db.Conn.Save(&model.LogRegister{
+		Sub:      name.Sub,
+		Email:    name.Email,
+		Name:     name.Name,
+		Img:      name.Picture,
+		Username: "",
+		Password: "",
+		Status:   "Wait",
+	})
+
 	ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
 		"title":  "Age Of Khagan Thailand | Account",
 		"email":  name.Email,
@@ -130,7 +141,8 @@ func (f *Frontend) Auth_google_Regis(ctx *gin.Context) {
 		return
 	}
 
-	//บันทึก Log
+	//บันทึก Log  LogRegister Success
+	db.Conn.Model(&model.LogRegister{}).Where("sub = ?", idcode).Update("status", "Success")
 
 	ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
 		"title":  "Age Of Khagan Thailand | Sign up successfully",

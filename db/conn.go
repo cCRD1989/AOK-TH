@@ -45,7 +45,11 @@ func ConnectDB() {
 }
 func Migrate() {
 
-	err := Conn.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&model.LogWeb{}, &model.LogTopup{})
+	err := Conn.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
+		&model.LogWeb{},
+		&model.LogTopup{},
+		&model.LogRegister{},
+	)
 
 	// err := Conn.AutoMigrate(
 	// 	&model.LogWeb{},
