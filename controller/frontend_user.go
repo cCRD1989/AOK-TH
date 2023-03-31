@@ -134,11 +134,11 @@ func (f *Frontend) Auth_google_Regis(ctx *gin.Context) {
 
 	ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
 		"title":  "Age Of Khagan Thailand | Sign up successfully",
-		"tirle1": "Sign up successfully",
-		"email":  strings.Split(email, "@")[0],
+		"tirle1": "Sign up Successfully",
+		"email":  email,
 		"pass":   pass,
 		"name":   "name.Name",
-		"imgsrc": "name.Picture",
+		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/cleric.png",
 		"status": "true",
 	})
 
