@@ -14,21 +14,33 @@
                         <img src="{{.imgsrc}}" class="rounded-circle img-fluid" />
                     </div>
 
-                    <div class="card-body ">
+                    <h4 class="mb-4 text-main-4">{{.name}}</h4>
 
-                        <h4 class="mb-4 text-main-4">{{.name}}</h4>
+
+
+                    {{ if eq .status ""}}
+                    <div class="card-body ">
 
                         <form action="google/registered" method="get">
                             <div class="nk-gap-1"></div>
                             <h4 class="mb-0 text-primary">Sign Up</h4>
                             <div class="nk-gap-1"></div>
 
+                            <!-- ID input -->
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control text-black" id="idcode" name="idcode"
+                                    value="{{.sub}}" placeholder="IDCode" readonly>
+                            </div>
+
                             <!-- Email input -->
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control text-black" id="email" name="email"
+                                <input type="email" class="form-control text-black" id="email" name="email"
                                     value="{{.email}}" placeholder="Username" readonly>
                             </div>
 
@@ -53,15 +65,33 @@
                             <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mb-3 text-black">Sign Up</button>
                             <div class="nk-gap-1"></div>
-
-                            
                         </form>
                     </div>
+
+                    {{ else if eq .status "true" }}
+
+                    <div class="card-body ">
+
+                        <form action="/" method="get">
+
+                            <h5 class="mb-4 text-main-4">{{.tirle1}}</h5>
+                            <h6 class="mb-4 text-main-4">Username: {{.email}}</h6>
+                            <h6 class="mb-4 text-main-4">Password: {{.pass}}</h6>
+
+                            <button type="submit" class="btn btn-primary btn-block mb-3 text-black">Home</button>
+                        </form>
+
+
+                    </div>
+
+                    {{ end }}
+
+
                 </div>
             </div>
         </div>
     </section>
-    
+
 </div>
 
 

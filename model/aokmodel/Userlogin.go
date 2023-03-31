@@ -17,12 +17,12 @@ package aokmodel
 // UNIQUE KEY `username` (`username`)
 
 type Userlogin struct {
-	// Id              string `gorm:"type:varchar(50);not null;primaryKey"`
+	Id              string `gorm:"type:varchar(50);not null;primaryKey"`
 	Username string `gorm:"type:varchar(32);not null;uniqueIndex"`
-	// Password        string `gorm:"type:varchar(72);not null"`
+	Password        string `gorm:"type:varchar(72);not null"`
 	// Gold            int
 	Cash int
-	// Email           string `gorm:"type:varchar(50);not null;default:"`
+	Email           string `gorm:"type:varchar(50);not null;default:"`
 	// Isemailverified int
 	// Authtype        int
 	// Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
