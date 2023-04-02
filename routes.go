@@ -19,6 +19,8 @@ func serveRoutes(r *gin.Engine) {
 	auth_user := r.Group("/auth")
 	auth_user.GET("/", google.LoginHandler) //google add 	ctx.Redirect(http.StatusTemporaryRedirect, GetLoginURL(state))
 	auth_user.GET("/google/registered", frontend_user.Auth_google_Regis)
+	auth_user.GET("/custom", frontend_user.Auth_custom)
+	auth_user.GET("/customregis", frontend_user.Auth_custom_regis)
 
 	private := r.Group("/auth")
 	private.Use(google.Auth())

@@ -8,7 +8,9 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
+	"math/rand"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -151,6 +153,101 @@ func (f *Frontend) Auth_google_Regis(ctx *gin.Context) {
 		"pass":   pass,
 		"name":   "name.Name",
 		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/cleric.png",
+		"status": "true",
+	})
+}
+
+func (f *Frontend) Auth_custom(ctx *gin.Context) {
+	ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
+		"title":  "Age Of Khagan | Custom Registration",
+		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
+		"name":   "Custom Registration",
+		"status": "false",
+	})
+}
+
+func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
+
+	userID := ctx.DefaultQuery("username", "-")
+	email := ctx.DefaultQuery("email", "-")
+	pass := ctx.DefaultQuery("password", "-")
+	repass := ctx.DefaultQuery("repassword", "-")
+
+	if userID == "-" || email == "-" || pass == "-" || repass == "-" {
+		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
+			"title":  "Age Of Khagan | Custom Registration",
+			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
+			"name":   "กรอกข้อมูลให้ครบ",
+			"status": "false",
+		})
+		return
+	}
+
+	//ตรวจสอบพาสตรงกัน
+	if pass != repass {
+		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
+			"title":  "Age Of Khagan | Custom Registration",
+			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
+			"name":   "Password ไม่ตรงกัน",
+			"status": "false",
+		})
+		return
+	}
+
+	//ตรวจสอบไอดีในระบบ
+	if err := db.AOK_DB.First(&aokmodel.Userlogin{}, "username = ?", userID).Error; err == nil {
+
+		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
+			"title":  "Age Of Khagan | Custom Registration",
+			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
+			"name":   "Username มีอยู่ในระบบแล้ว โปรดลองใหม่",
+			"status": "false",
+		})
+		return
+	}
+
+	// สุ่ม IDCode
+	h := md5.New()
+	io.WriteString(h, strconv.Itoa(rand.Int()))
+	idcode := hex.EncodeToString(h.Sum(nil))
+
+	// เข้ารหัส พาสเวด
+	h = md5.New()
+	io.WriteString(h, pass)
+	passSig := hex.EncodeToString(h.Sum(nil))
+
+	//บันทึกลงฐานข้อมูล
+	logid := aokmodel.Userlogin{
+		Id:       idcode,
+		Username: userID,
+		Password: passSig,
+		Email:    email,
+	}
+	if err := db.AOK_DB.Save(&logid).Error; err != nil {
+		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
+			"title":  "Age Of Khagan | Custom Registration",
+			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
+			"name":   "บันทึกลงฐานข้อมูลไม่สำเร็จ Error",
+			"status": "false",
+		})
+		return
+	}
+
+	//บันทึก Log  LogRegister
+	db.Conn.Save(&model.LogRegister{
+		Sub:      idcode,
+		Email:    email,
+		Name:     "",
+		Img:      "",
+		Username: userID,
+		Password: passSig,
+		Status:   "Custom Registration",
+	})
+
+	ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
+		"title":  "Age Of Khagan | Custom Registration",
+		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
+		"name":   "บันทึกลงฐานข้อมูลสำเร็จ",
 		"status": "true",
 	})
 
