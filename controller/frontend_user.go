@@ -36,7 +36,7 @@ var (
 	OauthConf = &oauth2.Config{
 		ClientID:     "",
 		ClientSecret: "",
-		RedirectURL:  "http://localhost:80/auth/facebookCall",
+		RedirectURL:  "https://ageofkhaganth.com/auth/facebookCall",
 		Scopes:       []string{"public_profile", "email"},
 		Endpoint:     facebook.Endpoint,
 	}
@@ -273,8 +273,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 }
 
 func (f *Frontend) Auth_facebook_login(ctx *gin.Context) {
-	OauthConf.ClientID = os.Getenv("facebook.clientID")
-	OauthConf.ClientSecret = os.Getenv("facebook.clentSecret")
+	OauthConf.ClientID = os.Getenv("facebookclientID")
+	OauthConf.ClientSecret = os.Getenv("facebookclentSecret")
 
 	URL, err := url.Parse(OauthConf.Endpoint.AuthURL)
 	if err != nil {
