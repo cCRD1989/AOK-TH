@@ -21,6 +21,9 @@ func serveRoutes(r *gin.Engine) {
 	auth_user.GET("/google/registered", frontend_user.Auth_google_Regis)
 	auth_user.GET("/custom", frontend_user.Auth_custom)
 	auth_user.GET("/customregis", frontend_user.Auth_custom_regis)
+	auth_user.GET("/facebooklogin", frontend_user.Auth_facebook_login)
+	auth_user.GET("/facebookCall", frontend_user.Auth_facebook_call)
+	auth_user.GET("/facebookRegis", frontend_user.Auth_facebook_regis)
 
 	private := r.Group("/auth")
 	private.Use(google.Auth())
@@ -42,6 +45,7 @@ func serveRoutes(r *gin.Engine) {
 	admin_userGroup := r.Group("/admin")
 	admin_userGroup.GET("", admin_user.UserGetAdmin)      //index.html
 	admin_userGroup.GET("/items", admin_user.GetItemsAll) //index.html
+	admin_userGroup.GET("/logtopup", admin_user.Logtopup)
 
 	// //category
 	// categoryController := controller.Categroy{}

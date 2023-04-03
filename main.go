@@ -33,6 +33,7 @@ Usage of %s
 	// https://ageofkhaganth.com/auth/google/
 	flag.StringVar(&redirectURL, "redirect", "https://ageofkhaganth.com/auth/google/", "URL to be redirected to after authorization.")
 	flag.StringVar(&credFile, "cred-file", "./test-clientid.google.json", "Credential JSON file")
+
 }
 
 func main() {

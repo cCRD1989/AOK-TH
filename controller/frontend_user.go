@@ -6,18 +6,42 @@ import (
 	"ccrd/model/aokmodel"
 	"crypto/md5"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
+	"log"
 	"math/rand"
 	"net/http"
+	"net/url"
+	"os"
 	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/zalando/gin-oauth2/google"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/facebook"
 )
 
 type Frontend struct{}
+
+// FaceBook
+type Message struct {
+	Name string
+	Id   string
+}
+
+var (
+	OauthConf = &oauth2.Config{
+		ClientID:     "",
+		ClientSecret: "",
+		RedirectURL:  "http://localhost:80/auth/facebookCall",
+		Scopes:       []string{"public_profile", "email"},
+		Endpoint:     facebook.Endpoint,
+	}
+	OauthStateString = "thisshouldberandom"
+)
 
 func (f *Frontend) UserGetHome(ctx *gin.Context) {
 
@@ -95,10 +119,6 @@ func (f *Frontend) Auth_google_Regis(ctx *gin.Context) {
 	pass := ctx.DefaultQuery("password", "-")
 	repass := ctx.DefaultQuery("repassword", "-")
 
-	fmt.Println("email", email)
-	fmt.Println("pass", pass)
-	fmt.Println("rpass", repass)
-
 	username1 := strings.Split(email, "@")[0]
 
 	//ตรวจสอบไอดีในระบบ
@@ -106,7 +126,7 @@ func (f *Frontend) Auth_google_Regis(ctx *gin.Context) {
 		fmt.Println("ไอดีซ้ำ")
 		ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
 			"title":  "Age Of Khagan Thailand",
-			"tirle1": "ไอดีนี มีอยู่ในระบบ ไม่สารถใช้ไอดีนี้ได้",
+			"tirle1": "ไอดีนี้ มีอยู่ในระบบ ไม่สารถใช้ไอดีนี้ได้",
 			"status": "true",
 		})
 		return
@@ -144,7 +164,7 @@ func (f *Frontend) Auth_google_Regis(ctx *gin.Context) {
 	}
 
 	//บันทึก Log  LogRegister Success
-	db.Conn.Model(&model.LogRegister{}).Where("sub = ?", idcode).Updates(model.LogRegister{Status: "Success", Username: username1, Password: passSig})
+	db.Conn.Model(&model.LogRegister{}).Where("sub = ?", idcode).Updates(model.LogRegister{Status: "Google", Username: username1, Password: passSig})
 
 	ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
 		"title":  "Age Of Khagan Thailand | Sign up successfully",
@@ -248,6 +268,150 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		"title":  "Age Of Khagan | Custom Registration",
 		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
 		"name":   "บันทึกลงฐานข้อมูลสำเร็จ",
+		"status": "true",
+	})
+}
+
+func (f *Frontend) Auth_facebook_login(ctx *gin.Context) {
+	OauthConf.ClientID = os.Getenv("facebook.clientID")
+	OauthConf.ClientSecret = os.Getenv("facebook.clentSecret")
+
+	URL, err := url.Parse(OauthConf.Endpoint.AuthURL)
+	if err != nil {
+		log.Fatal("Parse: ", err)
+	}
+	fmt.Println(URL)
+	parameters := url.Values{}
+	parameters.Add("client_id", OauthConf.ClientID)
+	parameters.Add("scope", strings.Join(OauthConf.Scopes, " "))
+	parameters.Add("redirect_uri", OauthConf.RedirectURL)
+	parameters.Add("response_type", "code")
+	parameters.Add("state", OauthStateString)
+	URL.RawQuery = parameters.Encode()
+	url := URL.String()
+	// fmt.Println("URL", url)
+	ctx.Redirect(http.StatusTemporaryRedirect, url)
+}
+
+func (f *Frontend) Auth_facebook_call(ctx *gin.Context) {
+	state := ctx.Query("state")
+	code := ctx.Query("code")
+
+	if state != OauthStateString {
+		fmt.Printf("invalid oauth state, expected '%s', got '%s'\n", OauthStateString, state)
+		ctx.Redirect(http.StatusTemporaryRedirect, "/")
+		return
+	}
+
+	if code == "" {
+		fmt.Println("Code not found..")
+		return
+	} else {
+		token, err := OauthConf.Exchange(oauth2.NoContext, code)
+		if err != nil {
+			fmt.Printf("oauthConf.Exchange() failed with '%s'\n", err)
+			return
+		}
+
+		resp, err := http.Get("https://graph.facebook.com/me?access_token=" + url.QueryEscape(token.AccessToken))
+		if err != nil {
+			fmt.Printf("Get: %s\n", err)
+			return
+		}
+		defer resp.Body.Close()
+
+		response, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Printf("ReadAll: %s\n", err)
+			return
+		}
+
+		var m Message
+		if err := json.Unmarshal([]byte(response), &m); err != nil {
+			fmt.Println("err:", err.Error())
+		}
+
+		ctx.HTML(http.StatusOK, "frontend/authfacebook.html", gin.H{
+			"title":  "Age Of Khagan Thailand | Account",
+			"email":  "",
+			"name":   m.Name,
+			"imgsrc": "",
+			"status": "",
+			"sub":    m.Id,
+		})
+	}
+}
+
+func (f *Frontend) Auth_facebook_regis(ctx *gin.Context) {
+	fullname := ctx.DefaultQuery("fullname", "-")
+	idcode := ctx.DefaultQuery("idcode", "-")
+	username1 := ctx.DefaultQuery("username", "-")
+	pass := ctx.DefaultQuery("password", "-")
+	repass := ctx.DefaultQuery("repassword", "-")
+
+	fmt.Println("idcode: ", idcode)
+	fmt.Println("username1: ", username1)
+	fmt.Println("pass: ", pass)
+	fmt.Println("repass: ", repass)
+
+	//ตรวจสอบไอดีในระบบ
+	if err := db.AOK_DB.First(&aokmodel.Userlogin{}, "username = ?", username1).Error; err == nil {
+		ctx.HTML(http.StatusOK, "frontend/authfacebook.html", gin.H{
+			"title":  "Age Of Khagan Thailand | Facebook",
+			"tirle1": "ไอดีนี้ มีอยู่ในระบบ ไม่สารถใช้ไอดีนี้ได้",
+			"status": "true",
+		})
+		return
+	}
+
+	//ตรวจสอบพาสตรงกัน
+	if pass != repass {
+		ctx.HTML(http.StatusOK, "frontend/authfacebook.html", gin.H{
+			"title":  "Age Of Khagan Thailand",
+			"tirle1": "พาสไม่ตรงกัน",
+			"status": "true",
+		})
+		return
+	}
+
+	// บันทึก
+	h := md5.New()
+	io.WriteString(h, pass)
+	passSig := hex.EncodeToString(h.Sum(nil))
+	logid := aokmodel.Userlogin{
+		Id:       idcode,
+		Username: username1,
+		Password: passSig,
+		Email:    "",
+	}
+	if err := db.AOK_DB.Save(&logid).Error; err != nil {
+		fmt.Println("บันทึกไอดี ไม่สำเร็จ")
+		ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
+			"title":  "Age Of Khagan Thailand",
+			"tirle1": "ระบบไม่สามารถ บันทึกข้อมูลของท่านได้",
+			"status": "true",
+		})
+		return
+	}
+
+	//บันทึก Log  LogRegister Wait
+	db.Conn.Save(&model.LogRegister{
+		Sub:      idcode,
+		Email:    "",
+		Name:     fullname,
+		Img:      "",
+		Username: username1,
+		Password: passSig,
+		Status:   "FaceBook",
+	})
+
+	ctx.HTML(http.StatusOK, "frontend/auth.html", gin.H{
+		"title":  "Age Of Khagan Thailand | Sign up successfully",
+		"tirle1": "Sign up Successfully",
+		"email":  username1,
+		"pass":   pass,
+		"name":   fullname,
+		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/cleric.png",
 		"status": "true",
 	})
 

@@ -16,15 +16,22 @@
 
                     <h4 class="mb-4 text-main-4">{{.name}}</h4>
 
-
-
                     {{ if eq .status ""}}
                     <div class="card-body ">
 
-                        <form action="google/registered" method="get">
+                        <form action="/auth/facebookRegis" method="get">
                             <div class="nk-gap-1"></div>
-                            <h4 class="mb-0 text-primary">Sign Up</h4>
+                            <h4 class="mb-0 text-primary">Sign Up Facebook</h4>
                             <div class="nk-gap-1"></div>
+
+                             <!-- Fullname input -->
+                             <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control text-black" id="fullname" name="fullname"
+                                    value="{{.name}}" placeholder="Fullname" readonly required>
+                            </div>
 
                             <!-- ID input -->
                             <div class="input-group form-group">
@@ -35,13 +42,13 @@
                                     value="{{.sub}}" placeholder="IDCode" readonly required>
                             </div>
 
-                            <!-- Email input -->
+                            <!-- Username input -->
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="email" class="form-control text-black" id="email" name="email"
-                                    value="{{.email}}" placeholder="E-Mail" readonly>
+                                <input type="text" class="form-control text-black" id="username" name="username"
+                                    value="" placeholder="Username" required minlength="6" maxlength="32">
                             </div>
 
                             <!-- Password -->
