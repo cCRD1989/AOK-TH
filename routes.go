@@ -2,6 +2,7 @@ package main
 
 import (
 	"ccrd/controller"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/zalando/gin-oauth2/google"
@@ -14,6 +15,18 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup := r.Group("/")
 	frontend_userGroup.GET("", frontend_user.UserGetHome) //index.html
 	frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
+	//privacypolicy
+	frontend_userGroup.GET("/privacypolicy", func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
+			"title": "Age Of Khagan Thailand | PrivacyPolicy",
+		})
+	})
+
+	frontend_userGroup.GET("/service", func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
+			"title": "Age Of Khagan Thailand | Service",
+		})
+	})
 
 	// auth https://console.cloud.google.com/
 	auth_user := r.Group("/auth")
@@ -46,6 +59,11 @@ func serveRoutes(r *gin.Engine) {
 	admin_userGroup.GET("", admin_user.UserGetAdmin)      //index.html
 	admin_userGroup.GET("/items", admin_user.GetItemsAll) //index.html
 	admin_userGroup.GET("/logtopup", admin_user.Logtopup)
+
+	// จัดอันดับ RANKINGS ทุกอาชีพ
+	Ranking_controller := controller.Rankings{}
+	frontend_RankingGroup := r.Group("/ranking")
+	frontend_RankingGroup.GET("/:class", Ranking_controller.Ranking)
 
 	// //category
 	// categoryController := controller.Categroy{}
