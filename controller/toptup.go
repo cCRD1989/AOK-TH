@@ -291,5 +291,4 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"sig":      "Failed",
 		})
 	}
-
 }

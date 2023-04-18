@@ -34,11 +34,26 @@
                 <ul class="nk-contacts-icons">
 
 
+
+
+                    {{ if eq .user.Username ""}}
                     <li>
                         <a href="#" data-toggle="modal" data-target="#modalLogin">
                             <span class="fa fa-user"></span>
                         </a>
                     </li>
+                    {{ else }}
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modalLogout">
+                            <img src="/public/data/avatar/avatar.png" alt="" width="70px">
+                        </a>
+                    </li>
+                    {{ end}}
+
+
+
+
+
 
 
                     <li>
@@ -341,15 +356,16 @@
 
                 <div class="row vertical-gap">
                     <div class="col-md-6">
-                        <form action="/data" method="get">
-                            <span class="text-main-1">Use email and password:</span>
+                        <form action="/login" method="post">
+                            <span class="text-main-1">Username and Password:</span>
 
                             <div class="nk-gap"></div>
-                            <input type="email" value="" name="email" class=" form-control" placeholder="Email">
+                            <input type="text" value="" name="username" class=" form-control" placeholder="Username"
+                                required minlength="6" maxlength="32">
 
                             <div class="nk-gap"></div>
                             <input type="password" value="" name="password" class="required form-control"
-                                placeholder="Password">
+                                placeholder="Password" required minlength="6" maxlength="32">
 
                             <div class="nk-gap-1"></div>
                             <button type="submit"
@@ -361,7 +377,8 @@
                         <div class="nk-gap"></div>
 
                         <ul class="nk-social-links-2">
-                            <li><a class="nk-social-facebook" href="/auth/facebooklogin"><span class="fab fa-facebook"></span></a></li>
+                            <li><a class="nk-social-facebook" href="/auth/facebooklogin"><span
+                                        class="fab fa-facebook"></span></a></li>
                             <li><a class="nk-social-google" href="/auth"><span class="fab fa-google"></span></a>
                             </li>
                         </ul>
@@ -370,7 +387,8 @@
                         <span class="text-main-1">Or Custom Registration:</span>
 
                         <ul class="nk-social-links-2">
-                            <li><a class="nk-social-facebook" href="/auth/custom"><span class="fa fa-address-card-o"></span></a></li>
+                            <li><a class="nk-social-facebook" href="/auth/custom"><span
+                                        class="fa fa-address-card-o"></span></a></li>
                         </ul>
 
 
@@ -381,6 +399,25 @@
     </div>
 </div>
 <!-- END: Login Modal -->
+
+<!-- START: Logout Modal -->
+<div class="nk-modal modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="ion-android-close"></span>
+                </button>
+                <div class="nk-gap"></div>
+                <div class="nk-gap"></div>
+                <div class="nk-gap"></div>
+               
+                <a href="/logout" class="nk-btn nk-btn-rounded nk-btn-color-danger nk-btn-block">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Logout Modal -->
 
 
 <!-- START: Navbar Mobile -->

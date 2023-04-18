@@ -1,5 +1,7 @@
 package aokmodel
 
+import "ccrd/db"
+
 // `id` varchar(50) NOT NULL,
 // `username` varchar(32) NOT NULL,
 // `password` varchar(72) NOT NULL,
@@ -17,12 +19,12 @@ package aokmodel
 // UNIQUE KEY `username` (`username`)
 
 type Userlogin struct {
-	Id              string `gorm:"type:varchar(50);not null;primaryKey"`
+	Id       string `gorm:"type:varchar(50);not null;primaryKey"`
 	Username string `gorm:"type:varchar(32);not null;uniqueIndex"`
-	Password        string `gorm:"type:varchar(72);not null"`
+	Password string `gorm:"type:varchar(72);not null"`
 	// Gold            int
-	Cash int
-	Email           string `gorm:"type:varchar(50);not null;default:"`
+	Cash  int
+	Email string `gorm:"type:varchar(50);not null;default:"`
 	// Isemailverified int
 	// Authtype        int
 	// Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
@@ -35,3 +37,15 @@ type Userlogin struct {
 func (n *Userlogin) TableName() string {
 	return "userlogin"
 }
+
+// FindUserByName finds a user by username
+func (u *Userlogin) FindUserByName(username string) Userlogin {
+
+	var user Userlogin
+	db.AOK_DB.Where("username = ?", username).First(&user)
+
+	return user
+}
+
+
+

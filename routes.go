@@ -2,6 +2,7 @@ package main
 
 import (
 	"ccrd/controller"
+	"ccrd/middleware"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -13,8 +14,12 @@ func serveRoutes(r *gin.Engine) {
 	// frontend_user
 	frontend_user := controller.Frontend{}
 	frontend_userGroup := r.Group("/")
-	frontend_userGroup.GET("", frontend_user.UserGetHome) //index.html
+	frontend_userGroup.Use(middleware.UserSession())
+	frontend_userGroup.GET("", frontend_user.UserGetHome)          //index.html
+	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)  //login
+	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout
 	frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
+
 	//privacypolicy
 	frontend_userGroup.GET("/privacypolicy", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
@@ -22,6 +27,7 @@ func serveRoutes(r *gin.Engine) {
 		})
 	})
 
+	//service
 	frontend_userGroup.GET("/service", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
 			"title": "Age Of Khagan Thailand | Service",
@@ -35,7 +41,7 @@ func serveRoutes(r *gin.Engine) {
 	auth_user.GET("/custom", frontend_user.Auth_custom)
 	auth_user.GET("/customregis", frontend_user.Auth_custom_regis)
 	auth_user.GET("/facebooklogin", frontend_user.Auth_facebook_login)
-	auth_user.GET("/facebookCall", frontend_user.Auth_facebook_call)
+	auth_user.GET("/facebookCall", frontend_user.Auth_facebook_call) //https://ageofkhaganth.com/auth/facebookCall/
 	auth_user.GET("/facebookRegis", frontend_user.Auth_facebook_regis)
 
 	private := r.Group("/auth")

@@ -4,6 +4,7 @@ import (
 	"ccrd/db"
 	"ccrd/model"
 	"ccrd/model/aokmodel"
+	"ccrd/unit"
 	"crypto/md5"
 	"encoding/hex"
 	"encoding/json"
@@ -17,8 +18,10 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/zalando/gin-oauth2/google"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/facebook"
@@ -28,17 +31,23 @@ type Frontend struct{}
 
 // FaceBook
 type Message struct {
-	Name string
-	Id   string
+	Name     string
+	Id       string
+	Likes    string
+	Gender   string
+	Birthday string
 }
 
 var (
+	// AuthURL:  "https://www.facebook.com/v16.0/dialog/oauth",
+	// TokenURL: "https://graph.facebook.com/v16.0/oauth/access_token",
 	OauthConf = &oauth2.Config{
 		ClientID:     "",
 		ClientSecret: "",
-		RedirectURL:  "https://ageofkhaganth.com/auth/facebookCall",
-		Scopes:       []string{"public_profile", "email"},
-		Endpoint:     facebook.Endpoint,
+		RedirectURL:  "http://ageofkhagan/auth/facebookCall",
+		//RedirectURL: "https://localhost/",
+		Scopes:   []string{"public_profile", "email"},
+		Endpoint: facebook.Endpoint,
 	}
 	OauthStateString = "thisshouldberandom"
 )
@@ -51,9 +60,68 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 	}
 	db.Conn.Save(&visit)
 
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
 	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
 		"title": "Age Of Khagan Thailand",
+		"user":  user,
 	})
+}
+
+func (f *Frontend) UserGetLogin(ctx *gin.Context) {
+
+	Form := aokmodel.Userlogin{Username: ctx.PostForm("username"), Password: ctx.PostForm("password")}
+	fmt.Println("Form: ", Form)
+
+	user := aokmodel.Userlogin{}
+	user = user.FindUserByName(Form.Username)
+	fmt.Println("user: ", user)
+	// Check ID
+	if user.Id == "" {
+		ctx.Redirect(http.StatusFound, "/")
+		fmt.Println("Check ID")
+		return
+	}
+
+	// CompareHashAndPassword MD5
+	if unit.HashMD5(Form.Password) != user.Password {
+		ctx.Redirect(http.StatusFound, "/")
+		fmt.Println("Check Pass")
+		return
+	}
+
+	// Create a new token object, specifying signing method and the claims
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"user": user,
+		"exp":  time.Now().Add(time.Hour).Unix(),
+	})
+	// Sign and get the complete encoded token as a string using the secret
+	tokenString, err := token.SignedString([]byte(os.Getenv("MY_SECRET_KEY")))
+	if err != nil {
+		fmt.Println("Sign Token")
+		ctx.Redirect(http.StatusFound, "/")
+		return
+	}
+
+	// SetCookie
+	ctx.SetSameSite(http.SameSiteStrictMode)
+	ctx.SetCookie("Authorization", tokenString, 3600, "", "", false, true)
+
+	// Redirect
+	fmt.Println("บันทึก Token สำเร็จ")
+	ctx.Redirect(http.StatusFound, "/")
+}
+
+// UserGetLogout logs the user out
+func (f *Frontend) UserGetLogout(ctx *gin.Context) {
+	tokenString, err := ctx.Cookie("Authorization")
+	if err == nil {
+		ctx.SetCookie("Authorization", tokenString, -1, "", "", false, true)
+	}
+	ctx.Redirect(http.StatusFound, "/")
 }
 
 func (f *Frontend) UserGetDownload(ctx *gin.Context) {
@@ -280,16 +348,16 @@ func (f *Frontend) Auth_facebook_login(ctx *gin.Context) {
 	if err != nil {
 		log.Fatal("Parse: ", err)
 	}
-	fmt.Println(URL)
+	// fmt.Println("URL1", URL)
 	parameters := url.Values{}
 	parameters.Add("client_id", OauthConf.ClientID)
-	parameters.Add("scope", strings.Join(OauthConf.Scopes, " "))
+	parameters.Add("scope", strings.Join(OauthConf.Scopes, ","))
 	parameters.Add("redirect_uri", OauthConf.RedirectURL)
 	parameters.Add("response_type", "code")
 	parameters.Add("state", OauthStateString)
 	URL.RawQuery = parameters.Encode()
 	url := URL.String()
-	// fmt.Println("URL", url)
+	// fmt.Println("URL2", url)
 	ctx.Redirect(http.StatusTemporaryRedirect, url)
 }
 
@@ -330,7 +398,7 @@ func (f *Frontend) Auth_facebook_call(ctx *gin.Context) {
 		if err := json.Unmarshal([]byte(response), &m); err != nil {
 			fmt.Println("err:", err.Error())
 		}
-
+		fmt.Println("Message", m)
 		ctx.HTML(http.StatusOK, "frontend/authfacebook.html", gin.H{
 			"title":  "Age Of Khagan Thailand | Account",
 			"email":  "",
@@ -414,5 +482,4 @@ func (f *Frontend) Auth_facebook_regis(ctx *gin.Context) {
 		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/cleric.png",
 		"status": "true",
 	})
-
 }
