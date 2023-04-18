@@ -44,7 +44,7 @@ var (
 	OauthConf = &oauth2.Config{
 		ClientID:     "",
 		ClientSecret: "",
-		RedirectURL:  "https://www.ageofkhagan/auth/facebookCall",
+		RedirectURL:  "https://www.ageofkhaganth.com/auth/facebookCall",
 		//RedirectURL: "https://localhost/",
 		Scopes:   []string{"public_profile", "email"},
 		Endpoint: facebook.Endpoint,
