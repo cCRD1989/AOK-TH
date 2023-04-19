@@ -71,6 +71,11 @@ func serveRoutes(r *gin.Engine) {
 	frontend_RankingGroup := r.Group("/ranking")
 	frontend_RankingGroup.GET("/:class", Ranking_controller.Ranking)
 
+	//Game Guides
+	guides_controller := controller.Guides{}
+	guides_userGroup := r.Group("/guide/map")
+	guides_userGroup.GET("/wroclawfortress", guides_controller.WroclawFortress)
+
 	// //category
 	// categoryController := controller.Categroy{}
 	// categoryGroup := r.Group("/categorys")

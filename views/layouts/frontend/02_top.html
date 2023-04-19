@@ -47,6 +47,9 @@
                         <a href="#" data-toggle="modal" data-target="#modalLogout">
                             <img src="/public/data/avatar/avatar.png" alt="" width="70px">
                         </a>
+                        <h6 class="text-main-1">
+                            {{.user.Username}}
+                        </h6>
                     </li>
                     {{ end}}
 
@@ -215,9 +218,8 @@
                                 <ul class="dropdown">
 
                                     <li>
-                                        <a href="#">
+                                        <a href="/guide/map/wroclawfortress">
                                             Wroclaw Fortress
-
                                         </a>
                                     </li>
                                     <li>
@@ -248,7 +250,7 @@
                                 </ul>
                             </li>
                             <li class=" nk-drop-item">
-                                <a href="/">
+                                <a href="#">
                                     + CHARACTERS
 
                                 </a>
@@ -412,7 +414,7 @@
                 <h4 class="mb-0"><span class="text-main-1">Settings</span></h4>
                 <div class="nk-gap"></div>
                 <div class="nk-gap"></div>
-               
+
                 <a href="/logout" class="nk-btn nk-btn-rounded nk-btn-color-danger nk-btn-block">Logout</a>
             </div>
         </div>
