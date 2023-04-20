@@ -2,7 +2,6 @@ package main
 
 import (
 	"ccrd/controller"
-	"ccrd/middleware"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -14,7 +13,6 @@ func serveRoutes(r *gin.Engine) {
 	// frontend_user
 	frontend_user := controller.Frontend{}
 	frontend_userGroup := r.Group("/")
-	frontend_userGroup.Use(middleware.UserSession())
 	frontend_userGroup.GET("", frontend_user.UserGetHome)          //index.html
 	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)  //login
 	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout

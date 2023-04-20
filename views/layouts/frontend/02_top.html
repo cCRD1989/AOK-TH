@@ -34,14 +34,11 @@
                 <ul class="nk-contacts-icons">
 
 
-
-
-                    {{ if eq .user.Username ""}}
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#modalLogin">
-                            <span class="fa fa-user"></span>
-                        </a>
-                    </li>
+              
+                    {{ if eq .user.Username "" }}
+                    <a href="#" data-toggle="modal" data-target="#modalLogin">
+                        <span class="fa fa-user"></span>
+                    </a>
                     {{ else }}
                     <li>
                         <a href="#" data-toggle="modal" data-target="#modalLogout">
@@ -52,10 +49,25 @@
                         </h6>
                     </li>
                     {{ end}}
+             
 
 
-
-
+                    <!-- {{ if ne .user.Username ""}}
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modalLogout">
+                            <img src="/public/data/avatar/avatar.png" alt="" width="70px">
+                        </a>
+                        <h6 class="text-main-1">
+                            {{.user.Username}}
+                        </h6>
+                    </li>
+                    {{ else}}
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modalLogin">
+                            <span class="fa fa-user"></span>
+                        </a>
+                    </li>
+                    {{ end}} -->
 
 
 

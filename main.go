@@ -2,6 +2,7 @@ package main
 
 import (
 	"ccrd/db"
+	"ccrd/middleware"
 	"ccrd/server/khanscr"
 	"flag"
 	"fmt"
@@ -84,6 +85,7 @@ func main() {
 	google.Setup(redirectURL, credFile, scopes, secret)
 	r.Use(google.Session(sessionName))
 
+	r.Use(middleware.UserSession())
 	serveRoutes(r)
 
 	port := os.Getenv("PORT")
