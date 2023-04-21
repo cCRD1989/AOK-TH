@@ -27,7 +27,7 @@ func (g *Guides) GetMap(ctx *gin.Context) {
 
 	if maps == "wroclawfortress" {
 		mapName = "wroclaw fortress"
-		mapPart("1")
+		mapMonter = mapPart("1")
 		mapid = "/public/data/Maps/1.png"
 	} else if maps == "kharakorum" {
 		mapName = "kharakorum"
