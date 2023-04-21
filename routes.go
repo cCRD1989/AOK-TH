@@ -72,7 +72,7 @@ func serveRoutes(r *gin.Engine) {
 	//Game Guides
 	guides_controller := controller.Guides{}
 	guides_userGroup := r.Group("/guide/map")
-	guides_userGroup.GET("/wroclawfortress", guides_controller.WroclawFortress)
+	guides_userGroup.GET("/:maps", guides_controller.GetMap)
 
 	// //category
 	// categoryController := controller.Categroy{}

@@ -23,11 +23,18 @@ func getItemNameById(id int16) string {
 	return khanscr.GetItemName(id)
 }
 
+func getNameMonter(names string) string {
+	data := strings.Split(names, "/")
+	count := len(data)
+	return strings.Split(data[count-1], ".")[0]
+}
+
 func createViews() multitemplate.Render {
 	var fn = template.FuncMap{
 		"getPlayersOnlineCount": getPlayersOnlineCount,
 		"getAllItemsBSV":        getAllItemsBSV,
 		"getItemNameById":       getItemNameById,
+		"getNameMonter":         getNameMonter,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")
