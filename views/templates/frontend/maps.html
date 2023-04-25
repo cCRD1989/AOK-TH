@@ -1,0 +1,246 @@
+{{ define "content" }}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container-1 {
+        height: auto;
+        padding-top: 10px;
+        background-image: url("/public/data/BG/contentBlock-bg.png");
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background-attachment: fixed; */
+
+    }
+
+    .map-info {
+        margin-top: 6rem;
+        text-align: center;
+    }
+
+    .map-image img {
+        border-radius: 15px;
+        width: 80%;
+    }
+
+    .map-info p {
+        margin-top: 3.5rem;
+        color: gold;
+        font-size: 2rem;
+        background: coral;
+        display: inline;
+        border-radius: 10px;
+        border: 1px solid #ff9500;
+        padding: 5px;
+        text-transform: uppercase;
+    }
+
+    .map-monter-grid {
+        margin: 30px 0;
+        padding: 0 60px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+    }
+
+    .monter-item {
+        text-align: center;
+        transition: transform 250ms;
+        opacity: 0.9;
+    }
+
+    .monter-item:hover {
+        opacity: 1;
+        transform: translateY(-10px);
+        /* transform: scale(1.1); */
+
+    }
+
+    .monter-item img {
+        border-radius: 10px;
+        width: 75%;
+    }
+
+    .monter-item h5 {
+        color: #af670ea4;
+    }
+
+    .des {
+        font-size: 1.5rem;
+        text-align: center;
+        background: url("/public/data/BG/contentBlock-bg.png");
+        background-position: center;
+        background-position-y: 50%;
+        background-repeat: no-repeat;
+    }
+
+    @media screen and (max-width:1000px) {
+        .map-monter-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media screen and (max-width:560px) {
+        .map-monter-grid {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 10%;
+        /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fcc95a90;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 480px;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .popup {
+        width: 20%;
+    }
+</style>
+
+
+<div class="container">
+    <div class="container-1">
+
+
+        <div class="map-info">
+            <div class="map-des">
+                <p>{{ .mapName }}</p>
+            </div>
+            <div class="map-image">
+                <img src="{{ .mapid }}" alt="Maps">
+            </div>
+        </div>
+
+        <div class="des">
+            <p>
+                {{ range .mapDes}}
+                {{ . }}
+                <br>
+                {{ end }}
+                <br>
+
+            </p>
+        </div>
+
+        <div class="map-monter-grid" id="">
+
+            {{ range .mapMonter}}
+            <div class="monter-item">
+                <div name="md" value="{{ getNameMonter . }}">
+                    <img src="{{ . }}" alt="">
+                    <h5>
+                        {{ getNameMonter . }}
+                    </h5>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div>
+                <p id="past_monter"></p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+
+
+        var data = document.getElementsByName("md")[0].value;
+
+        console.log(data);
+
+
+
+        //var data = document.querySelector("[name='md']");
+        //document.getElementById("past_monter").innerHTML = data;
+
+
+        //document.getElementById("past_monter").innerHTML = name.innerHTML;
+
+        // let monter = document.getElementById("showmonter").innerHTML;
+        // document.getElementById("past_monter").innerHTML = name;
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+{{ end }}
