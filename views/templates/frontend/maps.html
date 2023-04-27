@@ -23,10 +23,13 @@
         text-align: center;
     }
 
+
+
     .map-image img {
         border-radius: 15px;
         width: 80%;
     }
+
 
     .map-info p {
         margin-top: 3.5rem;
@@ -144,10 +147,10 @@
         /* display: grid;
         grid-template-columns: repeat(2, 1fr); */
     }
+
     .popup img {
         width: 100%;
     }
-
 </style>
 
 
@@ -157,7 +160,7 @@
 
         <div class="map-info">
             <div class="map-des">
-                <p>{{ .mapName }}</p>
+                <img src="{{ .mapName }}" alt="" width="40%">
             </div>
             <div class="map-image">
                 <img src="{{ .mapid }}" alt="Maps">
@@ -194,8 +197,8 @@
         <!-- Modal content -->
         <div class="modal-content1">
             <!-- <span class="close">&times;</span> -->
-            <div class="popup" >
-           
+            <div class="popup">
+
                 <div id="past_monter"></div>
 
                 <!-- <div class="popupdes">
@@ -226,6 +229,7 @@
         btn[i].onclick = function () {
             modal.style.display = "block";
             document.getElementById("past_monter").innerHTML = this.innerHTML;
+            
         }
     }
 

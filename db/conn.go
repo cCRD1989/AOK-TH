@@ -23,7 +23,7 @@ func ConnectDB() {
 	)
 	if err != nil {
 
-		log.Fatal("Connot Connect to The Database")
+		log.Fatal("Cannot Connect Database")
 		return
 	}
 	Conn = db
@@ -36,7 +36,9 @@ func ConnectDB() {
 	)
 	if err1 != nil {
 
-		log.Fatal(" Connect to The AOK_DB")
+		log.Fatal("Cannot Connect AOK_DB")
+		//fmt.Println("Cannot Connect AOK_DB")
+
 		return
 	}
 	AOK_DB = db1

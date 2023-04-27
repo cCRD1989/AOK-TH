@@ -1,0 +1,55 @@
+{{ define "content" }}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container-1 {
+        height: auto;
+        margin: 5% 0;
+        background-image: url("/public/data/BG/pap_repeat-y.png");
+        background-position: center top;
+        background-repeat: repeat-y;
+        background-size: contain;
+
+       
+    }
+
+    .box-top img {
+        position: relative;
+        top: -40px;
+        width: 100%;
+    }
+
+    .box-button img {
+        position: relative;
+        bottom:-40px;
+        width: 100%;
+    }
+    
+</style>
+
+
+<div class="container">
+    <div class="container-1">
+        <div class="box-top"> <img src="/public/data/BG/pap_top.png" alt=""></div>
+
+        <div class="box-conten">
+            <h5>1</h5>
+            <h5>1</h5>
+            <h5>1</h5>
+            <h5>1</h5>
+            <h5>1</h5>
+        </div>
+
+        <div class="box-button"><img src="/public/data/BG/pap_bottom.png" alt=""></div>
+
+
+
+    </div>
+</div>
+
+{{ end }}
