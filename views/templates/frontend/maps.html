@@ -77,8 +77,7 @@
         font-size: 1.5rem;
         text-align: center;
         background: url("/public/data/BG/contentBlock-bg.png");
-        background-position: center;
-        background-position-y: 50%;
+        background-position: center center;
         background-repeat: no-repeat;
     }
 
@@ -151,6 +150,24 @@
     .popup img {
         width: 100%;
     }
+
+    #past_monter{
+        float: left;
+    }
+
+    .popupdes {
+
+        border-radius: 20px;
+        background: url("/public/data/BG/contentBlock-bg.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:auto;
+    }
+
+    #past_monter h5,
+    .popupdes h5 {
+        color: #ff9500;
+    }
 </style>
 
 
@@ -201,9 +218,13 @@
 
                 <div id="past_monter"></div>
 
-                <!-- <div class="popupdes">
-                    55555555555
-                </div> -->
+                <div class="popupdes">
+                    <h5>HP: XXXXX </h5>
+                    <h5>MP: XXXXX </h5>
+                    <h5>Def: XXXXX </h5>
+                    <h5>Atk: XXXXX </h5>
+                    <br>
+                </div>
 
             </div>
         </div>
@@ -229,7 +250,7 @@
         btn[i].onclick = function () {
             modal.style.display = "block";
             document.getElementById("past_monter").innerHTML = this.innerHTML;
-            
+
         }
     }
 
