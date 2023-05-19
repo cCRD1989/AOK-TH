@@ -79,12 +79,19 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 	ranking := []aokmodel.Character{}
 	db.AOK_DB.Select("Charactername ,Level").Limit(10).Order("LEVEL DESC").Find(&ranking)
 
+	for i := 0; i < len(ranking); i++ {
+		if len(ranking[i].Charactername) > 6 {
+			ranking[i].Charactername = ranking[i].Charactername[0:6] + "..."
+		}
+	}
+
 	//
 	//
 	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
 		"title":   "Age Of Khagan Thailand",
 		"user":    user,
 		"ranking": ranking,
+		"bg":      "/public/data/img/main-bg.png",
 	})
 }
 
@@ -104,6 +111,7 @@ func (f *Frontend) UserGetSingin(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
 		"title": "Age Of Khagan Thailand | Login",
 		"user":  user,
+		"bg":    "/public/data/img/LOGIN-BG.png",
 	})
 }
 
@@ -166,6 +174,7 @@ func (f *Frontend) UserGetRegister(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
 		"title": "Age Of Khagan Thailand | Register",
 		"user":  user,
+		"bg":    "/public/data/img/REGISTER-BG.png",
 	})
 }
 
@@ -184,6 +193,7 @@ func (f *Frontend) UserGetClass(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "frontend/classjob.html", gin.H{
 		"title": "Age Of Khagan Thailand | Class",
 		"user":  user,
+		"bg":    "/public/data/img/CLASS_BG.png",
 	})
 }
 
@@ -202,6 +212,7 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "frontend/map.html", gin.H{
 		"title": "Age Of Khagan Thailand | Maps",
 		"user":  user,
+		"bg":    "/public/data/img/MAP-01_BG.png",
 	})
 }
 

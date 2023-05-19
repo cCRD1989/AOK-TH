@@ -1,7 +1,8 @@
 {{ define "top" }}
 
 
-<header class="bg-[#000000b3] md:bg-[#0000004d] bg-[url('/public/data/img/main-bg.png')]">
+
+<header class="bg-[#00000000] md:bg-[#0000004d]">
 
     <nav class="flex items-center md:justify-center justify-between  w-[80%] mx-auto md:gap-6 h-[100px]">
 
@@ -17,8 +18,8 @@
             <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
                 <li class="menuhover"><a href="/">Home<br>หน้าแรก</a></li>
                 <li class="menuhover"><a href="/#Ranking">Ranking<br>จัดอันดับ</a></li>
-                <li class="menuhover"><a href="/#News">News<br>ประกาศ</a></li>
-                <li class="menuhover"><a href="/#Community">Community<br>ชมชุน</a></li>
+                <li class="menuhover"><a href="/#News">News<br>ข่าวสาร</a></li>
+                <li class="menuhover"><a href="/#Community">Community<br>ชุมชน</a></li>
 
                 <div class="flex flex-wrap gap-3 justify-center md:hidden">
                     <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
@@ -41,10 +42,16 @@
 
                 {{ else }}
 
-                <a href="/logout">
-                    <img class="mr-5" src="/public/data/img/LOGOUT-btn.png" alt="">
-                    <!-- <p class="absolute top-3 right-9 font-bold">Logout/ออกจากระบบ</p> -->
-                </a>
+                <div class="flex justify-center items-center">
+             
+                    <div class="flex flex-col items-center">
+                        <a href=""> <img class="text-center" src="/public/data/img/users.png" alt=""></a>
+                        <p class="text-main font-bold" >{{ .user.Username }}</p>
+                    </div>
+                    
+                    <a href="/logout"> <img class="" src="/public/data/img/LOGOUT-btn.png" alt=""></a>
+                </div>
+
 
                 {{ end}}
 
@@ -70,7 +77,7 @@
         <div class="fastButtons">
             <div class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
                 <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
-                    <li><a class="menuhover" href="https://rol-aokth.gitbook.io/aok-guide/"><img
+                    <li><a class="menuhover" href="https://rol-aokth.gitbook.io/aok-guide/" target="_blank"><img
                                 src="/public/data/img/GUIDE-BOOK.png" alt="">Guide<br><span>ไกด์</span></a>
                     </li>
                     <li><a class="menuhover" href="/class"><img src="/public/data/img/CLASS.png"

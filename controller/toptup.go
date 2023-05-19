@@ -39,11 +39,13 @@ func Paytopups(ctx *gin.Context) {
 			"title": "Age Of Khagan Thailand | เติมเงิน",
 			"user":  user,
 			"ff":    "",
+			"bg":    "/public/data/img/TOPUP_BG.png",
 		})
 	} else {
 		ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
 			"title": "Age Of Khagan Thailand | Login",
 			"user":  user,
+			"bg":    "/public/data/img/TOPUP_BG.png",
 		})
 	}
 }

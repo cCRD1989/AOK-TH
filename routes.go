@@ -2,6 +2,7 @@ package main
 
 import (
 	"ccrd/controller"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,24 +17,26 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)      //login
 	frontend_userGroup.GET("/register", frontend_user.UserGetRegister) //register
 	frontend_userGroup.GET("/class", frontend_user.UserGetClass)       //register
-	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)       //maps
+	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)         //maps
 
 	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout
 	// frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
 
-	// //privacypolicy
-	// frontend_userGroup.GET("/privacypolicy", func(ctx *gin.Context) {
-	// 	ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
-	// 		"title": "Age Of Khagan Thailand | PrivacyPolicy",
-	// 	})
-	// })
+	//privacypolicy
+	frontend_userGroup.GET("/privacypolicy", func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
+			"title": "Age Of Khagan Thailand | PrivacyPolicy",
+			"bg":    "/public/data/img/CLASS_BG.png",
+		})
+	})
 
-	// //service
-	// frontend_userGroup.GET("/service", func(ctx *gin.Context) {
-	// 	ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
-	// 		"title": "Age Of Khagan Thailand | Service",
-	// 	})
-	// })
+	//service
+	frontend_userGroup.GET("/service", func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
+			"title": "Age Of Khagan Thailand | Service",
+			"bg":    "/public/data/img/CLASS_BG.png",
+		})
+	})
 
 	// // auth https://console.cloud.google.com/
 	auth_user := r.Group("/auth")
