@@ -1280,6 +1280,10 @@ video {
   padding-left: 0.75rem;
 }
 
+.pt-0 {
+  padding-top: 0px;
+}
+
 .pt-10 {
   padding-top: 2.5rem;
 }
@@ -1296,16 +1300,32 @@ video {
   padding-top: 1.25rem;
 }
 
-.pt-\[50\%\] {
-  padding-top: 50%;
+.pt-7 {
+  padding-top: 1.75rem;
 }
 
-.pt-\[80\%\] {
-  padding-top: 80%;
+.pt-72 {
+  padding-top: 18rem;
 }
 
-.pt-\[60\%\] {
-  padding-top: 60%;
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pt-64 {
+  padding-top: 16rem;
+}
+
+.pt-52 {
+  padding-top: 13rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-32 {
+  padding-top: 8rem;
 }
 
 .text-center {
