@@ -1,0 +1,509 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>cCRD</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <!-- Fount -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body class="bg-[url('/public/data/img/main-bg.png')] bg-top bg-no-repeat">
+
+    <header class="bg-[#000000b3] md:bg-[#0000004d]">
+
+        <nav class="flex items-center md:justify-center justify-between  w-[80%] mx-auto md:gap-6 h-[100px]">
+
+            <div class="">
+                <img src="/public/data/img/AOK_LOGO_NAV-BAR.png" alt="" width="124px">
+            </div>
+
+
+            <div
+                class="nav-links bg-[#000000b3] md:static absolute md:bg-transparent top-[-200%] w-full left-0 flex justify-center duration-500 h-[844px] pt-5">
+
+                <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
+                    <li class="menuhover"><a href="#">Home<br>หน้าแรก</a></li>
+                    <li class="menuhover"><a href="#">Ranking<br>จัดอันดับ</a></li>
+                    <li class="menuhover"><a href="#">News<br>ประกาศ</a></li>
+                    <li class="menuhover"><a href="#">Community<br>ชมชุน</a></li>
+
+                    <div class="flex flex-wrap gap-3 justify-center md:hidden">
+                        <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                        <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                        <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
+                    </div>
+
+                    <div class="block justify-center items-center mx-auto md:hidden mb-5">
+                        <a href="./login.html"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+                        <a href="/register"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+                    </div>
+
+                </ul>
+            </div>
+
+            <div>
+                <a href="#" class="hidden md:block">
+                    <img class="mr-5" src="/public/data/img/login-btn.png" alt="">
+
+                    <div class="relative">
+                        <img class="mr-5" src="/public/data/img/LOGOUT-btn.png" alt="">
+                        <p class="absolute top-3 right-9 font-bold">Logout/ออกจากระบบ</p>
+                    </div>
+                </a>
+
+
+                <div onclick="onToggleMenu(this)" class="bg-[#d02d015e] rounded-md block md:hidden cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </div>
+            </div>
+
+        </nav>
+
+        <aside class="flex justify-center relative top-[5px] md:top-[10px]">
+            <img src="/public/data/img/NAV-BAR.png" alt="">
+        </aside>
+
+        <div class="hidden md:block">
+            <div class="fastButtons">
+                <div class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
+                    <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
+                        <li><a class="menuhover" href="#"><img src="/public/data/img/GUIDE-BOOK.png"
+                                    alt="">Guide<br><span>ไกด์</span></a>
+                        </li>
+                        <li><a class="menuhover" href="#"><img src="/public/data/img/CLASS.png"
+                                    alt="">Class<br><span>อาชีพ</span></a></li>
+                        <li><a class="menuhover" href="#"><img src="/public/data/img/MAP.png"
+                                    alt="">Map<br><span>แผนที่</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fastButtons-topup box">
+                <a href="#"><img src="/public/data/img/topup-bg.png" alt="" width="100%"></a>
+            </div>
+        </div>
+
+
+
+    </header>
+
+    <!-- Home Page -->
+    <section class="pb-20">
+
+        <div class="pt-10 flex flex-col items-center gap-y-4">
+            <div>
+                <h1 class="text-5xl uppercase font-black text-main">return of legend</h1>
+            </div>
+
+            <div class="max-w-[500px]">
+                <img src="/public/data/img/NAV-BAR1.png" alt="">
+            </div>
+
+            <div class="">
+                <img src="/public/data/img/AOK_LOGO_NAV-BAR1.png" alt="">
+            </div>
+
+            <div class="hidden md:block">
+                <div class="flex flex-wrap gap-3 justify-center ">
+                    <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                    <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                    <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
+                </div>
+            </div>
+
+            <div class="md:flex">
+                <a href="#"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+                <a href="#"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Ranking -->
+    <section class="bg-[url('/public/data/img/bg-ranking.png')] bg-top bg-no-repeat bg-cover pb-10">
+
+        <!-- select class -->
+        <div class="bg-black h-[200px] flex justify-center">
+            <div class="flex flex-1 items-center justify-between h-[200px]">
+
+                <div class="flex mr-5 items-center justify-end w-full">
+
+                    <!-- class1 -->
+                    <div class="text-center opacity-40 mx-10">
+                        <div>
+                            <img src="/public/data/img/MICKO_CLASS.png" alt="">
+                        </div>
+                        <div>
+                            <p class="text-white">Micko</p>
+                        </div>
+                        <div>
+                            <p class="text-white">นักธนู</p>
+                        </div>
+                    </div>
+
+                    <!-- class1 -->
+                    <div class="text-center opacity-80 mx-10">
+                        <div>
+                            <img src="/public/data/img/NECROMANCER_CLASS.png" alt="">
+                        </div>
+                        <div>
+                            <p class="text-white">Necromancer</p>
+                        </div>
+                        <div>
+                            <p class="text-white">นักเวทมืด</p>
+                        </div>
+                    </div>
+
+                    <!-- class1 -->
+                    <div class="text-center mx-10">
+                        <div>
+                            <img src="/public/data/img/KNIGHT_CLASS.png" alt="">
+                        </div>
+                        <div>
+                            <p class="text-white">Knight</p>
+                        </div>
+                        <div>
+                            <p class="text-white">อัศวิน</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex items-center justify-center w-[240px] gap-2">
+
+                    <div>
+                        <img src="/public/data/img/CAPA_ARROW_LEFT.png" alt="caret left">
+                    </div>
+
+                    <div class="w-[240px]">
+                        <img class="" src="/public/data/img/CAPA_CIRCLE.png" alt="all">
+                    </div>
+
+                    <div>
+                        <img src="/public/data/img/CAPA_ARROW_RIGHT.png" alt="caret right">
+                    </div>
+
+                </div>
+
+                <div class="flex ml-5 items-center justify-start w-full">
+
+                    <!-- class1 -->
+                    <div class="text-center mx-10">
+                        <div>
+                            <img src="/public/data/img/SORCERER_CLASS.png" alt="">
+                        </div>
+                        <div>
+                            <p class="text-white">Sorcerer</p>
+                        </div>
+                        <div>
+                            <p class="text-white">จอมเวทย์</p>
+                        </div>
+                    </div>
+
+                    <!-- class1 -->
+                    <div class="text-center opacity-80 mx-10">
+                        <div>
+                            <img src="/public/data/img/ASSASSIN_CLASS.png" alt="">
+                        </div>
+                        <div>
+                            <p class="text-white">Assassin</p>
+                        </div>
+                        <div>
+                            <p class="text-white">นักฆ่า</p>
+                        </div>
+                    </div>
+
+                    <!-- class1 -->
+                    <div class="text-center opacity-40 mx-10">
+                        <div>
+                            <img src="/public/data/img/CLERIC_CLASS.png" alt="">
+                        </div>
+                        <div>
+                            <p class="text-white">Cleric</p>
+                        </div>
+                        <div>
+                            <p class="text-white">นักบวด</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tabal Rankings -->
+        <div class="w-[80%] mx-auto mt-[31px] bg-[#141414b3] rounded-md py-2">
+
+            <div class="p-5">
+                <div class="flex justify-between items-center ">
+                    <div>
+
+                        <p class="text-[26px] text-main">Ranking/จัดอันดับ : All/รวม</p>
+                        <div class="ranking-hi"></div>
+
+                    </div>
+
+                    <div>
+                        <select class="px-[15px] py-[4px] rounded-md font-bold text-main border" name="" id="">
+                            <option value="volvo">Level/ระดับ</option>
+                            <option value="str">STR</option>
+                            <option value="dex">DEX</option>
+                            <option value="con">CON</option>
+                            <option value="int">INT</option>
+                            <option value="wis">WIS</option>
+                            <option value="cha">CHA</option>
+                            <option value="faction">FACTION</option>
+                            <option value="hp">HP</option>
+                        </select>
+
+                    </div>
+                </div>
+                <hr class="bg-[#5A5D61]">
+            </div>
+
+            <div class="maintabal text-main">
+                <div class="chilltabal1">No. Player/ผู้เล่น</div>
+                <div class="chilltabal2">Class/อาชีพ</div>
+                <div class="chilltabal2">Guild/กิลด์</div>
+                <div class="chilltabal2">Level/ระดับ</div>
+            </div>
+
+            <!-- ที่ 1 -->
+            <div class="maintabal ranking-table">
+                <div class="chilltabal1 gap-4">
+                    <p>1</p>
+                    <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                    <p>Cool Cyber Apes</p>
+                </div>
+                <div class="chilltabal3">Knight</div>
+                <div class="chilltabal3">Solomon</div>
+                <div class="chilltabal3">999</div>
+            </div>
+
+            <!-- ที่ 2 -->
+            <div class="maintabal ranking-table-1">
+                <div class="chilltabal1 gap-4">
+                    <p>2</p>
+                    <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                    <p>Shadow Cube</p>
+                </div>
+                <div class="chilltabal3">Necromancer</div>
+                <div class="chilltabal3">-</div>
+                <div class="chilltabal3">998</div>
+            </div>
+
+            <!-- ที่ 3 -->
+            <div class="maintabal ranking-table-2">
+                <div class="chilltabal1 gap-4">
+                    <p>3</p>
+                    <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                    <p>Satoshi Mori</p>
+                </div>
+                <div class="chilltabal3">Necromancer</div>
+                <div class="chilltabal3">KONTHAI</div>
+                <div class="chilltabal3">997</div>
+            </div>
+
+            <div class="hidden md:block">
+                <img src="/public/data/img/NAV-BAR2.png" alt="" width="100%">
+            </div>
+
+            <div class="maintabal ranking-table1"></div>
+            <div class="maintabal ranking-table2"></div>
+            <div class="maintabal ranking-table1"></div>
+            <div class="maintabal ranking-table2"></div>
+            <div class="maintabal ranking-table1"></div>
+            <div class="maintabal ranking-table2"></div>
+            <div class="maintabal ranking-table1"></div>
+
+        </div>
+
+    </section>
+
+    <!-- new ประกาศ -->
+    <section class="bg-[url('/public/data/img/NEW_BG.png')] bg-top bg-no-repeat bg-cover">
+
+
+        <div class="block md:flex items-center justify-center gap-5 py-6">
+
+            <div class="h-[570px] md:min-w-[570px] min-w-full flex justify-center">
+                <img src="/public/data/img/new-img.png" alt="">
+            </div>
+
+            <div class="h-[570px] md:min-w-[570px] min-w-full bg-[#141414D4] relative flex justify-center">
+
+                <div class="text-white h-full w-[80%]  pt-5">
+                    <div class="text-2xl font-extrabold">
+                        News/ประกาศ
+                    </div>
+
+                    <div class="flex justify-between pt-5">
+                        <div>All/ทั้งหมด <div class="ranking-hi"></div>
+                        </div>
+                        <div>Event/กิจกรรม</div>
+                        <div>Other/อื่นๆ</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="m-3">
+                        <div class="flex items-center gap-2">
+                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                            <div class="">
+                                <p>26 April 2021
+                                    <br>
+                                    [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                                </p>
+                            </div>
+                            <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="m-3">
+                        <div class="flex items-center gap-2">
+                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                            <div class="">
+                                <p>26 April 2021
+                                    <br>
+                                    [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                                </p>
+                            </div>
+                            <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="m-3">
+                        <div class="flex items-center gap-2">
+                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                            <div class="">
+                                <p>26 April 2021
+                                    <br>
+                                    [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                                </p>
+                            </div>
+                            <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="m-3">
+                        <div class="flex items-center gap-2">
+                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                            <div class="">
+                                <p>26 April 2021
+                                    <br>
+                                    [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                                </p>
+                            </div>
+                            <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="m-3">
+                        <div class="flex items-center gap-2">
+                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                            <div class="">
+                                <p>26 April 2021
+                                    <br>
+                                    [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                                </p>
+                            </div>
+                            <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                        </div>
+                        <hr>
+                    </div>
+
+
+                </div>
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 hidden md:block">
+                <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0  hidden md:block">
+                <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0  hidden md:block">
+                <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0  hidden md:block">
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+
+    <!-- footer -->
+    <footer class="h-[433px] bg-black">
+
+        <div class="py-5">
+
+            <div class="flex justify-center items-center gap-3 text-center">
+                <img src="/public/data/img/footer-l1.png" alt="">
+                <p class="text-white text-3xl font-extrabold">Community/ชุมชน</p>
+                <img src="/public/data/img/footer-l1.png" alt="">
+            </div>
+
+            <ul class="flex justify-center gap-3 m-5">
+                <li><a href=""><img src="/public/data/img/c-f.png" alt=""></a></li>
+                <li><a href=""><img src="/public/data/img/c-instar.png" alt=""></a></li>
+                <li><a href=""><img src="/public/data/img/c-tw.png" alt=""></a></li>
+                <li><a href=""><img src="/public/data/img/c-tok.png" alt=""></a></li>
+                <li><a href=""><img src="/public/data/img/c-you.png" alt=""></a></li>
+                <li><a href=""><img src="/public/data/img/c-dis.png" alt=""></a></li>
+                <li><a href=""><img src="/public/data/img/c-line.png" alt=""></a></li>
+
+            </ul>
+
+            <div class="w-fit mx-auto text-white">
+                <img src="/public/data/img/footer-l2.png" alt="">
+            </div>
+
+            <div class="w-fit mx-auto text-white pt-3">
+                <p>Republic of Legend Co., Ltd. (ROL). All Rights Reserved</p>
+            </div>
+
+            <div class="w-fit mx-auto text-white pt-3">
+                <img src="/public/data/img/rol.png" alt="">
+
+            </div>
+
+            <div class="w-fit mx-auto text-white pt-3">
+                <p><a class="underline" href="">Privacy Policy</a> and <a class="underline" href="">service
+                        agreement</a></p>
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+
+    <script>
+        var nav = document.querySelector(".nav-links")
+        function onToggleMenu(e) {
+            nav.classList.toggle('top-[106px]')
+        }
+    </script>
+
+
+</body>
+
+</html>

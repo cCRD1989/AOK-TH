@@ -1,0 +1,62 @@
+{{ define "content" }}
+
+
+<nav class="bg-[url('/public/data/img/LOGIN-BG.png')] bg-top bg-no-repeat bg-black">
+
+    <section class="flex justify-center">
+        <div class="h-[839px] w-[638px] bg-[#141414AB] mt-5 relative flex justify-center">
+
+            <div class="w-[80%]"> 
+
+                <div class="text-2xl font-extrabold text-white pt-4 text-center">
+                    Login/เข้าสู่ระบบ
+                </div>
+                <div class="ranking-hi w-[177px] mx-auto"></div>
+                <hr>
+
+                <div class="pt-10">
+                    <form action="/login" method="post">
+
+
+                        <div class="mb-5">
+                            <label class="font-medium text-[18px] text-white block mb-2" for="username">
+                                Player/Username 
+                            </label>
+                            <input
+                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                id="username" name="username" type="text" placeholder="Enter your player/username" required>
+                        </div>
+    
+                        <div class="mb-6">
+                            <label class="font-medium text-[18px] text-white block mb-2" for="password">
+                                Password
+                            </label>
+                            <input
+                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                id="password" name="password" type="password" placeholder="Enter your password" required>
+                        </div>
+    
+                        <div class="text-center mt-[70%]">
+                            <button class="bg-[url('/public/data/img/login-btn.png')] w-[248px] h-[64px]" type="submit"></button>
+                            <br>
+                            <a class="font-medium text-[18px] text-white underline" href="/register">Register/สมัครสมาชิก</a>
+                        </div>
+                    </form>
+                </div>
+     
+            </div>
+
+            <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 p-3">
+            <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0 p-3">
+            <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0 p-3">
+            <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0 p-3">
+
+        </div>
+    </section>
+
+
+    <div class="pb-20"></div>
+</nav>
+
+
+{{ end }}

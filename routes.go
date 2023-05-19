@@ -2,10 +2,8 @@ package main
 
 import (
 	"ccrd/controller"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zalando/gin-oauth2/google"
 )
 
 func serveRoutes(r *gin.Engine) {
@@ -13,69 +11,77 @@ func serveRoutes(r *gin.Engine) {
 	// frontend_user
 	frontend_user := controller.Frontend{}
 	frontend_userGroup := r.Group("/")
-	frontend_userGroup.GET("", frontend_user.UserGetHome)          //index.html
-	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)  //login
+	frontend_userGroup.GET("", frontend_user.UserGetHome)              //index.html
+	frontend_userGroup.GET("/singin", frontend_user.UserGetSingin)     //index.html
+	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)      //login
+	frontend_userGroup.GET("/register", frontend_user.UserGetRegister) //register
+	frontend_userGroup.GET("/class", frontend_user.UserGetClass)       //register
+	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)       //maps
+
 	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout
-	frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
+	// frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
 
-	//privacypolicy
-	frontend_userGroup.GET("/privacypolicy", func(ctx *gin.Context) {
-		ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
-			"title": "Age Of Khagan Thailand | PrivacyPolicy",
-		})
-	})
+	// //privacypolicy
+	// frontend_userGroup.GET("/privacypolicy", func(ctx *gin.Context) {
+	// 	ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
+	// 		"title": "Age Of Khagan Thailand | PrivacyPolicy",
+	// 	})
+	// })
 
-	//service
-	frontend_userGroup.GET("/service", func(ctx *gin.Context) {
-		ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
-			"title": "Age Of Khagan Thailand | Service",
-		})
-	})
+	// //service
+	// frontend_userGroup.GET("/service", func(ctx *gin.Context) {
+	// 	ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
+	// 		"title": "Age Of Khagan Thailand | Service",
+	// 	})
+	// })
 
-	// auth https://console.cloud.google.com/
+	// // auth https://console.cloud.google.com/
 	auth_user := r.Group("/auth")
-	auth_user.GET("/", google.LoginHandler) //google add 	ctx.Redirect(http.StatusTemporaryRedirect, GetLoginURL(state))
-	auth_user.GET("/google/registered", frontend_user.Auth_google_Regis)
-	auth_user.GET("/custom", frontend_user.Auth_custom)
+	// auth_user.GET("/", google.LoginHandler) //google add 	ctx.Redirect(http.StatusTemporaryRedirect, GetLoginURL(state))
+	// auth_user.GET("/google/registered", frontend_user.Auth_google_Regis)
+	// auth_user.GET("/custom", frontend_user.Auth_custom)
 	auth_user.GET("/customregis", frontend_user.Auth_custom_regis)
-	auth_user.GET("/facebooklogin", frontend_user.Auth_facebook_login)
-	auth_user.GET("/facebookCall", frontend_user.Auth_facebook_call) //https://ageofkhaganth.com/auth/facebookCall/
-	auth_user.GET("/facebookRegis", frontend_user.Auth_facebook_regis)
+	// auth_user.GET("/facebooklogin", frontend_user.Auth_facebook_login)
+	// auth_user.GET("/facebookCall", frontend_user.Auth_facebook_call) //https://ageofkhaganth.com/auth/facebookCall/
+	// auth_user.GET("/facebookRegis", frontend_user.Auth_facebook_regis)
 
-	private := r.Group("/auth")
-	private.Use(google.Auth())
-	private.GET("/google", frontend_user.Auth_google) //index.html
+	// private := r.Group("/auth")
+	// private.Use(google.Auth())
+	// private.GET("/google", frontend_user.Auth_google) //index.html
 
-	// AIP Razer notify
+	// // AIP Razer notify
 	topup_user := controller.Topup{}
 	topup_Group := r.Group("/topup")
 	topup_Group.GET("", topup_user.Paytopup)                 // API notify url
 	topup_Group.GET("/processingpay", topup_user.PayProcess) //redirect url
 
-	//
-	r.GET("/topups", controller.Paytopups) // เปิดหน้าเติมเงิน
-	r.GET("/topups/:user", controller.UserCheck)
-	r.GET("/topups/play", controller.Payment) // เมื่อลูกค้า กด ออเดอร์ เข้ามา
+	// //
+	r.GET("/topups", controller.Paytopups)                // เปิดหน้าเติมเงิน
+	r.POST("/topups/point", controller.PaytopupsAddPoint) // เปิด
 
-	//admin
-	admin_user := controller.Admin{}
-	admin_userGroup := r.Group("/admin")
-	admin_userGroup.GET("", admin_user.UserGetAdmin)      //index.html
-	admin_userGroup.GET("/items", admin_user.GetItemsAll) //index.html
-	admin_userGroup.GET("/logtopup", admin_user.Logtopup)
+	// r.GET("/topups/:user", controller.UserCheck)
+	// r.GET("/topups/play", controller.Payment) // เมื่อลูกค้า กด ออเดอร์ เข้ามา
 
-	// จัดอันดับ RANKINGS ทุกอาชีพ
-	Ranking_controller := controller.Rankings{}
-	frontend_RankingGroup := r.Group("/ranking")
-	frontend_RankingGroup.GET("/:class", Ranking_controller.Ranking)
+	// //admin
+	// admin_user := controller.Admin{}
+	// admin_userGroup := r.Group("/admin")
+	// admin_userGroup.GET("", admin_user.UserGetAdmin)      //index.html
+	// admin_userGroup.GET("/items", admin_user.GetItemsAll) //index.html
+	// admin_userGroup.GET("/logtopup", admin_user.Logtopup)
 
-	//Game Guides
-	guides_controller := controller.Guides{}
-	guides_userGroup := r.Group("/guide/map")
-	guides_userGroup.GET("/:maps", guides_controller.GetMap)
-	character_userGroup := r.Group("/guide/jobs")
-	character_userGroup.GET("/:chars", guides_controller.Character)
+	// // จัดอันดับ RANKINGS ทุกอาชีพ
+	// Ranking_controller := controller.Rankings{}
+	// frontend_RankingGroup := r.Group("/ranking")
+	// frontend_RankingGroup.GET("/:class", Ranking_controller.Ranking)
 
+	// //Game Guides
+	// guides_controller := controller.Guides{}
+	// guides_userGroup := r.Group("/guide/map")
+	// guides_userGroup.GET("/:maps", guides_controller.GetMap)
+	// character_userGroup := r.Group("/guide/jobs")
+	// character_userGroup.GET("/:chars", guides_controller.Character)
+
+	//************
 	// //category
 	// categoryController := controller.Categroy{}
 	// categoryGroup := r.Group("/categorys")

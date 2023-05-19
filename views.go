@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/gin-contrib/multitemplate"
@@ -29,12 +30,18 @@ func getNameMonter(names string) string {
 	return strings.Split(data[count-1], ".")[0]
 }
 
+func getRankingIndex(i int) string {
+	i++
+	return strconv.Itoa(i)
+}
+
 func createViews() multitemplate.Render {
 	var fn = template.FuncMap{
 		"getPlayersOnlineCount": getPlayersOnlineCount,
 		"getAllItemsBSV":        getAllItemsBSV,
 		"getItemNameById":       getItemNameById,
 		"getNameMonter":         getNameMonter,
+		"getRankingIndex":       getRankingIndex,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")

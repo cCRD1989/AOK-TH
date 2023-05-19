@@ -1,174 +1,417 @@
 {{ define "content" }}
 
-<div class="nk-main">
+<!-- Home Page -->
+<section class="bg-[url('/public/data/img/main-bg.png')] pb-20 bg-no-repeat bg-top bg-black">
 
-    <div class="row vertical-gap-1">
-        <div class="nk-gap-2"></div>
-        <div class="container">
+    <div class="pt-10 flex flex-col items-center gap-y-4">
+        <div>
+            <h1 class="text-5xl uppercase font-black text-main">return of legend</h1>
+        </div>
 
-            <div class="nk-image-slider-item">
-                <img src="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG2.png" alt=""
-                    class="nk-image-slider-img" width="100%">
-            </div>
+        <div class="max-w-[500px]">
+            <img src="/public/data/img/NAV-BAR1.png" alt="">
+        </div>
 
+        <div class="">
+            <img src="/public/data/img/AOK_LOGO_NAV-BAR1.png" alt="">
+        </div>
 
-            <!-- START: Categories -->
-            <div class="nk-gap-1"></div>
-            <div class="row vertical-gap">
-                <div class="col-lg-4">
-                    <div class="nk-feature-1">
-                        <div class="nk-feature-icon">
-                            <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/windows.png" alt=""
-                                width="50px">
-                        </div>
-                        <div class="nk-feature-cont">
-                            <h3 class="nk-feature-title"><a href="download/Window">windows PC</a>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="nk-feature-1">
-                        <div class="nk-feature-icon">
-                            <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/google-play.png" alt=""
-                                width="55px">
-                        </div>
-                        <div class="nk-feature-cont">
-                            <h3 class="nk-feature-title"><a href="download/Android">PlayStore </a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="nk-feature-1">
-                        <div class="nk-feature-icon">
-                            <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/app-store.png" alt=""
-                                width="50px">
-                        </div>
-                        <div class="nk-feature-cont">
-                            <h3 class="nk-feature-title"><a href="download/App">app-store</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END: Categories -->
-
-
-            <!-- START: Image Slider -->
-            <div class="nk-gap-1"></div>
-            <div class="nk-image-slider" data-autoplay="8000">
-                <div class="nk-image-slider-item">
-                    <img src="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG1.png" alt="" class="nk-image-slider-img"
-                        data-thumb="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG1.png">
-                    <!-- 
-                    <div class="nk-image-slider-content">
-
-                        <h3 class="h4">Necromancer</h3>
-                        <p class="text-white">เป็นจอมขมังเวทผู้สร้างตำราแห่งสัตว์วิเศษ
-                            เธอสืบทอดวิชาจากครอบครัวของเธอที่ถูกปกปิดเรื่องราวไว้เป็นความลับเสมอมา
-                            สัตว์วิเศษมีรูปร่างเหมือนสัตว์โลกทั่วไป
-                            แต่สิ่งที่แตกต่างคือสัตว์วิเศษเลือกที่จะติดตามแต่เธอเพียงผู้เดียว</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read
-                            More</a>
-                    </div> -->
-                </div>
-
-                <!-- <div class="nk-image-slider-item">
-                    <img src="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG2.png" alt="" class="nk-image-slider-img"
-                        data-thumb="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG2.png">
-                    
-                    <div class="nk-image-slider-content">
-
-                        <h3 class="h4">Sorcerer</h3>
-                        <p class="text-white">เป็นจอมขมังเวทผู้ปราดเปรื่องสุดแข็งแกร่ง
-                            หลังบรรลุวิชาขั้นสุดแห่งน้ำและไฟ
-                            เมื่อจินตนาการถึงจักรวาลเขาจึงค้นพบพลังเวทที่พรั่งพรูเท่าที่โลกจะมีได้
-                            โดยเฉพาะพลังแห่งการ Teleport ที่เขาใช้มันเพื่อภารกิจสำคัญ</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read
-                            More</a>
-                    </div>
-                </div> -->
-
-                <div class="nk-image-slider-item">
-                    <img src="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG3.png" alt="" class="nk-image-slider-img"
-                        data-thumb="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG3.png">
-
-                    <!-- <div class="nk-image-slider-content">
-
-                        <h3 class="h4">Knight</h3>
-                        <p class="text-white">เป็นนักรบแนวหน้าผู้ครอบครองชัยชนะแห่งกองทัพ ไม่เคยพ่ายแพ้ในสนามรบ
-                            เขาใช้ร่างกายที่แข็งแกร่งทะลวงกองทัพศัตรูจนแตกพ่าย
-                            เขาใช้อาวุธสำหรับโจมตีประชิดได้อย่างหลากหลาย</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read
-                            More</a>
-
-                    </div> -->
-                </div>
-
-                <div class="nk-image-slider-item">
-                    <img src="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG4.png" alt="" class="nk-image-slider-img"
-                        data-thumb="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG4.png">
-
-                    <!-- <div class="nk-image-slider-content">
-
-                        <h3 class="h4">Cleric</h3>
-                        <p class="text-white">จากครอบครัวบูชาปีศาจ สู่การเป็นนักบวชโดยบริบูรณ์
-                            หลังจากการต่อสู้กับพลังมืดในจินตนาการของเธอ เธอจึงค้นพบพลังแห่งจิตวิญญาณที่แท้จริง
-                            เธอนำมาใช้ปกป้องผู้คนด้วยความบังเอิญ
-                            ทำให้เธอมีชื่อเสียงและเป็นบุคคลสำคัญอยู่ในโลกแห่งความจริง สาวน้อยผู้ปกป้อง
-                            หากอยู่ใกล้เธอคุณจะไม่เป็นอันตรายจากสิ่งรอบตัว</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read
-                            More</a>
-                    </div> -->
-                </div>
-
-                <!-- <div class="nk-image-slider-item">
-                    <img src="/public/data/รูปตัวละครเท่ๆ/image_1249_00011.png" alt="" class="nk-image-slider-img"
-                        data-thumb="/public/data/รูปตัวละครเท่ๆ/image_1249_00011.png">
-
-                    <div class="nk-image-slider-content">
-
-                        <h3 class="h4">Assassin</h3>
-                        <p class="text-white">นักฆ่าในตำนาน ผู้ไม่เคยยอมให้คำพูดของใครอยู่เหนือความสามารถของเธอ
-                            เธอใช้เวลาเพียงเสี้ยวนาที เธอไม่เคยทำตามคำสั่งของใคร เธอถนัด Dagger เป็นที่สุด
-                            หากคุณเห็นเธอ คุณจะไม่เป็นอันตราย แต่หากเธอหายไป จงระวังไว้ให้ดี</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read
-                            More</a>
-                    </div>
-                </div>
-
-                <div class="nk-image-slider-item">
-                    <img src="/public/data/รูปตัวละครเท่ๆ/image_024_0004.jpg" alt="" class="nk-image-slider-img"
-                        data-thumb="/public/data/รูปตัวละครเท่ๆ/image_024_0004.jpg">
-
-                    <div class="nk-image-slider-content">
-
-                        <h3 class="h4">Micko</h3>
-                        <p class="text-white">จากเด็กสาวธรรมดา สู่ผู้ปกปักรักษาพื้นที่ป่าไม้และธรรมชาติ
-                            ในอดีตเธออาศัยในผืนป่าและใช้ชีวิตอย่างยากลำบาก แต่หลังเหตุการณ์สำคัญที่ต้นไม้ใหญ่
-                            ทำให้เธอได้รับพลังมนตราแห่งการปกปักรักษาอันแท้จริง
-                            แต่ฝีมือการใช้ธนูของเธอก็ไม่เคยตกลงเลย</p>
-                        <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Read
-                            More</a>
-                    </div>
-                </div> -->
-
-            </div>
-            <!-- END: Image Slider -->
-
-            <div class="nk-gap-2"></div>
-
-            <div class="">
-                <div class="nk-widget nk-widget-highlighted">
-                    <h4 class="nk-widget-title"><span><span class="text-main-1">Game</span> Video</span></h4>
-                    <div class="nk-widget-content">
-                        <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=P58RT7gvXdw">
-                        </div>
-                    </div>
-                </div>
+        <div class="hidden md:block">
+            <div class="flex flex-wrap gap-3 justify-center ">
+                <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
             </div>
         </div>
-        <div class="nk-gap-1"></div>
+
+        <div class="md:flex">
+            <a href="/register"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+            <a href="/singin"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+        </div>
+
+
+
     </div>
-</div>
+</section>
+
+<!-- Ranking -->
+<section id="Ranking" class="bg-[url('/public/data/img/bg-ranking.png')] bg-top bg-no-repeat bg-cover pb-10">
+
+    <!-- select class -->
+    <div class="bg-black h-[200px] flex justify-center">
+        <div class="flex flex-1 items-center justify-between h-[200px]">
+
+            <div class="flex mr-5 items-center justify-end w-full">
+
+                <!-- class1 -->
+                <div class="text-center opacity-40 mx-10">
+                    <div>
+                        <img src="/public/data/img/MICKO_CLASS.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-white">Micko</p>
+                    </div>
+                    <div>
+                        <p class="text-white">นักธนู</p>
+                    </div>
+                </div>
+
+                <!-- class1 -->
+                <div class="text-center opacity-80 mx-10">
+                    <div>
+                        <img src="/public/data/img/NECROMANCER_CLASS.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-white">Necromancer</p>
+                    </div>
+                    <div>
+                        <p class="text-white">นักเวทมืด</p>
+                    </div>
+                </div>
+
+                <!-- class1 -->
+                <div class="text-center mx-10">
+                    <div>
+                        <img src="/public/data/img/KNIGHT_CLASS.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-white">Knight</p>
+                    </div>
+                    <div>
+                        <p class="text-white">อัศวิน</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex items-center justify-center w-[240px] gap-2">
+
+                <div>
+                    <img src="/public/data/img/CAPA_ARROW_LEFT.png" alt="caret left">
+                </div>
+
+                <div class="w-[240px]">
+                    <img class="" src="/public/data/img/CAPA_CIRCLE.png" alt="all">
+                </div>
+
+                <div>
+                    <img src="/public/data/img/CAPA_ARROW_RIGHT.png" alt="caret right">
+                </div>
+
+            </div>
+
+            <div class="flex ml-5 items-center justify-start w-full">
+
+                <!-- class1 -->
+                <div class="text-center mx-10">
+                    <div>
+                        <img src="/public/data/img/SORCERER_CLASS.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-white">Sorcerer</p>
+                    </div>
+                    <div>
+                        <p class="text-white">จอมเวทย์</p>
+                    </div>
+                </div>
+
+                <!-- class1 -->
+                <div class="text-center opacity-80 mx-10">
+                    <div>
+                        <img src="/public/data/img/ASSASSIN_CLASS.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-white">Assassin</p>
+                    </div>
+                    <div>
+                        <p class="text-white">นักฆ่า</p>
+                    </div>
+                </div>
+
+                <!-- class1 -->
+                <div class="text-center opacity-40 mx-10">
+                    <div>
+                        <img src="/public/data/img/CLERIC_CLASS.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-white">Cleric</p>
+                    </div>
+                    <div>
+                        <p class="text-white">นักบวด</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tabal Rankings -->
+    <div class="w-[80%] mx-auto mt-[31px] bg-[#141414b3] rounded-md py-2">
+
+        <!-- โครงสร้าง ตาราง -->
+        <div class="p-5">
+            <div class="flex justify-between items-center ">
+
+                <!-- Ranking/จัดอันดับ -->
+                <div>
+
+                    <p class="text-[26px] text-main">Ranking/จัดอันดับ : All/รวม</p>
+                    <div class="ranking-hi"></div>
+
+                </div>
+
+                <!-- Select Lists -->
+                <div>
+                    <select class="px-[15px] py-[4px] rounded-md font-bold text-main border" name="" id="">
+                        <option value="volvo">Level/ระดับ</option>
+                        <option value="str">STR</option>
+                        <option value="dex">DEX</option>
+                        <option value="con">CON</option>
+                        <option value="int">INT</option>
+                        <option value="wis">WIS</option>
+                        <option value="cha">CHA</option>
+                        <option value="faction">FACTION</option>
+                        <option value="hp">HP</option>
+                    </select>
+
+                </div>
+            </div>
+            <hr class="bg-[#5A5D61]">
+        </div>
+
+        <!-- หัวข้อตาราง -->
+        <div class="maintabal text-main">
+            <div class="chilltabal1">No. Player/ผู้เล่น</div>
+            <div class="chilltabal2">Class/อาชีพ</div>
+            <div class="chilltabal2">Guild/กิลด์</div>
+            <div class="chilltabal2">ระดับ</div>
+        </div>
+
+        {{ range $key, $value := .ranking }}
+      
+
+        {{ if eq $key 0 }}
+        <div class="maintabal ranking-table">
+            <div class="chilltabal1 gap-4">
+                <p>{{ getRankingIndex $key }}</p>
+                <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                <p>{{ $value.Charactername }}</p>
+            </div>
+            <div class="chilltabal3">Knight</div>
+            <div class="chilltabal3">Solomon</div>
+            <div class="chilltabal3">{{ $value.Level }}</div>
+        </div>
+        {{ end }}
+
+        {{ if eq $key 1 }}
+        <div class="maintabal ranking-table-1">
+            <div class="chilltabal1 gap-4">
+                <p>{{ getRankingIndex $key }}</p>
+                <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                <p>{{ $value.Charactername }}</p>
+            </div>
+            <div class="chilltabal3">Knight</div>
+            <div class="chilltabal3">Solomon</div>
+            <div class="chilltabal3">{{ $value.Level }}</div>
+        </div>
+        {{ end }}
+
+        {{ if eq $key 2 }}
+        <div class="maintabal ranking-table-2">
+            <div class="chilltabal1 gap-4">
+                <p>{{ getRankingIndex $key }}</p>
+                <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                <p>{{ $value.Charactername }}</p>
+            </div>
+            <div class="chilltabal3">Knight</div>
+            <div class="chilltabal3">Solomon</div>
+            <div class="chilltabal3">{{ $value.Level }}</div>
+        </div>
+
+        <div class="hidden md:block">
+            <img src="/public/data/img/NAV-BAR2.png" alt="" width="100%">
+        </div>
+        {{ end }}
+
+        {{ if gt $key 2 }}
+        <div class="maintabal ranking-table1">
+            <div class="chilltabal1 gap-4">
+                <p>{{ getRankingIndex $key }}</p>
+                <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                <p>{{ $value.Charactername }}</p>
+            </div>
+            <div class="chilltabal3">Knight</div>
+            <div class="chilltabal3">Solomon</div>
+            <div class="chilltabal3">{{ $value.Level }}</div>
+        </div>
+        {{ end }}
+
+    
+
+        {{ end }}
+
+        <!-- ที่ 1 -->
+        <!-- <div class="maintabal ranking-table">
+            <div class="chilltabal1 gap-4">
+                <p>1</p>
+                <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                <p>Cool Cyber Apes</p>
+            </div>
+            <div class="chilltabal3">Knight</div>
+            <div class="chilltabal3">Solomon</div>
+            <div class="chilltabal3">999</div>
+        </div> -->
+
+        <!-- ที่ 2 -->
+        <!-- <div class="maintabal ranking-table-1">
+            <div class="chilltabal1 gap-4">
+                <p>2</p>
+                <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                <p>Shadow Cube</p>
+            </div>
+            <div class="chilltabal3">Necromancer</div>
+            <div class="chilltabal3">-</div>
+            <div class="chilltabal3">998</div>
+        </div> -->
+
+        <!-- ที่ 3 -->
+        <!-- <div class="maintabal ranking-table-2">
+            <div class="chilltabal1 gap-4">
+                <p>3</p>
+                <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
+                <p>Satoshi Mori</p>
+            </div>
+            <div class="chilltabal3">Necromancer</div>
+            <div class="chilltabal3">KONTHAI</div>
+            <div class="chilltabal3">997</div>
+        </div>
+
+        <div class="hidden md:block">
+            <img src="/public/data/img/NAV-BAR2.png" alt="" width="100%">
+        </div>
+
+        <div class="maintabal ranking-table1"></div>
+        <div class="maintabal ranking-table2"></div>
+        <div class="maintabal ranking-table1"></div>
+        <div class="maintabal ranking-table2"></div>
+        <div class="maintabal ranking-table1"></div>
+        <div class="maintabal ranking-table2"></div>
+        <div class="maintabal ranking-table1"></div> -->
+
+    </div>
+
+</section>
+
+<!-- new ประกาศ -->
+<section id="News" class="bg-[url('/public/data/img/NEW_BG.png')] bg-top bg-no-repeat bg-cover">
+
+
+    <div class="block md:flex items-center justify-center gap-5 py-6">
+
+        <div class="h-[570px] md:min-w-[570px] min-w-full flex justify-center">
+            <img src="/public/data/img/new-img.png" alt="">
+        </div>
+
+        <div class="h-[570px] md:min-w-[570px] min-w-full bg-[#141414D4] relative flex justify-center">
+
+            <div class="text-white h-full w-[80%]  pt-5">
+                <div class="text-2xl font-extrabold">
+                    News/ประกาศ
+                </div>
+
+                <div class="flex justify-between pt-5">
+                    <div>All/ทั้งหมด <div class="ranking-hi"></div>
+                    </div>
+                    <div>Event/กิจกรรม</div>
+                    <div>Other/อื่นๆ</div>
+                </div>
+
+                <hr>
+
+                <div class="m-3">
+                    <div class="flex items-center gap-2">
+                        <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                        <div class="">
+                            <p>26 April 2021
+                                <br>
+                                [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                            </p>
+                        </div>
+                        <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                    </div>
+                    <hr>
+                </div>
+
+                <div class="m-3">
+                    <div class="flex items-center gap-2">
+                        <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                        <div class="">
+                            <p>26 April 2021
+                                <br>
+                                [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                            </p>
+                        </div>
+                        <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                    </div>
+                    <hr>
+                </div>
+
+                <div class="m-3">
+                    <div class="flex items-center gap-2">
+                        <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                        <div class="">
+                            <p>26 April 2021
+                                <br>
+                                [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                            </p>
+                        </div>
+                        <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                    </div>
+                    <hr>
+                </div>
+
+                <div class="m-3">
+                    <div class="flex items-center gap-2">
+                        <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                        <div class="">
+                            <p>26 April 2021
+                                <br>
+                                [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                            </p>
+                        </div>
+                        <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                    </div>
+                    <hr>
+                </div>
+
+                <div class="m-3">
+                    <div class="flex items-center gap-2">
+                        <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                        <div class="">
+                            <p>26 April 2021
+                                <br>
+                                [ Event ] ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refinements Chal...
+                            </p>
+                        </div>
+                        <div><img src="/public/data/img/ARROW-r.png" alt=""></div>
+                    </div>
+                    <hr>
+                </div>
+
+
+            </div>
+
+            <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 hidden md:block">
+            <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0  hidden md:block">
+            <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0  hidden md:block">
+            <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0  hidden md:block">
+        </div>
+
+
+
+    </div>
+
+</section>
 
 {{ end }}

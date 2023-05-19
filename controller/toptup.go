@@ -24,11 +24,131 @@ type Topup struct{}
 // เปิดหน้าเติมเงิน
 func Paytopups(ctx *gin.Context) {
 
-	ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
-		"title":    "Age Of Khagan Thailand | Topup เติมเงิน",
-		"css":      "topup.css",
-		"message1": "ระบุไอดีเกมของท่าน",
-	})
+	visit := model.LogWeb{
+		DataType:  "visit",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	if user.Username != "" {
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+			"title": "Age Of Khagan Thailand | เติมเงิน",
+			"user":  user,
+			"ff":    "",
+		})
+	} else {
+		ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
+			"title": "Age Of Khagan Thailand | Login",
+			"user":  user,
+		})
+	}
+}
+
+// ทำรายการ
+func PaytopupsAddPoint(ctx *gin.Context) {
+
+	usernameId := ctx.PostForm("username")
+	price := ctx.PostForm("price")
+	channel := ctx.PostForm("channel")
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	if usernameId == user.Username {
+
+		if usernameId == "" || channel == "" || price == "" {
+			ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+				"title":   "Age Of Khagan | เติมเงิน",
+				"message": "ข้อมูลไม่ถูกต้อง",
+				"ff":      "",
+			})
+			return
+		}
+
+		topup := aokmodel.Userlogin{}
+		if err := db.AOK_DB.Where("username =?", usernameId).First(&topup).Error; err != nil {
+			ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+				"title":   "Age Of Khagan | Topup เติมเงิน",
+				"message": "ไอดีไม่มีอยู่ในระบบ โปรดลองใหม่อีกครั้ง",
+				"ff":      "",
+			})
+		}
+
+		h := md5.New()
+		io.WriteString(h, strconv.Itoa(rand.Int()))
+		orderid := hex.EncodeToString(h.Sum(nil))
+
+		var forr = os.Getenv("FOR") + "-" + orderid
+		var operator = ""
+		var sid = os.Getenv("SID")
+		var uid = usernameId
+		var SECRET_KEY = os.Getenv("SECRET_KEY")
+
+		var urlA *url.URL
+		var err error
+		if channel == "truewallet" {
+			urlA, err = url.Parse("https://sea-api.gold-sandbox.razer.com/ewallet/pay?channel=&for=&orderid=&sid=&uid=&price=&sig=")
+			if err != nil {
+				log.Fatal("RUL Payment error :", err)
+			}
+		} else {
+			urlA, err = url.Parse("https://sea-api.gold-sandbox.razer.com/ibanking/pay?channel=&for=&orderid=&sid=&uid=&price=&sig=")
+			if err != nil {
+				log.Fatal("RUL Payment error :", err)
+			}
+		}
+
+		data := channel + forr + operator + orderid + price + sid + uid + SECRET_KEY
+
+		h = md5.New()
+		io.WriteString(h, data)
+		sumSig := hex.EncodeToString(h.Sum(nil))
+
+		RequestTopup := model.LogTopup{
+			DataType:  "RequestTopup",
+			UserId:    topup.Username,
+			Txid:      "",
+			Orderid:   orderid,
+			Status:    "Order",
+			Detail:    "",
+			Channel:   channel,
+			Price:     price,
+			Sig:       sumSig,
+			IPAddress: ctx.ClientIP(),
+		}
+		if err := db.Conn.Save(&RequestTopup).Error; err != nil {
+			fmt.Println("RequestTopup Error", err.Error())
+			return
+		}
+
+		urladdpara := urlA.Query()
+		urladdpara.Set("channel", channel)
+		urladdpara.Set("for", forr)
+		urladdpara.Set("orderid", orderid)
+		urladdpara.Set("sid", sid)
+		urladdpara.Set("uid", uid)
+		urladdpara.Set("price", price)
+		urladdpara.Set("sig", sumSig)
+
+		urlA.RawQuery = urladdpara.Encode()
+
+		fmt.Println("sendURL: ", urlA.String())
+
+		//ctx.Redirect(http.StatusTemporaryRedirect, url)
+		ctx.Redirect(http.StatusFound, urlA.String())
+
+	} else {
+		ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
+			"title": "Age Of Khagan Thailand",
+			"user":  user,
+		})
+	}
+
 }
 
 // หน้าเช็ค UserCheck ID ที่กรอกเข้ามา
@@ -264,9 +384,9 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 
 	if request.Status == "200" {
 		fmt.Println("PayProcess: ", "Success")
-		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
 			"title":    "Age Of Khagan | Success.",
-			"sum":      "Success",
 			"txid":     request.Txid,
 			"orderid":  request.Orderid,
 			"status":   request.Status,
@@ -275,12 +395,12 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"amount":   request.Amount,
 			"currency": request.Currency,
 			"sig":      request.Sig,
+			"ff":       "ok",
 		})
 	} else {
 		fmt.Println("PayProcess: ", "Failed")
-		ctx.HTML(http.StatusOK, "frontend/topupdon.html", gin.H{
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
 			"title":    "Age Of Khagan | Failed.",
-			"sum":      "Failed",
 			"txid":     "Failed",
 			"orderid":  "Failed",
 			"status":   "Failed",
@@ -289,6 +409,7 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"amount":   "Failed",
 			"currency": "Failed",
 			"sig":      "Failed",
+			"ff":       "ok",
 		})
 	}
 }

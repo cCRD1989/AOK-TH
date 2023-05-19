@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <!-- Fount -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+
+    <nav class="bg-[url('/public/data/img/MAP-01_BG.png')] bg-top bg-repeat-y bg-black">
+        <header class="bg-[#000000b3] md:bg-[#0000004D] ">
+
+            <nav class="flex items-center md:justify-center justify-between  w-[80%] mx-auto md:gap-6 h-[100px]">
+
+                <div class="">
+                    <img src="/public/data/img/AOK_LOGO_NAV-BAR.png" alt="" width="124px">
+                </div>
+
+
+                <div
+                    class="nav-links bg-[#000000b3] md:static absolute md:bg-transparent top-[-200%] w-full left-0 flex justify-center duration-500 h-[844px] pt-5">
+
+                    <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
+                        <li class="menuhover"><a href="#">Home<br>หน้าแรก</a></li>
+                        <li class="menuhover"><a href="#">Ranking<br>จัดอันดับ</a></li>
+                        <li class="menuhover"><a href="#">News<br>ประกาศ</a></li>
+                        <li class="menuhover"><a href="#">Community<br>ชมชุน</a></li>
+
+                        <div class="flex flex-wrap gap-3 justify-center md:hidden">
+                            <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
+                        </div>
+
+                        <div class="block justify-center items-center mx-auto md:hidden mb-5">
+                            <a href="./login.html"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+                            <a href="#"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+                        </div>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <a href="#" class="hidden md:block">
+                        <img class="mr-5" src="/public/data/img/login-btn.png" alt="">
+                    </a>
+
+
+                    <div onclick="onToggleMenu(this)" class="bg-[#d02d015e] rounded-md block md:hidden cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </div>
+                </div>
+
+            </nav>
+
+            <aside class="flex justify-center relative top-[5px] md:top-[10px]">
+                <img src="/public/data/img/NAV-BAR.png" alt="">
+            </aside>
+
+            <div class="hidden md:block">
+                <div class="fastButtons">
+                    <div
+                        class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
+                        <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/GUIDE-BOOK.png"
+                                        alt="">Guide<br><span>ไกด์</span></a>
+                            </li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/CLASS.png"
+                                        alt="">Class<br><span>อาชีพ</span></a></li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/MAP.png"
+                                        alt="">Map<br><span>แผนที่</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="fastButtons-topup box">
+                    <a href="#"><img src="/public/data/img/topup-bg.png" alt="" width="100%"></a>
+                </div>
+            </div>
+
+
+
+        </header>
+
+        <!-- แผ่นที่ -->
+        <section class="flex justify-center">
+
+            <div class="w-[80%] bg-[#141414AB] mt-10 relative flex justify-center items-center">
+
+
+                <div class="md:flex block flex-row gap-2">
+
+                    <div
+                        class="order-1 py-10 bg-[url('/public/data/img/PAPER-MAP.png')] bg-center bg-no-repeat bg-contain relative flex items-center">
+
+                        <div class="py-10 flex flex-col items-center">
+                            
+                            <p class="pb-3 font-bold text-[30px] md:text-[40px]">Wroclaw Fortress</p>
+
+
+                            <div class="relative md:w-[70%] w-[35%] pb-3">
+
+                                <div id="default-carousel" data-carousel="slide">
+                                    <!-- Carousel wrapper -->
+                                    <div class="relative md:h-[200px] h-[100px] overflow-hidden rounded-lg ">
+                                        <!-- Item 1 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/public/data/img/map_1.png"
+                                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                alt="">
+                                        </div>
+                                        <!-- Item 2 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/public/data/img/map_2.png"
+                                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                alt="">
+                                        </div>
+                                        <!-- Item 3 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/public/data/img/map_3.png"
+                                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                alt="">
+                                        </div>
+                          
+                                    </div>
+                                    <!-- Slider indicators -->
+                                    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+                                        <button type="button" class="w-3 h-3 rounded-full" aria-current="true"
+                                            aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
+                                            aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
+                                            aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                                    </div>
+                                    <!-- Slider controls -->
+                                    <button type="button"
+                                        class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                        data-carousel-prev>
+                                        <span
+                                            class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                            <svg aria-hidden="true"
+                                                class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 19l-7-7 7-7"></path>
+                                            </svg>
+                                            <span class="sr-only">Previous</span>
+                                        </span>
+                                    </button>
+                                    <button type="button"
+                                        class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                        data-carousel-next>
+                                        <span
+                                            class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                            <svg aria-hidden="true"
+                                                class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                            <span class="sr-only">Next</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <p class="font-bold text-center w-[50%]">เมือง Wroclaw Fortress
+                                ศูนย์กลางการค้าขายและสถานที่เริ่มต้นการเดินทางของเหล่านักรบ เมืองเริ่มต้น Lv.1</p>
+                        </div>
+                    </div>
+
+
+                    <div class="py-10">
+                        <div class="flex flex-col gap-2">
+                            <img class="rounded-xl" src="/public/data/img/map_1.png" alt="">
+                            <img class="rounded-xl" src="/public/data/img/map_2.png" alt="">
+                            <img class="rounded-xl" src="/public/data/img/map_3.png" alt="">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+            </div>
+        </section>
+
+        <div class="pb-20"></div>
+      
+        <!-- monsters -->
+        <section class="flex justify-center">
+        
+            <div class="w-[80%] bg-[#141414AB] mt-10 relative flex justify-center items-center">
+     
+
+                <div class="md:flex block flex-row gap-2">
+
+                    <div
+                        class="order-1 py-10 bg-[url('/public/data/img/PAPER-MAP.png')] bg-center bg-no-repeat bg-contain relative flex items-center">
+
+                        <div class="py-10 flex flex-col items-center">
+                            
+                            <p class="pb-3 font-bold text-[30px] md:text-[40px] text-center">Monster <br> Wroclaw Fortress</p>
+
+
+                            <div class="relative md:w-[70%] w-[35%] pb-3">
+
+                                <div id="default-carousel" data-carousel="slide">
+                                    <!-- Carousel wrapper -->
+                                    <div class="relative md:h-[200px] h-[100px] overflow-hidden rounded-lg ">
+                                        <!-- Item 1 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/public/data/img/map_1_1.png"
+                                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                alt="">
+                                        </div>
+                                        <!-- Item 2 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/public/data/img/map_2_2.png"
+                                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                alt="">
+                                        </div>
+                                        <!-- Item 3 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/public/data/img/map_3_3.png"
+                                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                alt="">
+                                        </div>
+                          
+                                    </div>
+                                    <!-- Slider indicators -->
+                                    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+                                        <button type="button" class="w-3 h-3 rounded-full" aria-current="true"
+                                            aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
+                                            aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
+                                            aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                                    </div>
+                                    <!-- Slider controls -->
+                                    <button type="button"
+                                        class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                        data-carousel-prev>
+                                        <span
+                                            class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                            <svg aria-hidden="true"
+                                                class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 19l-7-7 7-7"></path>
+                                            </svg>
+                                            <span class="sr-only">Previous</span>
+                                        </span>
+                                    </button>
+                                    <button type="button"
+                                        class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                        data-carousel-next>
+                                        <span
+                                            class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                            <svg aria-hidden="true"
+                                                class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                            <span class="sr-only">Next</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <p class="font-bold text-center w-[50%]">เมือง Wroclaw Fortress
+                                ศูนย์กลางการค้าขายและสถานที่เริ่มต้นการเดินทางของเหล่านักรบ เมืองเริ่มต้น Lv.1</p>
+                        </div>
+                    </div>
+
+
+                    <div class="py-10">
+                        <div class="flex flex-col gap-2">
+                            <img class="rounded-xl" src="/public/data/img/map_1_1.png" alt="">
+                            <img class="rounded-xl" src="/public/data/img/map_2_2.png" alt="">
+                            <img class="rounded-xl" src="/public/data/img/map_3_3.png" alt="">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+            </div>
+        </section>
+
+
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+</body>
+
+</html>

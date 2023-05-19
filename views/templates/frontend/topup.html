@@ -1,357 +1,374 @@
 {{ define "content" }}
 
-<style>
-    html,
-    body {
-        min-height: 100vh;
-        min-width: 100vw;
-    }
 
-    .parent>.row {
-        display: flex;
-        align-items: center;
-        /* height: 100%; */
-    }
+<nav class="bg-[url('/public/data/img/TOPUP_BG.png')] bg-top bg-no-repeat bg-black">
 
-    .col img {
-        height: 100px;
-        /* width: 100%; */
-        cursor: pointer;
-        transition: transform 1s;
-        object-fit: cover;
-    }
+    <section class="flex justify-center">
+        <div class="h-[1153px] w-[638px] bg-[#141414AB] mt-5 relative flex justify-center">
 
-    .col label {
-        overflow: hidden;
-        position: relative;
-    }
+            <div class="w-[80%]">
 
-    .imgbgchk:checked+label>.tick_container {
-        opacity: 1;
-    }
+                <div class="text-2xl font-extrabold text-white pt-4 text-center">
+                    Store/ร้านค้า
+                </div>
+                <div class="ranking-hi w-[177px] mx-auto"></div>
+                <hr>
 
-    /*         aNIMATION */
-    .imgbgchk:checked+label>img {
-        transform: scale(1.25);
-        opacity: 0.3;
-    }
+                <form action="/topups/point" method="post" class="pt-10">
 
-    .sho {
-        position: absolute;
-        top: 30%;
-        left: 45%;
-    }
+                    <!-- เช็ค  user -->
+                    <div class="mb-5">
+                        <label class="font-medium text-[18px] text-white block mb-2" for="username">
+                            1.Player/Username
+                        </label>
+                        <div class="flex justify-between gap-3">
+                            <input
+                                class="font-bold text-center text-main w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                id="username" name="username" type="text" value="{{ .user.Username }}"
+                                placeholder="Enter your player/username" required readonly>
 
-    .tick_container {
-        transition: .5s ease;
-        opacity: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        cursor: pointer;
-        text-align: center;
-    }
+                            <a href="#"
+                                class="text-black bg-[#FFC117] w-[130px] h-[70px] rounded-xl flex items-center justify-center text-center">
 
-    .tick {
-        background-color: #4CAF50;
-        color: white;
-        font-size: 16px;
-        padding: 6px 12px;
-        height: 40px;
-        width: 40px;
-        border-radius: 100%;
-    }
+                                Check <br> ตรวจสอบ
 
-    .iio{
-        width: 70%;
-    }
+                            </a>
 
-</style>
-
-<div class="container p-10 nk-footer">
-
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-10 col-xl-5 text-center">
-
-            {{ if eq .status "true" }}
-
-            <form action="/topups/play" method="get">
-                <hr class="bg-white">
-                <h4 class="text-main-6">เลือกแพ็กเกจที่ต้องการ</h4>
-
-                <input class="text-center m-10 nk-footer br-6" type="text" name="usernameId" id="usernameId"
-                    value="{{ .userId }}" required readonly>
-
-
-                <div class="container parent">
-                    <div class="row">
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price1" class="imgbgchk sho" value="50THB" required>
-                            <label for="price1">
-                                <img src="/public/data/imgtopup/01.png" alt="50THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">50THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price2" class="imgbgchk sho" value="100THB" required>
-                            <label for="price2">
-                                <img src="/public/data/imgtopup/02.png" alt="100THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">100THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price3" class="imgbgchk sho" value="300THB" required>
-                            <label for="price3">
-                                <img src="/public/data/imgtopup/03.png" alt="300THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">300THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price4" class="imgbgchk sho" value="500THB" required>
-                            <label for="price4">
-                                <img src="/public/data/imgtopup/04.png" alt="500THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">500THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price5" class="imgbgchk sho" value="1000THB" required>
-                            <label for="price5">
-                                <img src="/public/data/imgtopup/05.png" alt="1000THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">1,000THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price6" class="imgbgchk sho" value="3000THB" required>
-                            <label for="price6">
-                                <img src="/public/data/imgtopup/06.png" alt="3000THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">3,000THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price7" class="imgbgchk sho" value="5000THB" required>
-                            <label for="price7">
-                                <img src="/public/data/imgtopup/07.png" alt="5000THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">5,000THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price8" class="imgbgchk sho" value="10000THB" required>
-                            <label for="price8">
-                                <img src="/public/data/imgtopup/08.png" alt="10000THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">10,00THB</i>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="price" id="price9" class="imgbgchk sho" value="20000THB" required>
-                            <label for="price9">
-                                <img src="/public/data/imgtopup/09.png" alt="20000THB">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                            <i class="text-main-6">20,000THB</i>
                         </div>
                     </div>
-                </div>
 
-                <!-- -------------------------------------------------------------------- -->
+                    <!-- เลือกจำนวนเงินที่เติม -->
+                    <div class="text-white">
 
-                <hr class="bg-white">
-                <h4 class="text-main-6">เลือกวิธีการชำระเงิน</h4>
-                <div class="container parent">
-                    <div class="row">
-                        <div class="col text-center">
-                            <input type="radio" name="channel" id="img1" class="imgbgchk sho" value="truewallet" required>
-                            <label for="img1">
-                                <img src="/public/data/imgtopup/truewallet.png" alt="truewallet">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="channel" id="img2" class="imgbgchk sho" value="bay" required>
-                            <label for="img2">
-                                <img src="/public/data/imgtopup/bay.png" alt="bay">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="channel" id="img3" class="imgbgchk sho" value="bbl" required>
-                            <label for="img3">
-                                <img src="/public/data/imgtopup/bbl.png" alt="bbl">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="channel" id="img4" class="imgbgchk sho" value="ktb" required>
-                            <label for="img4">
-                                <img src="/public/data/imgtopup/ktb.png" alt="ktb">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="channel" id="img5" class="imgbgchk sho" value="scb" required>
-                            <label for="img5">
-                                <img src="/public/data/imgtopup/scb.png" alt="scb">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="channel" id="img6" class="imgbgchk sho" value="kbank" required>
-                            <label for="img6">
-                                <img src="/public/data/imgtopup/kbank.png" alt="kbank">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="col text-center">
-                            <input type="radio" name="channel" id="img7" class="imgbgchk sho" value="promptpay" required>
-                            <label for="img7">
-                                <img src="/public/data/imgtopup/promptpay.png" alt="promptpay">
-                                <div class="tick_container">
-                                    <div class="tick"><i class="fa fa-check"></i></div>
-                                </div>
-                            </label>
+                        <p>2.Choose item/เลือกไอเท็ม</p>
+
+                        <div class="grid grid-cols-2 gap-1">
+
+                            <div>
+                                <input type="radio" name="price" id="1" value="50THB" class="peer hidden" required />
+                                <label for="1"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            50
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿50
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="price" id="2" value="100THB" class="peer hidden" required />
+                                <label for="2"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            100
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿100
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="price" id="3" value="300THB" class="peer hidden" required />
+                                <label for="3"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            300
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿300
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="price" id="4" value="500THB" class="peer hidden" required />
+                                <label for="4"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            500
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿500
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="price" id="5" value="1000THB" class="peer hidden" required />
+                                <label for="5"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            1,000
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿1,000
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="price" id="6" value="3000THB" class="peer hidden" required />
+                                <label for="6"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            3000
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿3,000
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="price" id="7" value="5000THB" class="peer hidden" required />
+                                <label for="7"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            5,000
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿5,000
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="price" id="8" value="10000THB" class="peer hidden" required />
+                                <label for="8"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
+                                        <div class="flex items-center">
+                                            <img src="/public/data/img/gold.png" alt="">
+                                            10,00
+                                        </div>
+                                        <div class="text-[#FFFFFF4D]">
+                                            ฿10,000
+                                        </div>
+                                    </div>
+
+                                </label>
+                            </div>
+
                         </div>
                     </div>
+
+                    <!-- เลือกช่องทางการชำระ -->
+                    <div class="text-white pt-5">
+                        <p>3.Choose Payment/เลือกช่องทางการชำระ</p>
+
+                        <div class="grid grid-cols-2 gap-1">
+
+                            <div>
+                                <input type="radio" name="channel" id="channel1" value="truewallet" class="peer hidden"
+                                    required />
+                                <label for="channel1"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/true-money.png" alt="">
+                                            Truemoney Wallet
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="channel" id="channel2" value="bay" class="peer hidden"
+                                    required />
+                                <label for="channel2"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/BAY.png" alt="">
+                                            Krungsri
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="channel" id="channel3" value="bbl" class="peer hidden"
+                                    required />
+                                <label for="channel3"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/BBL.png" alt="">
+                                            Bangkok Bank
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="channel" id="channel4" value="ktb" class="peer hidden"
+                                    required />
+                                <label for="channel4"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/KTB.png" alt="">
+                                            Krung Thai Bank
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="channel" id="channel5" value="scb" class="peer hidden"
+                                    required />
+                                <label for="channel5"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/SCB.png" alt="">
+                                            Siam Commercial Bank
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="channel" id="channel6" value="kbank" class="peer hidden"
+                                    required />
+                                <label for="channel6"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/KBANK.png" alt="">
+                                            Kasikorn Bank
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="channel" id="channel7" value="promptpay" class="peer hidden"
+                                    required />
+                                <label for="channel7"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img class="rounded-full" src="/public/data/img/payment.png" alt="">
+                                            QR Promptpay
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="text-center mt-[20%] md:mt-[20%]">
+                        <p class="text-amber-400 text-lg font-bold">{{ .message }}</p>
+                        <button class="bg-[url('/public/data/img/pay-btn.png')] w-[310px] h-[80px]"
+                            type="submit"></button>
+                    </div>
+
+
+                </form>
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0 p-3">
+
+            </div>
+
+            {{ if eq .ff "ok" }}
+
+            <section class="absolute top-[7%] w-[440px] h-[600px] bg-[url('/public/data/img/RECEIPT.png')] bg-center bg-no-repeat">
+
+                <div class="w-[60%] mx-auto">
+
+                    <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .status }}</p>
+
+                    <div>
+                        <div class="flex justify-between font-bold py-3">
+                            <p>Amount</p>
+                            <p>{{ .amount .currency }}</p>
+                        </div>
+                        <div class="flex justify-between font-bold py-3">
+                            <p>Channel</p>
+                            <p>{{ .channel }}</p>
+                        </div>
+                        <div class="flex justify-between font-bold py-3">
+                            <p>Orderid</p>
+                            <p>{{ .orderid }}</p>
+                        </div>
+                        <div class="flex justify-between font-bold py-3">
+                            <p>Txid</p>
+                            <p>{{ .txid }}</p>
+                        </div>
+                    </div>
+
+                    <a href="/" class="text-center"><img src="/public/data/img/close-btn.png" alt=""></a>
                 </div>
-                <button type="submit" class="btn btn-primary container mt-4">Primary</button>
 
-            </form>
 
-            {{ else }}
-
-            <img class="img-fluid p-10 iio" src="/public/data/imgtopup/Success.png" alt="">
-            <div class="nk-gap"></div>
-
-            <form action="/topups/user" method="get">
-                <h4 class="text-danger">{{ .message }}</h4>
-                <h4 class="text-main-6">{{ .message1 }}</h4>
-                <div class="input-group input-group-sm m-10">
-                    <span class="input-group-text {{ .bg_success }}" id="inputGroup-sizing-sm">Username</span>
-                    <input type="text" class="form-control text-primary" id="username" name="username"
-                        value="{{ .userId }}" required>
-                </div>
-                <div class="nk-gap"></div>
-                <button type="submit" class="btn btn-primary mb-3">Check Username</button>
-                <div class="nk-gap"></div>
-            </form>
+            </section>
 
             {{ end }}
-        </div>
-    </div>
-
-</div>
-
-<script>
-
-    var MD5 = function (d) { var r = M(V(Y(X(d), 8 * d.length))); return r.toLowerCase() }; function M(d) { for (var _, m = "0123456789ABCDEF", f = "", r = 0; r < d.length; r++)_ = d.charCodeAt(r), f += m.charAt(_ >>> 4 & 15) + m.charAt(15 & _); return f } function X(d) { for (var _ = Array(d.length >> 2), m = 0; m < _.length; m++)_[m] = 0; for (m = 0; m < 8 * d.length; m += 8)_[m >> 5] |= (255 & d.charCodeAt(m / 8)) << m % 32; return _ } function V(d) { for (var _ = "", m = 0; m < 32 * d.length; m += 8)_ += String.fromCharCode(d[m >> 5] >>> m % 32 & 255); return _ } function Y(d, _) { d[_ >> 5] |= 128 << _ % 32, d[14 + (_ + 64 >>> 9 << 4)] = _; for (var m = 1732584193, f = -271733879, r = -1732584194, i = 271733878, n = 0; n < d.length; n += 16) { var h = m, t = f, g = r, e = i; f = md5_ii(f = md5_ii(f = md5_ii(f = md5_ii(f = md5_hh(f = md5_hh(f = md5_hh(f = md5_hh(f = md5_gg(f = md5_gg(f = md5_gg(f = md5_gg(f = md5_ff(f = md5_ff(f = md5_ff(f = md5_ff(f, r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 0], 7, -680876936), f, r, d[n + 1], 12, -389564586), m, f, d[n + 2], 17, 606105819), i, m, d[n + 3], 22, -1044525330), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 4], 7, -176418897), f, r, d[n + 5], 12, 1200080426), m, f, d[n + 6], 17, -1473231341), i, m, d[n + 7], 22, -45705983), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 8], 7, 1770035416), f, r, d[n + 9], 12, -1958414417), m, f, d[n + 10], 17, -42063), i, m, d[n + 11], 22, -1990404162), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 12], 7, 1804603682), f, r, d[n + 13], 12, -40341101), m, f, d[n + 14], 17, -1502002290), i, m, d[n + 15], 22, 1236535329), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 1], 5, -165796510), f, r, d[n + 6], 9, -1069501632), m, f, d[n + 11], 14, 643717713), i, m, d[n + 0], 20, -373897302), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 5], 5, -701558691), f, r, d[n + 10], 9, 38016083), m, f, d[n + 15], 14, -660478335), i, m, d[n + 4], 20, -405537848), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 9], 5, 568446438), f, r, d[n + 14], 9, -1019803690), m, f, d[n + 3], 14, -187363961), i, m, d[n + 8], 20, 1163531501), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 13], 5, -1444681467), f, r, d[n + 2], 9, -51403784), m, f, d[n + 7], 14, 1735328473), i, m, d[n + 12], 20, -1926607734), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 5], 4, -378558), f, r, d[n + 8], 11, -2022574463), m, f, d[n + 11], 16, 1839030562), i, m, d[n + 14], 23, -35309556), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 1], 4, -1530992060), f, r, d[n + 4], 11, 1272893353), m, f, d[n + 7], 16, -155497632), i, m, d[n + 10], 23, -1094730640), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 13], 4, 681279174), f, r, d[n + 0], 11, -358537222), m, f, d[n + 3], 16, -722521979), i, m, d[n + 6], 23, 76029189), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 9], 4, -640364487), f, r, d[n + 12], 11, -421815835), m, f, d[n + 15], 16, 530742520), i, m, d[n + 2], 23, -995338651), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 0], 6, -198630844), f, r, d[n + 7], 10, 1126891415), m, f, d[n + 14], 15, -1416354905), i, m, d[n + 5], 21, -57434055), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 12], 6, 1700485571), f, r, d[n + 3], 10, -1894986606), m, f, d[n + 10], 15, -1051523), i, m, d[n + 1], 21, -2054922799), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 8], 6, 1873313359), f, r, d[n + 15], 10, -30611744), m, f, d[n + 6], 15, -1560198380), i, m, d[n + 13], 21, 1309151649), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 4], 6, -145523070), f, r, d[n + 11], 10, -1120210379), m, f, d[n + 2], 15, 718787259), i, m, d[n + 9], 21, -343485551), m = safe_add(m, h), f = safe_add(f, t), r = safe_add(r, g), i = safe_add(i, e) } return Array(m, f, r, i) } function md5_cmn(d, _, m, f, r, i) { return safe_add(bit_rol(safe_add(safe_add(_, d), safe_add(f, i)), r), m) } function md5_ff(d, _, m, f, r, i, n) { return md5_cmn(_ & m | ~_ & f, d, _, r, i, n) } function md5_gg(d, _, m, f, r, i, n) { return md5_cmn(_ & f | m & ~f, d, _, r, i, n) } function md5_hh(d, _, m, f, r, i, n) { return md5_cmn(_ ^ m ^ f, d, _, r, i, n) } function md5_ii(d, _, m, f, r, i, n) { return md5_cmn(m ^ (_ | ~f), d, _, r, i, n) } function safe_add(d, _) { var m = (65535 & d) + (65535 & _); return (d >> 16) + (_ >> 16) + (m >> 16) << 16 | 65535 & m } function bit_rol(d, _) { return d << _ | d >>> 32 - _ }
-
-    function topup() {
-
-        var username = document.getElementById("usernameId").value;
-        var price = "";
-        var channel_s = "";
+    </section>
 
 
-        var ele = document.getElementsByName('price');
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                price = ele[i].value;
-        }
-
-        var ele = document.getElementsByName('channel');
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                channel_s = ele[i].value;
-        }
-
-        console.log(username)
-        console.log(price)
-        console.log(channel_s)
+    <div class="pb-20"></div>
+</nav>
 
 
 
-        if (username == "" || price == "" || channel_s == "") {
-            return false;
-        }
-
-
-        var channel = channel_s;
-        var for1 = "_AGEOFKHAGAN";
-        var operator = "";
-        var orderid = "1210603102";
-        var sid = "8325";
-        var uid = username;
-        var SECRET_KEY = "bac7da179f5a7b6ca9d23c111d5bb6b1";
-        var url = "";
-
-        if (channel == "truewallet") {
-
-            url = new URL("https://sea-api.gold-sandbox.razer.com/ewallet/pay");
-        }
-        else {
-            url = new URL("https://sea-api.gold-sandbox.razer.com/ibanking/pay");
-        }
-
-
-        console.log("price ", price);
-
-        var sum = channel + for1 + "-" + orderid + operator + orderid + price + sid + uid + SECRET_KEY
-
-        var sig = MD5(sum);
-
-
-        url.searchParams.set("for", for1 + "-" + orderid);
-        url.searchParams.set("channel", channel);
-        url.searchParams.set("orderid", orderid);
-        url.searchParams.set("sid", sid);
-        url.searchParams.set("uid", uid);
-        url.searchParams.set("price", price);
-        url.searchParams.set("sig", sig);
-
-        window.location.href = url;
-
-
-        return false;
-    }
-
-</script>
-
-{{end}}
+{{ end }}

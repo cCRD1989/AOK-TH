@@ -21,7 +21,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
+	"github.com/golang-jwt/jwt"
 	"github.com/zalando/gin-oauth2/google"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/facebook"
@@ -36,6 +36,13 @@ type Message struct {
 	Likes    string
 	Gender   string
 	Birthday string
+}
+
+type cRegister struct {
+	Username   string
+	Email      string
+	Password   string
+	Repassword string
 }
 
 var (
@@ -65,8 +72,37 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 	user, _ := usr.(aokmodel.Userlogin)
 
 	//
+	//
+	//
+	//
+
+	ranking := []aokmodel.Character{}
+	db.AOK_DB.Select("Charactername ,Level").Limit(10).Order("LEVEL DESC").Find(&ranking)
+
+	//
+	//
 	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
-		"title": "Age Of Khagan Thailand",
+		"title":   "Age Of Khagan Thailand",
+		"user":    user,
+		"ranking": ranking,
+	})
+}
+
+func (f *Frontend) UserGetSingin(ctx *gin.Context) {
+
+	visit := model.LogWeb{
+		DataType:  "Singin",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
+		"title": "Age Of Khagan Thailand | Login",
 		"user":  user,
 	})
 }
@@ -113,6 +149,60 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 	// Redirect
 	fmt.Println("บันทึก Token สำเร็จ")
 	ctx.Redirect(http.StatusFound, "/")
+}
+
+func (f *Frontend) UserGetRegister(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "Register",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
+		"title": "Age Of Khagan Thailand | Register",
+		"user":  user,
+	})
+}
+
+func (f *Frontend) UserGetClass(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "Class",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	ctx.HTML(http.StatusOK, "frontend/classjob.html", gin.H{
+		"title": "Age Of Khagan Thailand | Class",
+		"user":  user,
+	})
+}
+
+func (f *Frontend) UserGetMaps(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "Maps",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	ctx.HTML(http.StatusOK, "frontend/map.html", gin.H{
+		"title": "Age Of Khagan Thailand | Maps",
+		"user":  user,
+	})
 }
 
 // UserGetLogout logs the user out
@@ -261,35 +351,38 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 	pass := ctx.DefaultQuery("password", "-")
 	repass := ctx.DefaultQuery("repassword", "-")
 
+	data := cRegister{
+		Username:   userID,
+		Email:      email,
+		Password:   pass,
+		Repassword: repass,
+	}
+
 	if userID == "-" || email == "-" || pass == "-" || repass == "-" {
-		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
-			"title":  "Age Of Khagan | Custom Registration",
-			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
-			"name":   "กรอกข้อมูลให้ครบ",
-			"status": "false",
+		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
+			"title": "Age Of Khagan | Custom Registration",
+			"name":  "กรอกข้อมูลให้ครบ",
+			"data":  data,
 		})
 		return
 	}
 
 	//ตรวจสอบพาสตรงกัน
 	if pass != repass {
-		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
-			"title":  "Age Of Khagan | Custom Registration",
-			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
-			"name":   "Password ไม่ตรงกัน",
-			"status": "false",
+		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
+			"title": "Age Of Khagan | Custom Registration",
+			"name":  "Password ไม่ตรงกัน",
+			"data":  data,
 		})
 		return
 	}
 
 	//ตรวจสอบไอดีในระบบ
 	if err := db.AOK_DB.First(&aokmodel.Userlogin{}, "username = ?", userID).Error; err == nil {
-
-		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
-			"title":  "Age Of Khagan | Custom Registration",
-			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
-			"name":   "Username มีอยู่ในระบบแล้ว โปรดลองใหม่",
-			"status": "false",
+		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
+			"title": "Age Of Khagan | Custom Registration",
+			"name":  "Username มีอยู่ในระบบแล้ว โปรดลองใหม่",
+			"data":  data,
 		})
 		return
 	}
@@ -312,11 +405,9 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		Email:    email,
 	}
 	if err := db.AOK_DB.Save(&logid).Error; err != nil {
-		ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
-			"title":  "Age Of Khagan | Custom Registration",
-			"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
-			"name":   "บันทึกลงฐานข้อมูลไม่สำเร็จ Error",
-			"status": "false",
+		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
+			"title": "Age Of Khagan | Custom Registration",
+			"name":  "บันทึกลงฐานข้อมูลไม่สำเร็จ Error",
 		})
 		return
 	}
@@ -332,11 +423,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		Status:   "Custom Registration",
 	})
 
-	ctx.HTML(http.StatusOK, "frontend/customregis.html", gin.H{
-		"title":  "Age Of Khagan | Custom Registration",
-		"imgsrc": "/public/data/รวมไฟล์ 2D by มีน/Standy Rol/knight.png",
-		"name":   "บันทึกลงฐานข้อมูลสำเร็จ",
-		"status": "true",
+	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
+		"title": "Age Of Khagan Thailand",
 	})
 }
 

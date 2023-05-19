@@ -1,449 +1,92 @@
 {{ define "top" }}
-<!-- START: Page Background -->
-
-<img class="nk-page-background-top" src="/public/assets/images/bg-top-5.png" alt="">
-<img class="nk-page-background-bottom" src="/public/assets/images/bg-top-2.png" alt="">
-
-<!-- END: Page Background -->
-
-<header class="nk-header nk-header-opaque">
-
-    <!-- START: Top Contacts -->
-    <div class="nk-contacts-top">
-        <div class="container">
-            <div class="nk-contacts-left">
-                <ul class="nk-social-links">
 
 
+<header class="bg-[#000000b3] md:bg-[#0000004d] bg-[url('/public/data/img/main-bg.png')]">
 
-                    <li><a class="nk-social-facebook" href="https://www.facebook.com/ageofkhaganthailand"><span
-                                class="fab fa-facebook"></span></a></li>
-                    <li><a class="nk-social-instagram" href="https://www.instagram.com/ageofkhaganthailand/"><span
-                                class="fab fa-instagram"></span></a></li>
-                    <li><a class="nk-social-twitter" href="https://twitter.com/ageofkhaganth" target="_blank"><span
-                                class="fab fa-twitter"></span></a></li>
-                    <li><a class="nk-social-youtube" href="https://www.youtube.com/@ageofkhaganthailand/videos"><span
-                                class="fab fa-youtube"></span></a></li>
-                    <li><a class="nk-social-skype" href="https://www.tiktok.com/@ageofkhaganthailand?lang=th-TH"><span
-                                class="fab fa-skype"></span></a></li>
+    <nav class="flex items-center md:justify-center justify-between  w-[80%] mx-auto md:gap-6 h-[100px]">
 
+        <div class="">
+            <a href="/"> <img src="/public/data/img/AOK_LOGO_NAV-BAR.png" alt="" width="124px"></a>
 
-                </ul>
-            </div>
-            <div class="nk-contacts-right">
-                <ul class="nk-contacts-icons">
-
-
-              
-                    {{ if eq .user.Username "" }}
-                    <a href="#" data-toggle="modal" data-target="#modalLogin">
-                        <span class="fa fa-user"></span>
-                    </a>
-                    {{ else }}
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#modalLogout">
-                            <img src="/public/data/avatar/avatar.png" alt="" width="70px">
-                        </a>
-                        <h6 class="text-main-1">
-                            {{.user.Username}}
-                        </h6>
-                    </li>
-                    {{ end}}
-             
-
-
-                    <!-- {{ if ne .user.Username ""}}
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#modalLogout">
-                            <img src="/public/data/avatar/avatar.png" alt="" width="70px">
-                        </a>
-                        <h6 class="text-main-1">
-                            {{.user.Username}}
-                        </h6>
-                    </li>
-                    {{ else}}
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#modalLogin">
-                            <span class="fa fa-user"></span>
-                        </a>
-                    </li>
-                    {{ end}} -->
-
-
-
-                    <li>
-                        <!-- <span class="nk-cart-toggle">
-                      <span class="fa fa-shopping-cart"></span>
-                      <span class="nk-badge">27</span>
-                  </span> -->
-                        <div class="nk-cart-dropdown">
-
-                            <div class="nk-widget-post">
-                                <a href="store-product.html" class="nk-post-image">
-                                    <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/AOKLogo.png"
-                                        alt="In all revolutions of">
-                                </a>
-                                <h3 class="nk-post-title">
-                                    <a href="#" class="nk-cart-remove-item"><span class="ion-android-close"></span></a>
-                                    <a href="/">In all revolutions of</a>
-                                </h3>
-                                <div class="nk-gap-1"></div>
-                                <div class="nk-product-price">€ 23.00</div>
-                            </div>
-
-                            <!-- <div class="nk-widget-post">
-                                <a href="/public/store-product.html" class="nk-post-image">
-                                    <img src="/public/assets/images/product-7-xs.jpg" alt="With what mingled joy">
-                                </a>
-                                <h3 class="nk-post-title">
-                                    <a href="#" class="nk-cart-remove-item"><span class="ion-android-close"></span></a>
-                                    <a href="/public/store-product.html">With what mingled joy</a>
-                                </h3>
-                                <div class="nk-gap-1"></div>
-                                <div class="nk-product-price">€ 14.00</div>
-                            </div>
-
-                            <div class="nk-gap-2"></div>
-                            <div class="text-center">
-                                <a href="/public/store-checkout.html"
-                                    class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Proceed
-                                    to Checkout</a>
-                            </div> -->
-                        </div>
-                    </li>
-
-                </ul>
-            </div>
         </div>
-    </div>
-    <!-- END: Top Contacts -->
 
 
+        <div
+            class="nav-links bg-[#000000b3] md:static absolute md:bg-transparent top-[-200%] w-full left-0 flex justify-center duration-500 h-[844px] pt-5">
 
-    <!--
-      START: Navbar
+            <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
+                <li class="menuhover"><a href="/">Home<br>หน้าแรก</a></li>
+                <li class="menuhover"><a href="/#Ranking">Ranking<br>จัดอันดับ</a></li>
+                <li class="menuhover"><a href="/#News">News<br>ประกาศ</a></li>
+                <li class="menuhover"><a href="/#Community">Community<br>ชมชุน</a></li>
 
-      Additional Classes:
-          .nk-navbar-sticky
-          .nk-navbar-transparent
-          .nk-navbar-autohide
-  -->
-    <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
-        <div class="container">
-            <div class="nk-nav-table">
+                <div class="flex flex-wrap gap-3 justify-center md:hidden">
+                    <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                    <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                    <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
+                </div>
 
-                <a href="/" class="nk-nav-logo">
-                    <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/Logo Age of Khagan_1.png" alt="AOK"
-                        width="150">
+                <div class="block justify-center items-center mx-auto md:hidden mb-5">
+                    <a href="/singin"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+                    <a href="/register"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+                </div>
+
+            </ul>
+        </div>
+
+        <div>
+            <div class="hidden md:block">
+                {{ if eq .user.Username "" }}
+                <a href="/singin"><img class="mr-5" src="/public/data/img/login-btn.png" alt=""></a>
+
+                {{ else }}
+
+                <a href="/logout">
+                    <img class="mr-5" src="/public/data/img/LOGOUT-btn.png" alt="">
+                    <!-- <p class="absolute top-3 right-9 font-bold">Logout/ออกจากระบบ</p> -->
                 </a>
 
-                <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+                {{ end}}
+
+            </div>
 
 
-                    <li>
-                        <a href="/">
-                            HOME
+            <div onclick="onToggleMenu(this)" class="bg-[#d02d015e] rounded-md block md:hidden cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-10 h-10">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </div>
+        </div>
 
-                        </a>
+    </nav>
+
+    <aside class="flex justify-center relative top-[5px] md:top-[10px]">
+        <img src="/public/data/img/NAV-BAR.png" alt="">
+    </aside>
+
+    <div class="hidden md:block">
+        <div class="fastButtons">
+            <div class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
+                <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
+                    <li><a class="menuhover" href="https://rol-aokth.gitbook.io/aok-guide/"><img
+                                src="/public/data/img/GUIDE-BOOK.png" alt="">Guide<br><span>ไกด์</span></a>
                     </li>
-
-                    <li class=" nk-drop-item">
-                        <a href="#">
-                            RANKINGS
-                        </a>
-                        <ul class="dropdown">
-
-                            <li>
-                                <a href="/ranking/topserver">
-                                    Top Server
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/ranking/Assassin">
-                                    Assassin
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/ranking/Cleric">
-                                    Cleric
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/ranking/Knight">
-                                    Knight
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/ranking/Micko">
-                                    Micko
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/ranking/Necromancer">
-                                    Necromancer
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/ranking/Sorcerer">
-                                    Sorcerer
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class=" nk-drop-item">
-                        <a href="/">
-                            DOWNLOAD
-
-                        </a>
-                        <ul class="dropdown">
-
-                            <li>
-                                <a href="download/Window">
-                                    + Windows PC
-                                </a>
-                            </li>
-                            <li>
-                                <a href="download/Android">
-                                    + Android
-                                </a>
-                            </li>
-                            <li>
-                                <a href="download/App">
-                                    + APP-STORE
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class=" nk-drop-item">
-                        <a href="#">
-                            Game Guides
-
-                        </a>
-                        <ul class="dropdown">
-
-                            <li class=" nk-drop-item">
-                                <a href="#">
-                                    + MAPS
-
-                                </a>
-                                <ul class="dropdown">
-
-                                    <li>
-                                        <a href="/guide/map/wroclawfortress">
-                                            Wroclaw Fortress
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/map/kharakorum">
-                                            Kharakorum
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/map/lublinmongolfortress">
-                                            Lublin Mongol Fortress
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/map/irondungeon">
-                                            Iron Dungeon
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/map/lavacanyon">
-                                            Lava Canyon
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class=" nk-drop-item">
-                                <a href="#">
-                                    + CHARACTERS
-
-                                </a>
-                                <ul class="dropdown">
-
-                                    <li>
-                                        <a href="/guide/jobs/Assassin">
-                                            Assassin
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/jobs/Cleric">
-                                            Cleric
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/jobs/Knight">
-                                            Knight
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/jobs/Micko">
-                                            Micko
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/jobs/Necromancer">
-                                            Necromancer
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/guide/jobs/Sorcerer">
-                                            Sorcerer
-
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/">
-                                    -
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/">
-                                    -
-
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/ageofkhaganthailand">
-                            SUPPORT
-
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/topups">
-                            TOPUP(เติมเงิน)
-                        </a>
-                    </li>
-
-
-                </ul>
-                <ul class="nk-nav nk-nav-right nk-nav-icons">
-
-                    <li class="single-icon d-lg-none">
-                        <a href="#" class="no-link-effect" data-nav-toggle="#nk-nav-mobile">
-                            <span class="nk-icon-burger">
-                                <span class="nk-t-1"></span>
-                                <span class="nk-t-2"></span>
-                                <span class="nk-t-3"></span>
-                            </span>
-                        </a>
-                    </li>
-
-
+                    <li><a class="menuhover" href="/class"><img src="/public/data/img/CLASS.png"
+                                alt="">Class<br><span>อาชีพ</span></a></li>
+                    <li><a class="menuhover" href="/maps"><img src="/public/data/img/MAP.png"
+                                alt="">Map<br><span>แผนที่</span></a></li>
                 </ul>
             </div>
         </div>
-    </nav>
-    <!-- END: Navbar -->
+
+        <div class="fastButtons-topup box">
+            <a href="/topups"><img src="/public/data/img/topup-bg.png" alt="" width="100%"></a>
+        </div>
+    </div>
 
 </header>
 
 
-<!-- START: Login Modal -->
-<div class="nk-modal modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="ion-android-close"></span>
-                </button>
-
-                <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
-                <div class="nk-gap"></div>
-
-                <div class="row vertical-gap">
-                    <div class="col-md-6">
-                        <form action="/login" method="post">
-                            <span class="text-main-1">Username and Password:</span>
-
-                            <div class="nk-gap"></div>
-                            <input type="text" value="" name="username" class=" form-control" placeholder="Username"
-                                required minlength="6" maxlength="32">
-
-                            <div class="nk-gap"></div>
-                            <input type="password" value="" name="password" class="required form-control"
-                                placeholder="Password" required minlength="6" maxlength="32">
-
-                            <div class="nk-gap-1"></div>
-                            <button type="submit"
-                                class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block">Login</button>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <span class="text-main-1">Sign Up Account Social:</span>
-                        <div class="nk-gap"></div>
-
-                        <ul class="nk-social-links-2">
-                            <li><a class="nk-social-facebook" href="/auth/facebooklogin"><span
-                                        class="fab fa-facebook"></span></a></li>
-                            <li><a class="nk-social-google" href="/auth"><span class="fab fa-google"></span></a>
-                            </li>
-                        </ul>
-
-                        <div class="nk-gap"></div>
-                        <span class="text-main-1">Or Custom Registration:</span>
-
-                        <ul class="nk-social-links-2">
-                            <li><a class="nk-social-facebook" href="/auth/custom"><span
-                                        class="fa fa-address-card-o"></span></a></li>
-                        </ul>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END: Login Modal -->
-
-<!-- START: Logout Modal -->
-<div class="nk-modal modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="ion-android-close"></span>
-                </button>
-                <div class="nk-gap"></div>
-                <h4 class="mb-0"><span class="text-main-1">Settings</span></h4>
-                <div class="nk-gap"></div>
-                <div class="nk-gap"></div>
-
-                <a href="/logout" class="nk-btn nk-btn-rounded nk-btn-color-danger nk-btn-block">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END: Logout Modal -->
-
-
-<!-- START: Navbar Mobile -->
-<div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
-    <div class="nano">
-        <div class="nano-content">
-            <a href="/" class="nk-nav-logo">
-                <img src="/public/data/รวมไฟล์ 2D by มีน/LOGO Age of Khagan/Logo Age of Khagan.png" alt="" width="120">
-            </a>
-            <div class="nk-navbar-mobile-content">
-                <ul class="nk-nav">
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END: Navbar Mobile -->
 {{ end }}

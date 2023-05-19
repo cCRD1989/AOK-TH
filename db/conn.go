@@ -22,7 +22,6 @@ func ConnectDB() {
 		&gorm.Config{Logger: logger.Default.LogMode(logger.Info)},
 	)
 	if err != nil {
-
 		log.Fatal("Cannot Connect Database")
 		return
 	}
@@ -47,11 +46,12 @@ func ConnectDB() {
 }
 func Migrate() {
 
-	err := Conn.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
-		&model.LogWeb{},
-		&model.LogTopup{},
-		&model.LogRegister{},
-	)
+	err := Conn.Set("gorm:table_options", "ENGINE=InnoDB").
+		AutoMigrate(
+			&model.LogWeb{},
+			&model.LogTopup{},
+			&model.LogRegister{},
+		)
 
 	// err := Conn.AutoMigrate(
 	// 	&model.LogWeb{},

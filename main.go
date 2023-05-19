@@ -66,6 +66,7 @@ func main() {
 	r := gin.Default()
 	r.HTMLRender = createViews()
 	r.Static("/public", "./public")
+	r.Static("/dist", "./dist")
 	r.Static("/download/public", "./public")
 
 	r.StaticFile("/favicon.ico", "./public/favicon.ico")
