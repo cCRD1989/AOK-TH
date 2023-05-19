@@ -2,7 +2,6 @@ package main
 
 import (
 	"ccrd/controller"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,20 +22,10 @@ func serveRoutes(r *gin.Engine) {
 	// frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
 
 	//privacypolicy
-	frontend_userGroup.GET("/privacypolicy", func(ctx *gin.Context) {
-		ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
-			"title": "Age Of Khagan Thailand | PrivacyPolicy",
-			"bg":    "/public/data/img/CLASS_BG.png",
-		})
-	})
+	frontend_userGroup.GET("/privacypolicy", frontend_user.UserGetPrivacypolicy)
 
 	//service
-	frontend_userGroup.GET("/service", func(ctx *gin.Context) {
-		ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
-			"title": "Age Of Khagan Thailand | Service",
-			"bg":    "/public/data/img/CLASS_BG.png",
-		})
-	})
+	frontend_userGroup.GET("/service", frontend_user.UserGetService)
 
 	// // auth https://console.cloud.google.com/
 	auth_user := r.Group("/auth")

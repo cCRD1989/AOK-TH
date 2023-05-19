@@ -382,6 +382,7 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 		Currency: ctx.Query("currency"),
 		Sig:      ctx.Query("sig"),
 	}
+	//a10a5bc6f1b8e430fd5eb2fde1773d4f a729ff0bbb3e14e9c5f97f92a91db667 200 Success bbl 100 THB 9f042e5b2be0147160d5533fe32ee38a
 	fmt.Println("Redirect PayProcess data all: ", request)
 
 	if request.Status == "200" {

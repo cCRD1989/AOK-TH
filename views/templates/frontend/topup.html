@@ -5,7 +5,7 @@
 
     <section class="flex justify-center">
         <div class="h-[1153px] w-[638px] bg-[#141414AB] mt-5 relative flex justify-center">
-
+            <!--  -->
             <div class="w-[80%]">
 
                 <div class="text-2xl font-extrabold text-white pt-4 text-center">
@@ -335,25 +335,18 @@
 
                 <div class="w-[60%] mx-auto">
 
-                    <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .status }}</p>
+                    <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .detail }}</p>
 
                     <div>
                         <div class="flex justify-between font-bold py-3">
                             <p>Amount</p>
-                            <p>{{ .amount .currency }}</p>
+                            <p>{{ .amount }}{{ .currency }}</p>
                         </div>
                         <div class="flex justify-between font-bold py-3">
                             <p>Channel</p>
                             <p>{{ .channel }}</p>
                         </div>
-                        <div class="flex justify-between font-bold py-3">
-                            <p>Orderid</p>
-                            <p>{{ .orderid }}</p>
-                        </div>
-                        <div class="flex justify-between font-bold py-3">
-                            <p>Txid</p>
-                            <p>{{ .txid }}</p>
-                        </div>
+                 
                     </div>
 
                     <a href="/" class="text-center"><img src="/public/data/img/close-btn.png" alt=""></a>

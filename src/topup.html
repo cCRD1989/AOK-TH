@@ -430,28 +430,20 @@
 
                 </div>
 
-                <section class="block absolute top-[7%] w-[440px] h-[600px] bg-[url('/public/data/img/RECEIPT.png')] bg-center bg-no-repeat">
+                <section class="absolute top-[7%] w-[440px] h-[600px] bg-[url('/public/data/img/RECEIPT.png')] bg-center bg-no-repeat">
 
                     <div class="w-[60%] mx-auto">
     
-                        <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .status }}</p>
+                        <p class="pt-[60%] text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .status }}</p>
     
                         <div>
                             <div class="flex justify-between font-bold py-3">
                                 <p>Amount</p>
-                                <p>{{ .amount .currency }}</p>
+                                <p>{{ .amount }}{{ .currency }}</p>
                             </div>
                             <div class="flex justify-between font-bold py-3">
                                 <p>Channel</p>
                                 <p>{{ .channel }}</p>
-                            </div>
-                            <div class="flex justify-between font-bold py-3">
-                                <p>Orderid</p>
-                                <p>{{ .orderid }}</p>
-                            </div>
-                            <div class="flex justify-between font-bold py-3">
-                                <p>Txid</p>
-                                <p>{{ .txid }}</p>
                             </div>
                         </div>
     
@@ -460,6 +452,9 @@
     
     
                 </section>
+
+
+
             </div>
         </section>
 

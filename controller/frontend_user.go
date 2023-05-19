@@ -216,6 +216,44 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 	})
 }
 
+// privacypolicy
+func (f *Frontend) UserGetPrivacypolicy(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "visit",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	ctx.HTML(http.StatusOK, "frontend/privacypolicy.html", gin.H{
+		"title": "Age Of Khagan Thailand | PrivacyPolicy",
+		"user":  user,
+		"bg":    "/public/data/img/CLASS_BG.png",
+	})
+}
+
+// Service
+func (f *Frontend) UserGetService(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "visit",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	ctx.HTML(http.StatusOK, "frontend/service.html", gin.H{
+		"title": "Age Of Khagan Thailand | Service",
+		"user":  user,
+		"bg":    "/public/data/img/CLASS_BG.png",
+	})
+}
+
 // UserGetLogout logs the user out
 func (f *Frontend) UserGetLogout(ctx *gin.Context) {
 	tokenString, err := ctx.Cookie("Authorization")
