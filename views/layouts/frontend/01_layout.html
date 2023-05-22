@@ -28,7 +28,14 @@
 	<script>
 		var nav = document.querySelector(".nav-links")
 		function onToggleMenu(e) {
-			nav.classList.toggle('top-[106px]')
+			nav.classList.toggle('top-[106px]');
+		}
+
+
+		var nav1 = document.querySelector(".popup-links")
+		function onTogglePopup(e) {
+			nav1.classList.remove('hidden');
+			nav1.classList.add('flex');
 		}
 	</script>
 
