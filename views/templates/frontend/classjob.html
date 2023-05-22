@@ -1,80 +1,82 @@
 {{ define "content" }}
 
-
-
-<div id="" class="bg-black relative">
-    <div class="w-[80%] bg-slate-400 mx-auto flex justify-center">
-
-
-        <div id="class1" class="relative flex justify-center" onclick="onTogglePopup(this)">
-            <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class1.png" alt="">
-            <img class="absolute bottom-0" src="/public/data/img/KNIGHT_CLASS.png" alt="">
-            <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">KNIGHT</p>
-        </div>
-
-        <div id="class2" class="relative flex justify-center" onclick="onTogglePopup(this)">
-            <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class2.png" alt="">
-            <img class="absolute bottom-0" src="/public/data/img/NECROMANCER_CLASS.png" alt="">
-            <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">NECROMANCER</p>
-        </div>
-
-        <div id="class3" class="relative flex justify-center" onclick="onTogglePopup(this)">
-            <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class3.png" alt="">
-            <img class="absolute bottom-0" src="/public/data/img/MICKO_CLASS.png" alt="">
-            <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">MICKO</p>
-        </div>
-
-        <div id="class4" class="relative flex justify-center" onclick="onTogglePopup(this)">
-            <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class4.png" alt="">
-            <img class="absolute bottom-0" src="/public/data/img/CLERIC_CLASS.png" alt="">
-            <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">CLERIC</p>
-        </div>
-
-        <div id="class5" class="relative flex justify-center" onclick="onTogglePopup(this)">
-            <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class5.png" alt="">
-            <img class="absolute bottom-0" src="/public/data/img/SORCERER_CLASS.png" alt="">
-            <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">SORCERER</p>
-        </div>
-
-        <div id="class6" class="relative flex justify-center" onclick="onTogglePopup(this)">
-            <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class6.png" alt="">
-            <img class="absolute bottom-0" src="/public/data/img/ASSASSIN_CLASS.png" alt="">
-            <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">ASSASSIN</p>
-        </div>
-
-
-    </div>
-
-    <div id="popup"
-        class="popup-links w-full h-full absolute hidden justify-center top-0 items-center duration-500">
-
-        <div
-            class="h-[945px] w-[1233px] bg-[url('/public/data/img/PAPER-BG.png')]  bg-center bg-no-repeat md:bg-contain bg-cover rounded-xl flex justify-center">
-            <div class="md:mt-[13%] mt-[50%] w-full mx-[10%]">
-
-                <div class="flex flex-col items-center">
- 
-                    <div class="">
-                        <img id="img-class" class="w-[90px] rounded-full" src="/public/data/img/class1.png" alt="">
-                    </div>
-
-                    <div class="text-center">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil consectetur asperiores,
-                        architecto eum error suscipit atque illum, laudantium labore exercitationem earum porro
-                        esse. Rerum minus, dignissimos provident repellendus maiores ea.
-                    </div>
-
-                    <a href=""><img src="/public/data/img/close-btn.png" alt=""></a>
-
-                </div>
-
-
+<nav class="bg-[url('/public/data/img/CLASS_BG.png')] bg-top bg-repeat-y bg-black">
+    <div id="" class="bg-black relative">
+        <div class="w-[80%] bg-slate-400 mx-auto flex justify-center">
+    
+    
+            <div id="class1" class="relative flex justify-center" onclick="onTogglePopup(this)">
+                <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class1.png" alt="">
+                <img class="absolute bottom-0" src="/public/data/img/KNIGHT_CLASS.png" alt="">
+                <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">KNIGHT</p>
             </div>
-
+    
+            <div id="class2" class="relative flex justify-center" onclick="onTogglePopup(this)">
+                <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class2.png" alt="">
+                <img class="absolute bottom-0" src="/public/data/img/NECROMANCER_CLASS.png" alt="">
+                <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">NECROMANCER</p>
+            </div>
+    
+            <div id="class3" class="relative flex justify-center" onclick="onTogglePopup(this)">
+                <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class3.png" alt="">
+                <img class="absolute bottom-0" src="/public/data/img/MICKO_CLASS.png" alt="">
+                <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">MICKO</p>
+            </div>
+    
+            <div id="class4" class="relative flex justify-center" onclick="onTogglePopup(this)">
+                <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class4.png" alt="">
+                <img class="absolute bottom-0" src="/public/data/img/CLERIC_CLASS.png" alt="">
+                <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">CLERIC</p>
+            </div>
+    
+            <div id="class5" class="relative flex justify-center" onclick="onTogglePopup(this)">
+                <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class5.png" alt="">
+                <img class="absolute bottom-0" src="/public/data/img/SORCERER_CLASS.png" alt="">
+                <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">SORCERER</p>
+            </div>
+    
+            <div id="class6" class="relative flex justify-center" onclick="onTogglePopup(this)">
+                <img class="opacity-80 hover:opacity-[1] duration-200" src="/public/data/img/class6.png" alt="">
+                <img class="absolute bottom-0" src="/public/data/img/ASSASSIN_CLASS.png" alt="">
+                <p class="hidden lg:block absolute top-[80%] text-main font-extrabold md:text-[40px] text-[30px]">ASSASSIN</p>
+            </div>
+    
+    
         </div>
+    
+        <div id="popup"
+            class="popup-links w-full h-full absolute hidden justify-center top-0 items-center duration-500">
+    
+            <div
+                class="h-[945px] w-[1233px] bg-[url('/public/data/img/PAPER-BG.png')]  bg-center bg-no-repeat md:bg-contain bg-cover rounded-xl flex justify-center">
+                <div class="md:mt-[13%] mt-[50%] w-full mx-[10%]">
+    
+                    <div class="flex flex-col items-center">
+     
+                        <div class="">
+                            <img id="img-class" class="w-[90px] rounded-full" src="/public/data/img/class1.png" alt="">
+                        </div>
+    
+                        <div class="text-center">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil consectetur asperiores,
+                            architecto eum error suscipit atque illum, laudantium labore exercitationem earum porro
+                            esse. Rerum minus, dignissimos provident repellendus maiores ea.
+                        </div>
+    
+                        <a href=""><img src="/public/data/img/close-btn.png" alt=""></a>
+    
+                    </div>
+    
+    
+                </div>
+    
+            </div>
+        </div>
+    
     </div>
+</nav>
 
-</div>
+
 
 
 

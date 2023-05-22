@@ -15,7 +15,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
 
-
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
 
 </head>
 
@@ -40,7 +40,34 @@
 			nav1.classList.remove('hidden');
 			nav1.classList.add('flex');
 		}
+
+		// 
+
+		var map_monter1 = document.querySelector(".map-links");
+		var map_monter2 = document.querySelector(".monter-links");
+		function onToggleMap(e) {
+
+			map_monter2.classList.remove('flex');
+			map_monter2.classList.add('hidden');
+
+			map_monter1.classList.remove('hidden');
+			map_monter1.classList.add('flex');
+
+		}
+
+		function onToggleMonter(e) {
+
+			map_monter1.classList.remove('flex');
+			map_monter1.classList.add('hidden');
+
+			map_monter2.classList.remove('hidden');
+			map_monter2.classList.add('flex');
+
+		}
+
 	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
 </body>
 

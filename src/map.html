@@ -102,7 +102,7 @@
         </header>
 
         <!-- แผ่นที่ -->
-        <section class="flex justify-center">
+        <section class="flex justify-center map-links">
 
             <div class="w-[80%] bg-[#141414AB] mt-10 relative flex justify-center items-center">
 
@@ -113,10 +113,16 @@
                         class="order-1 py-10 bg-[url('/public/data/img/PAPER-MAP.png')] bg-center bg-no-repeat bg-contain relative flex items-center">
 
                         <div class="py-10 flex flex-col items-center">
-                            
+
                             <p class="pb-3 font-bold text-[30px] md:text-[40px]">Wroclaw Fortress</p>
 
 
+                            <div class="pb-1">
+                                <button type="button"
+                                    class="p-5 hover:font-bold text-[26px] border-b-2 border-black">Map</button>
+                                <button type="button" class="p-5 hover:font-bold text-[26px]"
+                                    onclick="onToggleMonter(this)">Monster</button>
+                            </div>
                             <div class="relative md:w-[70%] w-[35%] pb-3">
 
                                 <div id="default-carousel" data-carousel="slide">
@@ -140,7 +146,7 @@
                                                 class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                                 alt="">
                                         </div>
-                          
+
                                     </div>
                                     <!-- Slider indicators -->
                                     <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
@@ -222,13 +228,12 @@
             </div>
         </section>
 
-        <div class="pb-20"></div>
-      
-        <!-- monsters -->
-        <section class="flex justify-center">
-        
+
+        <!-- มอนเตอร์ -->
+        <section class="hidden justify-center monter-links">
+
             <div class="w-[80%] bg-[#141414AB] mt-10 relative flex justify-center items-center">
-     
+
 
                 <div class="md:flex block flex-row gap-2">
 
@@ -236,10 +241,15 @@
                         class="order-1 py-10 bg-[url('/public/data/img/PAPER-MAP.png')] bg-center bg-no-repeat bg-contain relative flex items-center">
 
                         <div class="py-10 flex flex-col items-center">
-                            
-                            <p class="pb-3 font-bold text-[30px] md:text-[40px] text-center">Monster <br> Wroclaw Fortress</p>
+
+                            <p class="pb-3 font-bold text-[30px] md:text-[40px]">Monster Fortress</p>
 
 
+                            <div class="pb-1">
+                                <button type="button" class="p-5 hover:font-bold text-[26px]"
+                                    onclick="onToggleMap(this)">Map</button>
+                                <button type="button" class="p-5 hover:font-bold text-[26px] border-b-2 border-black">Monster</button>
+                            </div>
                             <div class="relative md:w-[70%] w-[35%] pb-3">
 
                                 <div id="default-carousel" data-carousel="slide">
@@ -263,7 +273,7 @@
                                                 class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                                 alt="">
                                         </div>
-                          
+
                                     </div>
                                     <!-- Slider indicators -->
                                     <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
@@ -345,8 +355,38 @@
             </div>
         </section>
 
+        <div class="pb-20"></div>
+
+
 
     </nav>
+
+    <script>
+
+        var map_monter1 = document.querySelector(".map-links");
+        var map_monter2 = document.querySelector(".monter-links");
+        function onToggleMap(e) {
+
+            map_monter2.classList.remove('flex');
+            map_monter2.classList.add('hidden');
+
+            map_monter1.classList.remove('hidden');
+            map_monter1.classList.add('flex');
+
+        }
+
+        function onToggleMonter(e) {
+
+            map_monter1.classList.remove('flex');
+            map_monter1.classList.add('hidden');
+
+            map_monter2.classList.remove('hidden');
+            map_monter2.classList.add('flex');
+
+        }
+
+    </script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
