@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url("https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css") */
+/* @import 'flowbite'; */
+
 @layer components {
     .menuhover {
         @apply text-center hover:font-extrabold hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#FBB03B] hover:to-[#C62B31]
