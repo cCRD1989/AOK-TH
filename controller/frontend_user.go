@@ -216,6 +216,25 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 	})
 }
 
+func (f *Frontend) UserNewPage(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "NewPages",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	ctx.HTML(http.StatusOK, "frontend/newpage.html", gin.H{
+		"title": "Age Of Khagan Thailand | NewPages",
+		"user":  user,
+		"bg":    "/public/data/img/NewPage-BG.png",
+	})
+}
+
 // privacypolicy
 func (f *Frontend) UserGetPrivacypolicy(ctx *gin.Context) {
 	visit := model.LogWeb{

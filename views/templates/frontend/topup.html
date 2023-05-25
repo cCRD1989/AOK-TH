@@ -331,25 +331,32 @@
 
             {{ if eq .ff "ok" }}
 
-            <section class="absolute top-[7%] w-[440px] h-[600px] bg-[url('/public/data/img/RECEIPT.png')] bg-center bg-no-repeat">
+            <section
+                class="absolute top-[7%] w-[440px] h-[600px] bg-[url('/public/data/img/RECEIPT.png')] bg-center bg-no-repeat">
 
                 <div class="w-[60%] mx-auto">
 
-                    <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .detail }}</p>
-    
-                        <div>
-                            <div class="flex justify-between font-bold py-3">
-                                <p>Amount</p>
-                                <p>{{ .amount }}{{ .currency }}</p>
-                            </div>
-                            <div class="flex justify-between font-bold py-3">
-                                <p>Channel</p>
-                                <p>{{ .channel }}</p>
-                            </div>
+
+                    <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .status }} <br>
+                        <span>ชำระเงินสำเร็จ</span></p>
+
+                    <div>
+                        <div class="flex justify-between font-bold py-3">
+                            <p>Amount<br> <span class="text-[14px]">จำนวนเงิน</span></p>
+                            <p>{{ .amount }}{{ .currency }}</p>
                         </div>
-    
-                        <a  href="/" class="absolute bottom-[20%]"><img src="/public/data/img/close-btn.png" alt="" width="80%"></a>
-                        
+                        <div class="flex justify-between font-bold py-3">
+                            <p>Status <br> <span class="text-[14px]">สถานะ</span> </p>
+                            <p class="text-[#006717]">{{ .status }}</p>
+                        </div>
+                        <div class="flex justify-between font-bold py-3 uppercase">
+                            <p>Payment Methods <br> <span class="text-[14px]">ช่องทาง</span> </p>
+                            <p>{{ .channel }}</p>
+                        </div>
+                    </div>
+
+                    <a href="/" class="absolute bottom-[18%]"><img src="/public/data/img/close-btn.png" alt=""
+                            width="80%"></a>
                 </div>
 
 

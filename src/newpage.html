@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Page</title>
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <!-- Fount -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+
+
+    <nav class="bg-[url('/public/data/img/NewPage-BG.png')] bg-top bg-no-repeat bg-black">
+
+        <header class="bg-[#000000b3] md:bg-[#0000004D] ">
+
+            <nav class="flex items-center md:justify-center justify-between  w-[80%] mx-auto md:gap-6 h-[100px]">
+
+                <div class="">
+                    <img src="/public/data/img/AOK_LOGO_NAV-BAR.png" alt="" width="124px">
+                </div>
+
+
+                <div
+                    class="nav-links bg-[#000000b3] md:static absolute md:bg-transparent top-[-200%] w-full left-0 flex justify-center duration-500 h-[844px] pt-5">
+
+                    <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
+                        <li class="menuhover"><a href="#">Home<br>หน้าแรก</a></li>
+                        <li class="menuhover"><a href="#">Ranking<br>จัดอันดับ</a></li>
+                        <li class="menuhover"><a href="#">News<br>ประกาศ</a></li>
+                        <li class="menuhover"><a href="#">Community<br>ชมชุน</a></li>
+
+                        <div class="flex flex-wrap gap-3 justify-center md:hidden">
+                            <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
+                        </div>
+
+                        <div class="block justify-center items-center mx-auto md:hidden mb-5">
+                            <a href="./login.html"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+                            <a href="#"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+                        </div>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <a href="#" class="hidden md:block">
+                        <img class="mr-5" src="/public/data/img/login-btn.png" alt="">
+                    </a>
+
+
+                    <div onclick="onToggleMenu(this)" class="bg-[#d02d015e] rounded-md block md:hidden cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </div>
+                </div>
+
+            </nav>
+
+            <aside class="flex justify-center relative top-[5px] md:top-[10px]">
+                <img src="/public/data/img/NAV-BAR.png" alt="">
+            </aside>
+
+            <div class="hidden md:block">
+                <div class="fastButtons">
+                    <div
+                        class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
+                        <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/GUIDE-BOOK.png"
+                                        alt="">Guide<br><span>ไกด์</span></a>
+                            </li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/CLASS.png"
+                                        alt="">Class<br><span>อาชีพ</span></a></li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/MAP.png"
+                                        alt="">Map<br><span>แผนที่</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="fastButtons-topup box">
+                    <a href="#"><img src="/public/data/img/topup-bg.png" alt="" width="100%"></a>
+                </div>
+            </div>
+
+
+
+        </header>
+
+        <section class="flex justify-center">
+            <div
+                class="h-[945px] w-[1233px] bg-[url('/public/data/img/PAPER-BG.png')] bg-center  mt-5 flex justify-center items-center">
+
+                <div class="md:w-[70%] h-[70%] relative p-10">
+
+                    <div class="text-center font-bold text-[26px]">
+                        <p>News/ประกาศ</p>
+                    </div>
+                    <div>
+                        <img src="/public/data/img/new-footer.png" alt="">
+                    </div>
+
+                    <div class="md:flex">
+                        <div class="md:w-[383px] md:h-[470px] overflow-hidden flex items-center">
+                            <img class="w" src="/public/data/img/new-img.png" alt="">
+                        </div>
+                        <div class="p-4 md:w-[383px] md:h-[470px] h-[300px] overflow-scroll">
+                            <p class="font-bold">[ Event ]</p>
+                            <p class="font-normal text-[24px]">ประกาศอันดับคะแนนแต้มสำหรับการแข่งขัน Refineme-nts
+                                Challenge (29 มีนาคม</p>
+                            <p class="hidden md:flex">
+
+                                ท่องไปในโลกของ Ragnarok Online (RO) และสวมบทบาทเป็นนักผจญภัยร่วมกับผู้เล่นอื่น ๆ !
+                                “Ragnarok Origin”ภาคต่อของเกม Ragnarok Online เปิดตัวโดย Gravity Game Hub
+                                โดยจะเปิดให้บริการดาวน์โหลดในหลากหลายแพลตฟอร์ม เช่น Apple Store, Google Play, HUAWEI
+                                AppGallery, OPPO App Market และในรูปแบบ PC client พร้อมให้บริการแล้ววันนี้
+                                Ragnarok Origin มียอดการลงทะเบียนล่วงหน้าถึง 10 ล้านครั้ง
+                                และเพื่อเป็นการขอบคุณผู้เล่นที่ให้การสนับสนุนเกม ในวันที่ 5
+                                เมษายนการลงทะเบียนล่วงหน้าจะสิ้นสุดลง
+                                และเราจะแจกรางวัลพิเศษให้กับนักผจญภัยทุกคนที่ทำการล็อกอินเข้าสู่เกมในวันเปิดตัว
+                                เมื่อล็อกอินเกมก็จะได้รับรางวัลทันที!
+
+                                การผสมผสานที่ลงตัว ระหว่างความคลาสสิกดั้งเดิมและความสร้างสรรค์แบบใหม่ๆ ของ RO
+                                "Ragnarok Origin" สร้างขึ้นจากองค์ประกอบของเกมที่มีความคลาสสิก
+                                ได้รับความนิยมจากเกมต้นฉบับที่มีมาอย่างยาวนาน ผสมผสานการเล่นที่คุ้นเคย
+                                ที่มอบความสนุกสนานให้กับผู้ผจญภัยมานานหลายปี
+                            </p>
+                        </div>
+                    </div>
+                    <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 p-3">
+                    <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0 p-3">
+                    <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0 p-3">
+                    <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0 p-3">
+                </div>
+
+
+
+            </div>
+        </section>
+
+
+    </nav>
+
+</body>
+
+</html>

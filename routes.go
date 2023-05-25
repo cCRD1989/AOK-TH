@@ -18,6 +18,8 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("/class", frontend_user.UserGetClass)       //register
 	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)         //maps
 
+	frontend_userGroup.GET("/newpage", frontend_user.UserNewPage) //newpage
+
 	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout
 	// frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
 
