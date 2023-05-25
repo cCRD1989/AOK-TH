@@ -1763,6 +1763,11 @@ video {
   color: ;
 }
 
+.text-\[\#797979\] {
+  --tw-text-opacity: 1;
+  color: rgb(121 121 121 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
