@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <!-- Fount -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
+
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet"> -->
+
+</head>
+
+<body>
+
+
+    <nav class="bg-[url('/public/data/img/MAP-01_BG.png')] bg-top bg-repeat-y bg-black">
+        <header class="bg-[#000000b3] md:bg-[#0000004D] ">
+
+            <nav class="flex items-center md:justify-center justify-between  w-[80%] mx-auto md:gap-6 h-[100px]">
+
+                <div class="">
+                    <img src="/public/data/img/AOK_LOGO_NAV-BAR.png" alt="" width="124px">
+                </div>
+
+
+                <div
+                    class="nav-links bg-[#000000b3] md:static absolute md:bg-transparent top-[-200%] w-full left-0 flex justify-center duration-500 h-[844px] pt-5">
+
+                    <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
+                        <li class="menuhover"><a href="#">Home<br>หน้าแรก</a></li>
+                        <li class="menuhover"><a href="#">Ranking<br>จัดอันดับ</a></li>
+                        <li class="menuhover"><a href="#">News<br>ประกาศ</a></li>
+                        <li class="menuhover"><a href="#">Community<br>ชมชุน</a></li>
+
+                        <div class="flex flex-wrap gap-3 justify-center md:hidden">
+                            <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
+                        </div>
+
+                        <div class="block justify-center items-center mx-auto md:hidden mb-5">
+                            <a href="./login.html"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+                            <a href="#"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+                        </div>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <a href="#" class="hidden md:block">
+                        <img class="mr-5" src="/public/data/img/login-btn.png" alt="">
+                    </a>
+
+
+                    <div onclick="onToggleMenu(this)" class="bg-[#d02d015e] rounded-md block md:hidden cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </div>
+                </div>
+
+            </nav>
+
+            <aside class="flex justify-center relative top-[5px] md:top-[10px]">
+                <img src="/public/data/img/NAV-BAR.png" alt="">
+            </aside>
+
+            <div class="hidden md:block">
+                <div class="fastButtons">
+                    <div
+                        class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
+                        <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/GUIDE-BOOK.png"
+                                        alt="">Guide<br><span>ไกด์</span></a>
+                            </li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/CLASS.png"
+                                        alt="">Class<br><span>อาชีพ</span></a></li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/MAP.png"
+                                        alt="">Map<br><span>แผนที่</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="fastButtons-topup box">
+                    <a href="#"><img src="/public/data/img/topup-bg.png" alt="" width="100%"></a>
+                </div>
+            </div>
+
+
+
+        </header>
+
+        <!-- แผ่นที่ -->
+        <section class="flex justify-center map-links">
+
+            <div class="w-[960px] h-[700px] bg-[#141414AB] mt-10 relative flex justify-center items-center rounded-lg">
+
+
+                <div class="w-[80%]">
+
+                    <div class="w-full h-full justify-center">
+
+                        <div  class="flex  justify-center gap-6">
+
+                            <div class="hover:bg-[#ffb7005a] rounded-3xl h-[100px]">
+
+                                <img src="/public/data/img/wroclaw fortress.png" alt="">
+                            </div>
+
+                            <div class="hover:bg-[#ffb7005a] rounded-3xl h-[100px] flex items-center">
+                                <img class="" src="/public/data/img/kharakorum.png" alt="" width="100%">
+                            </div>
+
+                            <div class="hover:bg-[#ffb7005a] rounded-3xl h-[100px]">
+
+                                <img src="/public/data/img/lublin mongol fortress.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center gap-6 mt-10">
+                            <div class="hover:bg-[#ffb7005a] rounded-3xl h-[100px]">
+                                <img src="/public/data/img/iron dungeon.png" alt="">
+                            </div>
+
+                            <div class="hover:bg-[#ffb7005a] rounded-3xl h-[100px] flex items-center">
+
+                                <img src="/public/data/img/lava canyon.png" alt="">
+                            </div>
+                        </div>
+          
+
+                    </div>
+                </div>
+
+
+
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+            </div>
+        </section>
+
+
+
+
+        <div class="pb-20"></div>
+
+
+
+    </nav>
+
+    <script>
+
+        var map_monter1 = document.querySelector(".map-links");
+        var map_monter2 = document.querySelector(".monter-links");
+        function onToggleMap(e) {
+
+            map_monter2.classList.remove('flex');
+            map_monter2.classList.add('hidden');
+
+            map_monter1.classList.remove('hidden');
+            map_monter1.classList.add('flex');
+
+        }
+
+        function onToggleMonter(e) {
+
+            map_monter1.classList.remove('flex');
+            map_monter1.classList.add('hidden');
+
+            map_monter2.classList.remove('hidden');
+            map_monter2.classList.add('flex');
+
+        }
+
+    </script>
+
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script> -->
+
+</body>
+
+</html>

@@ -412,7 +412,7 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"amount":   "Failed",
 			"currency": "Failed",
 			"sig":      "Failed",
-			"ff":       "ok",
+			"ff":       "nook",
 		})
 	}
 }
