@@ -209,7 +209,49 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 	user, _ := usr.(aokmodel.Userlogin)
 
 	//
-	ctx.HTML(http.StatusOK, "frontend/map.html", gin.H{
+	ctx.HTML(http.StatusOK, "frontend/mapselect.html", gin.H{
+		"title": "Age Of Khagan Thailand | Maps",
+		"user":  user,
+		"bg":    "/public/data/img/MAP-01_BG.png",
+	})
+}
+
+func (f *Frontend) UserGetMap(ctx *gin.Context) {
+
+	id := ctx.Param("id")
+	fmt.Println("idmap", id)
+
+	visit := model.LogWeb{
+		DataType:  "Maps",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	mapname := ""
+	if id == "1" {
+		mapname = "map1.html"
+
+	} else if id == "2" {
+		mapname = "map2.html"
+
+	} else if id == "3" {
+		mapname = "map3.html"
+
+	} else if id == "4" {
+		mapname = "map4.html"
+
+	} else if id == "5" {
+		mapname = "map5.html"
+	}else{
+		return
+	}
+
+	ctx.HTML(http.StatusOK, "frontend/"+mapname, gin.H{
 		"title": "Age Of Khagan Thailand | Maps",
 		"user":  user,
 		"bg":    "/public/data/img/MAP-01_BG.png",

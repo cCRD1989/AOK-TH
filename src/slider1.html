@@ -5,128 +5,213 @@
     <title>Tailwind CSS Carousel</title>
     <link rel="stylesheet" href="../dist/output.css">
 
+    <style>
+        .map-m {
+            width: 100%
+        }
+
+        .map-m input {
+            display: none;
+        }
+
+        .testimonials-m {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 220px;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        .testimonials-m-v {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 220px;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+        
+        .testimonials-m .item-m {
+            width: 220px;
+            height: 220px;
+            padding: 30px;
+            /* border-radius: 5px; */
+            background-color: #21262d;
+            position: absolute;
+            border: 3px solid white;
+            top: 0;
+            box-sizing: border-box;
+            text-align: center;
+            transition: transform 0.4s;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #t-1-m:checked~.testimonials-m label[for="t-1-m"],
+        #t-2-m:checked~.testimonials-m label[for="t-2-m"],
+        #t-3-m:checked~.testimonials-m label[for="t-3-m"],
+        #t-4-m:checked~.testimonials-m label[for="t-4-m"],
+        #t-5-m:checked~.testimonials-m label[for="t-4-m"],
+        #t-5-m:checked~.testimonials-m label[for="t-5-m"] {
+            z-index: 4;
+        }
+
+
+        #t-1-m:checked~.testimonials-m label[for="t-2-m"],
+        #t-2-m:checked~.testimonials-m label[for="t-3-m"],
+        #t-3-m:checked~.testimonials-m label[for="t-4-m"],
+        #t-4-m:checked~.testimonials-m label[for="t-5-m"],
+        #t-5-m:checked~.testimonials-m label[for="t-1-m"]  {
+            transform: translate3d(50px, 0, -90px) rotateY(-15deg);
+            z-index: 3;
+        }
+
+        #t-1-m:checked~.testimonials-m label[for="t-5-m"],
+        #t-2-m:checked~.testimonials-m label[for="t-1-m"],
+        #t-3-m:checked~.testimonials-m label[for="t-2-m"],
+        #t-4-m:checked~.testimonials-m label[for="t-3-m"],
+        #t-5-m:checked~.testimonials-m label[for="t-4-m"] {
+            transform: translate3d(-50px, 0, -90px) rotateY(15deg);
+            z-index: 3;
+        }
+
+        #t-1-m:checked~.testimonials-m label[for="t-3-m"],
+        #t-2-m:checked~.testimonials-m label[for="t-4-m"],
+        #t-3-m:checked~.testimonials-m label[for="t-5-m"],
+        #t-4-m:checked~.testimonials-m label[for="t-1-m"],
+        #t-5-m:checked~.testimonials-m label[for="t-2-m"] {
+            transform: translate3d(50px, 0, -180px) rotateY(-25deg);
+            z-index: 2;
+        }
+        #t-1-m:checked~.testimonials-m label[for="t-4-m"],
+        #t-2-m:checked~.testimonials-m label[for="t-5-m"],
+        #t-3-m:checked~.testimonials-m label[for="t-1-m"],
+        #t-4-m:checked~.testimonials-m label[for="t-2-m"],
+        #t-5-m:checked~.testimonials-m label[for="t-3-m"] {
+            transform: translate3d(-50px, 0, -180px) rotateY(25deg);
+            z-index: 2;
+        }
+
+
+
+        .testimonials-m-v .item-m {
+            width: 220px;
+            height: 220px;
+            padding: 30px;
+            /* border-radius: 5px; */
+            background-color: #21262d;
+            position: absolute;
+            border: 3px solid white;
+            /* top: 0; */
+            box-sizing: border-box;
+            text-align: center;
+            transition: transform 0.4s;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #t-1-m:checked~.testimonials-m-v label[for="t-1-m"],
+        #t-2-m:checked~.testimonials-m-v label[for="t-2-m"],
+        #t-3-m:checked~.testimonials-m-v label[for="t-3-m"],
+        #t-4-m:checked~.testimonials-m-v label[for="t-4-m"],
+        #t-5-m:checked~.testimonials-m-v label[for="t-4-m"],
+        #t-5-m:checked~.testimonials-m-v label[for="t-5-m"] {
+            transform:scale(0.5);
+            z-index: 4;
+        }
+
+
+        #t-1-m:checked~.testimonials-m-v label[for="t-2-m"],
+        #t-2-m:checked~.testimonials-m-v label[for="t-3-m"],
+        #t-3-m:checked~.testimonials-m-v label[for="t-4-m"],
+        #t-4-m:checked~.testimonials-m-v label[for="t-5-m"],
+        #t-5-m:checked~.testimonials-m-v label[for="t-1-m"]  {
+            transform: translateY(5px);
+            z-index: 3;
+        }
+
+        #t-1-m:checked~.testimonials-m-v label[for="t-5-m"],
+        #t-2-m:checked~.testimonials-m-v label[for="t-1-m"],
+        #t-3-m:checked~.testimonials-m-v label[for="t-2-m"],
+        #t-4-m:checked~.testimonials-m-v label[for="t-3-m"],
+        #t-5-m:checked~.testimonials-m-v label[for="t-4-m"] {
+            transform: translate3d(0, 0, -90px);
+            z-index: 3;
+        }
+
+        #t-1-m:checked~.testimonials-m-v label[for="t-3-m"],
+        #t-2-m:checked~.testimonials-m-v label[for="t-4-m"],
+        #t-3-m:checked~.testimonials-m-v label[for="t-5-m"],
+        #t-4-m:checked~.testimonials-m-v label[for="t-1-m"],
+        #t-5-m:checked~.testimonials-m-v label[for="t-2-m"] {
+            transform: translate3d(0, 0, -180px);
+            z-index: 2;
+        }
+        #t-1-m:checked~.testimonials-m-v label[for="t-4-m"],
+        #t-2-m:checked~.testimonials-m-v label[for="t-5-m"],
+        #t-3-m:checked~.testimonials-m-v label[for="t-1-m"],
+        #t-4-m:checked~.testimonials-m-v label[for="t-2-m"],
+        #t-5-m:checked~.testimonials-m-v label[for="t-3-m"] {
+            transform: translate3d(0, 0, -180px);
+            z-index: 2;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
+    <div class="map-m">
+        <input type="radio" name="testimonial" id="t-1-m" checked>
+        <input type="radio" name="testimonial" id="t-2-m">
+        <input type="radio" name="testimonial" id="t-3-m">
+        <input type="radio" name="testimonial" id="t-4-m">
+        <input type="radio" name="testimonial" id="t-5-m">
+        <div class="testimonials-m">
+            <label class="item-m" for="t-1-m">
+                <h1>1</h2>
+            </label>
+            <label class="item-m" for="t-2-m">
+                <h1>2</h2>
+            </label>
+            <label class="item-m" for="t-3-m">
+                <h1>3</h2>
+            </label>
+            <label class="item-m" for="t-4-m">
+                <h1>4</h2>
+            </label>
+            <label class="item-m" for="t-5-m">
+                <h1>5</h2>
+            </label>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="testimonials-m-v">
+            <label class="item-m" for="t-1-m">
+                <h1>1</h2>
+            </label>
+            <label class="item-m" for="t-2-m">
+                <h1>2</h2>
+            </label>
+            <label class="item-m" for="t-3-m">
+                <h1>3</h2>
+            </label>
+            <label class="item-m" for="t-4-m">
+                <h1>4</h2>
+            </label>
+            <label class="item-m" for="t-5-m">
+                <h1>5</h2>
+            </label>
+        </div>
 
-    <div id="carousel">
-        <div id="slide-container">
-            <div class="slide" data-slideIndex="0">
-                <div class="slide-banner">Tour the Empire State Building! <a href="">Buy tickets now.</a></div>
-                <img width="1200" height="600"
-                    src="https://web-dev.imgix.net/image/j2RDdG43oidUy6AL6LovThjeX9c2/d5JiF2JjxniJRH6xviYA.jpg?auto=format&w=800">
-            </div>
-            <div class="slide" data-slideIndex="1">
-                <div class="slide-banner">Ride the Shinkansen! <a href="">Buy tickets now.</a></div>
-                <img width="1200" height="600"
-                    src="https://web-dev.imgix.net/image/j2RDdG43oidUy6AL6LovThjeX9c2/atRogpxlJTXAvhWe654i.jpg?auto=format&w=800">
-            </div>
-            <div class="slide" data-slideIndex="2">
-                <div class="slide-banner">Discover relaxation! <a href="">Buy tickets now.</a></div>
-                <img width="1200" height="600"
-                    src="https://web-dev.imgix.net/image/j2RDdG43oidUy6AL6LovThjeX9c2/q8svpF1B6dG5wNuiTgyV.jpg?auto=format&w=800">
-            </div>
-            <div class="slide" data-slideIndex="3">
-                <div class="slide-banner">See penguins! <a href="">Buy tickets now.</a></div>
-                <img width="1200" height="600"
-                    src="https://web-dev.imgix.net/image/j2RDdG43oidUy6AL6LovThjeX9c2/oweFaoCZ4g8bieZdvG5L.jpg?auto=format&w=800">
-            </div>
-            <div class="slide" data-slideIndex="4">
-                <div class="slide-banner">Take a ride on the wheel! <a href="">Buy tickets now.</a></div>
-                <img width="1200" height="600"
-                    src="https://web-dev.imgix.net/image/j2RDdG43oidUy6AL6LovThjeX9c2/G0aWgHwWJTPZus9YEMyH.jpg?auto=format&w=800">
-            </div>
-        </div>
-        <div id="back-button" class="arrow back">←</div>
-        <div id="forward-button" class="arrow forward">→</div>
-        <div class="slide-indicators">
-            <div class="slide-indicator active"></div>
-            <div class="slide-indicator"></div>
-            <div class="slide-indicator"></div>
-            <div class="slide-indicator"></div>
-            <div class="slide-indicator"></div>
-        </div>
     </div>
-
-    <script>
-        function autoplayCarousel() {
-            const carouselEl = document.getElementById("carousel");
-            const slideContainerEl = carouselEl.querySelector("#slide-container");
-            const slideEl = carouselEl.querySelector(".slide");
-            let slideWidth = slideEl.offsetWidth;
-            // Add click handlers
-            document
-                .querySelector("#back-button")
-                .addEventListener("click", () => navigate("backward"));
-            document
-                .querySelector("#forward-button")
-                .addEventListener("click", () => navigate("forward"));
-            document.querySelectorAll(".slide-indicator").forEach((dot, index) => {
-                dot.addEventListener("click", () => navigate(index));
-                dot.addEventListener("mouseenter", () => clearInterval(autoplay));
-            });
-            // Add keyboard handlers
-            document.addEventListener("keydown", (e) => {
-                if (e.code === "ArrowLeft") {
-                    clearInterval(autoplay);
-                    navigate("backward");
-                } else if (e.code === "ArrowRight") {
-                    clearInterval(autoplay);
-                    navigate("forward");
-                }
-            });
-            // Add resize handler
-            window.addEventListener("resize", () => {
-                slideWidth = slideEl.offsetWidth;
-            });
-            // Autoplay
-            const autoplay = setInterval(() => navigate("forward"), 3000);
-            slideContainerEl.addEventListener("mouseenter", () =>
-                clearInterval(autoplay)
-            );
-            // Slide transition
-            const getNewScrollPosition = (arg) => {
-                const gap = 10;
-                const maxScrollLeft = slideContainerEl.scrollWidth - slideWidth;
-                if (arg === "forward") {
-                    const x = slideContainerEl.scrollLeft + slideWidth + gap;
-                    return x <= maxScrollLeft ? x : 0;
-                } else if (arg === "backward") {
-                    const x = slideContainerEl.scrollLeft - slideWidth - gap;
-                    return x >= 0 ? x : maxScrollLeft;
-                } else if (typeof arg === "number") {
-                    const x = arg * (slideWidth + gap);
-                    return x;
-                }
-            };
-            const navigate = (arg) => {
-                slideContainerEl.scrollLeft = getNewScrollPosition(arg);
-            };
-            // Slide indicators
-            const slideObserver = new IntersectionObserver(
-                (entries, observer) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            const slideIndex = entry.target.dataset.slideindex;
-                            carouselEl
-                                .querySelector(".slide-indicator.active")
-                                .classList.remove("active");
-                            carouselEl
-                                .querySelectorAll(".slide-indicator")
-                            [slideIndex].classList.add("active");
-                        }
-                    });
-                },
-                { root: slideContainerEl, threshold: 0.1 }
-            );
-            document.querySelectorAll(".slide").forEach((slide) => {
-                slideObserver.observe(slide);
-            });
-        }
-        autoplayCarousel();
-
-    </script>
 
 </body>
 

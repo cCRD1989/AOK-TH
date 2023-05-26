@@ -38,114 +38,118 @@
 </section>
 
 <!-- Ranking -->
-<section id="Ranking" class="bg-[url('/public/data/img/bg-ranking.png')] bg-top bg-no-repeat bg-cover pb-10 overflow-hidden">
+<section id="Ranking"
+    class="bg-[url('/public/data/img/bg-ranking.png')] bg-top bg-no-repeat bg-cover pb-10">
 
     <!-- select class -->
-    <div class="bg-black h-[200px] flex justify-center">
-        <div class="flex flex-1 items-center justify-between h-[200px]">
+    <div class="slider relative">
 
-            <div class="flex mr-5 items-center justify-end w-full">
-
-                <!-- class1 -->
-                <div class="text-center opacity-40 mx-10">
-                    <div>
-                        <img src="/public/data/img/MICKO_CLASS.png" alt="">
-                    </div>
-                    <div>
-                        <p class="text-white">Micko</p>
-                    </div>
-                    <div>
-                        <p class="text-white">นักธนู</p>
-                    </div>
-                </div>
-
-                <!-- class1 -->
-                <div class="text-center opacity-80 mx-10">
-                    <div>
-                        <img src="/public/data/img/NECROMANCER_CLASS.png" alt="">
-                    </div>
-                    <div>
-                        <p class="text-white">Necromancer</p>
-                    </div>
-                    <div>
-                        <p class="text-white">นักเวทมืด</p>
-                    </div>
-                </div>
-
-                <!-- class1 -->
-                <div class="text-center mx-10">
-                    <div>
-                        <img src="/public/data/img/KNIGHT_CLASS.png" alt="">
-                    </div>
-                    <div>
-                        <p class="text-white">Knight</p>
-                    </div>
-                    <div>
-                        <p class="text-white">อัศวิน</p>
-                    </div>
-                </div>
+        <div class="absolute w-full flex justify-center items-center top-[-20px] gap-2">
+            <div>
+                <img src="/public/data/img/CAPA_ARROW_LEFT.png" alt="">
 
             </div>
+            <img src="/public/data/img/capa.png" alt="">
+            <div>
+                <img src="/public/data/img/CAPA_ARROW_RIGHT.png" alt="" width="25px">
+            </div>
+        </div>
 
-            <div class="flex items-center justify-center w-[240px] gap-2">
+        <input type="radio" name="testimonial" id="t-1">
+        <input type="radio" name="testimonial" id="t-2">
+        <input type="radio" name="testimonial" id="t-3">
+        <input type="radio" name="testimonial" id="t-4" checked="">
+        <input type="radio" name="testimonial" id="t-5">
+        <input type="radio" name="testimonial" id="t-6">
+        <input type="radio" name="testimonial" id="t-7">
 
+        <div class="testimonials">
+            <label class="item" for="t-1">
+                <div class="flex justify-center">
+                    <img src="/public/data/img/MICKO_CLASS.png" alt="">
+                </div>
                 <div>
-                    <img src="/public/data/img/CAPA_ARROW_LEFT.png" alt="caret left">
+                    <p class="text-white">Micko</p>
                 </div>
-
-                <div class="w-[240px]">
-                    <img class="" src="/public/data/img/CAPA_CIRCLE.png" alt="all">
-                </div>
-
                 <div>
-                    <img src="/public/data/img/CAPA_ARROW_RIGHT.png" alt="caret right">
+                    <p class="text-white">มิโกะ</p>
                 </div>
-
-            </div>
-
-            <div class="flex ml-5 items-center justify-start w-full">
-
-                <!-- class1 -->
-                <div class="text-center mx-10">
-                    <div>
-                        <img src="/public/data/img/SORCERER_CLASS.png" alt="">
-                    </div>
-                    <div>
-                        <p class="text-white">Sorcerer</p>
-                    </div>
-                    <div>
-                        <p class="text-white">จอมเวทย์</p>
-                    </div>
+            </label>
+            <label class="item" for="t-2">
+                <div class="flex justify-center">
+                    <img src="/public/data/img/NECROMANCER_CLASS.png" alt="">
                 </div>
-
-                <!-- class1 -->
-                <div class="text-center opacity-80 mx-10">
-                    <div>
-                        <img src="/public/data/img/ASSASSIN_CLASS.png" alt="">
-                    </div>
-                    <div>
-                        <p class="text-white">Assassin</p>
-                    </div>
-                    <div>
-                        <p class="text-white">นักฆ่า</p>
-                    </div>
+                <div>
+                    <p class="text-white">Necromancer</p>
                 </div>
-
-                <!-- class1 -->
-                <div class="text-center opacity-40 mx-10">
-                    <div>
-                        <img src="/public/data/img/CLERIC_CLASS.png" alt="">
-                    </div>
-                    <div>
-                        <p class="text-white">Cleric</p>
-                    </div>
-                    <div>
-                        <p class="text-white">นักบวด</p>
-                    </div>
+                <div>
+                    <p class="text-white">เนโครแมนเซอร์</p>
                 </div>
-
-            </div>
-
+            </label>
+            <label class="item" for="t-3">
+                <div class="flex justify-center">
+                    <img src="/public/data/img/KNIGHT_CLASS.png" alt="">
+                </div>
+                <div>
+                    <p class="text-white">Knight</p>
+                </div>
+                <div>
+                    <p class="text-white">ไนท์</p>
+                </div>
+            </label>
+            <label class="item" for="t-4">
+                <div class="flex justify-center">
+                    <img src="/public/data/img/ALL_CLASS.png" alt="">
+                </div>
+                <div>
+                    <p class="text-white">All</p>
+                </div>
+                <div>
+                    <p class="text-white">รวม</p>
+                </div>
+            </label>
+            <label class="item" for="t-5">
+                <div class="flex justify-center">
+                    <img src="/public/data/img/SORCERER_CLASS.png" alt="">
+                </div>
+                <div>
+                    <p class="text-white">Sorcerer</p>
+                </div>
+                <div>
+                    <p class="text-white">ซอเซอะเรอะ</p>
+                </div>
+            </label>
+            <label class="item" for="t-6">
+                <div class="flex justify-center">
+                    <img src="/public/data/img/ASSASSIN_CLASS.png" alt="">
+                </div>
+                <div>
+                    <p class="text-white">Assassin</p>
+                </div>
+                <div>
+                    <p class="text-white">อะแซสซิน</p>
+                </div>
+            </label>
+            <label class="item" for="t-7">
+                <div class="flex justify-center">
+                    <img src="/public/data/img/CLERIC_CLASS.png" alt="">
+                </div>
+                <div>
+                    <p class="text-white">Cleric</p>
+                </div>
+                <div>
+                    <p class="text-white">เคลอริค</p>
+                </div>
+            </label>
+        </div>
+        <div class="dots">
+            <label for="t-1"></label>
+            <label for="t-2"></label>
+            <label for="t-3"></label>
+            <label for="t-4"></label>
+            <label for="t-5"></label>
+            <label for="t-6"></label>
+            <label for="t-7"></label>
         </div>
     </div>
 
@@ -192,7 +196,7 @@
         </div>
 
         {{ range $key, $value := .ranking }}
-      
+
 
         {{ if eq $key 0 }}
         <div class="maintabal ranking-table">
@@ -250,7 +254,7 @@
         </div>
         {{ end }}
 
-    
+
 
         {{ end }}
 
@@ -325,10 +329,17 @@
 
                 <div class="flex justify-center pt-5 gap-3 font-bold">
 
-                    <a href="#" class=""><div>All/ทั้งหมด <div class="ranking-hi"></div></div></a>
-                    <a href="#" class=""><div>Event/กิจกรรม</div></a>
-                    <a href="#" class=""><div>Other/อื่นๆ</div></a>
-                    
+                    <a href="#" class="">
+                        <div>All/ทั้งหมด <div class="ranking-hi"></div>
+                        </div>
+                    </a>
+                    <a href="#" class="">
+                        <div>Event/กิจกรรม</div>
+                    </a>
+                    <a href="#" class="">
+                        <div>Other/อื่นๆ</div>
+                    </a>
+
                 </div>
 
                 <hr>

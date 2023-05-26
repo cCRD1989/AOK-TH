@@ -17,6 +17,7 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("/register", frontend_user.UserGetRegister) //register
 	frontend_userGroup.GET("/class", frontend_user.UserGetClass)       //register
 	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)         //maps
+	frontend_userGroup.GET("/maps/:id", frontend_user.UserGetMap)      //maps
 
 	frontend_userGroup.GET("/newpage", frontend_user.UserNewPage) //newpage
 

@@ -1,0 +1,78 @@
+{{ define "content" }}
+
+
+<nav class="bg-[url('/public/data/img/MAP-01_BG.png')] bg-top bg-repeat-y bg-black">
+
+    <!-- เลือก แผ่นที่ -->
+    <section class="flex justify-center map-links">
+
+        <div class="w-[960px] h-[700px] bg-[#141414AB] mt-10 relative flex justify-center items-center rounded-lg">
+
+
+            <div class="w-[80%]">
+
+                <div class="w-full h-full justify-center">
+
+                    <div class="flex  justify-center gap-6">
+
+                        <div class="w-[300px] text-center mapselect">
+                            <a href="/maps/1">
+                                <img class="rounded-3xl outline outline-offset-0 outline-2 outline-[#FFC117]"
+                                    src="/public/data/img/ms1.png" alt="">
+                            </a>
+
+                            <p class="text-main text-[20px] font-extrabold uppercase">wroclaw fortress</p>
+                        </div>
+
+                        <div class="w-[300px] text-center mapselect">
+                            <a href="/maps/2"><img class="rounded-3xl outline outline-offset-0 outline-2 outline-[#FFC117]"
+                                    src="/public/data/img/ms2.png" alt=""> </a>
+                            <p class="text-main text-[20px] font-extrabold uppercase">kharakorum</p>
+                        </div>
+
+                        <div class="w-[300px] text-center mapselect">
+                            <a href="/maps/3"><img class="rounded-3xl outline outline-offset-0 outline-2 outline-[#FFC117]"
+                                    src="/public/data/img/ms3.png" alt=""> </a>
+                            <p class="text-main text-[20px] font-extrabold uppercase">lublin mongol fortress</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center gap-6 mt-10">
+
+                        <div class="w-[300px] text-center mapselect">
+                            <a href="/maps/4"><img class="rounded-3xl outline outline-offset-0 outline-2 outline-[#FFC117]"
+                                    src="/public/data/img/ms4.png" alt=""> </a>
+                            <p class="text-main text-[20px] font-extrabold uppercase">iron dungeon</p>
+                        </div>
+
+                        <div class="w-[300px] text-center mapselect">
+                            <a href="/maps/5"><img class="rounded-3xl outline outline-offset-0 outline-2 outline-[#FFC117]"
+                                    src="/public/data/img/ms5.png" alt=""> </a>
+                            <p class="text-main text-[20px] font-extrabold uppercase">lava canyon</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+            <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+            <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+            <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+            <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+        </div>
+    </section>
+    <div class="pb-20"></div>
+
+
+
+
+</nav>
+
+
+
+{{ end }}
