@@ -216,6 +216,196 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 	})
 }
 
+func (f *Frontend) UserGetMonster(ctx *gin.Context) {
+
+	id := ctx.Param("id")
+	fmt.Println("idmap", id)
+
+	visit := model.LogWeb{
+		DataType:  "Maps",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+
+	mob1 := []string{}
+	mob2 := []string{}
+	linl1 := ""
+	linl2 := ""
+
+	if id == "1" {
+		mob1 = []string{
+			"/public/data/img/map/1/mob1/Wroc 01 Vulture.png",
+			"/public/data/img/map/1/mob1/Wroc 02 Bandit Worrior.png",
+			"/public/data/img/map/1/mob1/Wroc 03 Titan.png",
+			"/public/data/img/map/1/mob1/Wroc 04 Cave Man.png",
+			"/public/data/img/map/1/mob1/Wroc 05 Ettin.png",
+			"/public/data/img/map/1/mob1/Wroc 06 Valkyrie.png",
+			"/public/data/img/map/1/mob1/Wroc 07 Ghast.png",
+			"/public/data/img/map/1/mob1/Wroc 08 Skeleton Soldier.png",
+			"/public/data/img/map/1/mob1/Wroc 09 Skeleton Archer.png",
+			"/public/data/img/map/1/mob1/Wroc 10 Charon.png",
+			"/public/data/img/map/1/mob1/Wroc 11 Broo.png",
+			"/public/data/img/map/1/mob1/Wroc 12 Bug Bear.png",
+			"/public/data/img/map/1/mob1/Wroc 13 Cursed Ettin.png",
+		}
+		mob2 = []string{
+			"/public/data/img/map/1/mob2/Wroc 01 Vulture.png",
+			"/public/data/img/map/1/mob2/Wroc 02 Bandit Worrior.png",
+			"/public/data/img/map/1/mob2/Wroc 03 Titan.png",
+			"/public/data/img/map/1/mob2/Wroc 04 Cave Man.png",
+			"/public/data/img/map/1/mob2/Wroc 05 Ettin.png",
+			"/public/data/img/map/1/mob2/Wroc 06 Valkyrie.png",
+			"/public/data/img/map/1/mob2/Wroc 07 Ghast.png",
+			"/public/data/img/map/1/mob2/Wroc 08 Skeleton Soldier.png",
+			"/public/data/img/map/1/mob2/Wroc 09 Skeleton Archer.png",
+			"/public/data/img/map/1/mob2/Wroc 10 Charon.png",
+			"/public/data/img/map/1/mob2/Wroc 11 Broo.png",
+			"/public/data/img/map/1/mob2/Wroc 12 Bug Bear.png",
+			"/public/data/img/map/1/mob2/Wroc 13 Cursed Ettin.png",
+		}
+		linl1 = "/maps/map/1"
+		linl2 = "/maps/mob/1"
+	} else if id == "2" {
+		mob1 = []string{
+			"/public/data/img/map/2/mob1/Kara 01 White Wolf.png",
+			"/public/data/img/map/2/mob1/Kara 02 Red Wolf.png",
+			"/public/data/img/map/2/mob1/Kara 03 Zombie.png",
+			"/public/data/img/map/2/mob1/Kara 04 Desetion Swordsman.png",
+			"/public/data/img/map/2/mob1/Kara 05 Desertion Archer.png",
+			"/public/data/img/map/2/mob1/Kara 06 Desertion Spear.png",
+			"/public/data/img/map/2/mob1/Kara 07 Warrior.png",
+			"/public/data/img/map/2/mob1/Kara 08 Sorcerer.png",
+			"/public/data/img/map/2/mob1/Kara 09 Halbue Seniors.png",
+			"/public/data/img/map/2/mob1/Kara 10 Elder.png",
+			"/public/data/img/map/2/mob1/Kara 12 Godochoong (เขียว).png",
+			"/public/data/img/map/2/mob1/Kara 12 Godochoong (ส้ม).png",
+			"/public/data/img/map/2/mob1/Kara 13 Godochoong (แดง).png",
+			"/public/data/img/map/2/mob1/Kara 14 Gyochoogsin(S).png",
+			"/public/data/img/map/2/mob1/Kara 15 Gyochoogsin(M).png",
+			"/public/data/img/map/2/mob1/Kara 16 Sanso.png",
+			"/public/data/img/map/2/mob1/Kara 17 Bisasa Guisabso.png",
+		}
+		mob2 = []string{
+			"/public/data/img/map/2/mob2/Kara 01 White Wolf.png",
+			"/public/data/img/map/2/mob2/Kara 02 Red Wolf.png",
+			"/public/data/img/map/2/mob2/Kara 03 Zombie.png",
+			"/public/data/img/map/2/mob2/Kara 04 Desetion Swordsman.png",
+			"/public/data/img/map/2/mob2/Kara 05 Desertion Archer.png",
+			"/public/data/img/map/2/mob2/Kara 06 Desertion Spear.png",
+			"/public/data/img/map/2/mob2/Kara 07 Warrior.png",
+			"/public/data/img/map/2/mob2/Kara 08 Sorcerer.png",
+			"/public/data/img/map/2/mob2/Kara 09 Halbue Seniors.png",
+			"/public/data/img/map/2/mob2/Kara 10 Elder.png",
+			"/public/data/img/map/2/mob2/Kara 12 Godochoong (เขียว).png",
+			"/public/data/img/map/2/mob2/Kara 12 Godochoong (ส้ม).png",
+			"/public/data/img/map/2/mob2/Kara 13 Godochoong (แดง).png",
+			"/public/data/img/map/2/mob2/Kara 14 Gyochoogsin(S).png",
+			"/public/data/img/map/2/mob2/Kara 15 Gyochoogsin(M).png",
+			"/public/data/img/map/2/mob2/Kara 16 Sanso.png",
+			"/public/data/img/map/2/mob2/Kara 17 Bisasa Guisabso.png",
+		}
+		linl1 = "/maps/map/2"
+		linl2 = "/maps/mob/2"
+	} else if id == "3" {
+		mob1 = []string{
+			"/public/data/img/map/3/mob1/Lub 01 Seicken.png",
+			"/public/data/img/map/3/mob1/Lub 02 Seicken Archer.png",
+			"/public/data/img/map/3/mob1/Lub 03 Darer Bear.png",
+			"/public/data/img/map/3/mob1/Lub 04 Griffon.png",
+			"/public/data/img/map/3/mob1/Lub 05 Frost Salamanda.png",
+			"/public/data/img/map/3/mob1/Lub 06 Death Bringer.png",
+			"/public/data/img/map/3/mob1/Lub 07 Iwarse.png",
+			"/public/data/img/map/3/mob1/Lub 08 Minotaur.png",
+			"/public/data/img/map/3/mob1/Lub 09 Frost Worm.png",
+			"/public/data/img/map/3/mob1/Lub 10 Ice Golem.png",
+			"/public/data/img/map/3/mob1/Lub 11 Bone Iwarse.png",
+			"/public/data/img/map/3/mob1/Lub 12 White Dragon.png",
+			"/public/data/img/map/3/mob1/Lub 13 Mountain Ice Golem.png",
+		}
+		mob2 = []string{
+			"/public/data/img/map/3/mob2/Lub 01 Seicken.png",
+			"/public/data/img/map/3/mob2/Lub 02 Seicken Archer.png",
+			"/public/data/img/map/3/mob2/Lub 03 Darer Bear.png",
+			"/public/data/img/map/3/mob2/Lub 04 Griffon.png",
+			"/public/data/img/map/3/mob2/Lub 05 Frost Salamanda.png",
+			"/public/data/img/map/3/mob2/Lub 06 Death Bringer.png",
+			"/public/data/img/map/3/mob2/Lub 07 Iwarse.png",
+			"/public/data/img/map/3/mob2/Lub 08 Minotaur.png",
+			"/public/data/img/map/3/mob2/Lub 09 Frost Worm.png",
+			"/public/data/img/map/3/mob2/Lub 10 Ice Golem.png",
+			"/public/data/img/map/3/mob2/Lub 11 Bone Iwarse.png",
+			"/public/data/img/map/3/mob2/Lub 12 White Dragon.png",
+			"/public/data/img/map/3/mob2/Lub 13 Mountain Ice Golem.png",
+		}
+		linl1 = "/maps/map/3"
+		linl2 = "/maps/mob/3"
+	} else if id == "4" {
+		mob1 = []string{
+			"/public/data/img/map/4/mob1/Iron 01 Black Beetle.png",
+			"/public/data/img/map/4/mob1/Iron 02 Wraith.png",
+			"/public/data/img/map/4/mob1/Iron 03 Giant Bat.png",
+			"/public/data/img/map/4/mob1/Iron 04 Gargoyle.png",
+			"/public/data/img/map/4/mob1/Iron 06 Black Phantom.png",
+			"/public/data/img/map/4/mob1/Iron 06 Gas Lion.png",
+			"/public/data/img/map/4/mob1/Iron 07 Trol.png",
+			"/public/data/img/map/4/mob1/Iron 08 Greed Dragon.png",
+			"/public/data/img/map/4/mob1/Iron 09 Phantom of the Phantom.png",
+		}
+		mob2 = []string{
+			"/public/data/img/map/4/mob2/Iron 01 Black Beetle.png",
+			"/public/data/img/map/4/mob2/Iron 02 Wraith.png",
+			"/public/data/img/map/4/mob2/Iron 03 Giant Bat.png",
+			"/public/data/img/map/4/mob2/Iron 04 Gargoyle.png",
+			"/public/data/img/map/4/mob2/Iron 06 Black Phantom.png",
+			"/public/data/img/map/4/mob2/Iron 06 Gas Lion.png",
+			"/public/data/img/map/4/mob2/Iron 07 Trol.png",
+			"/public/data/img/map/4/mob2/Iron 08 Greed Dragon.png",
+			"/public/data/img/map/4/mob2/Iron 09 Phantom of the Phantom.png",
+		}
+		linl1 = "/maps/map/4"
+		linl2 = "/maps/mob/4"
+	} else if id == "5" {
+		mob1 = []string{
+			"/public/data/img/map/5/mob1/Lava 01 Skeleton Soldier.png",
+			"/public/data/img/map/5/mob1/Lava 02 Peryton.png",
+			"/public/data/img/map/5/mob1/Lava 03 Giant Scorpion.png",
+			"/public/data/img/map/5/mob1/Lava 04 Myconid.png",
+			"/public/data/img/map/5/mob1/Lava 05 Berserk Zapher.png",
+			"/public/data/img/map/5/mob1/Lava 06 Poison Myconid.png",
+		}
+		mob2 = []string{
+			"/public/data/img/map/5/mob2/Lava 01 Skeleton Soldier.png",
+			"/public/data/img/map/5/mob2/Lava 02 Peryton.png",
+			"/public/data/img/map/5/mob2/Lava 03 Giant Scorpion.png",
+			"/public/data/img/map/5/mob2/Lava 04 Myconid.png",
+			"/public/data/img/map/5/mob2/Lava 05 Berserk Zapher.png",
+			"/public/data/img/map/5/mob2/Lava 06 Poison Myconid.png",
+		}
+		linl1 = "/maps/map/5"
+		linl2 = "/maps/mob/5"
+	} else {
+		return
+	}
+
+	ctx.HTML(http.StatusOK, "frontend/mob.html", gin.H{
+		"title":     "Age Of Khagan Thailand | Maps",
+		"user":      user,
+		"bg":        "/public/data/img/MAP-01_BG.png",
+		"titlename": "Monter Fortress",
+		"mob1":      mob1,
+		"mob2":      mob2,
+		"type":      "mob",
+		"linl1":     linl1,
+		"linl2":     linl2,
+	})
+}
+
 func (f *Frontend) UserGetMap(ctx *gin.Context) {
 
 	id := ctx.Param("id")
@@ -232,29 +422,125 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 	user, _ := usr.(aokmodel.Userlogin)
 
 	//
-	mapname := ""
+
+	map1 := []string{}
+	map2 := []string{}
+	linl1 := ""
+	linl2 := ""
+
 	if id == "1" {
-		mapname = "map1.html"
+		map1 = []string{
+			"/public/data/img/map/1/map/1/map1(1).png",
+			"/public/data/img/map/1/map/1/map1(2).png",
+			"/public/data/img/map/1/map/1/map1(3).png",
+			"/public/data/img/map/1/map/1/map1(4).png",
+			"/public/data/img/map/1/map/1/map1(5).png",
+			"/public/data/img/map/1/map/1/map1(6).png",
+			"/public/data/img/map/1/map/1/map1(7).png",
+		}
 
+		map2 = []string{
+			"/public/data/img/map/1/map/2/map1(1).png",
+			"/public/data/img/map/1/map/2/map1(2).png",
+			"/public/data/img/map/1/map/2/map1(3).png",
+			"/public/data/img/map/1/map/2/map1(4).png",
+			"/public/data/img/map/1/map/2/map1(5).png",
+			"/public/data/img/map/1/map/2/map1(6).png",
+			"/public/data/img/map/1/map/2/map1(7).png",
+		}
+		linl1 = "/maps/map/1"
+		linl2 = "/maps/mob/1"
 	} else if id == "2" {
-		mapname = "map2.html"
+		map1 = []string{
+			"/public/data/img/map/2/map1/map2(1).png",
+			"/public/data/img/map/2/map1/map2(2).png",
+			"/public/data/img/map/2/map1/map2(3).png",
+			"/public/data/img/map/2/map1/map2(4).png",
+			"/public/data/img/map/2/map1/map2(5).png",
+			"/public/data/img/map/2/map1/map2(6).png",
+			"/public/data/img/map/2/map1/map2(7).png",
+		}
 
+		map2 = []string{
+			"/public/data/img/map/2/map2/map2(1).png",
+			"/public/data/img/map/2/map2/map2(2).png",
+			"/public/data/img/map/2/map2/map2(3).png",
+			"/public/data/img/map/2/map2/map2(4).png",
+			"/public/data/img/map/2/map2/map2(5).png",
+			"/public/data/img/map/2/map2/map2(6).png",
+			"/public/data/img/map/2/map2/map2(7).png",
+		}
+		linl1 = "/maps/map/2"
+		linl2 = "/maps/mob/2"
 	} else if id == "3" {
-		mapname = "map3.html"
-
+		map1 = []string{
+			"/public/data/img/map/3/map1/map2(1).png",
+			"/public/data/img/map/3/map1/map2(2).png",
+			"/public/data/img/map/3/map1/map2(3).png",
+			"/public/data/img/map/3/map1/map2(4).png",
+			"/public/data/img/map/3/map1/map2(5).png",
+			"/public/data/img/map/3/map1/map2(6).png",
+			"/public/data/img/map/3/map1/map2(7).png",
+		}
+		map2 = []string{
+			"/public/data/img/map/3/map2/map2(1).png",
+			"/public/data/img/map/3/map2/map2(2).png",
+			"/public/data/img/map/3/map2/map2(3).png",
+			"/public/data/img/map/3/map2/map2(4).png",
+			"/public/data/img/map/3/map2/map2(5).png",
+			"/public/data/img/map/3/map2/map2(6).png",
+			"/public/data/img/map/3/map2/map2(7).png",
+		}
+		linl1 = "/maps/map/3"
+		linl2 = "/maps/mob/3"
 	} else if id == "4" {
-		mapname = "map4.html"
-
+		map1 = []string{
+			"/public/data/img/map/4/map1/map3(1).png",
+			"/public/data/img/map/4/map1/map3(2).png",
+			"/public/data/img/map/4/map1/map3(3).png",
+			"/public/data/img/map/4/map1/map3(4).png",
+			"/public/data/img/map/4/map1/map3(5).png",
+		}
+		map2 = []string{
+			"/public/data/img/map/4/map2/map3(1).png",
+			"/public/data/img/map/4/map2/map3(2).png",
+			"/public/data/img/map/4/map2/map3(3).png",
+			"/public/data/img/map/4/map2/map3(4).png",
+			"/public/data/img/map/4/map2/map3(5).png",
+		}
+		linl1 = "/maps/map/4"
+		linl2 = "/maps/mob/4"
 	} else if id == "5" {
-		mapname = "map5.html"
-	}else{
+		map1 = []string{
+			"/public/data/img/map/5/map1/map5(1).png",
+			"/public/data/img/map/5/map1/map5(2).png",
+			"/public/data/img/map/5/map1/map5(3).png",
+			"/public/data/img/map/5/map1/map5(4).png",
+			"/public/data/img/map/5/map1/map5(5).png",
+		}
+		map2 = []string{
+			"/public/data/img/map/5/map2/map5(1).png",
+			"/public/data/img/map/5/map2/map5(2).png",
+			"/public/data/img/map/5/map2/map5(3).png",
+			"/public/data/img/map/5/map2/map5(4).png",
+			"/public/data/img/map/5/map2/map5(5).png",
+		}
+		linl1 = "/maps/map/5"
+		linl2 = "/maps/mob/5"
+	} else {
 		return
 	}
 
-	ctx.HTML(http.StatusOK, "frontend/"+mapname, gin.H{
-		"title": "Age Of Khagan Thailand | Maps",
-		"user":  user,
-		"bg":    "/public/data/img/MAP-01_BG.png",
+	ctx.HTML(http.StatusOK, "frontend/map.html", gin.H{
+		"title":     "Age Of Khagan Thailand | Maps",
+		"user":      user,
+		"bg":        "/public/data/img/MAP-01_BG.png",
+		"titlename": "Map Fortress",
+		"map1":      map1,
+		"map2":      map2,
+		"type":      "map",
+		"linl1":     linl1,
+		"linl2":     linl2,
 	})
 }
 

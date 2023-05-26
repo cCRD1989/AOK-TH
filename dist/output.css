@@ -774,6 +774,10 @@ video {
   height: 1153px;
 }
 
+.h-\[240px\] {
+  height: 240px;
+}
+
 .h-\[300px\] {
   height: 300px;
 }
@@ -820,6 +824,10 @@ video {
 
 .h-\[844px\] {
   height: 844px;
+}
+
+.h-\[934px\] {
+  height: 934px;
 }
 
 .h-\[945px\] {
@@ -894,6 +902,10 @@ video {
   width: 638px;
 }
 
+.w-\[647px\] {
+  width: 647px;
+}
+
 .w-\[70\%\] {
   width: 70%;
 }
@@ -943,10 +955,6 @@ video {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-
-.resize {
-  resize: both;
 }
 
 .grid-cols-2 {
@@ -1206,6 +1214,10 @@ video {
 
 .p-10 {
   padding: 2.5rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .p-3 {
@@ -1651,7 +1663,7 @@ video {
 #t-4:checked~.dots label[for="t-5"],
 #t-5:checked~.dots label[for="t-4"],
 #t-5:checked~.dots label[for="t-6"],
-#t-6:checked~.dots label[for="t-5"], 
+#t-6:checked~.dots label[for="t-5"],
 #t-6:checked~.dots label[for="t-7"],
 #t-7:checked~.dots label[for="t-6"] {
   transform: scale(1.5);
@@ -1754,8 +1766,192 @@ video {
   transform: scale(1.1);
 }
 
-.mapselect img:hover {
-  transform:  rotate(5deg);
+/* map and monter */
+
+.map-m input {
+  display: none;
+}
+
+.testimonials-m {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 220px;
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.testimonials-m .item-m {
+  width: 220px;
+  height: 220px;
+  padding: 30px;
+  border-radius: 20px;
+  /* background-color: #21262d; */
+  position: absolute;
+  /* border: 3px solid rgb(182, 181, 177); */
+  /* top: 0; */
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.4s;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+#t-1-m:checked~.testimonials-m label[for="t-1-m"],
+#t-2-m:checked~.testimonials-m label[for="t-2-m"],
+#t-3-m:checked~.testimonials-m label[for="t-3-m"],
+#t-4-m:checked~.testimonials-m label[for="t-4-m"],
+#t-5-m:checked~.testimonials-m label[for="t-5-m"],
+#t-6-m:checked~.testimonials-m label[for="t-6-m"],
+#t-7-m:checked~.testimonials-m label[for="t-7-m"],
+#t-8-m:checked~.testimonials-m label[for="t-8-m"],
+#t-9-m:checked~.testimonials-m label[for="t-9-m"],
+#t-10-m:checked~.testimonials-m label[for="t-10-m"],
+#t-11-m:checked~.testimonials-m label[for="t-11-m"],
+#t-12-m:checked~.testimonials-m label[for="t-12-m"],
+#t-13-m:checked~.testimonials-m label[for="t-13-m"],
+#t-14-m:checked~.testimonials-m label[for="t-14-m"],
+#t-15-m:checked~.testimonials-m label[for="t-15-m"],
+#t-16-m:checked~.testimonials-m label[for="t-16-m"]  {
+  opacity: 1;
+  z-index: 4;
+}
+
+#t-1-m:checked~.testimonials-m label[for="t-2-m"],
+#t-2-m:checked~.testimonials-m label[for="t-3-m"],
+#t-3-m:checked~.testimonials-m label[for="t-4-m"],
+#t-4-m:checked~.testimonials-m label[for="t-5-m"],
+#t-5-m:checked~.testimonials-m label[for="t-6-m"],
+#t-6-m:checked~.testimonials-m label[for="t-7-m"],
+#t-7-m:checked~.testimonials-m label[for="t-8-m"],
+#t-8-m:checked~.testimonials-m label[for="t-9-m"],
+#t-9-m:checked~.testimonials-m label[for="t-1-m"],
+#t-10-m:checked~.testimonials-m label[for="t-11-m"],
+#t-11-m:checked~.testimonials-m label[for="t-12-m"],
+#t-12-m:checked~.testimonials-m label[for="t-13-m"],
+#t-13-m:checked~.testimonials-m label[for="t-14-m"],
+#t-14-m:checked~.testimonials-m label[for="t-15-m"],
+#t-15-m:checked~.testimonials-m label[for="t-16-m"],
+#t-16-m:checked~.testimonials-m label[for="t-1-m"] {
+  opacity: 0;
+  transform: translate3d(150px, 0, -90px) rotateY(-15deg);
+  z-index: 3;
+}
+
+#t-1-m:checked~.testimonials-m label[for="t-16-m"],
+#t-2-m:checked~.testimonials-m label[for="t-1-m"],
+#t-3-m:checked~.testimonials-m label[for="t-2-m"],
+#t-4-m:checked~.testimonials-m label[for="t-3-m"],
+#t-5-m:checked~.testimonials-m label[for="t-4-m"],
+#t-6-m:checked~.testimonials-m label[for="t-5-m"],
+#t-7-m:checked~.testimonials-m label[for="t-6-m"],
+#t-8-m:checked~.testimonials-m label[for="t-7-m"],
+#t-9-m:checked~.testimonials-m label[for="t-8-m"],
+#t-10-m:checked~.testimonials-m label[for="t-9-m"],
+#t-11-m:checked~.testimonials-m label[for="t-10-m"],
+#t-12-m:checked~.testimonials-m label[for="t-11-m"],
+#t-13-m:checked~.testimonials-m label[for="t-12-m"],
+#t-14-m:checked~.testimonials-m label[for="t-13-m"],
+#t-15-m:checked~.testimonials-m label[for="t-14-m"],
+#t-16-m:checked~.testimonials-m label[for="t-15-m"] {
+  opacity: 0;
+  transform: translate3d(-150px, 0, -90px) rotateY(15deg);
+  z-index: 3;
+}
+
+.testimonials-m-v {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 100px;
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.testimonials-m-v .item-m {
+  width: 460px;
+  height: 260px;
+  padding: 30px;
+  /* border-radius: 5px; */
+  /* background-color: #21262d; */
+  position: absolute;
+  /* border: 3px solid white; */
+  /* top: 0; */
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.4s;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+#t-1-m:checked~.testimonials-m-v label[for="t-1-m"],
+#t-2-m:checked~.testimonials-m-v label[for="t-2-m"],
+#t-3-m:checked~.testimonials-m-v label[for="t-3-m"],
+#t-4-m:checked~.testimonials-m-v label[for="t-4-m"],
+#t-5-m:checked~.testimonials-m-v label[for="t-5-m"],
+#t-6-m:checked~.testimonials-m-v label[for="t-6-m"],
+#t-7-m:checked~.testimonials-m-v label[for="t-7-m"],
+#t-8-m:checked~.testimonials-m-v label[for="t-8-m"],
+#t-9-m:checked~.testimonials-m-v label[for="t-9-m"],
+#t-10-m:checked~.testimonials-m-v label[for="t-10-m"],
+#t-11-m:checked~.testimonials-m-v label[for="t-11-m"],
+#t-12-m:checked~.testimonials-m-v label[for="t-12-m"],
+#t-13-m:checked~.testimonials-m-v label[for="t-13-m"],
+#t-14-m:checked~.testimonials-m-v label[for="t-14-m"],
+#t-15-m:checked~.testimonials-m-v label[for="t-15-m"],
+#t-16-m:checked~.testimonials-m-v label[for="t-16-m"] {
+  z-index: 4;
+}
+
+#t-1-m:checked~.testimonials-m-v label[for="t-2-m"],
+#t-2-m:checked~.testimonials-m-v label[for="t-3-m"],
+#t-3-m:checked~.testimonials-m-v label[for="t-4-m"],
+#t-4-m:checked~.testimonials-m-v label[for="t-5-m"],
+#t-5-m:checked~.testimonials-m-v label[for="t-6-m"],
+#t-6-m:checked~.testimonials-m-v label[for="t-7-m"],
+#t-7-m:checked~.testimonials-m-v label[for="t-8-m"],
+#t-8-m:checked~.testimonials-m-v label[for="t-9-m"],
+#t-9-m:checked~.testimonials-m-v label[for="t-10-m"],
+#t-10-m:checked~.testimonials-m-v label[for="t-11-m"],
+#t-11-m:checked~.testimonials-m-v label[for="t-12-m"],
+#t-12-m:checked~.testimonials-m-v label[for="t-13-m"],
+#t-13-m:checked~.testimonials-m-v label[for="t-14-m"],
+#t-14-m:checked~.testimonials-m-v label[for="t-15-m"],
+#t-15-m:checked~.testimonials-m-v label[for="t-16-m"],
+#t-16-m:checked~.testimonials-m-v label[for="t-1-m"]  {
+  /* transform: translate3d(0, 240px, -90px) rotateX(30deg); */
+  transform: translateY(250px);
+  z-index: 3;
+}
+
+#t-1-m:checked~.testimonials-m-v label[for="t-16-m"],
+#t-2-m:checked~.testimonials-m-v label[for="t-1-m"],
+#t-3-m:checked~.testimonials-m-v label[for="t-2-m"],
+#t-4-m:checked~.testimonials-m-v label[for="t-3-m"],
+#t-5-m:checked~.testimonials-m-v label[for="t-4-m"],
+#t-6-m:checked~.testimonials-m-v label[for="t-5-m"],
+#t-7-m:checked~.testimonials-m-v label[for="t-6-m"],
+#t-8-m:checked~.testimonials-m-v label[for="t-7-m"],
+#t-9-m:checked~.testimonials-m-v label[for="t-8-m"],
+#t-10-m:checked~.testimonials-m-v label[for="t-9-m"],
+#t-11-m:checked~.testimonials-m-v label[for="t-10-m"],
+#t-12-m:checked~.testimonials-m-v label[for="t-11-m"],
+#t-13-m:checked~.testimonials-m-v label[for="t-12-m"],
+#t-14-m:checked~.testimonials-m-v label[for="t-13-m"],
+#t-15-m:checked~.testimonials-m-v label[for="t-14-m"],
+#t-16-m:checked~.testimonials-m-v label[for="t-15-m"]  {
+  /* transform: translate3d(0, -240px, -90px) rotateX(-30deg); */
+  transform: translateY(-250px);
+  z-index: 3;
 }
 
 .hover\:bg-blue-700:hover {
@@ -1841,12 +2037,20 @@ video {
     height: 570px;
   }
 
+  .md\:h-\[800px\] {
+    height: 800px;
+  }
+
   .md\:w-\[383px\] {
     width: 383px;
   }
 
   .md\:w-\[50\%\] {
     width: 50%;
+  }
+
+  .md\:w-\[647px\] {
+    width: 647px;
   }
 
   .md\:w-\[70\%\] {

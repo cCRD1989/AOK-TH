@@ -1,0 +1,120 @@
+{{ define "content" }}
+
+
+<nav class="bg-[url('/public/data/img/MAP-01_BG.png')] bg-top bg-repeat-y bg-black">
+
+    <!-- แผ่นที่ -->
+    <section class="flex justify-center">
+
+        <div class="w-[80%] bg-[#141414AB] mt-10 relative flex justify-center items-center">
+
+
+            <div class="md:flex block gap-2 map-m">
+
+                {{ range $key, $value := .map1 }}
+
+                {{ if eq $key 2 }}
+                <input type="radio" name="testimonial" id="t-{{ getRankingIndex $key }}-m" checked>
+                {{ else }}
+                <input type="radio" name="testimonial" id="t-{{ getRankingIndex $key }}-m">
+
+                {{ end }}
+
+
+                {{ end }}
+
+
+                <div
+                    class="order-1 py-10 md:w-[647px] md:h-[800px] bg-[url('/public/data/img/PAPER-MAP.png')] bg-center bg-no-repeat bg-contain testimonials-m">
+
+
+                    <div class="py-10 flex flex-col items-center">
+
+                        <p class="font-bold text-[30px] md:text-[40px]">{{ .titlename }}</p>
+                        <div class="">
+                            <button type="button" class="p-2 hover:font-bold text-[26px] 
+                            {{ if eq .type "map" }}
+                            border-b-2 border-black
+                            {{ end }}
+                            ">
+                                <a href="{{ .linl1 }}">Map</a>
+                            </button>
+                            <button type="button" class="p-2 hover:font-bold text-[26px]
+                            {{ if eq .type "mob" }}
+                            border-b-2 border-black
+                            {{ end }}
+                            ">
+                                <a href="{{ .linl2 }}">Monster</a>
+                            </button>
+                        </div>
+
+                        <div class="w-full flex items-center justify-center">
+                            <div class="">
+                                <img src="/public/data/img/ARROW-l1.png" alt="">
+                            </div>
+
+                            <div class=" w-[50%] h-[240px] flex items-center justify-center">
+
+                           
+                                {{ range $key, $value := .map1 }}
+                                <label class="item-m opacity-0" for="t-{{ getRankingIndex $key }}-m">
+                                    <img src="{{ $value }}" alt="">
+                                </label>
+                                {{ end }}
+
+                            </div>
+
+                            <div class="">
+                                <img src="/public/data/img/ARROW-r1.png" alt="">
+                            </div>
+                        </div>
+
+
+
+                        <p class="font-bold text-center w-[50%]">เมือง Wroclaw Fortress
+                            ศูนย์กลางการค้าขายและสถานที่เริ่มต้นการเดินทางของเหล่านักรบ เมืองเริ่มต้น Lv.1</p>
+                    </div>
+
+                </div>
+
+                <div class="py-10 testimonials-m-v">
+
+                    <div class="md:w-[647px] md:h-[800px] flex items-center justify-center">
+
+
+                        {{ range $key, $value := .map2 }}
+                        <label class="item-m" for="t-{{ getRankingIndex $key }}-m">
+                            <img src="{{ $value }}" alt="">
+                        </label>
+                        {{ end }}
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+            </div>
+    </section>
+
+
+
+    <div class="pb-20"></div>
+
+
+
+
+</nav>
+
+
+
+{{ end }}

@@ -11,13 +11,14 @@ func serveRoutes(r *gin.Engine) {
 	// frontend_user
 	frontend_user := controller.Frontend{}
 	frontend_userGroup := r.Group("/")
-	frontend_userGroup.GET("", frontend_user.UserGetHome)              //index.html
-	frontend_userGroup.GET("/singin", frontend_user.UserGetSingin)     //index.html
-	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)      //login
-	frontend_userGroup.GET("/register", frontend_user.UserGetRegister) //register
-	frontend_userGroup.GET("/class", frontend_user.UserGetClass)       //register
-	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)         //maps
-	frontend_userGroup.GET("/maps/:id", frontend_user.UserGetMap)      //maps
+	frontend_userGroup.GET("", frontend_user.UserGetHome)                 //index.html
+	frontend_userGroup.GET("/singin", frontend_user.UserGetSingin)        //index.html
+	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)         //login
+	frontend_userGroup.GET("/register", frontend_user.UserGetRegister)    //register
+	frontend_userGroup.GET("/class", frontend_user.UserGetClass)          //register
+	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)            //maps
+	frontend_userGroup.GET("/maps/map/:id", frontend_user.UserGetMap)     //maps
+	frontend_userGroup.GET("/maps/mob/:id", frontend_user.UserGetMonster) //maps
 
 	frontend_userGroup.GET("/newpage", frontend_user.UserNewPage) //newpage
 
