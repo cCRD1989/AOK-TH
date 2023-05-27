@@ -346,16 +346,9 @@
                         </div>
                         <div class="flex justify-between font-bold py-3">
                             <p>Status <br> <span class="text-[14px]">สถานะ</span> </p>
-                            <p class="text-[#006717] text-center">•{{ .detail }} <br> <span
-                                    class="text-[14px] text-[#797979]">
-
-                                    {{ if eq .detail "success" }}
-                                    สำเร็จ
-                                    {{ else }}
-                                    ไม่สำเร็จ
-                                    {{ end }}
-
-                                </span></p>
+                            <p class="text-[#006717] text-center">•{{ .detail }} <br> 
+                                <span class="text-[14px] text-[#797979]">สำเร็จ</span>
+                            </p>
                         </div>
                         <div class="flex justify-between font-bold py-3 uppercase">
                             <p>Payment Methods <br> <span class="text-[14px]">ช่องทาง</span> </p>
@@ -380,7 +373,7 @@
                 <div class="w-[60%] mx-auto">
 
                     <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#B52700]">{{ .detail }} <br>
-                        <span>ชำระเงินไม่สำเร็จ</span>
+                        <span class="text-[#B52700]">ชำระเงินไม่สำเร็จ</span>
                     </p>
 
                     <div>
