@@ -35,6 +35,24 @@ func getRankingIndex(i int) string {
 	return strconv.Itoa(i)
 }
 
+func selectedradiocheck(current, expected interface{}) template.HTMLAttr {
+	if current != nil && expected != nil {
+		if current == expected {
+			return template.HTMLAttr("checked")
+		}
+	}
+	return template.HTMLAttr(``)
+}
+
+func selectedcheck(current, expected interface{}) template.HTMLAttr {
+	if current != nil && expected != nil {
+		if current == expected {
+			return template.HTMLAttr("selected")
+		}
+	}
+	return template.HTMLAttr(``)
+}
+
 func createViews() multitemplate.Render {
 	var fn = template.FuncMap{
 		"getPlayersOnlineCount": getPlayersOnlineCount,
@@ -42,6 +60,8 @@ func createViews() multitemplate.Render {
 		"getItemNameById":       getItemNameById,
 		"getNameMonter":         getNameMonter,
 		"getRankingIndex":       getRankingIndex,
+		"selectedradiocheck":    selectedradiocheck,
+		"selectedcheck":         selectedcheck,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")

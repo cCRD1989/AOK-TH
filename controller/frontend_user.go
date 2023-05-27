@@ -25,6 +25,7 @@ import (
 	"github.com/zalando/gin-oauth2/google"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/facebook"
+	"gorm.io/gorm"
 )
 
 type Frontend struct{}
@@ -59,6 +60,94 @@ var (
 	OauthStateString = "thisshouldberandom"
 )
 
+// ////////////////////////////////////////////////////////////////
+// M map type string of interfaces
+type M map[string]interface{}
+
+// Model struct
+type Model struct {
+	gin          *gin.Context
+	QuerySearch  string //อาชีพ
+	QueryKeyword string //ค่าต่างๆ
+
+	Errors M
+}
+
+func (model *Model) addError(i string, v interface{}) {
+	if model.Errors == nil {
+		model.Errors = make(M)
+	}
+	model.Errors[i] = v
+}
+
+// NewModel model
+func NewModel(ctx *gin.Context) *Model {
+	var model Model
+
+	model.gin = ctx
+	model.QuerySearch = "allclass"
+	model.QueryKeyword = "level"
+
+	return &model
+}
+
+// FindAll models
+func (model *Model) FindAll(x interface{}) *Model {
+	var err error
+	var dbt = db.AOK_DB
+
+	err = model.buildSQL(dbt.Model(x)).Find(x).Error
+
+	if err != nil {
+		fmt.Println("database")
+		model.addError("database", err.Error())
+	}
+
+	return model
+
+}
+
+// BuildSQL
+func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
+
+	var c = model.gin
+
+	fmt.Println("old qSearch", model.QuerySearch)
+	fmt.Println("old qKeyword", model.QueryKeyword)
+	// Get
+	var qSearch = c.DefaultQuery("jobclass", model.QuerySearch)
+	var qKeyword = c.DefaultQuery("keyword", model.QueryKeyword)
+
+	fmt.Println("new qSearch", qSearch)
+	fmt.Println("new qKeyword", qKeyword)
+
+	model.QuerySearch = qSearch
+	model.QueryKeyword = qKeyword
+
+	if qSearch != "" && qKeyword != "" {
+
+		db.Select("Charactername ,Level").Limit(10).Order("LEVEL DESC")
+	}
+
+	return db
+}
+
+//////////////////////////////////////////////////////////////////
+
+func (f *Frontend) UserGetTest(ctx *gin.Context) {
+
+	logs := []aokmodel.Character{}
+
+	var logsModel = NewModel(ctx).FindAll(&logs)
+
+	ctx.HTML(http.StatusOK, "frontend/test.html", gin.H{
+		"title":     "Age Of Khagan Thailand",
+		"bg":        "/public/data/img/main-bg.png",
+		"logs":      logs,
+		"logsModel": logsModel,
+	})
+
+}
 func (f *Frontend) UserGetHome(ctx *gin.Context) {
 
 	visit := model.LogWeb{
@@ -76,22 +165,22 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 	//
 	//
 
-	ranking := []aokmodel.Character{}
-	db.AOK_DB.Select("Charactername ,Level").Limit(10).Order("LEVEL DESC").Find(&ranking)
+	logs := []aokmodel.Character{}
+	var logsModel = NewModel(ctx).FindAll(&logs)
 
-	for i := 0; i < len(ranking); i++ {
-		if len(ranking[i].Charactername) > 6 {
-			ranking[i].Charactername = ranking[i].Charactername[0:6] + "..."
-		}
-	}
+	//
+
+	iconuser := "/public/data/img/user" + strconv.Itoa(rand.Intn(4-1)+1) + ".png"
 
 	//
 	//
 	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
-		"title":   "Age Of Khagan Thailand",
-		"user":    user,
-		"ranking": ranking,
-		"bg":      "/public/data/img/main-bg.png",
+		"title":     "Age Of Khagan Thailand",
+		"user":      user,
+		"logsModel": logsModel,
+		"logs":      logs,
+		"bg":        "/public/data/img/main-bg.png",
+		"iconuser":  iconuser,
 	})
 }
 

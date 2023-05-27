@@ -37,6 +37,7 @@
     
             <div>
                 <div class="hidden md:block">
+
                     {{ if eq .user.Username "" }}
                     <a href="/singin"><img class="mr-5" src="/public/data/img/login-btn.png" alt=""></a>
     
@@ -44,8 +45,8 @@
     
                     <div class="flex justify-center items-center">
                  
-                        <div class="flex flex-col items-center">
-                            <a href=""> <img class="text-center" src="/public/data/img/users.png" alt=""></a>
+                        <div class="flex flex-col items-center pt-5">
+                            <a href=""> <img class="text-center" src="{{ .iconuser }}" alt=""></a>
                             <p class="text-main font-bold" >{{ .user.Username }}</p>
                         </div>
                         

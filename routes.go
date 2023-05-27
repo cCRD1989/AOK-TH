@@ -11,7 +11,10 @@ func serveRoutes(r *gin.Engine) {
 	// frontend_user
 	frontend_user := controller.Frontend{}
 	frontend_userGroup := r.Group("/")
-	frontend_userGroup.GET("", frontend_user.UserGetHome)                 //index.html
+	frontend_userGroup.GET("", frontend_user.UserGetHome) //index.html
+
+	frontend_userGroup.GET("/test", frontend_user.UserGetTest)
+
 	frontend_userGroup.GET("/singin", frontend_user.UserGetSingin)        //index.html
 	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)         //login
 	frontend_userGroup.GET("/register", frontend_user.UserGetRegister)    //register

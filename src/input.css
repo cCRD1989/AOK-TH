@@ -173,51 +173,6 @@
 }
 
 
-.dots {
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.dots label {
-  height: 5px;
-  width: 5px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: #413B52;
-  margin: 7px;
-  transition-duration: 0.2s;
-}
-
-#t-1:checked~.dots label[for="t-1"],
-#t-2:checked~.dots label[for="t-2"],
-#t-3:checked~.dots label[for="t-3"],
-#t-4:checked~.dots label[for="t-4"],
-#t-5:checked~.dots label[for="t-5"],
-#t-6:checked~.dots label[for="t-6"],
-#t-7:checked~.dots label[for="t-7"] {
-  transform: scale(2);
-  background-color: #fab5b5;
-  box-shadow: 0px 0px 0px 3px #dddddd24;
-}
-
-
-/* dots */
-#t-1:checked~.dots label[for="t-2"],
-#t-2:checked~.dots label[for="t-1"],
-#t-2:checked~.dots label[for="t-3"],
-#t-3:checked~.dots label[for="t-2"],
-#t-3:checked~.dots label[for="t-4"],
-#t-4:checked~.dots label[for="t-3"],
-#t-4:checked~.dots label[for="t-5"],
-#t-5:checked~.dots label[for="t-4"],
-#t-5:checked~.dots label[for="t-6"],
-#t-6:checked~.dots label[for="t-5"],
-#t-6:checked~.dots label[for="t-7"],
-#t-7:checked~.dots label[for="t-6"] {
-  transform: scale(1.5);
-}
-
 /* ************************************* */
 
 #t-4:checked~.testimonials label[for="t-7"],
