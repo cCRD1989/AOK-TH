@@ -237,6 +237,8 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 	mob2 := []string{}
 	linl1 := ""
 	linl2 := ""
+	titlename := ""
+	titlediscr := ""
 
 	if id == "1" {
 		mob1 = []string{
@@ -271,6 +273,8 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/1"
 		linl2 = "/maps/mob/1"
+		titlename = "WROCLAW FORTRESS"
+		titlediscr = "จุดยุทธศาสตร์แห่งการรวมตัวของชนเผ่า Durlukin เพื่อเตรียมความพร้อมในการโจมตีกับกองทัพ Nurin"
 	} else if id == "2" {
 		mob1 = []string{
 			"/public/data/img/map/2/mob1/Kara 01 White Wolf.png",
@@ -312,6 +316,9 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/2"
 		linl2 = "/maps/mob/2"
+		titlename = "KHARAKORUM"
+		titlediscr = "จุดยุทธศาสตร์แห่งการรวมตัวของชนเผ่า Nurin เพื่อเตรียมความพร้อมในการโจมตีกับกองทัพ Durlukin"
+
 	} else if id == "3" {
 		mob1 = []string{
 			"/public/data/img/map/3/mob1/Lub 01 Seicken.png",
@@ -345,6 +352,9 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/3"
 		linl2 = "/maps/mob/3"
+		titlename = "LUBLIN MONGOL FORTRESS"
+		titlediscr = "เมืองแห่งหิมะพื้นที่สำหรับนักรบในการต่อต้านเหล่ามอนสเตอร์ที่แข็งแกร่งและชั่วร้าย"
+
 	} else if id == "4" {
 		mob1 = []string{
 			"/public/data/img/map/4/mob1/Iron 01 Black Beetle.png",
@@ -370,6 +380,9 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/4"
 		linl2 = "/maps/mob/4"
+		titlename = "IRON DUNGEON"
+		titlediscr = "เหมืองแร่ใต้หุบเขา Karpatian เหมืองแร่โบราณแห่งความท้าทาย กับสภาพของผู้คนที่เปลี่ยนไป ด้วยความโลภและเวทย์มนต์ดำ"
+
 	} else if id == "5" {
 		mob1 = []string{
 			"/public/data/img/map/5/mob1/Lava 01 Skeleton Soldier.png",
@@ -389,20 +402,24 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/5"
 		linl2 = "/maps/mob/5"
+		titlename = "LAVA CANYON"
+		titlediscr = "สถานที่น่าค้นหาและมีเสน่ห์ รายล้อมไปด้วยมอนสเตอร์ผู้ปกป้องทรัพย์สมบัติล้ำค่า"
+
 	} else {
 		return
 	}
 
 	ctx.HTML(http.StatusOK, "frontend/mob.html", gin.H{
-		"title":     "Age Of Khagan Thailand | Maps",
-		"user":      user,
-		"bg":        "/public/data/img/MAP-01_BG.png",
-		"titlename": "Monter Fortress",
-		"mob1":      mob1,
-		"mob2":      mob2,
-		"type":      "mob",
-		"linl1":     linl1,
-		"linl2":     linl2,
+		"title":      "Age Of Khagan Thailand | Maps",
+		"user":       user,
+		"bg":         "/public/data/img/MAP-01_BG.png",
+		"titlename":  titlename,
+		"mob1":       mob1,
+		"mob2":       mob2,
+		"type":       "mob",
+		"linl1":      linl1,
+		"linl2":      linl2,
+		"titlediscr": titlediscr,
 	})
 }
 
@@ -427,6 +444,8 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 	map2 := []string{}
 	linl1 := ""
 	linl2 := ""
+	titlename := ""
+	titlediscr := ""
 
 	if id == "1" {
 		map1 = []string{
@@ -450,6 +469,8 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/1"
 		linl2 = "/maps/mob/1"
+		titlename = "WROCLAW FORTRESS"
+		titlediscr = "จุดยุทธศาสตร์แห่งการรวมตัวของชนเผ่า Durlukin เพื่อเตรียมความพร้อมในการโจมตีกับกองทัพ Nurin"
 	} else if id == "2" {
 		map1 = []string{
 			"/public/data/img/map/2/map1/map2(1).png",
@@ -472,6 +493,9 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/2"
 		linl2 = "/maps/mob/2"
+		titlename = "KHARAKORUM"
+		titlediscr = "จุดยุทธศาสตร์แห่งการรวมตัวของชนเผ่า Nurin เพื่อเตรียมความพร้อมในการโจมตีกับกองทัพ Durlukin"
+
 	} else if id == "3" {
 		map1 = []string{
 			"/public/data/img/map/3/map1/map2(1).png",
@@ -493,6 +517,9 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/3"
 		linl2 = "/maps/mob/3"
+		titlename = "LUBLIN MONGOL FORTRESS"
+		titlediscr = "เมืองแห่งหิมะพื้นที่สำหรับนักรบในการต่อต้านเหล่ามอนสเตอร์ที่แข็งแกร่งและชั่วร้าย"
+
 	} else if id == "4" {
 		map1 = []string{
 			"/public/data/img/map/4/map1/map3(1).png",
@@ -510,6 +537,9 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/4"
 		linl2 = "/maps/mob/4"
+		titlename = "IRON DUNGEON"
+		titlediscr = "เหมืองแร่ใต้หุบเขา Karpatian เหมืองแร่โบราณแห่งความท้าทาย กับสภาพของผู้คนที่เปลี่ยนไป ด้วยความโลภและเวทย์มนต์ดำ"
+
 	} else if id == "5" {
 		map1 = []string{
 			"/public/data/img/map/5/map1/map5(1).png",
@@ -527,20 +557,24 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 		}
 		linl1 = "/maps/map/5"
 		linl2 = "/maps/mob/5"
+		titlename = "LAVA CANYON"
+		titlediscr = "สถานที่น่าค้นหาและมีเสน่ห์ รายล้อมไปด้วยมอนสเตอร์ผู้ปกป้องทรัพย์สมบัติล้ำค่า"
+
 	} else {
 		return
 	}
 
 	ctx.HTML(http.StatusOK, "frontend/map.html", gin.H{
-		"title":     "Age Of Khagan Thailand | Maps",
-		"user":      user,
-		"bg":        "/public/data/img/MAP-01_BG.png",
-		"titlename": "Map Fortress",
-		"map1":      map1,
-		"map2":      map2,
-		"type":      "map",
-		"linl1":     linl1,
-		"linl2":     linl2,
+		"title":      "Age Of Khagan Thailand | Maps",
+		"user":       user,
+		"bg":         "/public/data/img/MAP-01_BG.png",
+		"titlename":  titlename,
+		"map1":       map1,
+		"map2":       map2,
+		"type":       "map",
+		"linl1":      linl1,
+		"linl2":      linl2,
+		"titlediscr": titlediscr,
 	})
 }
 
