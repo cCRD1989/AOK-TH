@@ -874,6 +874,10 @@ video {
   width: 310px;
 }
 
+.w-\[32px\] {
+  width: 32px;
+}
+
 .w-\[35\%\] {
   width: 35%;
 }
@@ -1130,6 +1134,10 @@ video {
 
 .bg-\[url\(\'\/public\/data\/img\/LOGIN-BG\.png\'\)\] {
   background-image: url('/public/data/img/LOGIN-BG.png');
+}
+
+.bg-\[url\(\'\/public\/data\/img\/LOGOUT-BOTTON\.png\'\)\] {
+  background-image: url('/public/data/img/LOGOUT-BOTTON.png');
 }
 
 .bg-\[url\(\'\/public\/data\/img\/MAP-01_BG\.png\'\)\] {
@@ -1431,6 +1439,11 @@ video {
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-green-700 {
+  --tw-text-opacity: 1;
+  color: rgb(21 128 61 / var(--tw-text-opacity));
 }
 
 .text-orange-400 {
