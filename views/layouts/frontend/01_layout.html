@@ -97,8 +97,35 @@
 
 
 		function myRanking() {
-            document.getElementById("myRanking").submit();
-        }
+			document.getElementById("myRanking").submit();
+		}
+
+
+
+	</script>
+
+	<script>
+
+		const handleDropdownClicked = (event) => {
+			event.stopPropagation();
+			const dropdown = document.getElementById("dropdown");
+			toggleDropdown(!dropdown.classList.contains("open"));
+		};
+
+		const toggleDropdown = (shouldOpen) => {
+			const dropdown = document.getElementById("dropdown");
+			const icon = document.getElementById("icon");
+
+			if (shouldOpen) {
+				dropdown.classList.add("open");
+			} else {
+				dropdown.classList.remove("open");
+			}
+		};
+
+		document.body.addEventListener("click", () => toggleDropdown());
+
+
 	</script>
 
 

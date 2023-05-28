@@ -55,12 +55,29 @@
 
             <div>
                 <a href="#" class="hidden md:block">
+
+
                     <img class="mr-5" src="/public/data/img/login-btn.png" alt="">
 
                     <div class="relative">
                         <img class="mr-5" src="/public/data/img/LOGOUT-btn.png" alt="">
                         <p class="absolute top-3 right-9 font-bold">Logout/ออกจากระบบ</p>
                     </div>
+
+                    <div class="dropdown" id="dropdown">
+                        <button onclick="handleDropdownClicked(event)">
+                            More Actions
+                        </button>
+                        <div class="menu bg-[#0000004D] backdrop-blur-xl">
+                            <button class="">
+                                <p class="font-medium text-orange-400 hover:font-extrabold">File Manager</p>
+                            </button>
+                            <button class="">
+                                <p class="font-medium text-red-400 hover:font-extrabold">Logout</p>
+                            </button>
+                        </div>
+                    </div>
+
                 </a>
 
 
@@ -267,7 +284,7 @@
                     </div>
 
                     <div>
-                        <select class="px-[15px] py-[4px] rounded-md font-bold text-main border" name="" id="">
+                        <select class="px-[15px] py-[4px] rounded-md font-bold text-main border" name="jobclass">
                             <option value="volvo">Level/ระดับ</option>
                             <option value="str">STR</option>
                             <option value="dex">DEX</option>
@@ -508,6 +525,30 @@
         function onToggleMenu(e) {
             nav.classList.toggle('top-[106px]')
         }
+    </script>
+
+    <script>
+
+        const handleDropdownClicked = (event) => {
+            event.stopPropagation();
+            const dropdown = document.getElementById("dropdown");
+            toggleDropdown(!dropdown.classList.contains("open"));
+        };
+
+        const toggleDropdown = (shouldOpen) => {
+            const dropdown = document.getElementById("dropdown");
+            const icon = document.getElementById("icon");
+
+            if (shouldOpen) {
+                dropdown.classList.add("open");
+            } else {
+                dropdown.classList.remove("open");
+            }
+        };
+
+        document.body.addEventListener("click", () => toggleDropdown());
+
+
     </script>
 
 

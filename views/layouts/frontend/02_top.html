@@ -8,42 +8,42 @@
 
             <div class="">
                 <a href="/"> <img src="/public/data/img/AOK_LOGO_NAV-BAR.png" alt="" width="124px"></a>
-    
+
             </div>
-    
-    
+
+
             <div
                 class="nav-links bg-[#000000b3] md:static absolute md:bg-transparent top-[-200%] w-full left-0 flex justify-center duration-500 h-[844px] pt-5">
-    
+
                 <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
                     <li class="menuhover"><a href="/">Home<br>หน้าแรก</a></li>
                     <li class="menuhover"><a href="/#Ranking">Ranking<br>จัดอันดับ</a></li>
                     <li class="menuhover"><a href="/#News">News<br>ข่าวสาร</a></li>
                     <li class="menuhover"><a href="/#Community">Community<br>ชุมชน</a></li>
-    
+
                     <div class="flex flex-wrap gap-3 justify-center md:hidden">
                         <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
                         <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
                         <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
                     </div>
-    
+
                     <div class="block justify-center items-center mx-auto md:hidden mb-5">
                         <a href="/singin"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
                         <a href="/register"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
                     </div>
-    
+
                 </ul>
             </div>
-    
+
             <div>
                 <div class="hidden md:block">
 
                     {{ if eq .user.Username "" }}
                     <a href="/singin"><img class="mr-5" src="/public/data/img/login-btn.png" alt=""></a>
-    
+
                     {{ else }}
-    
-                    <div class="flex justify-center items-center">
+
+                    <!-- <div class="flex justify-center items-center">
                  
                         <div class="flex flex-col items-center pt-5">
                             <a href=""> <img class="text-center" src="{{ .iconuser }}" alt=""></a>
@@ -51,14 +51,35 @@
                         </div>
                         
                         <a href="/logout"> <img class="" src="/public/data/img/LOGOUT-btn.png" alt=""></a>
+                    </div> -->
+
+
+                    <!-- <a href=""> <img class="text-center" src="/public/data/img/user2.png" alt=""></a>
+                    <p class="text-main font-bold" >future333</p> -->
+
+
+                    <div class="dropdown" id="dropdown">
+                        <button onclick="handleDropdownClicked(event)">
+                            <img class="text-center" src="/public/data/img/user2.png" alt="">
+                            <p class="text-main font-bold">future333</p>
+                        </button>
+                        <div class="menu bg-[#0000004D] backdrop-blur-xl">
+                            <button class="">
+                                <p class="font-medium text-orange-400 hover:font-extrabold">Profile Manager</p>
+                            </button>
+                            <button class="">
+                                <p class="font-medium text-red-400 hover:font-extrabold">Logout</p>
+                            </button>
+                        </div>
                     </div>
-    
-    
+
+
+
                     {{ end}}
-    
+
                 </div>
-    
-    
+
+
                 <div onclick="onToggleMenu(this)" class="bg-[#d02d015e] rounded-md block md:hidden cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-10 h-10">
@@ -67,14 +88,14 @@
                     </svg>
                 </div>
             </div>
-    
+
         </nav>
         <aside class="flex justify-center relative top-[5px] md:top-[10px]">
             <img src="/public/data/img/NAV-BAR.png" alt="">
         </aside>
     </div>
 
-  
+
 
 
     <div class="hidden md:block">

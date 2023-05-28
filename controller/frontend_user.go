@@ -116,7 +116,7 @@ func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
 	fmt.Println("old qKeyword", model.QueryKeyword)
 	// Get
 	var qSearch = c.DefaultQuery("jobclass", model.QuerySearch)
-	var qKeyword = c.DefaultQuery("keyword", model.QueryKeyword)
+	var qKeyword = c.DefaultQuery("qkeyword", model.QueryKeyword)
 
 	fmt.Println("new qSearch", qSearch)
 	fmt.Println("new qKeyword", qKeyword)

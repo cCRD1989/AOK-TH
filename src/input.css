@@ -471,3 +471,62 @@
   transform: translateY(-250px);
   z-index: 3;
 }
+
+
+
+
+/* profile */
+
+/* //// */
+
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown > button {
+  position: relative;
+  z-index: 2;
+  transition: 0.3s;
+}
+
+.dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 25px;
+  width: 230px;
+  height: 64px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.menu {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  top: 61px;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 10px;
+  border-top: 0;
+  translate: 0 -20px;
+  transition: 0.4s;
+}
+
+.menu button {
+  border: 0;
+  width: 100%;
+  height: 46px;
+  border-radius: 0;
+}
+
+.dropdown.open .menu {
+  opacity: 1;
+  translate: 0;
+  visibility: visible;
+}
