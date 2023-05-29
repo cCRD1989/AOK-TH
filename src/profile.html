@@ -102,25 +102,28 @@
         </header>
 
         <section class="flex justify-center">
-            <div class="w-[80%] h-[740px] bg-[#141414AB] mt-5 relative flex justify-center">
 
-                <div class="w-[90%] flex gap-10">
-                    <div class="w-[30%] h-full py-[60px]">
+            <div class="w-[80%] h-[740px] bg-[#141414AB] mt-5 relative flex justify-center rounded-3xl">
+
+                <div class="w-[90%] h-[90%] md:flex gap-10">
+
+                    <div class="w-[100%] md:w-[30%] md:h-full pt-[60px] md:py-[60px]">
 
                         <div
                             class="flex flex-col items-center bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
-                            <div>
-                                <p class="text-orange-500 text-3xl text-center pt-3">Profile Manager <br> <span
-                                        class="text-xl text-gray-700">ข้อมูลส่วนตัว</span> </p>
-                            </div>
-                            <div class="pt-2 text-center">
-                                <img class="rounded-full outline outline-offset-0 outline-1 outline-[#fcbd00a6]"
-                                    src="/public/data/img/เน.png" alt="" width="150px">
-                                <p class="text-main pt-2">name</p>
+                            <div class="hidden md:block">
+                                <div>
+                                    <p class="text-orange-500 text-3xl text-center pt-3">Profile Manager <br> <span
+                                            class="text-xl text-gray-700">ข้อมูลส่วนตัว</span> </p>
+                                </div>
+                                <div class="pt-2 text-center">
+                                    <img class="mx-auto rounded-full outline outline-offset-0 outline-1 outline-[#fcbd00a6]"
+                                        src="/public/data/img/เน.png" alt="" width="150">
+                                    <p class="text-main pt-2">name</p>
+                                </div>
                             </div>
 
-
-                            <ul class="my-5 text-xl font-bold text-gray-500">
+                            <ul class="flex md:block my-5 md:text-xl font-bold text-gray-500 gap-4">
                                 <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page1()">
                                     ประวัติส่วนตัว</li>
                                 <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page2()">
@@ -136,7 +139,7 @@
 
                     </div>
 
-                    <div class="w-[70%] h-full py-[60px]">
+                    <div class="w-[100%] md:w-[70%] md:h-full md:py-[60px]">
                         <div
                             class="flex justify-center items-center h-full bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
 
@@ -207,7 +210,7 @@
 
 
                                         <button
-                                            class="bg-[url('/public/data/img/changepass-btn.png')] w-[310px] h-[80px] bg-no-repeat bg-center text-lg font-bold"
+                                            class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
                                             type="submit">เปลี่ยนพาสเวิร์ด</button>
 
                                     </form>
@@ -272,10 +275,12 @@
 
 
 
-                <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 p-3">
-                <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0 p-3">
-                <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0 p-3">
-                <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0 p-3">
+                <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+
 
             </div>
         </section>
