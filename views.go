@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gin-contrib/multitemplate"
 )
@@ -53,6 +54,10 @@ func selectedcheck(current, expected interface{}) template.HTMLAttr {
 	return template.HTMLAttr(``)
 }
 
+func formatDate(datetime time.Time, format string) string {
+	return datetime.Format(format)
+}
+
 func createViews() multitemplate.Render {
 	var fn = template.FuncMap{
 		"getPlayersOnlineCount": getPlayersOnlineCount,
@@ -62,6 +67,7 @@ func createViews() multitemplate.Render {
 		"getRankingIndex":       getRankingIndex,
 		"selectedradiocheck":    selectedradiocheck,
 		"selectedcheck":         selectedcheck,
+		"formatDate":            formatDate,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")

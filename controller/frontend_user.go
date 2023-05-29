@@ -112,14 +112,9 @@ func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
 
 	var c = model.gin
 
-	fmt.Println("old qSearch", model.QuerySearch)
-	fmt.Println("old qKeyword", model.QueryKeyword)
 	// Get
 	var qSearch = c.DefaultQuery("jobclass", model.QuerySearch)
 	var qKeyword = c.DefaultQuery("qkeyword", model.QueryKeyword)
-
-	fmt.Println("new qSearch", qSearch)
-	fmt.Println("new qKeyword", qKeyword)
 
 	model.QuerySearch = qSearch
 	model.QueryKeyword = qKeyword
@@ -302,6 +297,33 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 		"title": "Age Of Khagan Thailand | Maps",
 		"user":  user,
 		"bg":    "/public/data/img/MAP-01_BG.png",
+	})
+}
+
+func (f *Frontend) UserGetProfile(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "Profile",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	//
+	//log เติมเงิน
+
+	logtopup := []model.LogTopup{}
+	db.Conn.Where("user_id", user.Username).Order("created_at DESC").Limit(8).Find(&logtopup)
+
+	//
+	ctx.HTML(http.StatusOK, "frontend/profile.html", gin.H{
+		"title":    "Age Of Khagan Thailand | Login",
+		"user":     user,
+		"bg":       "/public/data/img/LOGIN-BG.png",
+		"logtopup": logtopup,
 	})
 }
 

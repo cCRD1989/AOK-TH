@@ -1,0 +1,190 @@
+{{ define "content" }}
+
+
+<nav class="bg-[url('/public/data/img/LOGIN-BG.png')] bg-top bg-no-repeat bg-black">
+
+    <section class="flex justify-center">
+        <div class="w-[80%] h-[740px] bg-[#141414AB] mt-5 relative flex justify-center">
+
+            <div class="w-[90%] flex gap-10">
+                <div class="w-[30%] h-full py-[60px]">
+
+                    <div
+                        class="flex flex-col items-center bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
+                        <div>
+                            <p class="text-orange-500 text-3xl text-center pt-3">Profile Manager <br> <span
+                                    class="text-xl text-gray-700">ข้อมูลส่วนตัว</span> </p>
+                        </div>
+                        <div class="pt-2 text-center">
+                            <img class="rounded-full outline outline-offset-0 outline-1 outline-[#fcbd00a6]"
+                                src="/public/data/img/เน.png" alt="" width="150px">
+                            <p class="text-main pt-2">{{ .user.Username }}</p>
+                        </div>
+
+
+                        <ul class="my-5 text-xl font-bold text-gray-500">
+                            <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page1()">
+                                ประวัติส่วนตัว</li>
+                            <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page2()">
+                                เปลี่ยนรหัสผ่าน
+                            </li>
+                            <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page3()">
+                                ประวัติส่วนตัวเติมเงิน</li>
+                            <li class="py-2 hover:text-orange-600 cursor-pointer">
+                                <a href="/logout">ออกจากระบบ</a>
+                            </li>
+                    </div>
+
+                </div>
+
+                <div class="w-[70%] h-full py-[60px]">
+                    <div
+                        class="flex justify-center items-center h-full bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
+
+                        <div class="w-[85%] h-[85%] rounded-3xl">
+                            <!-- ข้อมูลส่วนตัว -->
+                            <div id="profile_page1" class="hidden">
+                                <p class="text-yellow-100 text-[20px] font-bold py-3">ข้อมูลส่วนตัว</p>
+                                <p class="text-green-50 ">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia libero
+                                    obcaecati delectus dolorem quidem maxime veritatis at quaerat esse ipsam,
+                                    asperiores iure architecto dolor quo consectetur. Dolore nostrum esse reiciendis
+                                    placeat aperiam, quia tenetur adipisci minima iure enim nemo ex qui explicabo
+                                    magni rem illum reprehenderit, neque dignissimos nobis perferendis quibusdam,
+                                    provident id quas. Error aspernatur ullam laborum reprehenderit mollitia!
+                                    Labore, voluptatem iste? Eaque deserunt non labore quasi? Ad quod cumque
+                                    doloribus aspernatur fugiat fuga rem quasi ipsam eveniet, repudiandae inventore
+                                    laudantium aliquid similique quas quae accusantium, quaerat illum tempora fugit
+                                    soluta dicta provident? Facilis laboriosam praesentium dolorem sapiente eos
+                                    nobis totam soluta id dicta voluptates? Dicta rem dolor accusamus nihil,
+                                    praesentium blanditiis nobis quasi odio corporis perferendis non voluptatem sunt
+                                    necessitatibus porro adipisci. Itaque dolorum ex velit esse eos eaque?
+                                    Reprehenderit excepturi laboriosam sapiente necessitatibus officia illum quam,
+                                    non harum ipsa quia ex impedit animi eveniet ipsum enim sint, repudiandae
+                                    commodi cupiditate doloremque, fugiat a magni natus? Quidem, veritatis quibusdam
+                                    ipsam est ducimus at cum voluptatem quo assumenda deleniti porro dolorum fugiat
+                                    soluta non perferendis nisi! Itaque numquam in pariatur quis quasi inventore
+                                    exercitationem magnam veritatis praesentium, ratione rem eveniet at maiores
+                                    fugiat! Ea voluptas voluptatem sed aperiam. Ad.
+                                </p>
+                            </div>
+
+                            <!-- เปลี่ยนรหัสผ่าน -->
+                            <div id="profile_page2" class="hidden">
+
+                                <form action="" method="post">
+                                    <p class="text-yellow-100 text-[20px] font-bold py-3">เปลี่ยนรหัสผ่าน</p>
+                                    <div class="pb-3">
+                                        <label class="font-medium text-[18px] text-white block mb-2" for="password">
+                                            Password-Old
+                                        </label>
+                                        <input
+                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                            id="old_password" type="password" placeholder="Enter your password old"
+                                            required>
+                                    </div>
+
+                                    <div class="pb-3">
+                                        <label class="font-medium text-[18px] text-white block mb-2" for="password">
+                                            Password-New
+                                        </label>
+                                        <input
+                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                            id="new_password" type="password" placeholder="Enter your password new"
+                                            required>
+                                    </div>
+
+                                    <div class="pb-3">
+                                        <label class="font-medium text-[18px] text-white block mb-2" for="repassword">
+                                            Confirm Password-New
+                                        </label>
+                                        <input
+                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                            id="new_repassword" type="password"
+                                            placeholder="Enter your Confirm Password new" required>
+
+                                    </div>
+
+
+                                    <button
+                                        class="bg-[url('/public/data/img/changepass-btn.png')] w-[310px] h-[80px] bg-no-repeat bg-center text-lg font-bold"
+                                        type="submit">เปลี่ยนพาสเวิร์ด</button>
+
+                                </form>
+                            </div>
+
+                            <!-- ประวัติส่วนตัวเติมเงิน -->
+                            <div id="profile_page3" class="">
+                                <p class="text-yellow-100 text-[20px] font-bold py-3">ประวัติส่วนตัวเติมเงิน</p>
+
+
+                                <div class="relative overflow-auto">
+                                    <table class="w-full text-sm text-left text-gray-500">
+                                        <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">
+                                                    วันที่
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    จำนวนเงิน
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Payment Methods
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    สถานะ
+                                                </th>
+                                            </tr>
+                                        </thead>
+
+                                        {{ range $key, $value := $.logtopup }}
+
+                                        <tbody>
+                                            <tr class="border-b bg-gray-800 border-gray-700">
+                                                <th scope="row"
+                                                    class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                                                    {{ formatDate $value.CreatedAt "Jan 02 2006" }}
+                                                </th>
+                                                <td class="px-6 py-4">
+                                                    {{ $value.Price }}
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    {{ $value.Channel }}
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    สำเร็จ
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                        {{ end }}
+
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 p-3">
+            <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0 p-3">
+            <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0 p-3">
+            <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0 p-3">
+
+        </div>
+    </section>
+
+
+    <div class="pb-20"></div>
+</nav>
+
+
+{{ end }}
