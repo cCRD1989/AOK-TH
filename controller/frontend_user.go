@@ -316,7 +316,7 @@ func (f *Frontend) UserGetProfile(ctx *gin.Context) {
 	//log เติมเงิน
 
 	logtopup := []model.LogTopup{}
-	db.Conn.Where("user_id", user.Username).Order("created_at DESC").Limit(7).Find(&logtopup)
+	db.Conn.Where("user_id", user.Username).Where("data_type = ?", "NotificationTopup").Order("created_at DESC").Limit(7).Find(&logtopup)
 
 	//
 	ctx.HTML(http.StatusOK, "frontend/profile.html", gin.H{
