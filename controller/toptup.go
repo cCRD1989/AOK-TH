@@ -68,6 +68,8 @@ func PaytopupsAddPoint(ctx *gin.Context) {
 				"title":   "Age Of Khagan | เติมเงิน",
 				"message": "ข้อมูลไม่ถูกต้อง",
 				"ff":      "",
+				"user":    user,
+				"bg":      "/public/data/img/TOPUP_BG.png",
 			})
 			return
 		}
@@ -78,6 +80,8 @@ func PaytopupsAddPoint(ctx *gin.Context) {
 				"title":   "Age Of Khagan | Topup เติมเงิน",
 				"message": "ไอดีไม่มีอยู่ในระบบ โปรดลองใหม่อีกครั้ง",
 				"ff":      "",
+				"user":    user,
+				"bg":      "/public/data/img/TOPUP_BG.png",
 			})
 		}
 
@@ -125,6 +129,13 @@ func PaytopupsAddPoint(ctx *gin.Context) {
 		}
 		if err := db.Conn.Save(&RequestTopup).Error; err != nil {
 			fmt.Println("RequestTopup Error", err.Error())
+			ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+				"title":   "Age Of Khagan | Topup เติมเงิน",
+				"message": "RequestTopup Error",
+				"ff":      "",
+				"user":    user,
+				"bg":      "/public/data/img/TOPUP_BG.png",
+			})
 			return
 		}
 
@@ -145,10 +156,7 @@ func PaytopupsAddPoint(ctx *gin.Context) {
 		ctx.Redirect(http.StatusFound, urlA.String())
 
 	} else {
-		ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
-			"title": "Age Of Khagan Thailand",
-			"user":  user,
-		})
+		ctx.Redirect(http.StatusFound, "/")
 	}
 
 }
@@ -296,7 +304,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		Currency: ctx.Query("currency"),
 		Sig:      ctx.Query("sig"),
 	}
-	fmt.Println("notification data all :", request)
+	fmt.Println("notification data all :", request, ">>>>>>>>>>>>", request.Detail)
 
 	data := request.Amount + request.Channel + request.Currency + request.Detail + request.Orderid + request.Status + request.Txid + os.Getenv("SECRET_KEY")
 

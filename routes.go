@@ -58,7 +58,7 @@ func serveRoutes(r *gin.Engine) {
 
 	// //
 	r.GET("/topups", controller.Paytopups)                // เปิดหน้าเติมเงิน
-	r.POST("/topups/point", controller.PaytopupsAddPoint) // เปิด
+	r.POST("/topups/point", controller.PaytopupsAddPoint) // กด order
 
 	// r.GET("/topups/:user", controller.UserCheck)
 	// r.GET("/topups/play", controller.Payment) // เมื่อลูกค้า กด ออเดอร์ เข้ามา

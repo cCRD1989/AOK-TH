@@ -887,6 +887,10 @@ func (f *Frontend) Auth_custom(ctx *gin.Context) {
 
 func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
 	userID := ctx.DefaultQuery("username", "-")
 	email := ctx.DefaultQuery("email", "-")
 	pass := ctx.DefaultQuery("password", "-")
@@ -904,6 +908,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 			"title": "Age Of Khagan | Custom Registration",
 			"name":  "กรอกข้อมูลให้ครบ",
 			"data":  data,
+			"bg":    "/public/data/img/REGISTER-BG.png",
+			"user":  user,
 		})
 		return
 	}
@@ -914,6 +920,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 			"title": "Age Of Khagan | Custom Registration",
 			"name":  "Password ไม่ตรงกัน",
 			"data":  data,
+			"bg":    "/public/data/img/REGISTER-BG.png",
+			"user":  user,
 		})
 		return
 	}
@@ -924,6 +932,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 			"title": "Age Of Khagan | Custom Registration",
 			"name":  "Username มีอยู่ในระบบแล้ว โปรดลองใหม่",
 			"data":  data,
+			"bg":    "/public/data/img/REGISTER-BG.png",
+			"user":  user,
 		})
 		return
 	}
@@ -949,6 +959,9 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
 			"title": "Age Of Khagan | Custom Registration",
 			"name":  "บันทึกลงฐานข้อมูลไม่สำเร็จ Error",
+			"data":  data,
+			"bg":    "/public/data/img/REGISTER-BG.png",
+			"user":  user,
 		})
 		return
 	}
@@ -964,9 +977,7 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		Status:   "Custom Registration",
 	})
 
-	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
-		"title": "Age Of Khagan Thailand",
-	})
+	ctx.Redirect(http.StatusFound, "/")
 }
 
 func (f *Frontend) Auth_facebook_login(ctx *gin.Context) {
