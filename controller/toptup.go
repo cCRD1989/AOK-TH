@@ -317,56 +317,69 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		//Code..
 		//
 
-		//ดึง เลข ออเดอร์ จากตารางมาเทียบ
-		data := model.LogTopup{}
-		if err := db.Conn.Where("orderid = ?", request.Orderid).Where("data_type = ?", "RequestTopup").First(&data).Error; err != nil {
-			fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
-			ctx.Status(http.StatusBadRequest)
-			return
+		if request.Status == "200" {
+			//ดึง เลข ออเดอร์ จากตารางมาเทียบ
+			data := model.LogTopup{}
+			if err := db.Conn.Where("orderid = ?", request.Orderid).Where("data_type = ?", "RequestTopup").First(&data).Error; err != nil {
+				fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
+				ctx.Status(http.StatusBadRequest)
+				return
+			}
+
+			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:    "Wait"
+			db.Conn.Save(&model.LogTopup{
+				DataType:  "NotificationTopup",
+				UserId:    data.UserId,
+				Txid:      request.Txid,
+				Orderid:   request.Orderid,
+				Status:    "Wait",
+				Detail:    "",
+				Channel:   request.Channel,
+				Price:     request.Amount + request.Currency,
+				Sig:       request.Sig,
+				IPAddress: ctx.ClientIP(),
+			})
+
+			// เงินที่จะเติม
+			caseint, err := strconv.Atoi(request.Amount)
+			if err != nil {
+				fmt.Println("str to int ไม่ได้ ", data.Price)
+				ctx.Status(http.StatusBadRequest)
+				return
+			}
+
+			//ดึงเงินที่อยู่ใน id นั้น
+			idcash := aokmodel.Userlogin{}
+			db.AOK_DB.First(&idcash, "username = ?", data.UserId)
+
+			idcash.Cash += caseint
+
+			if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("username = ?", idcash.Username).Update("cash", idcash.Cash).Error; err != nil {
+				fmt.Println("บันทึกแคชไม่สำเร็จ", err.Error())
+				ctx.Status(http.StatusBadRequest)
+				return
+			}
+
+			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success")
+
+			// Send  200  Ok Success
+			ctx.JSON(http.StatusOK, dto.TopupResponse{
+				Txid:   request.Txid,
+				Status: "200",
+			})
+		} else {
+
+			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Fail")
+
+			ctx.JSON(http.StatusOK, dto.TopupResponse{
+				Txid:   request.Txid,
+				Status: "400",
+			})
+
 		}
 
-		//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:    "Wait"
-		db.Conn.Save(&model.LogTopup{
-			DataType:  "NotificationTopup",
-			UserId:    data.UserId,
-			Txid:      request.Txid,
-			Orderid:   request.Orderid,
-			Status:    "Wait",
-			Detail:    "",
-			Channel:   request.Channel,
-			Price:     request.Amount + request.Currency,
-			Sig:       request.Sig,
-			IPAddress: ctx.ClientIP(),
-		})
-
-		// เงินที่จะเติม
-		caseint, err := strconv.Atoi(request.Amount)
-		if err != nil {
-			fmt.Println("str to int ไม่ได้ ", data.Price)
-			ctx.Status(http.StatusBadRequest)
-			return
-		}
-
-		//ดึงเงินที่อยู่ใน id นั้น
-		idcash := aokmodel.Userlogin{}
-		db.AOK_DB.First(&idcash, "username = ?", data.UserId)
-
-		idcash.Cash += caseint
-
-		if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("username = ?", idcash.Username).Update("cash", idcash.Cash).Error; err != nil {
-			fmt.Println("บันทึกแคชไม่สำเร็จ", err.Error())
-			ctx.Status(http.StatusBadRequest)
-			return
-		}
-
-		//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
-		db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success")
-
-		// Send  200  Ok Success
-		ctx.JSON(http.StatusOK, dto.TopupResponse{
-			Txid:   request.Txid,
-			Status: "200",
-		})
 	} else {
 		fmt.Println("Sig ไม่ตรง")
 		fmt.Println("data", data)
