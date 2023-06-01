@@ -1068,10 +1068,6 @@ video {
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
-.overflow-auto {
-  overflow: auto;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1417,16 +1413,8 @@ video {
   padding-top: 1.25rem;
 }
 
-.pt-\[60px\] {
-  padding-top: 60px;
-}
-
 .pt-\[10px\] {
   padding-top: 10px;
-}
-
-.pt-\[0px\] {
-  padding-top: 0px;
 }
 
 .text-left {

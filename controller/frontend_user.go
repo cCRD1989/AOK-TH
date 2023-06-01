@@ -327,6 +327,62 @@ func (f *Frontend) UserGetProfile(ctx *gin.Context) {
 	})
 }
 
+func (f *Frontend) UserGetChangPass(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "ChangPassword",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	Username := user.Username
+	Password_old := ctx.PostForm("old_password")
+	Password_new := ctx.PostForm("new_password")
+	RePassword_new := ctx.PostForm("new_repassword")
+
+	fmt.Println("Username", Username)
+	fmt.Println("Password_old", Password_old)
+	fmt.Println("Password_new", Password_new)
+	fmt.Println("RePassword_new", RePassword_new)
+
+	Form := aokmodel.Userlogin{
+		Username: Username,
+		Password: Password_old,
+	}
+
+	userDB := aokmodel.Userlogin{}
+	userDB = userDB.FindUserByName(Form.Username)
+
+	// Check ID
+	if userDB.Id == "" {
+		//ctx.Redirect(http.StatusFound, "/")
+		fmt.Println("Check ID หาไอดีไม่เจอ")
+		return
+	}
+
+	// CompareHashAndPassword MD5
+	if unit.HashMD5(Form.Password) != userDB.Password {
+		//ctx.Redirect(http.StatusFound, "/")
+		fmt.Println("Check Pass พาสเดิม ไม่ตรง")
+		return
+	}
+
+	if Password_new != RePassword_new {
+		fmt.Println("พาสใหม่ไม่ตรง")
+		return
+	}
+
+	// เข้ารหัส พาสเวด
+	newPass := unit.HashMD5(RePassword_new)
+
+	db.AOK_DB.Model(&userDB).Update("password", newPass)
+
+	ctx.Redirect(http.StatusFound, "/profile")
+}
+
 func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 
 	id := ctx.Param("id")

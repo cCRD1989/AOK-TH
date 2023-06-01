@@ -158,6 +158,21 @@
 	</script>
 
 
+	<script>
+		function checkPassword(form) {
+			const password = form.new_password.value;
+			const confirmPassword = form.new_repassword.value;
+
+			if (password != confirmPassword) {
+				alert("Error! Password did not match.");
+				return false;
+			} else {
+				return true;
+			}
+		}
+	</script>
+
+
 </body>
 
 </html>

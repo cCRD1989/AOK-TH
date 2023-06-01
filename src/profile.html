@@ -155,7 +155,7 @@
                                 <!-- เปลี่ยนรหัสผ่าน -->
                                 <div id="profile_page2" class="hidden">
 
-                                    <form action="" method="post">
+                                    <form action="/profile/changpass" method="post">
                                         <p class="text-yellow-100 text-[20px] font-bold py-3">เปลี่ยนรหัสผ่าน</p>
                                         <div class="pb-3">
                                             <label class="font-medium text-[18px] text-white block mb-2" for="password">
@@ -163,7 +163,7 @@
                                             </label>
                                             <input
                                                 class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                                id="old_password" type="password" placeholder="Enter your password old"
+                                                id="old_password" name="old_password" type="password" placeholder="Enter your password old"
                                                 required>
                                         </div>
 
@@ -173,7 +173,7 @@
                                             </label>
                                             <input
                                                 class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                                id="new_password" type="password" placeholder="Enter your password new"
+                                                id="new_password" name="new_password" type="password" placeholder="Enter your password new"
                                                 required>
                                         </div>
 
@@ -184,17 +184,17 @@
                                             </label>
                                             <input
                                                 class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                                id="new_repassword" type="password"
+                                                id="new_repassword" name="new_repassword" type="password"
                                                 placeholder="Enter your Confirm Password new" required>
 
                                         </div>
-
 
                                         <button
                                             class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
                                             type="submit">เปลี่ยนพาสเวิร์ด</button>
 
                                     </form>
+                                    
                                 </div>
 
                                 <!-- ประวัติส่วนตัวเติมเงิน -->
