@@ -21,7 +21,7 @@
                             <div class="pt-2 text-center">
                                 <img class="mx-auto rounded-full outline outline-offset-0 outline-1 outline-[#fcbd00a6]"
                                     src="/public/data/img/เน.png" alt="" width="150">
-                                <p class="text-main pt-2">{{ .user.Username }}</p>
+                                <p class="text-main pt-2">name</p>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
 
                         <div class="w-[85%] h-[85%] rounded-3xl">
                             <!-- ข้อมูลส่วนตัว -->
-                            <div id="profile_page1" class="overflow-hidden">
+                            <div id="profile_page1" class="">
                                 <p class="text-yellow-100 text-[20px] font-bold py-3">ข้อมูลส่วนตัว</p>
                                 <p class="text-green-50 ">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia libero
@@ -95,8 +95,6 @@
                                         class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
                                         type="submit">เปลี่ยนพาสเวิร์ด</button>
 
-                                        
-
                                 </form>
                             </div>
 
@@ -124,27 +122,23 @@
                                             </tr>
                                         </thead>
 
-                                        {{ range $key, $value := $.logtopup }}
-
                                         <tbody>
                                             <tr class="border-b bg-gray-800 border-gray-700">
                                                 <th scope="row"
                                                     class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {{ formatDate $value.CreatedAt "Jan 02 2006" }}
+                                                    29/5/2566
                                                 </th>
                                                 <td class="px-6 py-4">
-                                                    {{ $value.Price }}
+                                                    123.00TH
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    {{ $value.Channel }}
+                                                    SCB
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    {{ $value.Status }}
+                                                    สำเร็จ
                                                 </td>
                                             </tr>
                                         </tbody>
-
-                                        {{ end }}
 
                                     </table>
                                 </div>
@@ -153,8 +147,6 @@
                             </div>
 
                         </div>
-
-
 
                     </div>
                 </div>
