@@ -316,29 +316,29 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		//
 		//Code..
 		//
+		//ดึง เลข ออเดอร์ จากตารางมาเทียบ
+		data := model.LogTopup{}
+		if err := db.Conn.Where("orderid = ?", request.Orderid).Where("data_type = ?", "RequestTopup").First(&data).Error; err != nil {
+			fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
+			ctx.Status(http.StatusBadRequest)
+			return
+		}
 
+		//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:    "Wait"
+		db.Conn.Save(&model.LogTopup{
+			DataType:  "NotificationTopup",
+			UserId:    data.UserId,
+			Txid:      request.Txid,
+			Orderid:   request.Orderid,
+			Status:    "Wait",
+			Detail:    "",
+			Channel:   request.Channel,
+			Price:     request.Amount + request.Currency,
+			Sig:       request.Sig,
+			IPAddress: ctx.ClientIP(),
+		})
+		
 		if request.Status == "200" {
-			//ดึง เลข ออเดอร์ จากตารางมาเทียบ
-			data := model.LogTopup{}
-			if err := db.Conn.Where("orderid = ?", request.Orderid).Where("data_type = ?", "RequestTopup").First(&data).Error; err != nil {
-				fmt.Println("ค้นหาเลข Orderid ไม่เจอ")
-				ctx.Status(http.StatusBadRequest)
-				return
-			}
-
-			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:    "Wait"
-			db.Conn.Save(&model.LogTopup{
-				DataType:  "NotificationTopup",
-				UserId:    data.UserId,
-				Txid:      request.Txid,
-				Orderid:   request.Orderid,
-				Status:    "Wait",
-				Detail:    "",
-				Channel:   request.Channel,
-				Price:     request.Amount + request.Currency,
-				Sig:       request.Sig,
-				IPAddress: ctx.ClientIP(),
-			})
 
 			// เงินที่จะเติม
 			caseint, err := strconv.Atoi(request.Amount)
