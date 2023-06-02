@@ -306,10 +306,12 @@
   position: absolute;
   /* border: 3px solid rgb(182, 181, 177); */
   /* top: 0; */
+  display: flex;
   box-sizing: border-box;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.4s;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
   user-select: none;
   cursor: pointer;
  

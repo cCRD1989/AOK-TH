@@ -371,7 +371,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 		} else {
 
 			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
-			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Fail")
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Failed")
 
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
 				Txid:   request.Txid,

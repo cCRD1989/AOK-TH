@@ -53,9 +53,9 @@
                     <img src="/public/data/img/CAPA_ARROW_LEFT.png" alt="">
 
                 </div>
-                <img src="/public/data/img/capa.png" alt="">
+                <img src="/public/data/img/capa.png" alt="" width="200px">
                 <div>
-                    <img src="/public/data/img/CAPA_ARROW_RIGHT.png" alt="" width="25px">
+                    <img src="/public/data/img/CAPA_ARROW_RIGHT.png" alt="">
                 </div>
             </div>
 
@@ -136,7 +136,7 @@
                         <p class="text-white">Sorcerer</p>
                     </div>
                     <div>
-                        <p class="text-white">ซอเซอะเรอะ</p>
+                        <p class="text-white">ซอเซอเรอร์</p>
                     </div>
                 </label>
 
@@ -149,7 +149,7 @@
                         <p class="text-white">Assassin</p>
                     </div>
                     <div>
-                        <p class="text-white">อะแซสซิน</p>
+                        <p class="text-white">แอสซาซิน</p>
                     </div>
                 </label>
 
@@ -219,7 +219,7 @@
     {{ range $key, $value := $.logs }}
 
     {{ if eq $key 0 }}
-    <div class="maintabal ranking-table">
+    <div class="maintabal ranking-table-2">
         <div class="chilltabal1 gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
@@ -232,7 +232,7 @@
     {{ end }}
 
     {{ if eq $key 1 }}
-    <div class="maintabal ranking-table-1">
+    <div class="maintabal ranking-table-2">
         <div class="chilltabal1 gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
@@ -262,7 +262,7 @@
     {{ end }}
 
     {{ if gt $key 2 }}
-    <div class="maintabal ranking-table1">
+    <div class="maintabal ranking-table-2">
         <div class="chilltabal1 gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
