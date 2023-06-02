@@ -119,9 +119,32 @@ func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
 	model.QuerySearch = qSearch
 	model.QueryKeyword = qKeyword
 
+	Job := map[string]int{
+		"knight":      970178100,
+		"necromancer": 479184257,
+		"micko":       512936679,
+		"sorcerer":    1817826663,
+		"assassin":    607677489,
+		"cleric":      -859687870,
+		"allclass":    0,
+	}
+
+	ClassId := Job[qSearch]
+
 	if qSearch != "" && qKeyword != "" {
 
-		db.Select("Charactername ,Level").Limit(10).Order("LEVEL DESC")
+		if qKeyword == "level" {
+			if ClassId == 0 {
+				db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
+			} else {
+				db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("Dataid = ?", ClassId).Limit(10).Order("LEVEL DESC")
+			}
+
+		}
+
+	} else {
+		db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
+
 	}
 
 	return db
@@ -141,8 +164,8 @@ func (f *Frontend) UserGetTest(ctx *gin.Context) {
 		"logs":      logs,
 		"logsModel": logsModel,
 	})
-
 }
+
 func (f *Frontend) UserGetHome(ctx *gin.Context) {
 
 	visit := model.LogWeb{
@@ -163,6 +186,18 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 	logs := []aokmodel.Character{}
 	var logsModel = NewModel(ctx).FindAll(&logs)
 
+	guild := aokmodel.Guild{}
+
+	for i := 0; i < len(logs); i++ {
+
+		db.AOK_DB.Select("Guildname").Where("id = ?", logs[i].Guildid).Find(&guild)
+
+		if guild.Guildname == "" {
+			logs[i].Guildids = "-"
+		} else {
+			logs[i].Guildids = guild.Guildname
+		}
+	}
 	//
 
 	iconuser := "/public/data/img/user" + strconv.Itoa(rand.Intn(4-1)+1) + ".png"

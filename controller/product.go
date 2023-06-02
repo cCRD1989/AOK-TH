@@ -66,6 +66,7 @@ func (p Products) FindOne(ctx *gin.Context) {
 	var product model.Product
 
 	query := db.Conn.Preload("Category").First(&product, id)
+	
 	if err := query.Error; errors.Is(err, gorm.ErrRecordNotFound) {
 		ctx.JSON(http.StatusNotFound, gin.H{"Error": err.Error()})
 		return

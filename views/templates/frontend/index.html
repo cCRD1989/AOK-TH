@@ -223,10 +223,10 @@
         <div class="chilltabal1 gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ $value.Charactername }}</p>
+            <p>{{ CutString $value.Charactername 6 }}</p>
         </div>
-        <div class="chilltabal3">Knight</div>
-        <div class="chilltabal3">Solomon</div>
+        <div class="chilltabal3">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3">{{ $value.Guildids }}</div>
         <div class="chilltabal3">{{ $value.Level }}</div>
     </div>
     {{ end }}
@@ -236,10 +236,10 @@
         <div class="chilltabal1 gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ $value.Charactername }}</p>
+            <p>{{ CutString $value.Charactername 6 }}</p>
         </div>
-        <div class="chilltabal3">Knight</div>
-        <div class="chilltabal3">Solomon</div>
+        <div class="chilltabal3"> {{ GatCharacterClass $value.Dataid }} </div>
+        <div class="chilltabal3">{{ $value.Guildids }}</div>
         <div class="chilltabal3">{{ $value.Level }}</div>
     </div>
     {{ end }}
@@ -249,10 +249,10 @@
         <div class="chilltabal1 gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ $value.Charactername }}</p>
+            <p>{{ CutString $value.Charactername 6 }}</p>
         </div>
-        <div class="chilltabal3">Knight</div>
-        <div class="chilltabal3">Solomon</div>
+        <div class="chilltabal3">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3">{{ $value.Guildids }}</div>
         <div class="chilltabal3">{{ $value.Level }}</div>
     </div>
 
@@ -262,14 +262,14 @@
     {{ end }}
 
     {{ if gt $key 2 }}
-    <div class="maintabal ranking-table-2">
+    <div class="maintabal ranking-table1">
         <div class="chilltabal1 gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ $value.Charactername }}</p>
+            <p>{{ CutString $value.Charactername 6 }}</p>
         </div>
-        <div class="chilltabal3">Knight</div>
-        <div class="chilltabal3">Solomon</div>
+        <div class="chilltabal3">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3">{{ $value.Guildids }}</div>
         <div class="chilltabal3">{{ $value.Level }}</div>
     </div>
     {{ end }}

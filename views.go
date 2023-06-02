@@ -58,6 +58,24 @@ func formatDate(datetime time.Time, format string) string {
 	return datetime.Format(format)
 }
 
+func GatCharacterClass(id int) string {
+	Job := map[int]string{
+		970178100:  "Knight",
+		479184257:  "Necromancer",
+		512936679:  "Micko",
+		1817826663: "Sorcerer",
+		607677489:  "Assassin",
+		-859687870: "Cleric",
+	}
+	return Job[id]
+}
+func CutString(name string, n int) string {
+	if len(name) < n {
+		return name
+	}
+	return name[:n] + "..."
+}
+
 func createViews() multitemplate.Render {
 	var fn = template.FuncMap{
 		"getPlayersOnlineCount": getPlayersOnlineCount,
@@ -68,6 +86,8 @@ func createViews() multitemplate.Render {
 		"selectedradiocheck":    selectedradiocheck,
 		"selectedcheck":         selectedcheck,
 		"formatDate":            formatDate,
+		"GatCharacterClass":     GatCharacterClass,
+		"CutString":             CutString,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")
