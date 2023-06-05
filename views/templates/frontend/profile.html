@@ -6,11 +6,11 @@
     <section class="flex justify-center">
 
         <div class="w-[80%] h-[740px] bg-[#141414AB] mt-5 relative flex justify-center rounded-3xl">
-    
+
             <div class="w-[90%] h-[90%] md:flex gap-10">
-    
+
                 <div class="w-[100%] md:w-[30%] md:h-full pt-[10px] md:py-[60px]">
-    
+
                     <div
                         class="flex flex-col items-center bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
                         <div class="hidden md:block">
@@ -24,7 +24,7 @@
                                 <p class="text-main pt-2">{{ .user.Username }}</p>
                             </div>
                         </div>
-    
+
                         <ul class="flex md:block my-5 md:text-xl font-bold text-gray-500 gap-4 text-center">
                             <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page1()">
                                 ประวัติส่วนตัว</li>
@@ -36,27 +36,43 @@
                             <li class="py-2 hover:text-orange-600 cursor-pointer">
                                 <a href="/logout">ออกจากระบบ</a>
                             </li>
-    
+
                     </div>
-    
+
                 </div>
-    
+
                 <div class="w-[100%] md:w-[70%] md:h-full pt-[10px] md:py-[60px]">
                     <div
                         class="flex justify-center items-center h-full bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
-    
+
                         <div class="w-[85%] h-[85%] rounded-3xl">
                             <!-- ข้อมูลส่วนตัว -->
                             <div id="profile_page1" class="overflow-hidden">
                                 <p class="text-yellow-100 text-[20px] font-bold py-3">ข้อมูลส่วนตัว</p>
-                                <p class="text-green-50 ">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia libero
+                                <p class="text-red-500">
+                                    ลบบัญชี ผู้ใช้งาน
+                                    <br>
+                                    ท่านแน่ใจหรือไม่ว่าต้องการลบบัญชีใช้งานของท่านออกจากระบบ หลังจากลบออกแล้วท่านจะไม่สามารถใช้งานบัญชีใช้งานนี้ได้อีก
                                 </p>
+                                <div class="text-white flex mt-5">
+                                    <input class="w-5" type="checkbox" name="checkbox" id="" required>
+                                    <div class="pl-3">
+                                        I agree
+                                        <span> <a href="/privacypolicy">Privacy Policy</a> and <a
+                                                href="/service">Service Agreement</a></span>
+                                        <br>
+                                        <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
+                                    </div>
+                                </div>
+                                <button
+                                    class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
+                                    type="submit">ลบบัญชี</button>
+
                             </div>
-    
+
                             <!-- เปลี่ยนรหัสผ่าน -->
                             <div id="profile_page2" class="hidden">
-    
+
                                 <form action="/profile/changpass" method="post" onSubmit="return checkPassword(this)">
                                     <p class="text-yellow-100 text-[20px] font-bold py-3">เปลี่ยนรหัสผ่าน</p>
                                     <div class="pb-3">
@@ -65,20 +81,20 @@
                                         </label>
                                         <input
                                             class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                            id="old_password" name="old_password" type="password" placeholder="Enter your password old"
-                                            required minlength="6" maxlength="32">
+                                            id="old_password" name="old_password" type="password"
+                                            placeholder="Enter your password old" required minlength="6" maxlength="32">
                                     </div>
-    
+
                                     <div class="pb-3">
                                         <label class="font-medium text-[18px] text-white block mb-2" for="password">
                                             Password-New(พาสเวิร์ดใหม่)
                                         </label>
                                         <input
                                             class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                            id="new_password" name="new_password" type="password" placeholder="Enter your password new"
-                                            required minlength="6" maxlength="32">
+                                            id="new_password" name="new_password" type="password"
+                                            placeholder="Enter your password new" required minlength="6" maxlength="32">
                                     </div>
-    
+
                                     <div class="pb-3">
                                         <label class="font-medium text-[18px] text-white block mb-2" for="repassword">
                                             Confirm Password-New(ยืนยันพาสเวิร์ดใหม่)
@@ -86,25 +102,26 @@
                                         <input
                                             class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
                                             id="new_repassword" name="new_repassword" type="password"
-                                            placeholder="Enter your Confirm Password new" required minlength="6" maxlength="32">
-    
+                                            placeholder="Enter your Confirm Password new" required minlength="6"
+                                            maxlength="32">
+
                                     </div>
-    
-    
+
+
                                     <button
                                         class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
                                         type="submit">เปลี่ยนพาสเวิร์ด</button>
-    
-                                        
-    
+
+
+
                                 </form>
                             </div>
-    
+
                             <!-- ประวัติส่วนตัวเติมเงิน -->
                             <div id="profile_page3" class="hidden">
                                 <p class="text-yellow-100 text-[20px] font-bold py-3">ประวัติส่วนตัวเติมเงิน</p>
-    
-    
+
+
                                 <div class="relative overflow-x-auto">
                                     <table class="w-full text-sm text-left text-gray-500">
                                         <thead class="text-xs uppercase bg-gray-700 text-gray-400">
@@ -123,9 +140,9 @@
                                                 </th>
                                             </tr>
                                         </thead>
-    
+
                                         {{ range $key, $value := $.logtopup }}
-    
+
                                         <tbody>
                                             <tr class="border-b bg-gray-800 border-gray-700">
                                                 <th scope="row"
@@ -143,33 +160,33 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-    
+
                                         {{ end }}
-    
+
                                     </table>
                                 </div>
-    
-    
+
+
                             </div>
-    
+
                         </div>
-    
-    
-    
+
+
+
                     </div>
                 </div>
-    
+
             </div>
-    
-    
-    
+
+
+
             <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
             <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
             <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
             <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
-    
-    
-    
+
+
+
         </div>
     </section>
 
