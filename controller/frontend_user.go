@@ -418,6 +418,37 @@ func (f *Frontend) UserGetChangPass(ctx *gin.Context) {
 	ctx.Redirect(http.StatusFound, "/profile")
 }
 
+func (f *Frontend) UserGetDelete(ctx *gin.Context) {
+
+	checkbox := ctx.PostForm("checkbox")
+
+	if checkbox == "on" {
+		// ตรวจสอบ User Cookie
+		usr, _ := ctx.Get("user")
+		user, _ := usr.(aokmodel.Userlogin)
+
+		aokuser := aokmodel.Userlogin{}
+
+		db.AOK_DB.Where("username = ?", user.Username).First(&aokuser)
+
+		fmt.Println("aokuser", aokuser, checkbox)
+
+		// //บันทึก Log  LogRegister
+		// db.Conn.Save(&model.LogRegister{
+		// 	Sub:      idcode,
+		// 	Email:    email,
+		// 	Name:     "",
+		// 	Img:      "",
+		// 	Username: user.Username,
+		// 	Password: "",
+		// 	Status:   "Delete",
+		// })
+
+		ctx.Redirect(http.StatusFound, "/logout")
+	}
+
+}
+
 func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 
 	id := ctx.Param("id")

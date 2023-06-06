@@ -337,7 +337,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			Sig:       request.Sig,
 			IPAddress: ctx.ClientIP(),
 		})
-		
+
 		if request.Status == "200" {
 
 			// เงินที่จะเติม
@@ -393,6 +393,10 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 // Redirect PayProcess จาก Razer รายงานผลการเติมเงิน
 func (t *Topup) PayProcess(ctx *gin.Context) {
 
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
 	request := dto.TopupRequest{
 		Txid:     ctx.Query("txid"),
 		Orderid:  ctx.Query("orderid"),
@@ -420,6 +424,8 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"currency": request.Currency,
 			"sig":      request.Sig,
 			"ff":       "ok",
+			"bg":       "/public/data/img/TOPUP_BG.png",
+			"user":     user,
 		})
 	} else {
 		fmt.Println("PayProcess: ", "Failed")
@@ -434,6 +440,8 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"currency": "Failed",
 			"sig":      "Failed",
 			"ff":       "nook",
+			"bg":       "/public/data/img/TOPUP_BG.png",
+			"user":     user,
 		})
 	}
 }
