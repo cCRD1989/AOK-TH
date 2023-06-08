@@ -278,7 +278,7 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 
 	// Redirect
 	fmt.Println("บันทึก Token สำเร็จ")
-	ctx.Redirect(http.StatusFound, "/")
+	ctx.Redirect(http.StatusFound, "/profile")
 }
 
 func (f *Frontend) UserGetRegister(ctx *gin.Context) {
