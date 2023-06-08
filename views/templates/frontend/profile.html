@@ -27,9 +27,9 @@
 
                         <ul class="flex md:block my-5 md:text-xl font-bold text-gray-500 gap-4 text-center">
                             <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page1()">
-                                ประวัติส่วนตัว</li>
+                                ข้อมูลส่วนตัว</li>
                             <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page3()">
-                                ประวัติส่วนตัวเติมเงิน</li>
+                                ประวัติการเติมเงิน</li>
                             <li class="py-2 hover:text-orange-600 cursor-pointer">
                                 <a href="/logout">ออกจากระบบ</a>
                             </li>
@@ -136,7 +136,7 @@
 
                             <!-- ประวัติส่วนตัวเติมเงิน -->
                             <div id="profile_page3" class="hidden">
-                                <p class="text-yellow-100 text-[20px] font-bold py-3">ประวัติส่วนตัวเติมเงิน</p>
+                                <p class="text-yellow-100 text-[20px] font-bold py-3">ประวัติการเติมเงิน</p>
 
 
                                 <div class="relative overflow-x-auto">
@@ -164,7 +164,7 @@
                                             <tr class="border-b bg-gray-800 border-gray-700">
                                                 <th scope="row"
                                                     class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {{ formatDate $value.CreatedAt "Jan,02,2006" }}
+                                                    {{ formatDate $value.CreatedAt "Jan 02,2006" }}
                                                 </th>
                                                 <td class="px-6 py-4">
                                                     {{ $value.Price }}
