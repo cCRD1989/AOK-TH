@@ -35,7 +35,7 @@ func serveRoutes(r *gin.Engine) {
 
 	frontend_userGroup.GET("/email/verify/:code", frontend_user.UserEmailVerify) //mail
 
-	frontend_userGroup.GET("/newpage", frontend_user.UserNewPage) //newpage
+	frontend_userGroup.GET("/newpage/:id", frontend_user.UserNewPage) //newpage
 
 	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout
 	// frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)

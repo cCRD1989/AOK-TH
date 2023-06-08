@@ -906,6 +906,7 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 }
 
 func (f *Frontend) UserNewPage(ctx *gin.Context) {
+	idNew := ctx.Param("id")
 	visit := model.LogWeb{
 		DataType:  "NewPages",
 		IPAddress: ctx.ClientIP(),
@@ -917,7 +918,22 @@ func (f *Frontend) UserNewPage(ctx *gin.Context) {
 	user, _ := usr.(aokmodel.Userlogin)
 
 	//
-	ctx.HTML(http.StatusOK, "frontend/newpage.html", gin.H{
+	page := ""
+	if idNew == "1" {
+		page = "newpage1.html"
+	} else if idNew == "2" {
+		page = "newpage2.html"
+	} else if idNew == "3" {
+		page = "newpage3.html"
+	} else if idNew == "4" {
+		page = "newpage4.html"
+	} else if idNew == "5" {
+		page = "newpage5.html"
+	} else {
+		ctx.Redirect(http.StatusFound, "/")
+	}
+
+	ctx.HTML(http.StatusOK, "frontend/"+page, gin.H{
 		"title": "Age Of Khagan Thailand | NewPages",
 		"user":  user,
 		"bg":    "/public/data/img/NewPage-BG.png",
