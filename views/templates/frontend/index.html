@@ -1,5 +1,23 @@
 {{ define "content" }}
 
+<!-- <div class="w-full h-[1000px] bg-[url('/public/data/img/bg-ranking.png')] bg-top" id="mainpopup">
+    <div class=" backdrop-blur-xl relative">
+        <div class="absolute right-0">
+            <p id="closepopup" class="text-white text-2xl m-11 cursor-pointer">X</p>
+        </div>
+        <div class="w-[70%] h-[1000px] mx-auto flex justify-center items-center">
+
+            <div class="w-[80%]">
+                <img class="rounded-2xl" src="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG1.png" alt="">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<!-- <div class="hidden" id="mainpage"> -->
+
 <!-- Home Page -->
 <section class="bg-[url('/public/data/img/main-bg.png')] pb-20 bg-no-repeat bg-top bg-black">
 
@@ -42,7 +60,7 @@
 
     {{ with .logsModel }}
 
- 
+
     <form id="myRanking" action="#Ranking">
 
         <!-- select class -->
@@ -61,31 +79,38 @@
 
 
 
-            <input type="radio" name="jobclass" id="t-1" value="micko" {{ selectedradiocheck .QuerySearch "micko" }} onclick="myRanking()">
-            <input type="radio" name="jobclass" id="t-2" value="necromancer" {{ selectedradiocheck .QuerySearch "necromancer" }} onclick="myRanking()">
-            <input type="radio" name="jobclass" id="t-3" value="knight" {{ selectedradiocheck .QuerySearch "knight" }} onclick="myRanking()">
-            <input type="radio" name="jobclass" id="t-4" value="allclass" {{ selectedradiocheck .QuerySearch "allclass" }} onclick="myRanking()">
-            <input type="radio" name="jobclass" id="t-5" value="sorcerer" {{ selectedradiocheck .QuerySearch "sorcerer" }} onclick="myRanking()">
-            <input type="radio" name="jobclass" id="t-6" value="assassin" {{ selectedradiocheck .QuerySearch "assassin" }} onclick="myRanking()">
-            <input type="radio" name="jobclass" id="t-7" value="cleric" {{ selectedradiocheck .QuerySearch "cleric" }} onclick="myRanking()">
+            <input type="radio" name="jobclass" id="t-1" value="micko" {{ selectedradiocheck .QuerySearch "micko" }}
+                onclick="myRanking()">
+            <input type="radio" name="jobclass" id="t-2" value="necromancer" {{ selectedradiocheck
+                .QuerySearch "necromancer" }} onclick="myRanking()">
+            <input type="radio" name="jobclass" id="t-3" value="knight" {{ selectedradiocheck .QuerySearch "knight" }}
+                onclick="myRanking()">
+            <input type="radio" name="jobclass" id="t-4" value="allclass" {{ selectedradiocheck .QuerySearch "allclass"
+                }} onclick="myRanking()">
+            <input type="radio" name="jobclass" id="t-5" value="sorcerer" {{ selectedradiocheck .QuerySearch "sorcerer"
+                }} onclick="myRanking()">
+            <input type="radio" name="jobclass" id="t-6" value="assassin" {{ selectedradiocheck .QuerySearch "assassin"
+                }} onclick="myRanking()">
+            <input type="radio" name="jobclass" id="t-7" value="cleric" {{ selectedradiocheck .QuerySearch "cleric" }}
+                onclick="myRanking()">
 
 
 
             <div class="testimonials">
 
                 <!-- Micko -->
-                
+
 
                 <label class="item" for="t-1">
-                        <div class="flex justify-center">
-                            <img src="/public/data/img/MICKO_CLASS.png" alt="">
-                        </div>
-                        <div>
-                            <p class="text-white">Micko</p>
-                        </div>
-                        <div>
-                            <p class="text-white">มิโกะ</p>
-                        </div>
+                    <div class="flex justify-center">
+                        <img src="/public/data/img/MICKO_CLASS.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-white">Micko</p>
+                    </div>
+                    <div>
+                        <p class="text-white">มิโกะ</p>
+                    </div>
                 </label>
 
                 <!-- Necromancer -->
@@ -186,7 +211,8 @@
 
                     <!-- Select Lists -->
                     <div>
-                        <select class="px-[15px] py-[4px] rounded-md font-bold text-main border" name="qkeyword" onchange="myRanking()">
+                        <select class="px-[15px] py-[4px] rounded-md font-bold text-main border" name="qkeyword"
+                            onchange="myRanking()">
 
                             <option {{ selectedcheck .QueryKeyword "level" }} value="level">Level/ระดับ</option>
                             <option {{ selectedcheck .QueryKeyword "str" }} value="str">STR</option>
@@ -410,5 +436,8 @@
     </div>
 
 </section>
+
+    
+<!-- </div> -->
 
 {{ end }}

@@ -415,6 +415,7 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 
 		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
 			"title":    "Age Of Khagan | Success.",
+			"user":     user,
 			"txid":     request.Txid,
 			"orderid":  request.Orderid,
 			"status":   request.Status,
@@ -425,12 +426,12 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"sig":      request.Sig,
 			"ff":       "ok",
 			"bg":       "/public/data/img/TOPUP_BG.png",
-			"user":     user,
 		})
 	} else {
 		fmt.Println("PayProcess: ", "Failed")
 		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
 			"title":    "Age Of Khagan | Failed.",
+			"user":     user,
 			"txid":     "Failed",
 			"orderid":  "Failed",
 			"status":   "Failed",
@@ -441,7 +442,6 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 			"sig":      "Failed",
 			"ff":       "nook",
 			"bg":       "/public/data/img/TOPUP_BG.png",
-			"user":     user,
 		})
 	}
 }

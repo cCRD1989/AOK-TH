@@ -3,18 +3,24 @@ package main
 import (
 	"ccrd/controller"
 	"ccrd/middleware"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func serveRoutes(r *gin.Engine) {
 
+	// r.GET("/", func(ctx *gin.Context) {
+	// 	ctx.HTML(http.StatusOK, "intro/intro.html", nil)
+	// })
+
 	// frontend_user
 	frontend_user := controller.Frontend{}
 	frontend_userGroup := r.Group("/")
-	frontend_userGroup.GET("", frontend_user.UserGetHome) //index.html
-
-	frontend_userGroup.GET("/test", frontend_user.UserGetTest)
+	frontend_userGroup.GET("/home", frontend_user.UserGetHome) //index.html
+	frontend_userGroup.GET("", func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "intro/intro.html", nil)
+	})
 
 	frontend_userGroup.GET("/singin", frontend_user.UserGetSingin)                                        //index.html
 	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)                                         //login
@@ -25,7 +31,9 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("/maps/mob/:id", frontend_user.UserGetMonster)                                 //maps
 	frontend_userGroup.GET("/profile", middleware.UserCheck(), frontend_user.UserGetProfile)              //profile
 	frontend_userGroup.POST("/profile/changpass", middleware.UserCheck(), frontend_user.UserGetChangPass) //profile
-	frontend_userGroup.POST("/profile/delete", middleware.UserCheck(), frontend_user.UserGetDelete)    //profile
+	frontend_userGroup.POST("/profile/delete", middleware.UserCheck(), frontend_user.UserGetDelete)       //profile
+
+	frontend_userGroup.GET("/email/verify/:code", frontend_user.UserEmailVerify) //mail
 
 	frontend_userGroup.GET("/newpage", frontend_user.UserNewPage) //newpage
 

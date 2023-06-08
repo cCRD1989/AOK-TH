@@ -15,7 +15,7 @@
                         class="flex flex-col items-center bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
                         <div class="hidden md:block">
                             <div>
-                                <p class="text-orange-500 text-3xl text-center pt-3">Profile Manager <br> <span
+                                <p class="text-orange-500 text-3xl text-center pt-3">My Profile<br> <span
                                         class="text-xl text-gray-700">ข้อมูลส่วนตัว</span> </p>
                             </div>
                             <div class="pt-2 text-center">
@@ -28,9 +28,6 @@
                         <ul class="flex md:block my-5 md:text-xl font-bold text-gray-500 gap-4 text-center">
                             <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page1()">
                                 ประวัติส่วนตัว</li>
-                            <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page2()">
-                                เปลี่ยนรหัสผ่าน
-                            </li>
                             <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page3()">
                                 ประวัติส่วนตัวเติมเงิน</li>
                             <li class="py-2 hover:text-orange-600 cursor-pointer">
@@ -45,38 +42,43 @@
                     <div
                         class="flex justify-center items-center h-full bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
 
-                        <div class="w-[85%] h-[85%] rounded-3xl">
+                        <div class="w-[85%] h-[85%] rounded-3xl overflow-auto">
                             <!-- ข้อมูลส่วนตัว -->
                             <div id="profile_page1" class="overflow-hidden">
 
+                                <!-- ข้อมูลส่วนตัว -->
                                 <form action="/profile/delete" method="post">
                                     <p class="text-yellow-100 text-[20px] font-bold py-3">ข้อมูลส่วนตัว</p>
-                                    <p class="text-red-500">
-                                        ลบบัญชี ผู้ใช้งาน
-                                        <br>
-                                        ท่านแน่ใจหรือไม่ว่าต้องการลบบัญชีใช้งานของท่านออกจากระบบ
-                                        หลังจากลบออกแล้วท่านจะไม่สามารถใช้งานบัญชีใช้งานนี้ได้อีก
-                                    </p>
-                                    <div class="text-white flex mt-5">
-                                        <input class="w-5" type="checkbox" name="checkbox" id="" required>
-                                        <div class="pl-3">
-                                            I agree
-                                            <span> <a href="/privacypolicy">Privacy Policy</a> and <a
-                                                    href="/service">Service Agreement</a></span>
-                                            <br>
-                                            <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
-                                        </div>
+
+                                    <div class="px-5 pb-5">
+                                        <label class="font-medium text-[18px] text-white block mb-2" for="id-name">
+                                            Username
+                                        </label>
+                                        <input
+                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                            id="" name="id-name" type="text" placeholder="Username"
+                                            value="{{ .user.Username }}" readonly>
                                     </div>
-                                    <button
-                                        class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
-                                        type="submit">ลบบัญชี</button>
+
+                                    <div class="px-5">
+                                        <label class="font-medium text-[18px] text-white block mb-2" for="id-name">
+                                            Email
+                                        </label>
+                                        <input
+                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                            id="" name="id-name" type="text" placeholder="Email"
+                                            value="{{ .user.Email }}" readonly>
+                                    </div>
+
                                 </form>
-                            </div>
 
-                            <!-- เปลี่ยนรหัสผ่าน -->
-                            <div id="profile_page2" class="hidden">
+                                <div class="px-5 py-10">
+                                    <img src="/public/data/img/NAV-BAR2.png" alt="">
+                                </div>
 
-                                <form action="/profile/changpass" method="post" onSubmit="return checkPassword(this)">
+                                <!-- เปลี่ยนรหัสผ่าน -->
+                                <form class="px-5" action="/profile/changpass" method="post"
+                                    onSubmit="return checkPassword(this)">
                                     <p class="text-yellow-100 text-[20px] font-bold py-3">เปลี่ยนรหัสผ่าน</p>
                                     <div class="pb-3">
                                         <label class="font-medium text-[18px] text-white block mb-2" for="password">
@@ -110,15 +112,27 @@
 
                                     </div>
 
-
                                     <button
                                         class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
                                         type="submit">เปลี่ยนพาสเวิร์ด</button>
 
-
-
                                 </form>
+
+                                <div class="px-5 py-10">
+                                    <img src="/public/data/img/NAV-BAR2.png" alt="">
+                                </div>
+
+                                <!-- ลบบัญชี -->
+                                <div class="w-full p-5 text-yellow-100">
+                                    <div class="text-end">
+                                        <span class="pr-4 text-xl font-bold">ลบบัญชี ผู้ใช้งาน</span>
+                                        <button onclick="openProFile_page2()" class="rounded-xl bg-orange-500 px-5 text-xl mb-3 text-black"
+                                            type="submit">ลบบัญชี</button>
+                                    </div>
+                                </div>
                             </div>
+
+
 
                             <!-- ประวัติส่วนตัวเติมเงิน -->
                             <div id="profile_page3" class="hidden">
@@ -136,7 +150,7 @@
                                                     จำนวนเงิน
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
-                                                    Payment Methods
+                                                    ช่องทางเติมเงิน
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
                                                     สถานะ
@@ -150,7 +164,7 @@
                                             <tr class="border-b bg-gray-800 border-gray-700">
                                                 <th scope="row"
                                                     class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                                                    {{ formatDate $value.CreatedAt "Jan 02 2006" }}
+                                                    {{ formatDate $value.CreatedAt "Jan,02,2006" }}
                                                 </th>
                                                 <td class="px-6 py-4">
                                                     {{ $value.Price }}
@@ -170,6 +184,32 @@
                                 </div>
 
 
+                            </div>
+
+
+                            <!-- ลบ บช. -->
+                            <div id="profile_page2" class="hidden">
+                                <p class="px-5 text-red-500">
+                                    <span class="text-xl font-bold"> ลบบัญชี ผู้ใช้งาน</span>
+
+                                    <br>
+                                    ท่านแน่ใจหรือไม่ว่าต้องการลบบัญชีใช้งานของท่านออกจากระบบ
+                                    หลังจากลบออกแล้วท่านจะไม่สามารถใช้งานบัญชีใช้งานนี้ได้อีก
+                                    <br>
+                                </p>
+                                <div class="px-5 text-white flex mt-5">
+                                    <input class="w-5" type="checkbox" name="checkbox" id="" required>
+                                    <div class="pl-3">
+                                        I agree
+                                        <span> <a href="/privacypolicy">Privacy Policy</a> and <a
+                                                href="/service">Service Agreement</a></span>
+                                        <br>
+                                        <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
+                                    </div>
+                                </div>
+                                <button
+                                    class="px-5 bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
+                                    type="submit">ลบบัญชี</button>
                             </div>
 
                         </div>

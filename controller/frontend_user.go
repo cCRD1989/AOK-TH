@@ -26,6 +26,9 @@ import (
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/facebook"
 	"gorm.io/gorm"
+
+	"github.com/sendgrid/sendgrid-go"
+	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
 type Frontend struct{}
@@ -446,7 +449,98 @@ func (f *Frontend) UserGetDelete(ctx *gin.Context) {
 
 		ctx.Redirect(http.StatusFound, "/logout")
 	}
+}
 
+func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
+	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
+	subject := "Verifying your email address will enable you to"
+	to := mail.NewEmail("AOK-TH", email)
+	plainTextContent := `
+	Dear %s, 
+	
+	In order to help maintain the security of your Blaze account, please verify your email address. 
+	
+	Follow this link to verify your email address: http://%s/verify/c/%x
+
+	Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.
+`
+
+	htmlContent := `
+	<html>
+		<head></head>
+		<body>
+			<p>Dear %s,</p>
+			<p>In order to help maintain the security of your Blaze account, please verify your email address.</p>
+			<p><a href="http://%s/verify/c/%x"><u>Click here to verify your email address.</u></a></p>
+			<p>Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.</p>
+		</body>
+	</html>
+	`
+
+	plainTextContent = fmt.Sprintf(plainTextContent, user, "ageofkhaganth.com", Id)
+	htmlContent = fmt.Sprintf(htmlContent, user, "ageofkhaganth.com", Id)
+
+	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
+	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
+	response, err := client.Send(message)
+
+	if err != nil {
+		fmt.Println("ไม่สำเร็จ")
+		log.Println(err)
+	} else {
+		fmt.Println("UserEmailVerifySend สำเร็จ")
+		fmt.Println(response.StatusCode)
+		fmt.Println(response.Body)
+		fmt.Println(response.Headers)
+	}
+}
+
+func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
+
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
+	subject := "Verifying your email address will enable you to"
+	to := mail.NewEmail("AOK-TH", "yokoyokororog@gmail.com")
+	plainTextContent := `
+	Dear %s, 
+	
+	In order to help maintain the security of your Blaze account, please verify your email address. 
+	
+	Follow this link to verify your email address: http://%s/verify/c/%x
+
+	Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.
+`
+
+	htmlContent := `
+	<html>
+		<head></head>
+		<body>
+			<p>Dear %s,</p>
+			<p>In order to help maintain the security of your Blaze account, please verify your email address.</p>
+			<p><a href="http://%s/verify/c/%x"><u>Click here to verify your email address.</u></a></p>
+			<p>Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.</p>
+		</body>
+	</html>
+	`
+
+	plainTextContent = fmt.Sprintf(plainTextContent, user.Username, "ageofkhaganth.com", user.Id)
+	htmlContent = fmt.Sprintf(htmlContent, user.Username, "ageofkhaganth.com", user.Id)
+
+	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
+	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
+	response, err := client.Send(message)
+
+	if err != nil {
+		fmt.Println("ไม่สำเร็จ")
+		log.Println(err)
+	} else {
+		fmt.Println("UserEmailVerifySend สำเร็จ")
+		fmt.Println(response.StatusCode)
+		fmt.Println(response.Body)
+		fmt.Println(response.Headers)
+	}
 }
 
 func (f *Frontend) UserGetMonster(ctx *gin.Context) {
@@ -1098,6 +1192,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		Password: passSig,
 		Status:   "Custom Registration",
 	})
+
+	f.UserEmailVerifySend(logid.Username, logid.Id, logid.Email)
 
 	ctx.Redirect(http.StatusFound, "/")
 }

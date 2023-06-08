@@ -20,12 +20,43 @@
 
 <body>
 
+
+
+
+
+
+
 	{{ template "top" . }}
 	{{ template "content" . }}
 	{{ template "bottom" . }}
 
 
 
+
+
+
+
+	<script>
+
+		window.onload = function () {
+			document.getElementById('closepopup').onclick = function () {
+				var mainpage = document.getElementById('mainpage');
+				mainpage.classList.remove('hidden');
+				mainpage.classList.add('block');
+				document.getElementById('mainpopup').classList.add('hidden');
+			};
+		};
+
+		// window.onload = function () {
+		// 	document.getElementById('button').onclick = function () {
+		// 		var mainpage = document.getElementById('mainpage');
+		// 		mainpage.classList.remove('hidden');
+		// 		mainpage.classList.add('block');
+		// 		document.getElementById('mainpopup').classList.add('hidden');
+		// 	};
+		// };
+
+	</script>
 
 	<script>
 		var nav = document.querySelector(".nav-links")

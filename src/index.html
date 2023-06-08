@@ -65,7 +65,9 @@
                     </div>
 
                     <div class="dropdown" id="dropdown">
-                        <button class="bg-[url('/public/data/img/LOGOUT-BOTTON.png')] bg-contain bg-center bg-no-repeat flex justify-center" onclick="handleDropdownClicked(event)">
+                        <button
+                            class="bg-[url('/public/data/img/LOGOUT-BOTTON.png')] bg-contain bg-center bg-no-repeat flex justify-center"
+                            onclick="handleDropdownClicked(event)">
                             <img class="text-center w-[32px]" src="/public/data/img/user2.png" alt="">
                             <p class="text-green-700 font-bold">future333</p>
                         </button>
@@ -120,10 +122,13 @@
 
 
 
+
+        </div>
+
     </header>
 
     <!-- Home Page -->
-    <section class="pb-20">
+    <section class="pb-20" id="main_home">
 
         <div class="pt-10 flex flex-col items-center gap-y-4">
             <div>
@@ -150,9 +155,9 @@
                 <a href="#"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
                 <a href="#"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
             </div>
-
-
         </div>
+
+
     </section>
 
     <!-- Ranking -->
@@ -166,7 +171,7 @@
                     <img src="/public/data/img/CAPA_ARROW_LEFT.png" alt="">
 
                 </div>
-                    <img src="/public/data/img/capa.png" alt="" width="200px">
+                <img src="/public/data/img/capa.png" alt="" width="200px">
                 <div>
                     <img src="/public/data/img/CAPA_ARROW_RIGHT.png" alt="">
                 </div>
@@ -520,6 +525,15 @@
     </footer>
 
 
+    <script>
+
+        // window.onload = function () {
+        //     //document.getElementById('button').onclick = function () {
+        //         //document.getElementById('main_home').style.display = 'none'
+        //     //};
+        // };
+
+    </script>
 
     <script>
         var nav = document.querySelector(".nav-links")
