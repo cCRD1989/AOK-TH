@@ -3,9 +3,14 @@ package main
 import (
 	"ccrd/controller"
 	"ccrd/middleware"
+	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/sendgrid/sendgrid-go"
+	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
 func serveRoutes(r *gin.Engine) {
@@ -34,6 +39,55 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.POST("/profile/delete", middleware.UserCheck(), frontend_user.UserGetDelete)       //profile
 
 	frontend_userGroup.GET("/email/verify/:code", frontend_user.UserEmailVerify) //mail
+	frontend_userGroup.GET("/email", func(ctx *gin.Context) {
+
+		user := "Test001"
+		Id := "1111222333"
+		email := "siwanat.s@ro-legend.com"
+
+		from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
+		subject := "AOK-TH Verifying your email address."
+		to := mail.NewEmail("AOK-TH", email)
+
+		plainTextContent := `
+		hello. %s 
+		Please verify email
+		You’re almost there! We sent an email to Click here to verify your email address. http://%s/email/verify/%x
+		
+		Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.
+	
+		`
+
+		htmlContent := `
+		<html>
+			<head></head>
+			<body>
+				<p>hello. %s </p>
+				<p>Please verify email</p>
+				<p>You’re almost there! We sent an email to <a href="http://%s/email/verify/%x"><u>Click here to verify your email address.</u></a></p>
+				<p></p>
+				<p>Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.</p>
+			</body>
+		</html>
+		`
+
+		plainTextContent = fmt.Sprintf(plainTextContent, user, "ageofkhaganth.com", Id)
+		htmlContent = fmt.Sprintf(htmlContent, user, "ageofkhaganth.com", Id)
+
+		message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
+		client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
+		response, err := client.Send(message)
+
+		if err != nil {
+			fmt.Println("ไม่สำเร็จ")
+			log.Println(err)
+		} else {
+			fmt.Println("UserEmailVerifySend สำเร็จ")
+			fmt.Println(response.StatusCode)
+			fmt.Println(response.Body)
+			fmt.Println(response.Headers)
+		}
+	}) //mail
 
 	frontend_userGroup.GET("/newpage/:id", frontend_user.UserNewPage) //newpage
 

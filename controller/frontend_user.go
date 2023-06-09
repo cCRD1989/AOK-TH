@@ -461,10 +461,8 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 	plainTextContent := `
 	hello. %s 
 	Please verify email
-	You’re almost there! We sent an email to Click here to verify your email address. http://%s/email/verify/%x
-	
+	You’re almost there! We sent an email to Click here to verify your email address. http://%s/email/verify/%s
 	Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.
-
 	`
 
 	htmlContent := `
@@ -473,15 +471,15 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 		<body>
 			<p>hello. %s </p>
 			<p>Please verify email</p>
-			<p>You’re almost there! We sent an email to <a href="http://%s/email/verify/%x"><u>Click here to verify your email address.</u></a></p>
+			<p>You’re almost there! We sent an email to <a href="http://%s/email/verify/%s"><u>Click here to verify your email address.</u></a></p>
 			<p></p>
 			<p>Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.</p>
 		</body>
 	</html>
 	`
 
-	plainTextContent = fmt.Sprintf(plainTextContent, user, "ageofkhaganth.com", Id)
-	htmlContent = fmt.Sprintf(htmlContent, user, "ageofkhaganth.com", Id)
+	plainTextContent = fmt.Sprintf(plainTextContent, user, "https://www.ageofkhaganth.com", Id)
+	htmlContent = fmt.Sprintf(htmlContent, user, "https://www.ageofkhaganth.com", Id)
 
 	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
 	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
