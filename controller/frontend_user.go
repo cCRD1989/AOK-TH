@@ -245,6 +245,19 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 	user := aokmodel.Userlogin{}
 	user = user.FindUserByName(Form.Username)
 	fmt.Println("user: ", user)
+
+	//Chaeck ID index
+	if user.Isemailverified == 99 {
+
+		ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
+			"title":   "Age Of Khagan Thailand | Login",
+			"user":    aokmodel.Userlogin{},
+			"bg":      "/public/data/img/LOGIN-BG.png",
+			"message": "ไอดีนี้จะดำเนินการลบในอีก 30 วัน",
+		})
+
+	}
+
 	// Check ID
 	if user.Id == "" {
 		ctx.Redirect(http.StatusFound, "/")
@@ -435,7 +448,12 @@ func (f *Frontend) UserGetDelete(ctx *gin.Context) {
 
 		db.AOK_DB.Where("username = ?", user.Username).First(&aokuser)
 
+		aokuser.Isemailverified = 99
+
+		db.AOK_DB.Save(&aokuser)
+
 		fmt.Println("aokuser", aokuser, checkbox)
+		fmt.Println("aokuser", aokuser.Isemailverified)
 
 		// //บันทึก Log  LogRegister
 		// db.Conn.Save(&model.LogRegister{

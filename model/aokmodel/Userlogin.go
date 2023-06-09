@@ -23,9 +23,9 @@ type Userlogin struct {
 	Username string `gorm:"type:varchar(32);not null;uniqueIndex"`
 	Password string `gorm:"type:varchar(72);not null"`
 	// Gold            int
-	Cash  int
-	Email string `gorm:"type:varchar(50);not null;default:"`
-	// Isemailverified int
+	Cash            int
+	Email           string `gorm:"type:varchar(50);not null;default:"`
+	Isemailverified int
 	// Authtype        int
 	// Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
 	// Userlevel       int
@@ -42,10 +42,7 @@ func (n *Userlogin) TableName() string {
 func (u *Userlogin) FindUserByName(username string) Userlogin {
 
 	var user Userlogin
-	db.AOK_DB.Where("username = ?", username).First(&user)
+	db.AOK_DB.Select("id,username,password,cash,email,isemailverified").Where("username = ?", username).First(&user)
 
 	return user
 }
-
-
-

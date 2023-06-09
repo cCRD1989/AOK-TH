@@ -31,7 +31,8 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("/maps/mob/:id", frontend_user.UserGetMonster)                                 //maps
 	frontend_userGroup.GET("/profile", middleware.UserCheck(), frontend_user.UserGetProfile)              //profile
 	frontend_userGroup.POST("/profile/changpass", middleware.UserCheck(), frontend_user.UserGetChangPass) //profile
-	frontend_userGroup.POST("/profile/delete", middleware.UserCheck(), frontend_user.UserGetDelete)       //profile
+
+	frontend_userGroup.POST("/profile/delete", middleware.UserCheck(), frontend_user.UserGetDelete) //UserGetDelete
 
 	frontend_userGroup.GET("/email/verify/:code", frontend_user.UserEmailVerify) //mail
 

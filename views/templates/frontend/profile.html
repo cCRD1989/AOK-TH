@@ -189,27 +189,31 @@
 
                             <!-- ลบ บช. -->
                             <div id="profile_page2" class="hidden">
-                                <p class="px-5 text-red-500">
-                                    <span class="text-xl font-bold"> ลบบัญชี ผู้ใช้งาน</span>
 
-                                    <br>
-                                    ท่านแน่ใจหรือไม่ว่าต้องการลบบัญชีใช้งานของท่านออกจากระบบ
-                                    หลังจากลบออกแล้วท่านจะไม่สามารถใช้งานบัญชีใช้งานนี้ได้อีก
-                                    <br>
-                                </p>
-                                <div class="px-5 text-white flex mt-5">
-                                    <input class="w-5" type="checkbox" name="checkbox" id="" required>
-                                    <div class="pl-3">
-                                        I agree
-                                        <span> <a href="/privacypolicy">Privacy Policy</a> and <a
-                                                href="/service">Service Agreement</a></span>
+                                <form action="/profile/delete" method="post">
+                                    <p class="px-5 text-red-500">
+                                        <span class="text-xl font-bold"> ลบบัญชี ผู้ใช้งาน</span>
+    
                                         <br>
-                                        <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
+                                        ท่านแน่ใจหรือไม่ว่าต้องการลบบัญชีใช้งานของท่านออกจากระบบ
+                                        หลังจากลบออกแล้วท่านจะไม่สามารถใช้งานบัญชีใช้งานนี้ได้อีก
+                                        <br>
+                                    </p>
+                                    <div class="px-5 text-white flex mt-5">
+                                        <input class="w-5" type="checkbox" name="checkbox" id="" required>
+                                        <div class="pl-3">
+                                            I agree
+                                            <span> <a href="/privacypolicy">Privacy Policy</a> and <a
+                                                    href="/service">Service Agreement</a></span>
+                                            <br>
+                                            <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <button
-                                    class="px-5 bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
-                                    type="submit">ลบบัญชี</button>
+                                    <button
+                                        class="px-5 bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
+                                        type="submit">ลบบัญชี</button>
+                                </form>
+                               
                             </div>
 
                         </div>
