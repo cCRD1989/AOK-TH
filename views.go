@@ -60,11 +60,11 @@ func formatDate(datetime time.Time, format string) string {
 
 func GatCharacterClass(id int) string {
 	Job := map[int]string{
-		970178100:  "Knight",
+		1817826663: "Knight",
 		479184257:  "Necromancer",
 		512936679:  "Micko",
-		1817826663: "Sorcerer",
-		607677489:  "Assassin",
+		607677489:  "Sorcerer",
+		970178100:  "Assassin",
 		-859687870: "Cleric",
 	}
 	return Job[id]

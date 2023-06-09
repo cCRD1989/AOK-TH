@@ -123,11 +123,11 @@ func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
 	model.QueryKeyword = qKeyword
 
 	Job := map[string]int{
-		"knight":      970178100,
-		"necromancer": 479184257,
-		"micko":       512936679,
-		"sorcerer":    1817826663,
-		"assassin":    607677489,
+		"assassin":    970178100,  //
+		"necromancer": 479184257,  //
+		"micko":       512936679,  //
+		"knight":      1817826663, //
+		"sorcerer":    607677489,  //
 		"cleric":      -859687870,
 		"allclass":    0,
 	}
@@ -255,7 +255,6 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 			"bg":      "/public/data/img/LOGIN-BG.png",
 			"message": "ไอดีนี้จะดำเนินการลบในอีก 30 วัน",
 		})
-
 	}
 
 	// Check ID
