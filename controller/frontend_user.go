@@ -294,9 +294,10 @@ func (f *Frontend) UserGetRegister(ctx *gin.Context) {
 
 	//
 	ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
-		"title": "Age Of Khagan Thailand | Register",
-		"user":  user,
-		"bg":    "/public/data/img/REGISTER-BG.png",
+		"title":   "Age Of Khagan Thailand | Register",
+		"user":    user,
+		"bg":      "/public/data/img/REGISTER-BG.png",
+		"message": "",
 	})
 }
 
@@ -504,23 +505,23 @@ func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
 	subject := "Verifying your email address will enable you to"
 	to := mail.NewEmail("AOK-TH", "yokoyokororog@gmail.com")
 	plainTextContent := `
-	Dear %s, 
+	hello. %s 
+	Please verify email
+	You’re almost there! We sent an email to Click here to verify your email address. http://%s/verify/c/%x
 	
-	In order to help maintain the security of your Blaze account, please verify your email address. 
-	
-	Follow this link to verify your email address: http://%s/verify/c/%x
+	Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.
 
-	Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.
-`
+	`
 
 	htmlContent := `
 	<html>
 		<head></head>
 		<body>
-			<p>Dear %s,</p>
-			<p>In order to help maintain the security of your Blaze account, please verify your email address.</p>
-			<p><a href="http://%s/verify/c/%x"><u>Click here to verify your email address.</u></a></p>
-			<p>Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.</p>
+			<p>hello. %s </p>
+			<p>Please verify email</p>
+			<p>You’re almost there! We sent an email to <a href="http://%s/verify/c/%x"><u>Click here to verify your email address.</u></a></p>
+			<p></p>
+			<p>Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.</p>
 		</body>
 	</html>
 	`
@@ -1137,11 +1138,12 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 
 	if userID == "-" || email == "-" || pass == "-" || repass == "-" {
 		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
-			"title": "Age Of Khagan | Custom Registration",
-			"name":  "กรอกข้อมูลให้ครบ",
-			"data":  data,
-			"bg":    "/public/data/img/REGISTER-BG.png",
-			"user":  user,
+			"title":   "Age Of Khagan | Custom Registration",
+			"name":    "กรอกข้อมูลให้ครบ",
+			"data":    data,
+			"bg":      "/public/data/img/REGISTER-BG.png",
+			"user":    user,
+			"message": "",
 		})
 		return
 	}
@@ -1149,11 +1151,12 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 	//ตรวจสอบพาสตรงกัน
 	if pass != repass {
 		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
-			"title": "Age Of Khagan | Custom Registration",
-			"name":  "Password ไม่ตรงกัน",
-			"data":  data,
-			"bg":    "/public/data/img/REGISTER-BG.png",
-			"user":  user,
+			"title":   "Age Of Khagan | Custom Registration",
+			"name":    "Password ไม่ตรงกัน",
+			"data":    data,
+			"bg":      "/public/data/img/REGISTER-BG.png",
+			"user":    user,
+			"message": "",
 		})
 		return
 	}
@@ -1161,11 +1164,12 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 	//ตรวจสอบไอดีในระบบ
 	if err := db.AOK_DB.First(&aokmodel.Userlogin{}, "username = ?", userID).Error; err == nil {
 		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
-			"title": "Age Of Khagan | Custom Registration",
-			"name":  "Username มีอยู่ในระบบแล้ว โปรดลองใหม่",
-			"data":  data,
-			"bg":    "/public/data/img/REGISTER-BG.png",
-			"user":  user,
+			"title":   "Age Of Khagan | Custom Registration",
+			"name":    "Username มีอยู่ในระบบแล้ว โปรดลองใหม่",
+			"data":    data,
+			"bg":      "/public/data/img/REGISTER-BG.png",
+			"user":    user,
+			"message": "",
 		})
 		return
 	}
@@ -1189,11 +1193,12 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 	}
 	if err := db.AOK_DB.Save(&logid).Error; err != nil {
 		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
-			"title": "Age Of Khagan | Custom Registration",
-			"name":  "บันทึกลงฐานข้อมูลไม่สำเร็จ Error",
-			"data":  data,
-			"bg":    "/public/data/img/REGISTER-BG.png",
-			"user":  user,
+			"title":   "Age Of Khagan | Custom Registration",
+			"name":    "บันทึกลงฐานข้อมูลไม่สำเร็จ Error",
+			"data":    data,
+			"bg":      "/public/data/img/REGISTER-BG.png",
+			"user":    user,
+			"message": "",
 		})
 		return
 	}
@@ -1211,7 +1216,15 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 
 	f.UserEmailVerifySend(logid.Username, logid.Id, logid.Email)
 
-	ctx.Redirect(http.StatusFound, "/")
+	//ctx.Redirect(http.StatusFound, "/")
+	ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
+		"title":   "Age Of Khagan | Custom Registration",
+		"name":    "",
+		"data":    data,
+		"bg":      "/public/data/img/REGISTER-BG.png",
+		"user":    user,
+		"message": "open",
+	})
 }
 
 func (f *Frontend) Auth_facebook_login(ctx *gin.Context) {

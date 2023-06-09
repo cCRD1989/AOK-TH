@@ -77,7 +77,8 @@
 
             <div class="hidden md:block">
                 <div class="fastButtons">
-                    <div class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
+                    <div
+                        class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
                         <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
                             <li><a class="menuhover" href="#"><img src="/public/data/img/GUIDE-BOOK.png"
                                         alt="">Guide<br><span>ไกด์</span></a>
@@ -104,71 +105,94 @@
 
                 <div class="w-[80%]">
 
-                    <div class="text-2xl font-extrabold text-white pt-4 text-center">
-                        Register/สมัคร
+                    <div class="relative">
+
+                        <div>
+                            <div class="text-2xl font-extrabold text-white pt-4 text-center">
+                                Register/สมัคร
+                            </div>
+                            <div class="ranking-hi w-[177px] mx-auto"></div>
+                            <hr>
+
+                            <form action="" class="pt-10">
+                                <div class="mb-5">
+                                    <label class="font-medium text-[18px] text-white block mb-2" for="username">
+                                        Player/Username
+                                    </label>
+                                    <input
+                                        class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                        id="username" type="text" placeholder="Enter your player/username" required>
+                                </div>
+
+                                <div class="mb-6">
+                                    <label class="font-medium text-[18px] text-white block mb-2" for="email">
+                                        Email
+                                    </label>
+                                    <input
+                                        class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                        id="email" type="email" placeholder="Enter your Email" required>
+                                </div>
+
+                                <div class="md:flex justify-between">
+                                    <div>
+                                        <label class="font-medium text-[18px] text-white block mb-2" for="password">
+                                            Password
+                                        </label>
+                                        <input
+                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                            id="password" type="password" placeholder="Enter your password" required>
+                                    </div>
+
+                                    <div>
+                                        <label class="font-medium text-[18px] text-white block mb-2" for="repassword">
+                                            Confirm Password
+                                        </label>
+                                        <input
+                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                            id="repassword" type="password" placeholder="Enter your Confirm Password"
+                                            required>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="text-white flex mt-5">
+                                    <input class="w-5" type="checkbox" name="checkbox" id="" required>
+                                    <div class="pl-3">
+                                        <span> <a href="">I agree Privacy Policy</a> and <a href="">service
+                                                agreement</a></span>
+                                        <br>
+                                        <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="text-center md:mt-[20%]">
+                                    <p class="text-amber-400 text-lg font-bold">{{ .name }}</p>
+                                    <button class="bg-[url('/public/data/img/btn_register.png')] w-[310px] h-[80px]"
+                                        type="submit"></button>
+                                    <br>
+                                    <a class="font-medium text-[18px] text-white underline"
+                                        href="">Login/เข้าสู่ระบบ</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        
+                        <div class="absolute top-[25%]">
+                            <div
+                                class="text-center w-[540px] h-[422px] bg-[url('/public/data/img/old_paper.png')] bg-center bg-no-repeat  flex flex-col justify-center items-center text-[40px] font-bold text-[#006717]">
+                                <p>Register success <br> สมัคสมาชิกสำเร็จ</p>
+                                <a href="">
+                                    <img src="/public/data/img/close-btn.png" alt="">
+                                </a>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="ranking-hi w-[177px] mx-auto"></div>
-                    <hr>
-                    
-                    <form action="" class="pt-10">
-                        <div class="mb-5">
-                            <label class="font-medium text-[18px] text-white block mb-2" for="username">
-                                Player/Username
-                            </label>
-                            <input
-                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                id="username" type="text" placeholder="Enter your player/username" required>
-                        </div>
-
-                        <div class="mb-6">
-                            <label class="font-medium text-[18px] text-white block mb-2" for="email">
-                                Email
-                            </label>
-                            <input
-                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                id="email" type="email" placeholder="Enter your Email" required>
-                        </div>
-
-                        <div class="md:flex justify-between">
-                            <div>
-                                <label class="font-medium text-[18px] text-white block mb-2" for="password">
-                                    Password
-                                </label>
-                                <input
-                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                    id="password" type="password" placeholder="Enter your password" required>
-                            </div>
-
-                            <div>
-                                <label class="font-medium text-[18px] text-white block mb-2" for="repassword">
-                                    Confirm Password
-                                </label>
-                                <input
-                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                    id="repassword" type="password" placeholder="Enter your Confirm Password" required>
-
-                            </div>
-                        </div>
 
 
-                        <div class="text-white flex mt-5">
-                            <input class="w-5" type="checkbox" name="checkbox" id="" required>
-                            <div class="pl-3">
-                                <span> <a href="">I agree Privacy Policy</a> and <a href="">service agreement</a></span>
-                                <br>
-                                <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
-                            </div>
 
-                        </div>
-
-                        <div class="text-center md:mt-[20%]">
-                            <p class="text-amber-400 text-lg font-bold">{{ .name }}</p>
-                            <button class="bg-[url('/public/data/img/btn_register.png')] w-[310px] h-[80px]"
-                                type="submit"></button>
-                            <br>
-                            <a class="font-medium text-[18px] text-white underline" href="">Login/เข้าสู่ระบบ</a>
-                        </div>
-                    </form>
                 </div>
 
                 <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 p-3">

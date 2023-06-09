@@ -660,6 +660,18 @@ video {
   top: 85%;
 }
 
+.top-\[50\%\] {
+  top: 50%;
+}
+
+.top-\[25\%\] {
+  top: 25%;
+}
+
+.left-\[25\%\] {
+  left: 25%;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -867,6 +879,26 @@ video {
   height: 100%;
 }
 
+.h-\[422px\] {
+  height: 422px;
+}
+
+.h-\[\] {
+  height: ;
+}
+
+.h-\[244px\] {
+  height: 244px;
+}
+
+.h-\[100\] {
+  height: 100;
+}
+
+.h-\[100\%\] {
+  height: 100%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -988,6 +1020,18 @@ video {
   width: 100vw;
 }
 
+.w-\[100px\] {
+  width: 100px;
+}
+
+.w-\[540px\] {
+  width: 540px;
+}
+
+.w-\[100\] {
+  width: 100;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -1026,16 +1070,8 @@ video {
   flex-wrap: wrap;
 }
 
-.items-end {
-  align-items: flex-end;
-}
-
 .items-center {
   align-items: center;
-}
-
-.justify-end {
-  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1305,6 +1341,14 @@ video {
   background-image: url('/public/data/img/pay-btn.png');
 }
 
+.bg-\[url\(\)\] {
+  background-image: url();
+}
+
+.bg-\[url\(\'\/public\/data\/img\/old_paper\.png\'\)\] {
+  background-image: url('/public/data/img/old_paper.png');
+}
+
 .bg-contain {
   background-size: contain;
 }
@@ -1470,10 +1514,6 @@ video {
   text-align: center;
 }
 
-.text-right {
-  text-align: right;
-}
-
 .text-end {
   text-align: end;
 }
@@ -1544,6 +1584,10 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[40px\] {
+  font-size: 40px;
 }
 
 .font-black {
@@ -1651,6 +1695,14 @@ video {
 .text-yellow-100 {
   --tw-text-opacity: 1;
   color: rgb(254 249 195 / var(--tw-text-opacity));
+}
+
+.text-\[\] {
+  color: ;
+}
+
+.text-\[\#\#006717\] {
+  color: ##006717;
 }
 
 .underline {
@@ -2302,6 +2354,10 @@ video {
     height: 100%;
   }
 
+  .md\:h-\[422px\] {
+    height: 422px;
+  }
+
   .md\:w-\[30\%\] {
     width: 30%;
   }
@@ -2324,6 +2380,10 @@ video {
 
   .md\:w-\[70\%\] {
     width: 70%;
+  }
+
+  .md\:w-\[540px\] {
+    width: 540px;
   }
 
   .md\:min-w-\[570px\] {
