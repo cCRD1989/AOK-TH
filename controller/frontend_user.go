@@ -456,24 +456,25 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
 	subject := "Verifying your email address will enable you to"
 	to := mail.NewEmail("AOK-TH", email)
-	plainTextContent := `
-	Dear %s, 
-	
-	In order to help maintain the security of your Blaze account, please verify your email address. 
-	
-	Follow this link to verify your email address: http://%s/verify/c/%x
 
-	Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.
-`
+	plainTextContent := `
+	hello. %s 
+	Please verify email
+	You’re almost there! We sent an email to Click here to verify your email address. http://%s/verify/%x
+	
+	Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.
+
+	`
 
 	htmlContent := `
 	<html>
 		<head></head>
 		<body>
-			<p>Dear %s,</p>
-			<p>In order to help maintain the security of your Blaze account, please verify your email address.</p>
-			<p><a href="http://%s/verify/c/%x"><u>Click here to verify your email address.</u></a></p>
-			<p>Verifying your email address will enable you to: take advantage of security, change your Blaze account credentials, and to recover access to your Blaze account should you lose access or forget your password.</p>
+			<p>hello. %s </p>
+			<p>Please verify email</p>
+			<p>You’re almost there! We sent an email to <a href="http://%s/verify/%x"><u>Click here to verify your email address.</u></a></p>
+			<p></p>
+			<p>Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.</p>
 		</body>
 	</html>
 	`
@@ -498,50 +499,7 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 
 func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
 
-	usr, _ := ctx.Get("user")
-	user, _ := usr.(aokmodel.Userlogin)
-
-	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
-	subject := "Verifying your email address will enable you to"
-	to := mail.NewEmail("AOK-TH", "yokoyokororog@gmail.com")
-	plainTextContent := `
-	hello. %s 
-	Please verify email
-	You’re almost there! We sent an email to Click here to verify your email address. http://%s/verify/c/%x
-	
-	Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.
-
-	`
-
-	htmlContent := `
-	<html>
-		<head></head>
-		<body>
-			<p>hello. %s </p>
-			<p>Please verify email</p>
-			<p>You’re almost there! We sent an email to <a href="http://%s/verify/c/%x"><u>Click here to verify your email address.</u></a></p>
-			<p></p>
-			<p>Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.</p>
-		</body>
-	</html>
-	`
-
-	plainTextContent = fmt.Sprintf(plainTextContent, user.Username, "ageofkhaganth.com", user.Id)
-	htmlContent = fmt.Sprintf(htmlContent, user.Username, "ageofkhaganth.com", user.Id)
-
-	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
-	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
-	response, err := client.Send(message)
-
-	if err != nil {
-		fmt.Println("ไม่สำเร็จ")
-		log.Println(err)
-	} else {
-		fmt.Println("UserEmailVerifySend สำเร็จ")
-		fmt.Println(response.StatusCode)
-		fmt.Println(response.Body)
-		fmt.Println(response.Headers)
-	}
+	ctx.Redirect(http.StatusNotFound, "/")
 }
 
 func (f *Frontend) UserGetMonster(ctx *gin.Context) {
