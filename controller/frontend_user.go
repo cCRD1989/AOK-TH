@@ -453,14 +453,15 @@ func (f *Frontend) UserGetDelete(ctx *gin.Context) {
 }
 
 func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
+
 	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
-	subject := "Verifying your email address will enable you to"
+	subject := "AOK-TH Verifying your email address."
 	to := mail.NewEmail("AOK-TH", email)
 
 	plainTextContent := `
 	hello. %s 
 	Please verify email
-	You’re almost there! We sent an email to Click here to verify your email address. http://%s/verify/%x
+	You’re almost there! We sent an email to Click here to verify your email address. http://%s/email/verify/%s
 	
 	Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.
 
@@ -472,7 +473,7 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 		<body>
 			<p>hello. %s </p>
 			<p>Please verify email</p>
-			<p>You’re almost there! We sent an email to <a href="http://%s/verify/%x"><u>Click here to verify your email address.</u></a></p>
+			<p>You’re almost there! We sent an email to <a href="http://%s/email/verify/%s"><u>Click here to verify your email address.</u></a></p>
 			<p></p>
 			<p>Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.</p>
 		</body>
@@ -498,8 +499,9 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 }
 
 func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
-
-	ctx.Redirect(http.StatusNotFound, "/")
+	icode := ctx.Param("id")
+	fmt.Println("icode", icode)
+	ctx.Redirect(http.StatusFound, "/")
 }
 
 func (f *Frontend) UserGetMonster(ctx *gin.Context) {
