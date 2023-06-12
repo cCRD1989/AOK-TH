@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <!-- Fount -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+    <nav class="bg-[url('/public/data/img/LOGIN-BG.png')] bg-top bg-no-repeat bg-black">
+        <header class="bg-[#000000b3] md:bg-[#0000004D] ">
+
+            <nav class="flex items-center md:justify-center justify-between  w-[80%] mx-auto md:gap-6 h-[100px]">
+
+                <div class="">
+                    <img src="/public/data/img/AOK_LOGO_NAV-BAR.png" alt="" width="124px">
+                </div>
+
+
+                <div
+                    class="nav-links bg-[#000000b3] md:static absolute md:bg-transparent top-[-200%] w-full left-0 flex justify-center duration-500 h-[844px] pt-5">
+
+                    <ul class="flex flex-col md:flex-row md:items-center text-white gap-y-10 md:gap-20 text-[20px]">
+                        <li class="menuhover"><a href="#">Home<br>หน้าแรก</a></li>
+                        <li class="menuhover"><a href="#">Ranking<br>จัดอันดับ</a></li>
+                        <li class="menuhover"><a href="#">News<br>ประกาศ</a></li>
+                        <li class="menuhover"><a href="#">Community<br>ชมชุน</a></li>
+
+                        <div class="flex flex-wrap gap-3 justify-center md:hidden">
+                            <a href="#"><img src="/public/data/img/GOOGLE-PLAYSTORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/APP-STORE.png" alt="" width="157px"></a>
+                            <a href="#"><img src="/public/data/img/WINDOW.png" alt="" width="157px"></a>
+                        </div>
+
+                        <div class="block justify-center items-center mx-auto md:hidden mb-5">
+                            <a href="./login.html"><img src="/public/data/img/login-btn.png" alt="" width="240px"></a>
+                            <a href="#"><img src="/public/data/img/btn_register.png" alt="" width="240px"></a>
+                        </div>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <a href="#" class="hidden md:block">
+                        <img class="mr-5" src="/public/data/img/login-btn.png" alt="">
+                    </a>
+
+
+                    <div onclick="onToggleMenu(this)" class="bg-[#d02d015e] rounded-md block md:hidden cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </div>
+                </div>
+
+            </nav>
+
+            <aside class="flex justify-center relative top-[5px] md:top-[10px]">
+                <img src="/public/data/img/NAV-BAR.png" alt="">
+            </aside>
+
+            <div class="hidden md:block">
+                <div class="fastButtons">
+                    <div
+                        class="w-[90px] h-[306px] bg-[#00000099] bg-[url('/public/data/img/fastButtons-BG.png')] rounded-md ">
+                        <ul class="mx-auto w-[45px] pt-3 space-y-1 text-white text-center">
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/GUIDE-BOOK.png"
+                                        alt="">Guide<br><span>ไกด์</span></a>
+                            </li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/CLASS.png"
+                                        alt="">Class<br><span>อาชีพ</span></a></li>
+                            <li><a class="menuhover" href="#"><img src="/public/data/img/MAP.png"
+                                        alt="">Map<br><span>แผนที่</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="fastButtons-topup box">
+                    <a href="#"><img src="/public/data/img/topup-bg.png" alt="" width="100%"></a>
+                </div>
+            </div>
+
+
+
+        </header>
+
+        <section class="flex justify-center">
+            <div class="w-[80%] h-[740px] bg-[#141414AB] mt-5 relative flex justify-center rounded-3xl">
+                <div class="w-[100%] md:w-[70%] md:h-full pt-[10px] md:py-[60px]">
+                    <div
+                        class="flex justify-center items-center h-full bg-[#0000004D] backdrop-blur-xl rounded-3xl outline outline-offset-0 outline-1 outline-[#fcbd00a6]">
+
+                        <div class="w-[85%] rounded-3xl overflow-auto">
+
+
+                            <!-- ลบ บช. -->
+                            <div class="">
+                                <p class="px-5 text-red-500">
+
+                                    ผู้เล่นที่มีความต้องการลบบัญชีเกม Age of Khagan
+                                    <br>
+                                    ของตนเองโดยมาตรฐานแล้วสามารถทำขั้นตอนการดำเนินการลบบัญชีมีดังต่อไปนี้
+                                    <br>
+
+                                    <br>
+                                    1. login ผ่านทางเว็บไซต์ https://www.ageofkhaganth.com
+                                    <br>
+                                    2. เลือกเมนู My Profile
+                                    <br>
+                                    3. ลบบัญชี ผู้ใช้งาน
+                                    <br>
+                                    4. ยอมรับเงื่อนไข ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ
+                                    <br>
+                                    5. ลบบัญชี
+                                    <br>
+
+                                    <br>
+                                    หลังจากทำการลบบัญชีเรียบร้อยแล้ว
+                                    <br>
+                                    ข้อมูลในบัญชีของผู้เล่นจะถูกลบออกอย่างถาวรและไม่สามารถกู้คืนข้อมูลได้อีก
+                                    <br>
+                                    <br>
+
+                                    <span class="text-xl font-bold"> ลบบัญชี ผู้ใช้งาน</span>
+                                    <br>
+                                    ท่านแน่ใจหรือไม่ว่าต้องการลบบัญชีใช้งานของท่านออกจากระบบ
+                                    หลังจากลบออกแล้วท่านจะไม่สามารถใช้งานบัญชีใช้งานนี้ได้อีก
+                                    <br>
+
+                                </p>
+                                <div class="px-5 text-white flex mt-5">
+                                    <input class="w-5" type="checkbox" name="checkbox" id="" required>
+                                    <div class="pl-3">
+                                        I agree
+                                        <span> <a href="/privacypolicy">Privacy Policy</a> and <a
+                                                href="/service">Service Agreement</a></span>
+                                        <br>
+                                        <span>ฉันยอมรับ ข้อตกลงความเป็นส่วนตัว และ เงื่อนไขการให้บริการ</span>
+                                    </div>
+                                </div>
+                                <button
+                                    class="px-5 bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
+                                    type="submit">ลบบัญชี</button>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+
+
+            </div>
+        </section>
+
+
+        <div class="pb-20"></div>
+    </nav>
+
+    <script>
+        var profile_page1 = document.getElementById("profile_page1");
+        var profile_page2 = document.getElementById("profile_page2");
+        var profile_page3 = document.getElementById("profile_page3");
+
+
+
+        function openProFile_page1() {
+            profile_page1.classList.remove("hidden")
+            profile_page2.classList.add("hidden")
+            profile_page3.classList.add("hidden")
+        }
+
+        function openProFile_page2() {
+            profile_page1.classList.add("hidden")
+            profile_page2.classList.remove("hidden")
+            profile_page3.classList.add("hidden")
+        }
+
+        function openProFile_page3() {
+
+            profile_page1.classList.add("hidden")
+            profile_page2.classList.add("hidden")
+            profile_page3.classList.remove("hidden")
+        }
+
+    </script>
+
+</body>
+
+</html>

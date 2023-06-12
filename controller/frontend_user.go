@@ -434,6 +434,34 @@ func (f *Frontend) UserGetChangPass(ctx *gin.Context) {
 	ctx.Redirect(http.StatusFound, "/profile")
 }
 
+func (f *Frontend) UserGetPDelete(ctx *gin.Context) {
+
+	visit := model.LogWeb{
+		DataType:  "Profile",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//
+	//
+	//log เติมเงิน
+
+	logtopup := []model.LogTopup{}
+	db.Conn.Where("user_id", user.Username).Where("data_type = ?", "NotificationTopup").Order("created_at DESC").Limit(7).Find(&logtopup)
+
+	//
+	ctx.HTML(http.StatusOK, "frontend/profiledelete.html", gin.H{
+		"title":    "Age Of Khagan Thailand | Login",
+		"user":     user,
+		"bg":       "/public/data/img/LOGIN-BG.png",
+		"logtopup": logtopup,
+	})
+}
+
 func (f *Frontend) UserGetDelete(ctx *gin.Context) {
 
 	checkbox := ctx.PostForm("checkbox")
