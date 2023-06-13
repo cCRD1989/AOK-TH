@@ -1,41 +1,59 @@
-<!-- <!DOCTYPE html> -->
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Tailwind CSS Carousel</title>
-    <link rel="stylesheet" href="../dist/output.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Of Khagan Thailand</title>
 
+    <!-- css -->
+    <link rel="stylesheet" href="/dist/output.css">
 
+    <!-- Fount -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-black">
 
-    <div class="w-screen h-[980px] bg-[url('/public/data/img/main-bg.png')] bg-top" id="mainpopup">
-        <div class="backdrop-blur-xl relative">
+    <div class="w-screen h-[980px] bg-[url('/public/data/img/main-bg.png')] bg-top bg-cover">
+        <div class="backdrop-blur-xl">
 
-            <div class="absolute right-0">
-                <div class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold m-5 flex justify-center items-center">
-                    เข้าสู้เว็บไซต์
+            <div class="w-[90%] md:w-[70%] h-[980px] mx-auto md:pt-[100px] flex flex-col justify-center items-center">
+
+                <div class="w-[90%]">
+
+                    <a class="hidden md:flex" href="/register">
+                        <img class="rounded-3xl" src="/public/data/img/newregis.png" alt="">
+                    </a>
+
+                    <a class="md:hidden" href="/register">
+                        <img class="rounded-3xl" src="/public/data/img/newregis2.png" alt="">
+                    </a>
+
+
                 </div>
 
-                   
-            </div>
-            <div class="w-[80%] h-[980px] mx-auto pt-[100px] md:flex justify-center items-center">
+                <div class="md:flex">
+                    <div
+                        class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
 
-                <div>
-                    <div class="relative">
-                        <img class="rounded-2xl" src="/public/data/รวมไฟล์ 2D by มีน/4k  background/BG1.png" alt="">
-                        
-                        <p class="p-3 absolute bottom-0 right-0 text-2xl text-main font-bold">ลงทะเบียนล่วงหน้า</p>
-                        
+                        <a href="/home">เข้าสู่เว็บไซต์</a>
+                    </div>
+                    <div
+                        class="bg-[url('/public/data/img/changepass-btn.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+
+                        <a href="/register">ลงทะเบียนล่วงหน้า</a>
                     </div>
                 </div>
-        
+
             </div>
+
         </div>
 
     </div>
-
 
 </body>
 
