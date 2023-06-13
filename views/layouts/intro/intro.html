@@ -18,31 +18,37 @@
 
 <body class="bg-black">
 
-    <div class="w-screen h-[980px] bg-[url('/public/data/img/main-bg.png')] bg-top bg-cover" id="mainpopup">
+    <div class="w-screen h-[980px] bg-[url('/public/data/img/main-bg.png')] bg-top bg-cover">
         <div class="backdrop-blur-xl">
 
-            
-            <div class="w-[70%] h-[980px] mx-auto pt-[100px] flex flex-col justify-center items-center">
+            <div class="w-[90%] md:w-[70%] h-[980px] mx-auto md:pt-[100px] flex flex-col justify-center items-center">
 
-                <div>
-                    <div class="relative">
+                <div class="w-[90%]">
+
+                    <a class="hidden md:flex" href="/register">
                         <img class="rounded-3xl" src="/public/data/img/newregis.png" alt="">
-                        
-                        <!-- <p class="p-3 absolute bottom-0 right-0 text-2xl text-main font-bold">ลงทะเบียนล่วงหน้า</p> -->
-                        
-                    </div>
+                    </a>
+
+                    <a class="md:hidden" href="/register">
+                        <img class="rounded-3xl" src="/public/data/img/newregis2.png" alt="">
+                    </a>
+
+
                 </div>
+
                 <div class="md:flex">
-                    <div class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
-                        
+                    <div
+                        class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+
                         <a href="/home">เข้าสู่เว็บไซต์</a>
                     </div>
-                    <div class="bg-[url('/public/data/img/changepass-btn.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
-                        
+                    <div
+                        class="bg-[url('/public/data/img/changepass-btn.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+
                         <a href="/register">ลงทะเบียนล่วงหน้า</a>
                     </div>
                 </div>
-        
+
             </div>
 
         </div>
