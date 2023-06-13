@@ -242,6 +242,20 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 	Form := aokmodel.Userlogin{Username: ctx.PostForm("username"), Password: ctx.PostForm("password")}
 	fmt.Println("Form: ", Form)
 
+	errs := unit.Validate(map[string]interface{}{
+		"username": Form.Username,
+	}, map[string]string{
+
+		"username": "required|min:6|max:15|alphanum",
+	})
+
+	if errs != nil {
+		fmt.Println("FindUserByName Validate Error.")
+		ctx.Redirect(http.StatusFound, "/")
+		fmt.Println("UserGetLogin Check ID Validate")
+		return
+	}
+
 	user := aokmodel.Userlogin{}
 	user = user.FindUserByName(Form.Username)
 	fmt.Println("user: ", user)
@@ -259,9 +273,12 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 
 	// Check ID
 	if user.Id == "" {
-		ctx.Redirect(http.StatusFound, "/")
-		fmt.Println("Check ID")
-		return
+		ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
+			"title":   "Age Of Khagan Thailand | Login",
+			"user":    aokmodel.Userlogin{},
+			"bg":      "/public/data/img/LOGIN-BG.png",
+			"message": "ไอดีนี้ไม่มีในระบบ",
+		})
 	}
 
 	// CompareHashAndPassword MD5
@@ -404,6 +421,20 @@ func (f *Frontend) UserGetChangPass(ctx *gin.Context) {
 		Password: Password_old,
 	}
 
+	errs := unit.Validate(map[string]interface{}{
+		"username": Form.Username,
+	}, map[string]string{
+
+		"username": "required|min:6|max:15|alphanum",
+	})
+
+	if errs != nil {
+		fmt.Println("UserGetChangPass Validate Error.")
+		ctx.Redirect(http.StatusFound, "/")
+		fmt.Println("UserGetLogin Check ID Validate")
+		return
+	}
+
 	userDB := aokmodel.Userlogin{}
 	userDB = userDB.FindUserByName(Form.Username)
 
@@ -473,11 +504,10 @@ func (f *Frontend) UserGetDelete(ctx *gin.Context) {
 
 		aokuser := aokmodel.Userlogin{}
 
-		db.AOK_DB.Where("username = ?", user.Username).First(&aokuser)
+		db.AOK_DB.Where("username = ?", user.Username).Delete(&aokuser)
 
-		aokuser.Isemailverified = 99
-
-		db.AOK_DB.Save(&aokuser)
+		// aokuser.Isemailverified = 99
+		// db.AOK_DB.Save(&aokuser)
 
 		fmt.Println("aokuser", aokuser, checkbox)
 		fmt.Println("aokuser", aokuser.Isemailverified)
@@ -541,10 +571,40 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 	}
 }
 
+func (f *Frontend) UserTokenCodeSend(user, Id, email, tokencode string) {
+
+	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
+	subject := "AOK-TH Item Code."
+	to := mail.NewEmail("AOK-TH", email)
+
+	plainTextContent := `
+	`
+
+	htmlContent := `
+	`
+
+	//plainTextContent = fmt.Sprintf(plainTextContent, user, "https://www.ageofkhaganth.com", Id)
+	//htmlContent = fmt.Sprintf(htmlContent, user, "https://www.ageofkhaganth.com", Id)
+
+	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
+	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
+	response, err := client.Send(message)
+
+	if err != nil {
+		log.Println(err)
+	} else {
+		fmt.Println("UserTokenCodeSend สำเร็จ")
+		fmt.Println(response.StatusCode)
+		fmt.Println(response.Body)
+		fmt.Println(response.Headers)
+	}
+}
+
 func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
 	icode := ctx.Param("id")
 	fmt.Println("icode", icode)
 	ctx.Redirect(http.StatusFound, "/")
+
 }
 
 func (f *Frontend) UserGetMonster(ctx *gin.Context) {
@@ -1177,6 +1237,30 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		return
 	}
 
+	errs := unit.Validate(map[string]interface{}{
+		"username":       userID,
+		"password":       pass,
+		"password_check": repass,
+		"email":          email,
+	}, map[string]string{
+
+		"username":       "required|min:6|max:15|alphanum",
+		"password":       "required|min:6|max:15|alphanum",
+		"password_check": "required|same:password",
+		"email":          "required|email",
+	})
+
+	if errs != nil {
+		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
+			"title":   "Age Of Khagan | Custom Registration",
+			"name":    "ตรวจสอบข้อมูลผิดพลาดโปรดลองใหม่",
+			"data":    data,
+			"bg":      "/public/data/img/REGISTER-BG.png",
+			"user":    user,
+			"message": "",
+		})
+	}
+
 	// สุ่ม IDCode
 	h := md5.New()
 	io.WriteString(h, strconv.Itoa(rand.Int()))
@@ -1186,6 +1270,24 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 	h = md5.New()
 	io.WriteString(h, pass)
 	passSig := hex.EncodeToString(h.Sum(nil))
+
+	// ตรวจสอบ การรับของรางวัล ลงทะเบรียนล่วงหน้าโดน เช็ค อีเมล์ ไม่ซ้ำ
+	if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("email = ?", email).Error; err != nil {
+		TokenCode := model.LogTokenregister{
+			Username: userID,
+			Email:    email,
+			Tokenid:  unit.RandStr(32),
+			Status:   0,
+		}
+		if err := db.Conn.Save(&TokenCode).Error; err != nil {
+
+			fmt.Println("เมล์ผ่าน แต่ไม่สามารถบันทึกข้อมูลได้")
+		}
+
+		fmt.Println("ลงทะเบียนล่วงหน้าสำเร็จ", TokenCode)
+	} else {
+		fmt.Println("เช็คลงทะเบียนล่วงหน้าเมล์ซ้ำ ไม่ได้รับสิทธิ์")
+	}
 
 	//บันทึกลงฐานข้อมูล
 	logid := aokmodel.Userlogin{

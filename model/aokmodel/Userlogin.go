@@ -1,6 +1,8 @@
 package aokmodel
 
-import "ccrd/db"
+import (
+	"ccrd/db"
+)
 
 // `id` varchar(50) NOT NULL,
 // `username` varchar(32) NOT NULL,
@@ -42,6 +44,7 @@ func (n *Userlogin) TableName() string {
 func (u *Userlogin) FindUserByName(username string) Userlogin {
 
 	var user Userlogin
+
 	db.AOK_DB.Select("id,username,password,cash,email,isemailverified").Where("username = ?", username).First(&user)
 
 	return user

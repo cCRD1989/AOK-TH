@@ -4,6 +4,8 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"io"
+	"math/rand"
+	"os"
 )
 
 func HashMD5(pass string) string {
@@ -19,4 +21,15 @@ func index(slice []int, item int) int {
 		}
 	}
 	return -1
+}
+
+var charset = []byte(os.Getenv("MY_SECRET_KEY"))
+
+func RandStr(n int) string {
+	b := make([]byte, n)
+	for i := range b {
+		// randomly select 1 character from given charset
+		b[i] = charset[rand.Intn(len(charset))]
+	}
+	return string(b)
 }
