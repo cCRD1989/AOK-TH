@@ -233,10 +233,10 @@
 
             <!-- หัวข้อตาราง -->
             <div class="maintabal text-main">
-                <div class="chilltabal1">No. Player/ผู้เล่น</div>
-                <div class="chilltabal2">Class/อาชีพ</div>
-                <div class="chilltabal2">Guild/กิลด์</div>
-                <div class="chilltabal2">ระดับ</div>
+                <div class="chilltabal1 w-full">No. Player/ผู้เล่น</div>
+                <div class="chilltabal2 w-full">Class/อาชีพ</div>
+                <div class="chilltabal2 w-full">Guild/กิลด์</div>
+                <div class="chilltabal2 w-full">ระดับ</div>
             </div>
 
     </form>
@@ -246,40 +246,40 @@
 
     {{ if eq $key 0 }}
     <div class="maintabal ranking-table-2">
-        <div class="chilltabal1 gap-4">
+        <div class="chilltabal1 w-full gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 6 }}</p>
+            <p>{{ CutString $value.Charactername 12 }}</p>
         </div>
-        <div class="chilltabal3">{{ GatCharacterClass $value.Dataid }}</div>
-        <div class="chilltabal3">{{ $value.Guildids }}</div>
-        <div class="chilltabal3">{{ $value.Level }}</div>
+        <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
     </div>
     {{ end }}
 
     {{ if eq $key 1 }}
     <div class="maintabal ranking-table-2">
-        <div class="chilltabal1 gap-4">
+        <div class="chilltabal1 gap-4 w-full">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 6 }}</p>
+            <p>{{ CutString $value.Charactername 12 }}</p>
         </div>
-        <div class="chilltabal3"> {{ GatCharacterClass $value.Dataid }} </div>
-        <div class="chilltabal3">{{ $value.Guildids }}</div>
-        <div class="chilltabal3">{{ $value.Level }}</div>
+        <div class="chilltabal3 w-full"> {{ GatCharacterClass $value.Dataid }} </div>
+        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
     </div>
     {{ end }}
 
     {{ if eq $key 2 }}
     <div class="maintabal ranking-table-2">
-        <div class="chilltabal1 gap-4">
+        <div class="chilltabal1 gap-4 w-full">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 6 }}</p>
+            <p>{{ CutString $value.Charactername 12 }}</p>
         </div>
-        <div class="chilltabal3">{{ GatCharacterClass $value.Dataid }}</div>
-        <div class="chilltabal3">{{ $value.Guildids }}</div>
-        <div class="chilltabal3">{{ $value.Level }}</div>
+        <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
     </div>
 
     <div class="hidden md:block">
@@ -289,14 +289,14 @@
 
     {{ if gt $key 2 }}
     <div class="maintabal ranking-table1">
-        <div class="chilltabal1 gap-4">
+        <div class="chilltabal1 gap-4 w-full">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 6 }}</p>
+            <p>{{ CutString $value.Charactername 12 }}</p>
         </div>
-        <div class="chilltabal3">{{ GatCharacterClass $value.Dataid }}</div>
-        <div class="chilltabal3">{{ $value.Guildids }}</div>
-        <div class="chilltabal3">{{ $value.Level }}</div>
+        <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
     </div>
     {{ end }}
 
@@ -326,101 +326,100 @@
 
                 <div class="flex justify-center pt-5 gap-3 font-bold">
 
-                    <a href="#" class="">
-                        <div>All/ทั้งหมด <div class="ranking-hi"></div>
-                        </div>
-                    </a>
-                    <a href="#" class="">
-                        <div>Event/กิจกรรม</div>
-                    </a>
-                    <a href="#" class="">
-                        <div>Other/อื่นๆ</div>
-                    </a>
+                    <div onclick="onclickNew_All()">
+                        <a class="hover:text-orange-400" href="/home#News">All/ทั้งหมด</a>
+                        <div id="new_all" class="ranking-hi"></div>
+                    </div>
+
+                    <div onclick="onclickNew_Event()">
+                        <a class="hover:text-orange-400" href="/home#News">Event/กิจกรรม</a>
+                        <div id="new_event" class=""></div>
+                    </div>
+
+                    <div onclick="onclickNew_Other()">
+                        <a class="hover:text-orange-400" href="/home#News">Other/อื่นๆ</a>
+                        <div id="new_other" class=""></div>
+                    </div>
 
                 </div>
 
                 <hr>
 
-                <div class="m-3 hover:text-yellow-200">
-                    <a href="/newpage/1" target="_blank">
-                        <div class="flex items-center gap-2">
-                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                            <div class="">
-                                <p>24 มีนาคม 2566
-                                    <br>
-                                    [ การเลือกชนเผ่า ] ชนเผ่า Durlukin จะเกิดที่เมือง Wroclaw Fortress..
-                                </p>
-                            </div>
-                            <div class="" ><img src="/public/data/img/ARROW-r.png" alt=""></div>
+               
 
-                        </div>
-                    </a>
-                    <hr>
+                <!-- All/ทั้งหมด -->
+                <div id="new_all_page" class="">
+                    {{ range .new_all }}
+                    <div class="m-3 hover:text-yellow-200">
+                        <a href="/newpage/{{ .ID }}" target="_blank">
+                            <div class="flex items-center gap-2">
+                                <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                                <div class="w-full">
+                                    <p>
+                                        [{{ .Datatype }}]
+                                        <br>
+                                        {{ formatDate .CreatedAt "Jan 02,2006" }}
+                                       
+                                        {{ .Subject }}
+                                    </p>
+                                </div>
+                                <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
+
+                            </div>
+                        </a>
+                        <hr>
+                    </div>
+                    {{ end }}
                 </div>
 
+                <!-- Event/กิจกรรม -->
+                <div id="new_event_page" class="hidden">
+                    {{ range .new_event }}
+                    <div class="m-3 hover:text-yellow-200">
+                        <a href="/newpage/{{ .ID }}" target="_blank">
+                            <div class="flex items-center gap-2">
+                                <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                                <div class="w-full">
+                                    <p>
+                                        [{{ .Datatype }}]
+                                        <br>
+                                        {{ formatDate .CreatedAt "Jan 02,2006" }}
+                                       
+                                        {{ .Subject }}
+                                    </p>
+                                </div>
+                                <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
 
-                <div class="m-3 hover:text-yellow-200">
-                    <a href="/newpage/2" target="_blank">
-                        <div class="flex items-center gap-2">
-                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                            <div class="w-full">
-                                <p>26 พฤษภาคม 2566 
-                                    <br>
-                                    [ Item ] เพิ่มพลัง ที่ต้องมีแล้วจะเก่งขึ้นกว่าใคร....
-                                </p>
                             </div>
-                            <div class="" ><img src="/public/data/img/ARROW-r.png" alt=""></div>
-                        </div>
-                    </a>
-                    <hr>
+                        </a>
+                        <hr>
+                    </div>
+                    {{ end }}
                 </div>
 
-                <div class="m-3 hover:text-yellow-200">
-                    <a href="/newpage/3" target="_blank">
-                        <div class="flex items-center gap-2">
-                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                            <div class="w-full">
-                                <p>23 พฤษภาคม 2566
-                                    <br>
-                                    [ Item ] ระดับขั้นของอาวุธ แต่ละสี...
-                                </p>
-                            </div>
-                            <div class="" ><img src="/public/data/img/ARROW-r.png" alt=""></div>
-                        </div>
-                    </a>
-                    <hr>
-                </div>
+                <!-- Other/อื่นๆ -->
+                <div id="new_other_page" class="hidden">
+                    {{ range .new_other }}
+                    <div class="m-3 hover:text-yellow-200">
+                        <a href="/newpage/{{ .ID }}" target="_blank">
+                            <div class="flex items-center gap-2">
+                                <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                                <div class="w-full">
+                                    <p>
+                                        [{{ .Datatype }}]
+                                        <br>
+                                        {{ formatDate .CreatedAt "Jan 02,2006" }}
+                                       
+                                        {{ .Subject }}
+                                    </p>
+                                </div>
+                                <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
 
-                <div class="m-3 hover:text-yellow-200">
-                    <a href="/newpage/4" target="_blank">
-                        <div class="flex items-center gap-2">
-                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                            <div class="w-full">
-                                <p>10 เมษายน 2566
-                                    <br>
-                                    [ Event ] สถิติความนิยมในการเลือกอาชีพช่วง Closed Beta Test(CBT) ที่ผ่านมา...
-                                </p>
                             </div>
-                            <div class="" ><img src="/public/data/img/ARROW-r.png" alt=""></div>
-                        </div>
-                    </a>
-                    <hr>
-                </div>
-
-                <div class="m-3 hover:text-yellow-200">
-                    <a href="/newpage/5" target="_blank">
-                        <div class="flex items-center gap-2">
-                            <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                            <div class="w-full">
-                                <p>24 มีนาคม 2566
-                                    <br>
-                                    [ Event ] ภาพบรรยากาศ การร่วมมือกันของเหล่านักรบเพื่อพิชิต Boss หน้าเมือง...
-                                </p>
-                            </div>
-                            <div class="" ><img src="/public/data/img/ARROW-r.png" alt=""></div>
-                        </div>
-                    </a>
-                    <hr>
+                        </a>
+                        <hr>
+                    </div>
+                    {{ end }}
                 </div>
 
 
@@ -438,7 +437,7 @@
 
 </section>
 
-    
+
 <!-- </div> -->
 
 {{ end }}

@@ -308,34 +308,34 @@
             </div>
 
             <div class="maintabal text-main">
-                <div class="chilltabal1">No. Player/ผู้เล่น</div>
-                <div class="chilltabal2">Class/อาชีพ</div>
-                <div class="chilltabal2">Guild/กิลด์</div>
-                <div class="chilltabal2">Level/ระดับ</div>
+                <div class="chilltabal1  w-full">No. Player/ผู้เล่น</div>
+                <div class="chilltabal2  w-full">Class/อาชีพ</div>
+                <div class="chilltabal2  w-full">Guild/กิลด์</div>
+                <div class="chilltabal2  w-full">Level/ระดับ</div>
             </div>
 
             <!-- ที่ 1 -->
             <div class="maintabal ranking-table">
-                <div class="chilltabal1 gap-5">
+                <div class="chilltabal1 gap-4 w-full">
                     <p>1</p>
                     <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-                    <p>Cool Cyber Ap...............................</p>
+                    <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                 </div>
-                <div class="chilltabal3">Knight</div>
-                <div class="chilltabal3">Solomon</div>
-                <div class="chilltabal3">999</div>
+                <div class="chilltabal3 w-full">Knight</div>
+                <div class="chilltabal3 w-full">Solomon</div>
+                <div class="chilltabal3 w-full">999</div>
             </div>
 
             <!-- ที่ 2 -->
             <div class="maintabal ranking-table-1">
-                <div class="chilltabal1 gap-4">
+                <div class="chilltabal1 gap-4 w-full">
                     <p>2</p>
                     <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
                     <p>Shadow Cube</p>
                 </div>
-                <div class="chilltabal3">Necromancer</div>
-                <div class="chilltabal3">-</div>
-                <div class="chilltabal3">998</div>
+                <div class="chilltabal3 w-full">Necromancer</div>
+                <div class="chilltabal3 w-full">-</div>
+                <div class="chilltabal3 w-full">998</div>
             </div>
 
             <!-- ที่ 3 -->
@@ -385,10 +385,22 @@
                     </div>
 
                     <div class="flex justify-center pt-5 gap-3">
-                        <div>All/ทั้งหมด <div class="ranking-hi"></div>
+
+                        <div onclick="onclickNew_All()">
+                            <a class="hover:text-orange-400" href="#">All/ทั้งหมด </a>
+                            <div id="new_all" class="ranking-hi"></div>
                         </div>
-                        <div>Event/กิจกรรม</div>
-                        <div>Other/อื่นๆ</div>
+
+                        <div onclick="onclickNew_Event()">
+                            <a class="hover:text-orange-400" href="#">Event/กิจกรรม</a>
+                            <div id="new_event" class=""></div>
+                        </div>
+
+                        <div onclick="onclickNew_Other()">
+                            <a class="hover:text-orange-400" href="#">Other/อื่นๆ</a>
+                            <div id="new_other" class=""></div>
+                        </div>
+
                     </div>
 
                     <hr>
@@ -524,6 +536,33 @@
 
     </footer>
 
+
+    <script>
+
+        var getNew_All = document.getElementById('new_all');
+        var getNew_Event = document.getElementById('new_event');
+        var getNew_Other = document.getElementById('new_other');
+
+
+        function onclickNew_All(){
+            getNew_All.classList.add("ranking-hi")
+            getNew_Event.classList.remove("ranking-hi")
+            getNew_Other.classList.remove("ranking-hi")
+        }
+
+        function onclickNew_Event(){
+            getNew_All.classList.remove("ranking-hi")
+            getNew_Event.classList.add("ranking-hi")
+            getNew_Other.classList.remove("ranking-hi")
+        }
+
+        function onclickNew_Other(){
+            getNew_All.classList.remove("ranking-hi")
+            getNew_Event.classList.remove("ranking-hi")
+            getNew_Other.classList.add("ranking-hi")
+        }
+
+    </script>
 
     <script>
 

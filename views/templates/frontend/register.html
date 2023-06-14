@@ -18,7 +18,7 @@
                             <form action="/auth/customregis">
                                 <div class="mb-5">
                                     <label class="font-medium text-[18px] text-white block mb-2" for="username">
-                                        Player/Username
+                                        Player/Username <br> <span class="text-[12px]"> (ระบุบ 6-12 ตัวอักษร)</span>
                                     </label>
                                     <input
                                         class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
@@ -39,7 +39,7 @@
                                 <div class="md:flex justify-between">
                                     <div>
                                         <label class="font-medium text-[18px] text-white block mb-2" for="password">
-                                            Password
+                                            Password <br> <span class="text-[12px]"> (ระบุบ 6-12 ตัวอักษร)</span>
                                         </label>
                                         <input
                                             class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
@@ -49,7 +49,7 @@
 
                                     <div>
                                         <label class="font-medium text-[18px] text-white block mb-2" for="repassword">
-                                            Confirm Password
+                                            Confirm Password <br> <span class="text-[12px]"> (ระบุบ 6-12 ตัวอักษร)</span>
                                         </label>
                                         <input
                                             class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
@@ -93,9 +93,14 @@
                     <div
                         class="text-center w-[540px] h-[422px] bg-[url('/public/data/img/old_paper.png')] bg-center bg-no-repeat  flex flex-col justify-center items-center text-[40px] font-bold text-[#006717]">
                         <p>Register success <br> สมัคสมาชิกสำเร็จ</p>
-                        <a href="/">
+                        <!-- <a href="/home">
                             <img src="/public/data/img/close-btn.png" alt="">
-                        </a>
+                        </a> -->
+                        <div
+                        class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+
+                        <a href="/home">เข้าสู่เว็บไซต์</a>
+                    </div>
 
                     </div>
                 </div>

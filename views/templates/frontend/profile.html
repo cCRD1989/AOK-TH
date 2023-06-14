@@ -28,7 +28,7 @@
                         <ul class="flex md:block my-5 md:text-xl font-bold text-gray-500 gap-4 text-center">
                             <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page1()">
                                 ข้อมูลส่วนตัว</li>
-                            <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page3()">
+                            <li class="py-2 hover:text-orange-600 cursor-pointer" onclick="openProFile_page2()">
                                 ประวัติการเติมเงิน</li>
                             <li class="py-2 hover:text-orange-600 cursor-pointer">
                                 <a href="/logout">ออกจากระบบ</a>
@@ -46,98 +46,123 @@
                             <!-- ข้อมูลส่วนตัว -->
                             <div id="profile_page1" class="overflow-hidden">
 
-                                <!-- ข้อมูลส่วนตัว -->
-                                <form action="/profile/delete" method="post">
-                                    <p class="text-yellow-100 text-[20px] font-bold py-3">ข้อมูลส่วนตัว</p>
+                                <div>
 
-                                    <div class="px-5 pb-5">
-                                        <label class="font-medium text-[18px] text-white block mb-2" for="id-name">
-                                            Username
-                                        </label>
-                                        <input
-                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                            id="" name="id-name" type="text" placeholder="Username"
-                                            value="{{ .user.Username }}" readonly>
+                                    {{ if eq .submitregis "" }}
+                                    <div class="absolute top-0">
+                                        <div
+                                            class="text-center w-[540px] h-[422px] bg-[url('/public/data/img/old_paper.png')] bg-center bg-no-repeat  flex flex-col justify-center items-center text-[40px] font-bold text-[#006717]">
+                                            <p>เปลี่ยนพาสเวิร์ดสำเร็จ</p>
+                                            <br>
+                                            <div
+                                                class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+
+                                                <a href="/profile">ตกลง</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ end }}
+
+                                    <div>
+                                        <!-- ข้อมูลส่วนตัว -->
+                                        <form action="/profile/delete" method="post">
+                                            <p class="text-yellow-100 text-[20px] font-bold py-3">ข้อมูลส่วนตัว</p>
+
+                                            <div class="px-5 pb-5">
+                                                <label class="font-medium text-[18px] text-white block mb-2"
+                                                    for="id-name">
+                                                    Username
+                                                </label>
+                                                <input
+                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                                    id="" name="id-name" type="text" placeholder="Username"
+                                                    value="{{ .user.Username }}" readonly>
+                                            </div>
+
+                                            <div class="px-5">
+                                                <label class="font-medium text-[18px] text-white block mb-2"
+                                                    for="id-name">
+                                                    Email
+                                                </label>
+                                                <input
+                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                                    id="" name="id-name" type="text" placeholder="Email"
+                                                    value="{{ .user.Email }}" readonly>
+                                            </div>
+
+                                        </form>
+
+                                        <div class="px-5 py-10">
+                                            <img src="/public/data/img/NAV-BAR2.png" alt="">
+                                        </div>
+
+                                        <!-- เปลี่ยนรหัสผ่าน -->
+                                        <form class="px-5" action="/profile/changpass" method="post"
+                                            onSubmit="return checkPassword(this)">
+                                            <p class="text-yellow-100 text-[20px] font-bold py-3">เปลี่ยนรหัสผ่าน</p>
+                                            <div class="pb-3">
+                                                <label class="font-medium text-[18px] text-white block mb-2"
+                                                    for="password">
+                                                    Old-Password(พาสเวิร์ดเดิม)
+                                                </label>
+                                                <input
+                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                                    id="old_password" name="old_password" type="password"
+                                                    placeholder="Enter your old password" required minlength="6"
+                                                    maxlength="32">
+                                            </div>
+
+                                            <div class="pb-3">
+                                                <label class="font-medium text-[18px] text-white block mb-2"
+                                                    for="password">
+                                                    New Password(พาสเวิร์ดใหม่)
+                                                </label>
+                                                <input
+                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                                    id="new_password" name="new_password" type="password"
+                                                    placeholder="Enter your new password " required minlength="6"
+                                                    maxlength="32">
+                                            </div>
+
+                                            <div class="pb-3">
+                                                <label class="font-medium text-[18px] text-white block mb-2"
+                                                    for="repassword">
+                                                    Confirm New Password(ยืนยันพาสเวิร์ดใหม่)
+                                                </label>
+                                                <input
+                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                                    id="new_repassword" name="new_repassword" type="password"
+                                                    placeholder="Confirm new password" required minlength="6"
+                                                    maxlength="32">
+
+                                            </div>
+
+                                            <button
+                                                class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
+                                                type="submit">เปลี่ยนพาสเวิร์ด</button>
+
+                                        </form>
+
+                                        <div class="px-5 py-10">
+                                            <img src="/public/data/img/NAV-BAR2.png" alt="">
+                                        </div>
+
+                                        <!-- ลบบัญชี -->
+                                        <div class="w-full p-5 text-yellow-100">
+                                            <div class="text-end">
+                                                <span class="pr-4 text-xl font-bold">ลบบัญชี ผู้ใช้งาน</span>
+                                                <button class="rounded-xl bg-orange-500 px-5 text-xl mb-3 text-black"
+                                                    type="submit"><a href="/profile/deletion">ลบบัญชี</a></button>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="px-5">
-                                        <label class="font-medium text-[18px] text-white block mb-2" for="id-name">
-                                            Email
-                                        </label>
-                                        <input
-                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                            id="" name="id-name" type="text" placeholder="Email"
-                                            value="{{ .user.Email }}" readonly>
-                                    </div>
-
-                                </form>
-
-                                <div class="px-5 py-10">
-                                    <img src="/public/data/img/NAV-BAR2.png" alt="">
-                                </div>
-
-                                <!-- เปลี่ยนรหัสผ่าน -->
-                                <form class="px-5" action="/profile/changpass" method="post"
-                                    onSubmit="return checkPassword(this)">
-                                    <p class="text-yellow-100 text-[20px] font-bold py-3">เปลี่ยนรหัสผ่าน</p>
-                                    <div class="pb-3">
-                                        <label class="font-medium text-[18px] text-white block mb-2" for="password">
-                                            Old-Password(พาสเวิร์ดเดิม)
-                                        </label>
-                                        <input
-                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                            id="old_password" name="old_password" type="password"
-                                            placeholder="Enter your old password" required minlength="6" maxlength="32">
-                                    </div>
-
-                                    <div class="pb-3">
-                                        <label class="font-medium text-[18px] text-white block mb-2" for="password">
-                                            New Password(พาสเวิร์ดใหม่)
-                                        </label>
-                                        <input
-                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                            id="new_password" name="new_password" type="password"
-                                            placeholder="Enter your new password " required minlength="6" maxlength="32">
-                                    </div>
-
-                                    <div class="pb-3">
-                                        <label class="font-medium text-[18px] text-white block mb-2" for="repassword">
-                                            Confirm New Password(ยืนยันพาสเวิร์ดใหม่)
-                                        </label>
-                                        <input
-                                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
-                                            id="new_repassword" name="new_repassword" type="password"
-                                            placeholder="Confirm new password" required minlength="6"
-                                            maxlength="32">
-
-                                    </div>
-
-                                    <button
-                                        class="bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
-                                        type="submit">เปลี่ยนพาสเวิร์ด</button>
-
-                                </form>
-
-                                <div class="px-5 py-10">
-                                    <img src="/public/data/img/NAV-BAR2.png" alt="">
-                                </div>
-
-                                <!-- ลบบัญชี -->
-                                <div class="w-full p-5 text-yellow-100">
-                                    <div class="text-end">
-                                        <span class="pr-4 text-xl font-bold">ลบบัญชี ผู้ใช้งาน</span>
-                                        <button class="rounded-xl bg-orange-500 px-5 text-xl mb-3 text-black"
-                                            type="submit"><a href="/profile/deletion">ลบบัญชี</a></button>
-                                    </div>
                                 </div>
                             </div>
 
-
-
                             <!-- ประวัติส่วนตัวเติมเงิน -->
-                            <div id="profile_page3" class="hidden">
+                            <div id="profile_page2" class="hidden">
                                 <p class="text-yellow-100 text-[20px] font-bold py-3">ประวัติการเติมเงิน</p>
-
 
                                 <div class="relative overflow-x-auto">
                                     <table class="w-full text-sm text-left text-gray-500">
@@ -188,24 +213,20 @@
 
 
                         </div>
-
-
-
                     </div>
+
                 </div>
 
+
+
+                <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+                <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+                <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+                <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+
+
             </div>
-
-
-
-            <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
-            <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
-            <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
-            <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
-
-
-
-        </div>
     </section>
 
 

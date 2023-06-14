@@ -15,38 +15,26 @@
                 <div>
                     <img src="/public/data/img/new-footer.png" alt="">
                 </div>
-
+    
                 <div class="md:flex">
                     <div class="md:w-[383px] md:h-[470px] overflow-hidden flex items-center">
-                        <img class="w-full"
-                            src="https://scontent.fbkk2-3.fna.fbcdn.net/v/t39.30808-6/348549688_716062420275041_8844737126507290332_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=ni1_y9bhQA0AX9KAd4h&_nc_ht=scontent.fbkk2-3.fna&oh=00_AfCjWOPqdbGQJCbU4oDqx9sTSFgyFgiSd2_sDa64Frl34Q&oe=6485D7FD"
-                            alt="">
+                        <img class="w-full" src="{{ .newOpen.Image }}" alt="">
                     </div>
                     <div class="p-4 md:w-[383px] md:h-[470px] h-[300px] overflow-auto">
-                        <p class="font-bold">[ Item ]</p>
-                        <p class="font-normal text-[24px]">23 พฤษภาคม 2566</p>
+                        <p class="font-bold">[ {{ .newOpen.Datatype }} ]</p>
+                        <p class="font-normal text-[24px]">  {{ formatDate .newOpen.CreatedAt "Jan 02,2006" }} {{ .newOpen.Subject }}</p>
                         <p class="md:flex">
+    
+                            {{ .newOpen.Data }}
 
                             <br>
-                            🤔ระดับขั้นของอาวุธ แต่ละสี
-                            <br>
-                            สีเทา ►【Normal】
-                            <br>
-                            สีเขียว ►【Uncommon】
-                            <br>
-                            สีฟ้า ►【Rare】
-                            <br>
-                            สีม่วง ►【Epic】
-                            <br>
-                            สีส้ม ►【Legendary】
-                            <br>
-                            สีชมพู ►【Mythical】
-
+                           
                         </p>
+                        <a href="{{ .newOpen.Externallink }}">อ่านเพิ่ม</a>
                     </div>
                 </div>
             </div>
-
+           
             <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 p-3">
             <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0 p-3">
             <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0 p-3">

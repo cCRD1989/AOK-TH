@@ -52,6 +52,7 @@ func Migrate() {
 			&model.LogTopup{},
 			&model.LogRegister{},
 			&model.LogTokenregister{},
+			&model.LogNews{},
 		)
 
 	// err := Conn.AutoMigrate(

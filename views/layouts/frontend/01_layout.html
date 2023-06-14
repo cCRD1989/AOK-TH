@@ -163,27 +163,27 @@
 	<script>
 		var profile_page1 = document.getElementById("profile_page1");
 		var profile_page2 = document.getElementById("profile_page2");
-		var profile_page3 = document.getElementById("profile_page3");
+		//var profile_page3 = document.getElementById("profile_page3");
 
 
 
 		function openProFile_page1() {
 			profile_page1.classList.remove("hidden")
 			profile_page2.classList.add("hidden")
-			profile_page3.classList.add("hidden")
+			//profile_page3.classList.add("hidden")
 		}
 
 		function openProFile_page2() {
 			profile_page1.classList.add("hidden")
 			profile_page2.classList.remove("hidden")
-			profile_page3.classList.add("hidden")
+			//profile_page3.classList.add("hidden")
 		}
 
 		function openProFile_page3() {
 
 			profile_page1.classList.add("hidden")
 			profile_page2.classList.add("hidden")
-			profile_page3.classList.remove("hidden")
+			//profile_page3.classList.remove("hidden")
 		}
 
 	</script>
@@ -201,6 +201,49 @@
 				return true;
 			}
 		}
+	</script>
+
+	<script>
+
+		var getNew_All = document.getElementById('new_all');
+		var getNew_Event = document.getElementById('new_event');
+		var getNew_Other = document.getElementById('new_other');
+
+		var getNew_All_Page = document.getElementById('new_all_page');
+		var getNew_Event_Page = document.getElementById('new_event_page');
+		var getNew_Other_Page = document.getElementById('new_other_page');
+
+
+		function onclickNew_All() {
+			getNew_All.classList.add("ranking-hi")
+			getNew_Event.classList.remove("ranking-hi")
+			getNew_Other.classList.remove("ranking-hi")
+
+			getNew_All_Page.classList.remove("hidden")
+			getNew_Event_Page.classList.add("hidden")
+			getNew_Other_Page.classList.add("hidden")
+		}
+
+		function onclickNew_Event() {
+			getNew_All.classList.remove("ranking-hi")
+			getNew_Event.classList.add("ranking-hi")
+			getNew_Other.classList.remove("ranking-hi")
+
+			getNew_All_Page.classList.add("hidden")
+			getNew_Event_Page.classList.remove("hidden")
+			getNew_Other_Page.classList.add("hidden")
+		}
+
+		function onclickNew_Other() {
+			getNew_All.classList.remove("ranking-hi")
+			getNew_Event.classList.remove("ranking-hi")
+			getNew_Other.classList.add("ranking-hi")
+
+			getNew_All_Page.classList.add("hidden")
+			getNew_Event_Page.classList.add("hidden")
+			getNew_Other_Page.classList.remove("hidden")
+		}
+
 	</script>
 
 

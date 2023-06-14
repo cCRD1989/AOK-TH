@@ -207,6 +207,17 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 
 	//
 	//
+
+	//
+	//
+	new_all := []model.LogNews{}
+	new_event := []model.LogNews{}
+	new_other := []model.LogNews{}
+
+	db.Conn.Order("created_at DESC").Limit(5).Find(&new_all)
+	db.Conn.Where("datatype = ?", "Event").Order("created_at DESC").Limit(5).Find(&new_event)
+	db.Conn.Where("datatype = ?", "Other").Order("created_at DESC").Limit(5).Find(&new_other)
+
 	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
 		"title":     "Age Of Khagan Thailand",
 		"user":      user,
@@ -214,6 +225,9 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 		"logs":      logs,
 		"bg":        "/public/data/img/main-bg.png",
 		"iconuser":  iconuser,
+		"new_all":   new_all,
+		"new_event": new_event,
+		"new_other": new_other,
 	})
 }
 
@@ -283,8 +297,13 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 
 	// CompareHashAndPassword MD5
 	if unit.HashMD5(Form.Password) != user.Password {
-		ctx.Redirect(http.StatusFound, "/")
 		fmt.Println("Check Pass")
+		ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
+			"title":   "Age Of Khagan Thailand | Login",
+			"user":    user,
+			"bg":      "/public/data/img/LOGIN-BG.png",
+			"message": "พาสเวิร์ดไม่ถูกต้อง โปรดลองใหม่",
+		})
 		return
 	}
 
@@ -297,7 +316,12 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 	tokenString, err := token.SignedString([]byte(os.Getenv("MY_SECRET_KEY")))
 	if err != nil {
 		fmt.Println("Sign Token")
-		ctx.Redirect(http.StatusFound, "/")
+		ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
+			"title":   "Age Of Khagan Thailand | Login",
+			"user":    user,
+			"bg":      "/public/data/img/LOGIN-BG.png",
+			"message": "Token โปรดลองใหม่",
+		})
 		return
 	}
 
@@ -308,6 +332,7 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 	// Redirect
 	fmt.Println("บันทึก Token สำเร็จ")
 	ctx.Redirect(http.StatusFound, "/profile")
+
 }
 
 func (f *Frontend) UserGetRegister(ctx *gin.Context) {
@@ -392,6 +417,7 @@ func (f *Frontend) UserGetProfile(ctx *gin.Context) {
 		"user":     user,
 		"bg":       "/public/data/img/LOGIN-BG.png",
 		"logtopup": logtopup,
+		// "submitregis": "",
 	})
 }
 
@@ -461,6 +487,18 @@ func (f *Frontend) UserGetChangPass(ctx *gin.Context) {
 	newPass := unit.HashMD5(RePassword_new)
 
 	db.AOK_DB.Model(&userDB).Update("password", newPass)
+
+	////log เติมเงิน
+	logtopup := []model.LogTopup{}
+	db.Conn.Where("user_id", user.Username).Where("data_type = ?", "NotificationTopup").Order("created_at DESC").Limit(7).Find(&logtopup)
+
+	ctx.HTML(http.StatusOK, "frontend/profile.html", gin.H{
+		"title":       "Age Of Khagan Thailand | Login",
+		"user":        user,
+		"bg":          "/public/data/img/LOGIN-BG.png",
+		"logtopup":    logtopup,
+		"submitregis": "",
+	})
 
 	ctx.Redirect(http.StatusFound, "/profile")
 }
@@ -977,30 +1015,22 @@ func (f *Frontend) UserNewPage(ctx *gin.Context) {
 	}
 	db.Conn.Save(&visit)
 
+	if idNew == "" {
+		fmt.Println("reload")
+		ctx.Redirect(http.StatusFound, "/")
+	}
 	// ตรวจสอบ User Cookie
 	usr, _ := ctx.Get("user")
 	user, _ := usr.(aokmodel.Userlogin)
 
-	//
-	page := ""
-	if idNew == "1" {
-		page = "newpage1.html"
-	} else if idNew == "2" {
-		page = "newpage2.html"
-	} else if idNew == "3" {
-		page = "newpage3.html"
-	} else if idNew == "4" {
-		page = "newpage4.html"
-	} else if idNew == "5" {
-		page = "newpage5.html"
-	} else {
-		ctx.Redirect(http.StatusFound, "/")
-	}
+	newOpen := model.LogNews{}
+	db.Conn.First(&newOpen, idNew)
 
-	ctx.HTML(http.StatusOK, "frontend/"+page, gin.H{
-		"title": "Age Of Khagan Thailand | NewPages",
-		"user":  user,
-		"bg":    "/public/data/img/NewPage-BG.png",
+	ctx.HTML(http.StatusOK, "frontend/newpage.html", gin.H{
+		"title":   "Age Of Khagan Thailand | NewPages",
+		"user":    user,
+		"bg":      "/public/data/img/NewPage-BG.png",
+		"newOpen": newOpen,
 	})
 }
 
@@ -1048,7 +1078,7 @@ func (f *Frontend) UserGetLogout(ctx *gin.Context) {
 	if err == nil {
 		ctx.SetCookie("Authorization", tokenString, -1, "", "", false, true)
 	}
-	ctx.Redirect(http.StatusFound, "/")
+	ctx.Redirect(http.StatusFound, "/home")
 }
 
 func (f *Frontend) UserGetDownload(ctx *gin.Context) {
