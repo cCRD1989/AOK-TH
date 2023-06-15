@@ -13,6 +13,8 @@ import (
 	"time"
 
 	"github.com/gin-contrib/multitemplate"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 )
 
 func getPlayersOnlineCount() string {
@@ -54,6 +56,11 @@ func selectedcheck(current, expected interface{}) template.HTMLAttr {
 	return template.HTMLAttr(``)
 }
 
+func numbercomma(number int) string {
+	p := message.NewPrinter(language.English)
+	return p.Sprintf("%d", number)
+}
+
 func formatDate(datetime time.Time, format string) string {
 	return datetime.Format(format)
 }
@@ -88,6 +95,7 @@ func createViews() multitemplate.Render {
 		"formatDate":            formatDate,
 		"GatCharacterClass":     GatCharacterClass,
 		"CutString":             CutString,
+		"numbercomma":           numbercomma,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")

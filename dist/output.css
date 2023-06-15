@@ -839,6 +839,10 @@ video {
   height: 740px;
 }
 
+.h-\[75\%\] {
+  height: 75%;
+}
+
 .h-\[80px\] {
   height: 80px;
 }
@@ -2341,6 +2345,14 @@ video {
 
   .md\:min-w-\[570px\] {
     min-width: 570px;
+  }
+
+  .md\:min-w-\[840px\] {
+    min-width: 840px;
+  }
+
+  .md\:min-w-full {
+    min-width: 100%;
   }
 
   .md\:flex-row {

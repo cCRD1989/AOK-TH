@@ -1,0 +1,77 @@
+{{ define "content" }}
+
+<!-- new ประกาศ -->
+<section id="News" class="bg-[url('/public/data/img/NEW_BG.png')] bg-top bg-repeat-y bg-cover">
+
+
+    <div class="flex items-center justify-center md:p-[100px] p-[10px]">
+
+
+        <div class="md:min-w-full min-w-full bg-[#141414D4] relative flex justify-center">
+
+
+            <div class="text-white h-full w-[80%] pt-5">
+                <div class="text-2xl font-extrabold text-center">
+                    News/ข่าวสาร
+                </div>
+
+                <div class="flex justify-center pt-5 gap-3 font-bold">
+
+                    <div onclick="onclickNew_All()">
+                        <a class="hover:text-orange-400" href="#">All/ทั้งหมด</a>
+                        <div id="new_all" class="ranking-hi"></div>
+                    </div>
+
+                </div>
+
+                <hr>
+
+
+                <div class="h-[75%] overflow-auto">
+
+                    <!-- All/ทั้งหมด -->
+                    <div id="new_all_page" class="">
+                        {{ range .newall }}
+                        <div class="m-3 hover:text-yellow-200">
+                            <a href="/newpage/{{ .ID }}" target="_blank">
+                                <div class="flex items-center gap-2">
+                                    <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                                    <div class="w-full">
+                                        <p>
+                                            [{{ .Datatype }}]
+                                            <br>
+                                            {{ formatDate .CreatedAt "Jan 02,2006" }}
+
+                                            {{ .Subject }}
+                                        </p>
+                                    </div>
+                                    <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
+
+                                </div>
+                            </a>
+                            <hr>
+                        </div>
+                        {{ end }}
+                    </div>
+
+                    
+                </div>
+
+
+
+
+            </div>
+
+            <img src="/public/data/img/new-l-t.png" alt="" class="absolute left-0 top-0 hidden md:block">
+            <img src="/public/data/img/new-l-b.png" alt="" class="absolute left-0 bottom-0  hidden md:block">
+            <img src="/public/data/img/new-r-t.png" alt="" class="absolute right-0 top-0  hidden md:block">
+            <img src="/public/data/img/new-r-b.png" alt="" class="absolute right-0 bottom-0  hidden md:block">
+        </div>
+
+
+
+    </div>
+
+</section>
+
+{{ end }}

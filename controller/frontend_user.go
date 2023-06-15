@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"reflect"
 	"strconv"
 	"strings"
 	"time"
@@ -99,7 +100,15 @@ func (model *Model) FindAll(x interface{}) *Model {
 	var err error
 	var dbt = db.AOK_DB
 
-	err = model.buildSQL(dbt.Model(x)).Find(x).Error
+	switch v := x.(type) {
+
+	case *[]aokmodel.Character:
+		err = model.buildSQL(dbt.Model(v)).Joins("JOIN characterattribute ON characters.id = characterattribute.characterId").Find(v).Error
+
+	default:
+		fmt.Println("default", reflect.TypeOf(x))
+
+	}
 
 	if err != nil {
 		fmt.Println("database")
@@ -131,23 +140,71 @@ func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
 		"cleric":      -859687870,
 		"allclass":    0,
 	}
+	attribute := map[string]int{
+		"str": 376173797,
+		"con": -1554483258,
+		"dex": 1881519984,
+		"int": -486441535,
+		"wis": 459649607,
+		"cha": 1746293732,
+	}
 
 	ClassId := Job[qSearch]
+	attributeindex := attribute[qKeyword]
+
+	fmt.Println("qSearch", qSearch)
+	fmt.Println("ClassId", ClassId)
+	fmt.Println("qKeyword", qKeyword)
 
 	if qSearch != "" && qKeyword != "" {
 
 		if qKeyword == "level" {
 			if ClassId == 0 {
-				db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
 			} else {
-				db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("Dataid = ?", ClassId).Limit(10).Order("LEVEL DESC")
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("characters.Dataid = ?", ClassId).Limit(10).Order("LEVEL DESC")
+			}
+		} else if qKeyword == "hp" {
+			if ClassId == 0 {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("Currenthp DESC")
+
+			} else {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("characters.Dataid = ?", ClassId).Limit(10).Order("characters.Currenthp DESC")
+
+			}
+		} else if qKeyword == "durlukin" {
+			//-1216203983
+			if ClassId == 0 {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("Factionid = ?", -1216203983).Limit(10).Order("Level DESC")
+			} else {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("characters.Dataid = ?", ClassId).Where("characters.Factionid = ?", -1216203983).Limit(10).Order("Level DESC")
+			}
+		} else if qKeyword == "nurin" {
+			//1256175201
+			if ClassId == 0 {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("Factionid = ?", 1256175201).Limit(10).Order("Level DESC")
+			} else {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("characters.Dataid = ?", ClassId).Where("characters.Factionid = ?", -1216203983).Limit(10).Order("Level DESC")
+			}
+		} else if qKeyword == "str" ||
+			qKeyword == "dex" ||
+			qKeyword == "con" ||
+			qKeyword == "int" ||
+			qKeyword == "wis" ||
+			qKeyword == "cha" {
+			fmt.Println("attributeindex", attributeindex)
+			if ClassId == 0 {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid, characterattribute.amount AS Attribute").Where("characterattribute.dataId = ?", attributeindex).Limit(10).Order("characterattribute.amount DESC")
+			} else {
+				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid, characterattribute.amount AS Attribute").Where("characterattribute.dataId = ?", attributeindex).Where("characters.Dataid = ?", ClassId).Limit(10).Order("characterattribute.amount DESC")
 			}
 
+		} else {
+			db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
 		}
 
 	} else {
 		db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
-
 	}
 
 	return db
@@ -191,6 +248,8 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 
 	guild := aokmodel.Guild{}
 
+	//attribute := aokmodel.Characterattribute{}
+
 	for i := 0; i < len(logs); i++ {
 
 		db.AOK_DB.Select("Guildname").Where("id = ?", logs[i].Guildid).Find(&guild)
@@ -201,7 +260,6 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 			logs[i].Guildids = guild.Guildname
 		}
 	}
-	//
 
 	iconuser := "/public/data/img/user" + strconv.Itoa(rand.Intn(4-1)+1) + ".png"
 
@@ -215,8 +273,8 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 	new_other := []model.LogNews{}
 
 	db.Conn.Order("created_at DESC").Limit(5).Find(&new_all)
-	db.Conn.Where("datatype = ?", "Event").Order("created_at DESC").Limit(5).Find(&new_event)
-	db.Conn.Where("datatype = ?", "Other").Order("created_at DESC").Limit(5).Find(&new_other)
+	db.Conn.Where("datatype = ?", "Event").Order("created_at DESC").Limit(20).Find(&new_event)
+	db.Conn.Where("datatype = ?", "Other").Order("created_at DESC").Limit(20).Find(&new_other)
 
 	ctx.HTML(http.StatusOK, "frontend/index.html", gin.H{
 		"title":     "Age Of Khagan Thailand",
@@ -1031,6 +1089,29 @@ func (f *Frontend) UserNewPage(ctx *gin.Context) {
 		"user":    user,
 		"bg":      "/public/data/img/NewPage-BG.png",
 		"newOpen": newOpen,
+	})
+}
+
+func (f *Frontend) UserNewAll(ctx *gin.Context) {
+
+	visit := model.LogWeb{
+		DataType:  "NewAll",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	newall := []model.LogNews{}
+	db.Conn.Order("created_at DESC").Find(&newall)
+
+	ctx.HTML(http.StatusOK, "frontend/newall.html", gin.H{
+		"title":  "Age Of Khagan Thailand | NewPages",
+		"user":   user,
+		"bg":     "/public/data/img/NewPage-BG.png",
+		"newall": newall,
 	})
 }
 

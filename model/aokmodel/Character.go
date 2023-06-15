@@ -11,6 +11,7 @@ type Character struct {
 	Currentmp     int
 	Guildid       int
 	Guildids      string
+	Attribute     int
 }
 
 func (c *Character) TableName() string {
@@ -25,4 +26,19 @@ type Guild struct {
 
 func (c *Guild) TableName() string {
 	return "guild"
+}
+
+// id เลขไอดี
+// Characterid รหัสตัวละคร
+// Dataid str dex con
+// Amount จำนวน
+type Characterattribute struct {
+	Id          string `gorm:"type:varchar(50)"`
+	Characterid string `gorm:"type:varchar(50)"`
+	Dataid      int    `gorm:"type:int(11)"`
+	Amount      int    `gorm:"type:int(11)"`
+}
+
+func (c *Characterattribute) TableName() string {
+	return "Characterattribute"
 }

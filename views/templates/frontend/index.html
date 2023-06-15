@@ -221,8 +221,10 @@
                             <option {{ selectedcheck .QueryKeyword "int" }} value="int">INT</option>
                             <option {{ selectedcheck .QueryKeyword "wis" }} value="wis">WIS</option>
                             <option {{ selectedcheck .QueryKeyword "cha" }} value="cha">CHA</option>
-                            <option {{ selectedcheck .QueryKeyword "faction" }} value="faction">FACTION</option>
                             <option {{ selectedcheck .QueryKeyword "hp" }} value="hp">HP</option>
+                            <option {{ selectedcheck .QueryKeyword "durlukin" }} value="durlukin">Durlukin</option>
+                            <option {{ selectedcheck .QueryKeyword "nurin" }} value="nurin">Nurin</option>
+
 
                         </select>
 
@@ -236,11 +238,10 @@
                 <div class="chilltabal1 w-full">No. Player/ผู้เล่น</div>
                 <div class="chilltabal2 w-full">Class/อาชีพ</div>
                 <div class="chilltabal2 w-full">Guild/กิลด์</div>
-                <div class="chilltabal2 w-full">ระดับ</div>
+                <div class="chilltabal2 w-full flex justify-center">ระดับ</div>
             </div>
 
     </form>
-
 
     {{ range $key, $value := $.logs }}
 
@@ -249,11 +250,35 @@
         <div class="chilltabal1 w-full gap-4">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 12 }}</p>
+            <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
         <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
         <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
-        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
+
+        {{ if eq $.logsModel.QueryKeyword "level" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "hp" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "nurin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+
+        {{ else if eq $.logsModel.QueryKeyword "str" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "dex" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "con" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "int" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "wis" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "cha" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+
+        {{ end }}
+
     </div>
     {{ end }}
 
@@ -262,11 +287,34 @@
         <div class="chilltabal1 gap-4 w-full">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 12 }}</p>
+            <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
         <div class="chilltabal3 w-full"> {{ GatCharacterClass $value.Dataid }} </div>
         <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
-        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
+
+        {{ if eq $.logsModel.QueryKeyword "level" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "hp" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "nurin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+
+        {{ else if eq $.logsModel.QueryKeyword "str" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "dex" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "con" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "int" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "wis" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "cha" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+
+        {{ end }}
     </div>
     {{ end }}
 
@@ -275,11 +323,35 @@
         <div class="chilltabal1 gap-4 w-full">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 12 }}</p>
+            <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
         <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
         <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
-        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
+
+        {{ if eq $.logsModel.QueryKeyword "level" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "hp" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "nurin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+
+        {{ else if eq $.logsModel.QueryKeyword "str" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "dex" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "con" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "int" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "wis" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "cha" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+
+
+        {{ end }}
     </div>
 
     <div class="hidden md:block">
@@ -292,11 +364,35 @@
         <div class="chilltabal1 gap-4 w-full">
             <p>{{ getRankingIndex $key }}</p>
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
-            <p>{{ CutString $value.Charactername 12 }}</p>
+            <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
         <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
         <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
-        <div class="chilltabal3 w-full">{{ $value.Level }}</div>
+
+        {{ if eq $.logsModel.QueryKeyword "level" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "hp" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "nurin" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+
+        {{ else if eq $.logsModel.QueryKeyword "str" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "dex" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "con" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "int" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "wis" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        {{ else if eq $.logsModel.QueryKeyword "cha" }}
+        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+
+
+        {{ end }}
     </div>
     {{ end }}
 
@@ -345,82 +441,91 @@
 
                 <hr>
 
-               
 
-                <!-- All/ทั้งหมด -->
-                <div id="new_all_page" class="">
-                    {{ range .new_all }}
-                    <div class="m-3 hover:text-yellow-200">
-                        <a href="/newpage/{{ .ID }}" target="_blank">
-                            <div class="flex items-center gap-2">
-                                <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                                <div class="w-full">
-                                    <p>
-                                        [{{ .Datatype }}]
-                                        <br>
-                                        {{ formatDate .CreatedAt "Jan 02,2006" }}
-                                       
-                                        {{ .Subject }}
-                                    </p>
+                <div class="h-[75%] overflow-auto">
+
+                    <!-- All/ทั้งหมด -->
+                    <div id="new_all_page" class="">
+                        {{ range .new_all }}
+                        <div class="m-3 hover:text-yellow-200">
+                            <a href="/newpage/{{ .ID }}" target="_blank">
+                                <div class="flex items-center gap-2">
+                                    <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                                    <div class="w-full">
+                                        <p>
+                                            [{{ .Datatype }}]
+                                            <br>
+                                            {{ formatDate .CreatedAt "Jan 02,2006" }}
+
+                                            {{ .Subject }}
+                                        </p>
+                                    </div>
+                                    <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
+
                                 </div>
-                                <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
-
-                            </div>
-                        </a>
-                        <hr>
+                            </a>
+                            <hr>
+                        </div>
+                        {{ end }}
                     </div>
-                    {{ end }}
+
+                    <!-- Event/กิจกรรม -->
+                    <div id="new_event_page" class="hidden">
+                        {{ range .new_event }}
+                        <div class="m-3 hover:text-yellow-200">
+                            <a href="/newpage/{{ .ID }}" target="_blank">
+                                <div class="flex items-center gap-2">
+                                    <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                                    <div class="w-full">
+                                        <p>
+                                            [{{ .Datatype }}]
+                                            <br>
+                                            {{ formatDate .CreatedAt "Jan 02,2006" }}
+
+                                            {{ .Subject }}
+                                        </p>
+                                    </div>
+                                    <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
+
+                                </div>
+                            </a>
+                            <hr>
+                        </div>
+                        {{ end }}
+                    </div>
+
+                    <!-- Other/อื่นๆ -->
+                    <div id="new_other_page" class="hidden">
+                        {{ range .new_other }}
+                        <div class="m-3 hover:text-yellow-200">
+                            <a href="/newpage/{{ .ID }}" target="_blank">
+                                <div class="flex items-center gap-2">
+                                    <div><img src="/public/data/img/new-paper.png" alt=""></div>
+                                    <div class="w-full">
+                                        <p>
+                                            [{{ .Datatype }}]
+                                            <br>
+                                            {{ formatDate .CreatedAt "Jan 02,2006" }}
+
+                                            {{ .Subject }}
+                                        </p>
+                                    </div>
+                                    <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
+
+                                </div>
+                            </a>
+                            <hr>
+                        </div>
+                        {{ end }}
+                    </div>
+
+                    <div class="flex justify-center">
+                        <a href="/newall">เพิ่มเติม</a>
+                    </div>
+
                 </div>
 
-                <!-- Event/กิจกรรม -->
-                <div id="new_event_page" class="hidden">
-                    {{ range .new_event }}
-                    <div class="m-3 hover:text-yellow-200">
-                        <a href="/newpage/{{ .ID }}" target="_blank">
-                            <div class="flex items-center gap-2">
-                                <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                                <div class="w-full">
-                                    <p>
-                                        [{{ .Datatype }}]
-                                        <br>
-                                        {{ formatDate .CreatedAt "Jan 02,2006" }}
-                                       
-                                        {{ .Subject }}
-                                    </p>
-                                </div>
-                                <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
 
-                            </div>
-                        </a>
-                        <hr>
-                    </div>
-                    {{ end }}
-                </div>
-
-                <!-- Other/อื่นๆ -->
-                <div id="new_other_page" class="hidden">
-                    {{ range .new_other }}
-                    <div class="m-3 hover:text-yellow-200">
-                        <a href="/newpage/{{ .ID }}" target="_blank">
-                            <div class="flex items-center gap-2">
-                                <div><img src="/public/data/img/new-paper.png" alt=""></div>
-                                <div class="w-full">
-                                    <p>
-                                        [{{ .Datatype }}]
-                                        <br>
-                                        {{ formatDate .CreatedAt "Jan 02,2006" }}
-                                       
-                                        {{ .Subject }}
-                                    </p>
-                                </div>
-                                <div class=""><img src="/public/data/img/ARROW-r.png" alt=""></div>
-
-                            </div>
-                        </a>
-                        <hr>
-                    </div>
-                    {{ end }}
-                </div>
 
 
             </div>
