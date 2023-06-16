@@ -65,6 +65,12 @@ func formatDate(datetime time.Time, format string) string {
 	return datetime.Format(format)
 }
 
+func formatnewline(data string) []string {
+
+	databuild := strings.Split(data, "\r\n")
+	return databuild
+}
+
 func GatCharacterClass(id int) string {
 	Job := map[int]string{
 		1817826663: "Knight",
@@ -96,6 +102,7 @@ func createViews() multitemplate.Render {
 		"GatCharacterClass":     GatCharacterClass,
 		"CutString":             CutString,
 		"numbercomma":           numbercomma,
+		"formatnewline":         formatnewline,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")
