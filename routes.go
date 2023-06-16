@@ -35,10 +35,12 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("/profile/deletion", middleware.UserCheck(), frontend_user.UserGetPDelete) //profileDelete
 	frontend_userGroup.POST("/profile/delete", middleware.UserCheck(), frontend_user.UserGetDelete)   //UserGetDelete
 
+	frontend_userGroup.GET("/profile/delete", frontend_user.UserGetExDelete) //UserGetDelete
+
 	frontend_userGroup.GET("/email/verify/:code", frontend_user.UserEmailVerify) //mail
 
 	frontend_userGroup.GET("/newpage/:id", frontend_user.UserNewPage) //newpage
-	frontend_userGroup.GET("/newall/", frontend_user.UserNewAll)     //newpage
+	frontend_userGroup.GET("/newall/", frontend_user.UserNewAll)      //newpage
 
 	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout
 	// frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)

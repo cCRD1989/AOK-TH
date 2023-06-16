@@ -29,7 +29,7 @@ type Userlogin struct {
 	Email           string `gorm:"type:varchar(50);not null;default:"`
 	Isemailverified int
 	// Authtype        int
-	// Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
+	Accesstoken string `gorm:"type:varchar(36);not null;default:"`
 	// Userlevel       int
 	// Unbantime       int
 	// Createat        time.Time
@@ -46,6 +46,16 @@ func (u *Userlogin) FindUserByName(username string) Userlogin {
 	var user Userlogin
 
 	db.AOK_DB.Select("id,username,password,cash,email,isemailverified").Where("username = ?", username).First(&user)
+
+	return user
+}
+
+// FindUserByName finds a user by username
+func (u *Userlogin) FindUserByAccesstoken(token string) Userlogin {
+
+	var user Userlogin
+
+	db.AOK_DB.Select("id,username,password,cash,email,isemailverified,accesstoken").Where("accesstoken = ?", token).First(&user)
 
 	return user
 }

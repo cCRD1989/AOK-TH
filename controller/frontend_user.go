@@ -390,7 +390,6 @@ func (f *Frontend) UserGetLogin(ctx *gin.Context) {
 	// Redirect
 	fmt.Println("บันทึก Token สำเร็จ")
 	ctx.Redirect(http.StatusFound, "/profile")
-
 }
 
 func (f *Frontend) UserGetRegister(ctx *gin.Context) {
@@ -621,6 +620,60 @@ func (f *Frontend) UserGetDelete(ctx *gin.Context) {
 
 		ctx.Redirect(http.StatusFound, "/logout")
 	}
+}
+
+func (f *Frontend) UserGetExDelete(ctx *gin.Context) {
+
+	accessToken := ctx.DefaultQuery("accessToken", "")
+
+	if accessToken == "" {
+		fmt.Println("ไม่ได้ส่ง accessToken มา")
+		ctx.Redirect(http.StatusFound, "/")
+		return
+	}
+
+	user := aokmodel.Userlogin{}
+	user = user.FindUserByAccesstoken(accessToken)
+	fmt.Println("user: ", user)
+
+	if user.Username == "" {
+		fmt.Println("คนหาไม่เจอไอดีที่ต้องการลบ")
+		ctx.Redirect(http.StatusFound, "/")
+		return
+	}
+
+	//ลบ Authorization ของเก่าก่อน
+	tokenString1, err := ctx.Cookie("Authorization")
+	if err == nil {
+		ctx.SetCookie("Authorization", tokenString1, -1, "", "", false, true)
+	}
+
+	//
+	// Create a new token object, specifying signing method and the claims
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"user": user,
+		"exp":  time.Now().Add(time.Hour).Unix(),
+	})
+	// Sign and get the complete encoded token as a string using the secret
+	tokenString, err := token.SignedString([]byte(os.Getenv("MY_SECRET_KEY")))
+	if err != nil {
+		fmt.Println("Sign Token")
+		ctx.HTML(http.StatusOK, "frontend/login.html", gin.H{
+			"title":   "Age Of Khagan Thailand | Login",
+			"user":    user,
+			"bg":      "/public/data/img/LOGIN-BG.png",
+			"message": "Token โปรดลองใหม่",
+		})
+		return
+	}
+
+	// SetCookie
+	ctx.SetSameSite(http.SameSiteStrictMode)
+	ctx.SetCookie("Authorization", tokenString, 3600, "", "", false, true)
+
+	// Redirect
+	fmt.Println("บันทึก Token สำเร็จ")
+	ctx.Redirect(http.StatusFound, "/profile/deletion")
 }
 
 func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
