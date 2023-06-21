@@ -779,16 +779,20 @@ video {
   height: 2.5rem;
 }
 
-.h-\[10\%\] {
-  height: 10%;
-}
-
 .h-\[100px\] {
   height: 100px;
 }
 
 .h-\[1153px\] {
   height: 1153px;
+}
+
+.h-\[120px\] {
+  height: 120px;
+}
+
+.h-\[200px\] {
+  height: 200px;
 }
 
 .h-\[240px\] {
@@ -877,38 +881,6 @@ video {
 
 .h-full {
   height: 100%;
-}
-
-.h-\[50\%\] {
-  height: 50%;
-}
-
-.h-\[300px\] {
-  height: 300px;
-}
-
-.h-auto {
-  height: auto;
-}
-
-.h-20 {
-  height: 5rem;
-}
-
-.h-\[20\] {
-  height: 20;
-}
-
-.h-\[20\%\] {
-  height: 20%;
-}
-
-.h-\[200px\] {
-  height: 200px;
-}
-
-.h-\[250px\] {
-  height: 250px;
 }
 
 .w-10 {
@@ -1136,10 +1108,6 @@ video {
   overflow: hidden;
 }
 
-.overflow-scroll {
-  overflow: scroll;
-}
-
 .overflow-x-auto {
   overflow-x: auto;
 }
@@ -1335,6 +1303,14 @@ video {
 
 .bg-\[url\(\'\/public\/data\/img\/login-btn\.png\'\)\] {
   background-image: url('/public/data/img/login-btn.png');
+}
+
+.bg-\[url\(\'\/public\/data\/img\/main-bg-lower\.png\'\)\] {
+  background-image: url('/public/data/img/main-bg-lower.png');
+}
+
+.bg-\[url\(\'\/public\/data\/img\/main-bg-top\.png\'\)\] {
+  background-image: url('/public/data/img/main-bg-top.png');
 }
 
 .bg-\[url\(\'\/public\/data\/img\/main-bg\.png\'\)\] {
@@ -1734,6 +1710,10 @@ video {
 
 .outline-offset-0 {
   outline-offset: 0px;
+}
+
+.outline-\[\#474747\] {
+  outline-color: #474747;
 }
 
 .outline-\[\#FFC117\] {

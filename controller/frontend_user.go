@@ -281,7 +281,7 @@ func (f *Frontend) UserGetHome(ctx *gin.Context) {
 		"user":      user,
 		"logsModel": logsModel,
 		"logs":      logs,
-		"bg":        "/public/data/img/main-bg.png",
+		"bg":        "/public/data/img/main-bg-top.png",
 		"iconuser":  iconuser,
 		"new_all":   new_all,
 		"new_event": new_event,
@@ -617,6 +617,12 @@ func (f *Frontend) UserGetDelete(ctx *gin.Context) {
 		// 	Password: "",
 		// 	Status:   "Delete",
 		// })
+
+		ctx.HTML(http.StatusOK, "frontend/profiledeletedone.html", gin.H{
+			"title": "Age Of Khagan Thailand | Login",
+			"user":  user,
+			"bg":    "/public/data/img/LOGIN-BG.png",
+		})
 
 		ctx.Redirect(http.StatusFound, "/logout")
 	}

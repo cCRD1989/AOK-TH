@@ -19,7 +19,7 @@
 <!-- <div class="hidden" id="mainpage"> -->
 
 <!-- Home Page -->
-<section class="bg-[url('/public/data/img/main-bg.png')] pb-20 bg-no-repeat bg-top bg-black">
+<section class="bg-[url('/public/data/img/main-bg-lower.png')] bg-top pb-20 bg-no-repeat bg-black">
 
     <div class="pt-10 flex flex-col items-center gap-y-4 text-center">
         <div>
@@ -211,7 +211,7 @@
 
                     <!-- Select Lists -->
                     <div>
-                        <select class="px-[15px] py-[4px] rounded-md font-bold text-main border" name="qkeyword"
+                        <select class="text-center px-[10px] py-[4px] rounded-md font-bold text-main border" name="qkeyword"
                             onchange="myRanking()">
 
                             <option {{ selectedcheck .QueryKeyword "level" }} value="level">Level/ระดับ</option>

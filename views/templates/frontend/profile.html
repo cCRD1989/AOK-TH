@@ -54,11 +54,14 @@
                                             class="text-center w-[540px] h-[422px] bg-[url('/public/data/img/old_paper.png')] bg-center bg-no-repeat  flex flex-col justify-center items-center text-[40px] font-bold text-[#006717]">
                                             <p>เปลี่ยนพาสเวิร์ดสำเร็จ</p>
                                             <br>
-                                            <div
-                                                class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+                                            <a href="/profile">
+                                                <div
+                                                    class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+                                                    <p>ตกลง</p>
 
-                                                <a href="/profile">ตกลง</a>
-                                            </div>
+                                                </div>
+                                            </a>
+
                                         </div>
                                     </div>
                                     {{ end }}
@@ -74,9 +77,9 @@
                                                     Username
                                                 </label>
                                                 <input
-                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#474747]"
                                                     id="" name="id-name" type="text" placeholder="Username"
-                                                    value="{{ .user.Username }}" readonly>
+                                                    value="{{ .user.Username }}" disabled>
                                             </div>
 
                                             <div class="px-5">
@@ -85,9 +88,9 @@
                                                     Email
                                                 </label>
                                                 <input
-                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                                    class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#474747]"
                                                     id="" name="id-name" type="text" placeholder="Email"
-                                                    value="{{ .user.Email }}" readonly>
+                                                    value="{{ .user.Email }}" disabled>
                                             </div>
 
                                         </form>
