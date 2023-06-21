@@ -769,18 +769,23 @@ func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
 	}
 
 	log := aokmodel.Userlogin{}
-	if err := db.AOK_DB.First(&log, "id = ?", icode); err != nil {
+	log.FindUserById(icode)
+
+	if log.Username == "" {
 		ctx.String(http.StatusOK, "Error1.")
+
 	} else {
+
 		if log.Isemailverified == 0 {
 			log.Isemailverified = 1
-			if err := db.AOK_DB.Updates(&log); err != nil {
-				ctx.String(http.StatusOK, "Error3. บันทึกข้อมูลไม่สำเร็จ")
-			} else {
-				ctx.String(http.StatusOK, "ระบบได้ทำการ Verify ให้เรียบร้อยแล้ว")
-			}
+
+			db.AOK_DB.Updates(&log)
+			ctx.String(http.StatusOK, "ระบบได้ทำการ Verify ให้เรียบร้อยแล้ว")
+			ctx.Redirect(http.StatusFound, "/")
+
 		} else {
 			ctx.String(http.StatusOK, "Error2.")
+
 		}
 	}
 

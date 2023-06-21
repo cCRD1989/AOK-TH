@@ -59,3 +59,11 @@ func (u *Userlogin) FindUserByAccesstoken(token string) Userlogin {
 
 	return user
 }
+
+// FindUserByID finds a user by ID
+func (u *Userlogin) FindUserById(id string) {
+	//SELECT * FROM userlogin WHERE id = '05e33a49da77d5d2799edf8d451987cb';
+
+	db.AOK_DB.Select("id,username,password,cash,email,isemailverified,accesstoken").Where("id = ?", id).First(&u)
+
+}
