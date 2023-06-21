@@ -691,7 +691,7 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 	plainTextContent := `
 	hello. %s 
 	Please verify email
-	You’re almost there! We sent an email to Click here to verify your email address. http://%s/email/verify/%s
+	You’re almost there! We sent an email to Click here to verify your email address. http://%s/email/verify/?idCode=%s
 	Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.
 	`
 
@@ -701,7 +701,7 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 		<body>
 			<p>hello. %s </p>
 			<p>Please verify email</p>
-			<p>You’re almost there! We sent an email to <a href="http://%s/email/verify/%s"><u>Click here to verify your email address.</u></a></p>
+			<p>You’re almost there! We sent an email to <a href="http://%s/email/verify/?idCode=%s"><u>Click here to verify your email address.</u></a></p>
 			<p></p>
 			<p>Just click on the link in that email to complete your singup. If you don’t see it, you may need to check your spam folder.</p>
 		</body>
@@ -726,20 +726,26 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 	}
 }
 
-func (f *Frontend) UserTokenCodeSend(user, Id, email, tokencode string) {
+func (f *Frontend) UserTokenCodeSend(user, email, tokencode string) {
 
 	from := mail.NewEmail("AOK-TH", "info@ageofkhaganth.com")
 	subject := "AOK-TH Item Code."
 	to := mail.NewEmail("AOK-TH", email)
 
 	plainTextContent := `
+	Hello : %s
+	<br>
+	AOK-TH Item Code : %s
 	`
 
 	htmlContent := `
+	Hello : %s
+	<br>
+	AOK-TH Item Code : %s
 	`
 
-	//plainTextContent = fmt.Sprintf(plainTextContent, user, "https://www.ageofkhaganth.com", Id)
-	//htmlContent = fmt.Sprintf(htmlContent, user, "https://www.ageofkhaganth.com", Id)
+	plainTextContent = fmt.Sprintf(plainTextContent, user, tokencode)
+	htmlContent = fmt.Sprintf(htmlContent, user, tokencode)
 
 	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
 	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
@@ -756,9 +762,27 @@ func (f *Frontend) UserTokenCodeSend(user, Id, email, tokencode string) {
 }
 
 func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
-	icode := ctx.Param("id")
-	fmt.Println("icode", icode)
-	ctx.Redirect(http.StatusFound, "/")
+	icode := ctx.DefaultQuery("idCode", "")
+
+	if icode == "" {
+		ctx.Redirect(http.StatusFound, "/")
+	}
+
+	log := aokmodel.Userlogin{}
+	if err := db.AOK_DB.First(&log, "id = ?", icode); err != nil {
+		ctx.String(http.StatusOK, "Error1.")
+	} else {
+		if log.Isemailverified == 0 {
+			log.Isemailverified = 1
+			if err := db.AOK_DB.Updates(&log); err != nil {
+				ctx.String(http.StatusOK, "Error3. บันทึกข้อมูลไม่สำเร็จ")
+			} else {
+				ctx.String(http.StatusOK, "ระบบได้ทำการ Verify ให้เรียบร้อยแล้ว")
+			}
+		} else {
+			ctx.String(http.StatusOK, "Error2.")
+		}
+	}
 
 }
 
@@ -1442,19 +1466,22 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 	passSig := hex.EncodeToString(h.Sum(nil))
 
 	// ตรวจสอบ การรับของรางวัล ลงทะเบรียนล่วงหน้าโดน เช็ค อีเมล์ ไม่ซ้ำ
-	if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("email = ?", email).Error; err != nil {
+	fmt.Println("Email", email)
+	if err := db.AOK_DB.First(&aokmodel.Userlogin{}, "email = ?", email).Error; err != nil {
 		TokenCode := model.LogTokenregister{
 			Username: userID,
 			Email:    email,
-			Tokenid:  unit.RandStr(32),
+			Tokenid:  unit.GenerateSecureToken(32),
 			Status:   0,
 		}
+
 		if err := db.Conn.Save(&TokenCode).Error; err != nil {
 
-			fmt.Println("เมล์ผ่าน แต่ไม่สามารถบันทึกข้อมูลได้")
+			fmt.Println("ไอดีหรืออีเมล์เคยรับไปแล้ว ไม่สามารถบันทึกข้อมูลได้")
+		} else {
+			f.UserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
+			fmt.Println("ลงทะเบียนล่วงหน้าสำเร็จ")
 		}
-
-		fmt.Println("ลงทะเบียนล่วงหน้าสำเร็จ", TokenCode)
 	} else {
 		fmt.Println("เช็คลงทะเบียนล่วงหน้าเมล์ซ้ำ ไม่ได้รับสิทธิ์")
 	}
@@ -1466,6 +1493,7 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		Password: passSig,
 		Email:    email,
 	}
+	fmt.Println("logid", logid)
 	if err := db.AOK_DB.Save(&logid).Error; err != nil {
 		ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{
 			"title":   "Age Of Khagan | Custom Registration",
