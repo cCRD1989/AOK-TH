@@ -684,7 +684,7 @@ func (f *Frontend) UserGetExDelete(ctx *gin.Context) {
 
 func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 
-	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
+	from := mail.NewEmail("AOK-TH", "info@ageofkhaganth.com")
 	subject := "AOK-TH Verifying your email address."
 	to := mail.NewEmail("AOK-TH", email)
 
@@ -728,7 +728,7 @@ func (f *Frontend) UserEmailVerifySend(user, Id, email string) {
 
 func (f *Frontend) UserTokenCodeSend(user, Id, email, tokencode string) {
 
-	from := mail.NewEmail("AOK-TH", "yokoyokororog@hotmail.com")
+	from := mail.NewEmail("AOK-TH", "info@ageofkhaganth.com")
 	subject := "AOK-TH Item Code."
 	to := mail.NewEmail("AOK-TH", email)
 
