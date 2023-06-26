@@ -461,6 +461,18 @@ func (f *Frontend) UserGetProfile(ctx *gin.Context) {
 	usr, _ := ctx.Get("user")
 	user, _ := usr.(aokmodel.Userlogin)
 
+	//CheckVerifyEmail
+	verify := aokmodel.Userlogin{}
+	verify = verify.FindUserByName(user.Username)
+	if verify.Isemailverified == 0 {
+		ctx.HTML(http.StatusOK, "frontend/profileverify.html", gin.H{
+			"title": "Age Of Khagan Thailand | Login",
+			"user":  user,
+			"bg":    "/public/data/img/LOGIN-BG.png",
+		})
+		return
+	}
+
 	//
 	//
 	//log เติมเงิน
@@ -475,6 +487,40 @@ func (f *Frontend) UserGetProfile(ctx *gin.Context) {
 		"bg":       "/public/data/img/LOGIN-BG.png",
 		"logtopup": logtopup,
 		// "submitregis": "",
+	})
+}
+
+func (f *Frontend) UserGetProfileVerifySendNew(ctx *gin.Context) {
+	visit := model.LogWeb{
+		DataType:  "ProfileVerify",
+		IPAddress: ctx.ClientIP(),
+	}
+	db.Conn.Save(&visit)
+
+	// ตรวจสอบ User Cookie
+	usr, _ := ctx.Get("user")
+	user, _ := usr.(aokmodel.Userlogin)
+
+	//CheckVerifyEmail
+	verify := aokmodel.Userlogin{}
+	verify = verify.FindUserByName(user.Username)
+	if verify.Isemailverified != 1 {
+
+		f.UserEmailVerifySend(verify.Username, verify.Id, verify.Email)
+
+		ctx.HTML(http.StatusOK, "frontend/profileverify.html", gin.H{
+			"title": "Age Of Khagan Thailand | Login",
+			"user":  user,
+			"bg":    "/public/data/img/LOGIN-BG.png",
+			"msg":   "on",
+		})
+		return
+	}
+
+	ctx.HTML(http.StatusOK, "frontend/profile.html", gin.H{
+		"title": "Age Of Khagan Thailand | Login",
+		"user":  user,
+		"bg":    "/public/data/img/LOGIN-BG.png",
 	})
 }
 
@@ -780,8 +826,15 @@ func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
 			log.Isemailverified = 1
 
 			db.AOK_DB.Updates(&log)
-			ctx.String(http.StatusOK, "ระบบได้ทำการ Verify ให้เรียบร้อยแล้ว")
-			ctx.Redirect(http.StatusFound, "/")
+
+			ctx.HTML(http.StatusOK, "frontend/profileverify.html", gin.H{
+				"title": "Age Of Khagan Thailand | Login",
+				"user":  log,
+				"bg":    "/public/data/img/LOGIN-BG.png",
+				"done":  "on",
+			})
+
+			return
 
 		} else {
 			ctx.String(http.StatusOK, "Error2.")

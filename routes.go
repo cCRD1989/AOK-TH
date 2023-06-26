@@ -22,15 +22,16 @@ func serveRoutes(r *gin.Engine) {
 		ctx.HTML(http.StatusOK, "intro/intro.html", nil)
 	})
 
-	frontend_userGroup.GET("/singin", frontend_user.UserGetSingin)                                        //index.html
-	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)                                         //login
-	frontend_userGroup.GET("/register", frontend_user.UserGetRegister)                                    //register
-	frontend_userGroup.GET("/class", frontend_user.UserGetClass)                                          //register
-	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)                                            //maps
-	frontend_userGroup.GET("/maps/map/:id", frontend_user.UserGetMap)                                     //maps
-	frontend_userGroup.GET("/maps/mob/:id", frontend_user.UserGetMonster)                                 //maps
-	frontend_userGroup.GET("/profile", middleware.UserCheck(), frontend_user.UserGetProfile)              //profile
-	frontend_userGroup.POST("/profile/changpass", middleware.UserCheck(), frontend_user.UserGetChangPass) //profile
+	frontend_userGroup.GET("/singin", frontend_user.UserGetSingin)                                               //index.html
+	frontend_userGroup.POST("/login", frontend_user.UserGetLogin)                                                //login
+	frontend_userGroup.GET("/register", frontend_user.UserGetRegister)                                           //register
+	frontend_userGroup.GET("/class", frontend_user.UserGetClass)                                                 //register
+	frontend_userGroup.GET("/maps", frontend_user.UserGetMaps)                                                   //maps
+	frontend_userGroup.GET("/maps/map/:id", frontend_user.UserGetMap)                                            //maps
+	frontend_userGroup.GET("/maps/mob/:id", frontend_user.UserGetMonster)                                        //maps
+	frontend_userGroup.GET("/profile", middleware.UserCheck(), frontend_user.UserGetProfile)                     //profile
+	frontend_userGroup.GET("/profile/verify", middleware.UserCheck(), frontend_user.UserGetProfileVerifySendNew) //profile
+	frontend_userGroup.POST("/profile/changpass", middleware.UserCheck(), frontend_user.UserGetChangPass)        //profile
 
 	frontend_userGroup.GET("/profile/deletion", middleware.UserCheck(), frontend_user.UserGetPDelete) //profileDelete
 	frontend_userGroup.POST("/profile/delete", middleware.UserCheck(), frontend_user.UserGetDelete)   //UserGetDelete

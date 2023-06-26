@@ -1,0 +1,68 @@
+{{ define "content" }}
+
+
+<nav class="bg-[url('/public/data/img/LOGIN-BG.png')] bg-top bg-no-repeat bg-black">
+
+    <section class="flex justify-center">
+
+        <div class="w-[80%] h-[740px] bg-[#141414AB] mt-5 relative flex justify-center rounded-3xl">
+
+            <div class="w-[90%] h-[90%] md:flex gap-10 flex justify-center items-center">
+
+                <div id="" class="text-center outline outline-offset-0 outline-1 outline-[#fcbd00a6] rounded-3xl p-5">
+
+                    {{ if ne .done ""}}
+                    <div class="px-5 text-yellow-100 font-medium text-lg">
+                        <p class="text-2xl text-yellow-100 font-bold">ยืนยันบัญชี AOK-TH ของคุณ</p>
+                        <br>
+
+                        เมื่อตั้งค่าบัญชี AOK-TH
+                        เราจะส่งอีเมล์ยืนยันไปยังที่อยู่อีเมลที่คุณใช้เพื่อสร้างบัญชี หากไม่ยืนยันที่อยู่
+                        คุณจะสร้างบัญชี AOK-TH ไม่ได้
+
+                    </div>
+                    <br>
+                    <a href="/profile/verify">
+                        <button
+                        class="px-5 bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
+                        type="submit">ส่งข้อความใหม่อีกครั้ง</button>
+
+                    </a>
+                    {{ if eq .msg "on" }}
+                    <p class="px-5 text-yellow-100 font-medium text-lg">
+                        เราจะส่งอีเมล์ไปยังที่อยู่อีเมลที่คุณแล้ว โปรดเช็คอีเมล์เพื่อยืนยันบัญชี AOK-TH ของคุณ
+                    </p>
+                    {{ end }}
+                    {{ else }}
+                    <p class="text-2xl text-yellow-100 font-bold">ผลยืนยันบัญชี AOK-TH ของคุณสําเร็จแล้ว</p>
+                    <br>
+                    <a href="/profile/verify">
+                        <button
+                        class="px-5 bg-[url('/public/data/img/changepass-btn.png')] md:w-[310px] md:h-[80px] bg-no-repeat bg-contain bg-center text-lg font-bold mb-3"
+                        type="submit">ปิด</button>
+
+                    </a>
+                    {{ end }}
+
+
+                </div>
+
+            </div>
+
+
+
+            <img src="/public/data/img/new-l-t.png" alt="" class="hidden md:block absolute left-0 top-0 p-3">
+            <img src="/public/data/img/new-l-b.png" alt="" class="hidden md:block absolute left-0 bottom-0 p-3">
+            <img src="/public/data/img/new-r-t.png" alt="" class="hidden md:block absolute right-0 top-0 p-3">
+            <img src="/public/data/img/new-r-b.png" alt="" class="hidden md:block absolute right-0 bottom-0 p-3">
+
+
+
+        </div>
+    </section>
+
+    <div class="pb-20"></div>
+</nav>
+
+
+{{ end }}
