@@ -928,7 +928,7 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		linl1 = "/maps/map/3"
 		linl2 = "/maps/mob/3"
 		titlename = "LUBLIN MONGOL FORTRESS"
-		titlediscr = "เมืองแห่งหิมะพื้นที่สำหรับนักรบในการต่อต้านเหล่ามอนสเตอร์ที่แข็งแกร่งและชั่วร้าย"
+		titlediscr = "เมืองแห่งหิมะพื้นที่สำหรับนักรบในการต่อต้านเหล่ามอนสเตอร์ที่แข็งแกร่งและ ชั่วร้าย"
 
 	} else if id == "4" {
 		mob1 = []string{
