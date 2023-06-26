@@ -446,7 +446,7 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "frontend/mapselect.html", gin.H{
 		"title": "Age Of Khagan Thailand | Maps",
 		"user":  user,
-		"bg":    "/public/data/img/MAP-01_BG.png",
+		"bg":    "/public/data/img/LOGIN-BG.png",
 	})
 }
 
@@ -987,7 +987,7 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "frontend/mob.html", gin.H{
 		"title":      "Age Of Khagan Thailand | Maps",
 		"user":       user,
-		"bg":         "/public/data/img/MAP-01_BG.png",
+		"bg":         "/public/data/img/LOGIN-BG.png",
 		"titlename":  titlename,
 		"mob1":       mob1,
 		"mob2":       mob2,
@@ -1142,7 +1142,7 @@ func (f *Frontend) UserGetMap(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "frontend/map.html", gin.H{
 		"title":      "Age Of Khagan Thailand | Maps",
 		"user":       user,
-		"bg":         "/public/data/img/MAP-01_BG.png",
+		"bg":         "/public/data/img/LOGIN-BG.png",
 		"titlename":  titlename,
 		"map1":       map1,
 		"map2":       map2,
