@@ -462,17 +462,17 @@ func (f *Frontend) UserGetProfile(ctx *gin.Context) {
 	usr, _ := ctx.Get("user")
 	user, _ := usr.(aokmodel.Userlogin)
 
-	//CheckVerifyEmail
-	verify := aokmodel.Userlogin{}
-	verify = verify.FindUserByName(user.Username)
-	if verify.Isemailverified == 0 {
-		ctx.HTML(http.StatusOK, "frontend/profileverify.html", gin.H{
-			"title": "Age Of Khagan Thailand | Login",
-			"user":  user,
-			"bg":    "/public/data/img/LOGIN-BG.png",
-		})
-		return
-	}
+	// เช็ค ว่ามีการยืนยันตัวตนหรือไหม CheckVerifyEmail
+	// verify := aokmodel.Userlogin{}
+	// verify = verify.FindUserByName(user.Username)
+	// if verify.Isemailverified == 0 {
+	// 	ctx.HTML(http.StatusOK, "frontend/profileverify.html", gin.H{
+	// 		"title": "Age Of Khagan Thailand | Login",
+	// 		"user":  user,
+	// 		"bg":    "/public/data/img/LOGIN-BG.png",
+	// 	})
+	// 	return
+	// }
 
 	//
 	//
@@ -1576,6 +1576,7 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 		Status:   "Custom Registration",
 	})
 
+	// UserEmail ** **** *VerifySend
 	f.UserEmailVerifySend(logid.Username, logid.Id, logid.Email)
 
 	//ctx.Redirect(http.StatusFound, "/")
