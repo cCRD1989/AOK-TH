@@ -65,8 +65,18 @@
                         </button>
                         <div class="menu bg-[#0000004D] backdrop-blur-xl">
                             <button class="">
-                                <p class="font-medium text-orange-400 hover:font-extrabold"><a href="/profile">My Profile</a></p>
+                                <p class="font-medium text-orange-400 hover:font-extrabold"><a href="/profile">My
+                                        Profile</a></p>
                             </button>
+
+                            {{if eq .user.Userlevel 1}}
+                            <button class="">
+                                <p class="font-medium text-orange-400 hover:font-extrabold"><a
+                                        href="/admin">Administrator</a></p>
+                            </button>
+                            {{ end }}
+
+
                             <button class="">
                                 <a class="font-medium text-red-400 hover:font-extrabold" href="/logout">Logout</a>
                             </button>

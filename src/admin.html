@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>cCRD</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../dist/output.css">
+
+    <!-- Fount -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+    <section class="bg-sky-500 h-screen w-screen">
+
+        <div class="flex justify-center">
+            <div class="w-[550px] h-[940px]  pt-[2%]">
+                <div class="bg-[#00000067] backdrop-blur-md py-[30px] p-10 rounded-2xl">
+                    <form action="/new/add" method="pos">
+
+                        <div class="mb-5">
+                            <label class="font-medium text-[18px] text-white block mb-2" for="datatype">
+                                Datatype
+                            </label>
+
+                            <select class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]" name="datatype" id="datatype" form="datatype" required>
+                                <option value="event">Event</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="font-medium text-[18px] text-white block mb-2" for="author">
+                                Author
+                            </label>
+                            <input name="author"
+                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                id="author" type="text" value="{{ .user.Username }}" required readonly>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="font-medium text-[18px] text-white block mb-2" for="subject">
+                                Subject
+                            </label>
+                            <input name="subject"
+                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                id="subject" type="text" placeholder="หัวข้อเรื่อง" required>
+                        </div>
+
+
+                        <div class="mb-5">
+                            <label class="font-medium text-[18px] text-white block mb-2" for="data">
+                                ข้อมูลเนื้อหา
+                            </label>
+                            <textarea id="data" name="data"
+                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                rows="5" placeholder="ข้อมูลเนื้อหาทั้งหมด" required></textarea>
+
+                        </div>
+
+
+                        <div class="mb-5">
+                            <label class="text-white" for="file_input">Upload Image</label>
+                            <input accept=".jpg,.png"
+                                class="block text-xl text-yellow-600 w-full cursor-pointer bg-[#00000080] rounded-xl outline outline-offset-0 outline-1 outline-[#ffa600]"
+                                type="file" name="image" id="file_input" required>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="font-medium text-[18px] text-white block mb-2" for="externallink">
+                                Externallink
+                            </label>
+                            <input name="externallink"
+                                class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                                id="externallink" type="text" placeholder="ลิ้งค์ภายนอก" required>
+                        </div>
+
+                        <div class="text-center mt-10">
+                            <button
+                                class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-top bg-contain text-xl font-bold"
+                                type="submit">ส่งข้อมูล</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{$.title}}</title>
+
+	<!-- css -->
+	<link rel="stylesheet" href="/dist/output.css">
+
+	<!-- Fount -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+	{{ template "content" . }}
+
+
+
+
+
+
+
+
+	<script>
+
+		window.onload = function () {
+			document.getElementById('closepopup').onclick = function () {
+				var mainpage = document.getElementById('mainpage');
+				mainpage.classList.remove('hidden');
+				mainpage.classList.add('block');
+				document.getElementById('mainpopup').classList.add('hidden');
+			};
+		};
+
+		// window.onload = function () {
+		// 	document.getElementById('button').onclick = function () {
+		// 		var mainpage = document.getElementById('mainpage');
+		// 		mainpage.classList.remove('hidden');
+		// 		mainpage.classList.add('block');
+		// 		document.getElementById('mainpopup').classList.add('hidden');
+		// 	};
+		// };
+
+	</script>
+
+	<script>
+		var nav = document.querySelector(".nav-links")
+		function onToggleMenu(e) {
+			nav.classList.toggle('top-[106px]');
+		}
+
+
+		// ......
+		var nav1 = document.getElementById("popup1")
+		function onTogglePopup1(e) {
+			nav1.classList.remove('hidden');
+			nav1.classList.add('flex');
+		}
+
+		var nav2 = document.getElementById("popup2")
+		function onTogglePopup2(e) {
+			nav2.classList.remove('hidden');
+			nav2.classList.add('flex');
+		}
+
+		var nav3 = document.getElementById("popup3")
+		function onTogglePopup3(e) {
+			nav3.classList.remove('hidden');
+			nav3.classList.add('flex');
+		}
+
+		var nav4 = document.getElementById("popup4")
+		function onTogglePopup4(e) {
+			nav4.classList.remove('hidden');
+			nav4.classList.add('flex');
+		}
+
+		var nav5 = document.getElementById("popup5")
+		function onTogglePopup5(e) {
+			nav5.classList.remove('hidden');
+			nav5.classList.add('flex');
+		}
+
+		var nav6 = document.getElementById("popup6")
+		function onTogglePopup6(e) {
+			nav6.classList.remove('hidden');
+			nav6.classList.add('flex');
+		}
+
+		// 
+
+		var map_monter1 = document.querySelector(".map-links");
+		var map_monter2 = document.querySelector(".monter-links");
+		function onToggleMap(e) {
+
+			map_monter2.classList.remove('flex');
+			map_monter2.classList.add('hidden');
+
+			map_monter1.classList.remove('hidden');
+			map_monter1.classList.add('flex');
+
+		}
+
+		function onToggleMonter(e) {
+
+			map_monter1.classList.remove('flex');
+			map_monter1.classList.add('hidden');
+
+			map_monter2.classList.remove('hidden');
+			map_monter2.classList.add('flex');
+
+		}
+
+
+		function myRanking() {
+			document.getElementById("myRanking").submit();
+		}
+
+
+
+	</script>
+
+	<script>
+
+		const handleDropdownClicked = (event) => {
+			event.stopPropagation();
+			const dropdown = document.getElementById("dropdown");
+			toggleDropdown(!dropdown.classList.contains("open"));
+		};
+
+		const toggleDropdown = (shouldOpen) => {
+			const dropdown = document.getElementById("dropdown");
+			const icon = document.getElementById("icon");
+
+			if (shouldOpen) {
+				dropdown.classList.add("open");
+			} else {
+				dropdown.classList.remove("open");
+			}
+		};
+
+		document.body.addEventListener("click", () => toggleDropdown());
+
+
+	</script>
+
+
+	<script>
+		var profile_page1 = document.getElementById("profile_page1");
+		var profile_page2 = document.getElementById("profile_page2");
+		//var profile_page3 = document.getElementById("profile_page3");
+
+
+
+		function openProFile_page1() {
+			profile_page1.classList.remove("hidden")
+			profile_page2.classList.add("hidden")
+			//profile_page3.classList.add("hidden")
+		}
+
+		function openProFile_page2() {
+			profile_page1.classList.add("hidden")
+			profile_page2.classList.remove("hidden")
+			//profile_page3.classList.add("hidden")
+		}
+
+		function openProFile_page3() {
+
+			profile_page1.classList.add("hidden")
+			profile_page2.classList.add("hidden")
+			//profile_page3.classList.remove("hidden")
+		}
+
+	</script>
+
+
+	<script>
+		function checkPassword(form) {
+			const password = form.new_password.value;
+			const confirmPassword = form.new_repassword.value;
+
+			if (password != confirmPassword) {
+				alert("Error! Password did not match.");
+				return false;
+			} else {
+				return true;
+			}
+		}
+	</script>
+
+	<script>
+
+		var getNew_All = document.getElementById('new_all');
+		var getNew_Event = document.getElementById('new_event');
+		var getNew_Other = document.getElementById('new_other');
+
+		var getNew_All_Page = document.getElementById('new_all_page');
+		var getNew_Event_Page = document.getElementById('new_event_page');
+		var getNew_Other_Page = document.getElementById('new_other_page');
+
+
+		function onclickNew_All() {
+			getNew_All.classList.add("ranking-hi")
+			getNew_Event.classList.remove("ranking-hi")
+			getNew_Other.classList.remove("ranking-hi")
+
+			getNew_All_Page.classList.remove("hidden")
+			getNew_Event_Page.classList.add("hidden")
+			getNew_Other_Page.classList.add("hidden")
+		}
+
+		function onclickNew_Event() {
+			getNew_All.classList.remove("ranking-hi")
+			getNew_Event.classList.add("ranking-hi")
+			getNew_Other.classList.remove("ranking-hi")
+
+			getNew_All_Page.classList.add("hidden")
+			getNew_Event_Page.classList.remove("hidden")
+			getNew_Other_Page.classList.add("hidden")
+		}
+
+		function onclickNew_Other() {
+			getNew_All.classList.remove("ranking-hi")
+			getNew_Event.classList.remove("ranking-hi")
+			getNew_Other.classList.add("ranking-hi")
+
+			getNew_All_Page.classList.add("hidden")
+			getNew_Event_Page.classList.add("hidden")
+			getNew_Other_Page.classList.remove("hidden")
+		}
+
+	</script>
+
+
+</body>
+
+</html>

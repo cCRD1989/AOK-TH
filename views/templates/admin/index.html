@@ -1,0 +1,85 @@
+{{ define "content" }}
+
+<section class="bg-sky-500 h-screen w-screen">
+
+    <div class="flex justify-center">
+        <div class="w-[550px] h-[940px]  pt-[2%]">
+            <div class="bg-[#00000067] backdrop-blur-md py-[30px] p-10 rounded-2xl">
+
+                <form action="/admin/new/add/" method="post" enctype="multipart/form-data">
+
+                    <div class="mb-5">
+                        <label class="font-medium text-[18px] text-white block mb-2" for="datatype">
+                            Datatype
+                        </label>
+                        <select
+                            class="text-white text-center min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                            name="Datatype" required>
+                            <option value="Event">Event</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="font-medium text-[18px] text-white block mb-2" for="author">
+                            Author
+                        </label>
+                        <input name="Author"
+                            class="text-white text-center min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                            id="author" type="text" value="{{ .user.Username }}" required readonly>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="font-medium text-[18px] text-white block mb-2" for="subject">
+                            Subject
+                        </label>
+                        <input name="Subject"
+                            class="text-white text-center min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                            id="subject" type="text" placeholder="หัวข้อเรื่อง" required>
+                    </div>
+
+
+                    <div class="mb-5">
+                        <label class="font-medium text-[18px] text-white block mb-2" for="data">
+                            ข้อมูลเนื้อหา
+                        </label>
+                        <textarea id="data" name="Data"
+                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                            rows="5" placeholder="ข้อมูลเนื้อหาทั้งหมด" required></textarea>
+
+                    </div>
+
+
+                    <div class="mb-5">
+                        <label class="text-white" for="file_input">Upload Image</label>
+                        <input accept=".jpg,.png"
+                            class="block text-xl text-yellow-600 w-full cursor-pointer bg-[#00000080] rounded-xl outline outline-offset-0 outline-1 outline-[#ffa600]"
+                            type="file" name="Image" id="file_input" required>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="font-medium text-[18px] text-white block mb-2" for="externallink">
+                            Externallink
+                        </label>
+                        <input name="Externallink"
+                            class="text-white min-w-full h-[70px] px-5 rounded-xl bg-[#00000080] outline outline-offset-0 outline-1 outline-[#FFC117]"
+                            id="externallink" type="text" placeholder="ลิ้งค์ภายนอก" required>
+                    </div>
+
+                    <div class="text-center mt-10">
+                        <button
+                            class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-top bg-contain text-xl font-bold"
+                            type="submit">ส่งข้อมูล</button>
+                    </div>
+           
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{{ end }}

@@ -21,16 +21,16 @@ import (
 // UNIQUE KEY `username` (`username`)
 
 type Userlogin struct {
-	Id       string `gorm:"type:varchar(50);not null;primaryKey"`
-	Username string `gorm:"type:varchar(32);not null;uniqueIndex"`
-	Password string `gorm:"type:varchar(72);not null"`
-	// Gold            int
+	Id              string `gorm:"type:varchar(50);not null;primaryKey"`
+	Username        string `gorm:"type:varchar(32);not null;uniqueIndex"`
+	Password        string `gorm:"type:varchar(72);not null"`
 	Cash            int
 	Email           string `gorm:"type:varchar(50);not null;default:"`
 	Isemailverified int
+	Accesstoken     string `gorm:"type:varchar(36);not null;default:"`
+	Userlevel       int
 	// Authtype        int
-	Accesstoken string `gorm:"type:varchar(36);not null;default:"`
-	// Userlevel       int
+	// Gold            int
 	// Unbantime       int
 	// Createat        time.Time
 	// Updateat        time.Time
@@ -45,7 +45,7 @@ func (u *Userlogin) FindUserByName(username string) Userlogin {
 
 	var user Userlogin
 
-	db.AOK_DB.Select("id,username,password,cash,email,isemailverified").Where("username = ?", username).First(&user)
+	db.AOK_DB.Select("id,username,password,cash,email,isemailverified,Userlevel").Where("username = ?", username).First(&user)
 
 	return user
 }

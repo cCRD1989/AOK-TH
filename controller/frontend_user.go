@@ -451,6 +451,7 @@ func (f *Frontend) UserGetMaps(ctx *gin.Context) {
 }
 
 func (f *Frontend) UserGetProfile(ctx *gin.Context) {
+
 	visit := model.LogWeb{
 		DataType:  "Profile",
 		IPAddress: ctx.ClientIP(),
@@ -1254,49 +1255,6 @@ func (f *Frontend) UserNewAll(ctx *gin.Context) {
 		"bg":     "/public/data/img/NewPage-BG.png",
 		"newall": newall,
 	})
-}
-
-// POST สร้างโพส
-func (f *Frontend) CreateNew(ctx *gin.Context) {
-
-	form := model.LogNewsRequest{}
-
-	if err := ctx.ShouldBind(&form); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
-		return
-	}
-
-	// if err := ctx.MustBindWith(&form, binding.FormMultipart); err != nil {
-	// 	ctx.JSON(http.StatusBadRequest, gin.H{"Error1": err.Error()})
-	// 	return
-	// }
-
-	// // img, err := ctx.FormFile("Image")
-	// // if err != nil {
-	// // 	ctx.JSON(http.StatusBadRequest, gin.H{"Error2": err.Error()})
-	// // 	return
-	// // }
-
-	//imagePath := "./Data/Slip/" + User + "/" + uuid.NewString() + "." + strings.Split(image.Filename, ".")[1]
-
-	// ctx.SaveUploadedFile(form.Image, imagePath)
-
-	// fmt.Println("สำเร็จ", form)
-	// return
-
-	// addNew := model.LogNews{
-	// 	Datatype:     form.Datatype,
-	// 	Author:       form.Author,
-	// 	Subject:      form.Subject,
-	// 	Data:         form.Data,
-	// 	Image:        imagePath,
-	// 	Externallink: form.Externallink,
-	// }
-	// if err := db.Conn.Create(&addNew).Error; err != nil {
-	// 	ctx.JSON(http.StatusBadRequest, gin.H{"Error3": err.Error()})
-	// 	return
-	// }
-	// fmt.Println("สำเร็จ")
 }
 
 // privacypolicy
