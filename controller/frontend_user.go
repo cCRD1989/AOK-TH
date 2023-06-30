@@ -946,7 +946,7 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		linl1 = "/maps/map/2"
 		linl2 = "/maps/mob/2"
 		titlename = "KHARAKORUM"
-		titlediscr = "จุดยุทธศาสตร์แห่งการรวมตัวของชนเผ่า Nurin เพื่อเตรียมความพร้อมในการโจมตีกับกองทัพ Durlukin"
+		titlediscr = "" //"จุดยุทธศาสตร์แห่งการรวมตัวของชนเผ่า Nurin เพื่อเตรียมความพร้อมในการโจมตีกับกองทัพ Durlukin"
 
 	} else if id == "3" {
 		mob1 = []string{
@@ -982,7 +982,7 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		linl1 = "/maps/map/3"
 		linl2 = "/maps/mob/3"
 		titlename = "LUBLIN MONGOL FORTRESS"
-		titlediscr = "เมืองแห่งหิมะพื้นที่สำหรับนักรบในการต่อต้านเหล่ามอนสเตอร์ที่แข็งแกร่งและ ชั่วร้าย"
+		titlediscr = "" //"เมืองแห่งหิมะพื้นที่สำหรับนักรบในการต่อต้านเหล่ามอนสเตอร์ที่แข็งแกร่งและ ชั่วร้าย"
 
 	} else if id == "4" {
 		mob1 = []string{
@@ -1010,7 +1010,7 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		linl1 = "/maps/map/4"
 		linl2 = "/maps/mob/4"
 		titlename = "IRON DUNGEON"
-		titlediscr = "เหมืองแร่ใต้หุบเขา Karpatian เหมืองแร่โบราณแห่งความท้าทาย กับสภาพของผู้คนที่เปลี่ยนไป ด้วยความโลภและเวทย์มนต์ดำ"
+		titlediscr = "" //"เหมืองแร่ใต้หุบเขา Karpatian เหมืองแร่โบราณแห่งความท้าทาย กับสภาพของผู้คนที่เปลี่ยนไป ด้วยความโลภและเวทย์มนต์ดำ"
 
 	} else if id == "5" {
 		mob1 = []string{
@@ -1032,7 +1032,7 @@ func (f *Frontend) UserGetMonster(ctx *gin.Context) {
 		linl1 = "/maps/map/5"
 		linl2 = "/maps/mob/5"
 		titlename = "LAVA CANYON"
-		titlediscr = "สถานที่น่าค้นหาและมีเสน่ห์ รายล้อมไปด้วยมอนสเตอร์ผู้ปกป้องทรัพย์สมบัติล้ำค่า"
+		titlediscr = "" //"สถานที่น่าค้นหาและมีเสน่ห์ รายล้อมไปด้วยมอนสเตอร์ผู้ปกป้องทรัพย์สมบัติล้ำค่า"
 
 	} else {
 		return
@@ -1577,7 +1577,7 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 	})
 
 	// UserEmail ** **** *VerifySend
-	f.UserEmailVerifySend(logid.Username, logid.Id, logid.Email)
+	//f.UserEmailVerifySend(logid.Username, logid.Id, logid.Email)
 
 	//ctx.Redirect(http.StatusFound, "/")
 	ctx.HTML(http.StatusOK, "frontend/register.html", gin.H{

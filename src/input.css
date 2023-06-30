@@ -72,6 +72,16 @@
   z-index: 12;
 
 }
+.fastButtons-messenger {
+  /* background-image: url('/data/img/fastButtons-BG.png'); */
+
+  position: fixed;
+  right: 45px;
+  top: 90%;
+  padding: 0 2px 18px;
+  z-index: 12;
+
+}
 
 
 @keyframes grow-and-shrink {
