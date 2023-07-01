@@ -668,6 +668,22 @@ video {
   top: 85%;
 }
 
+.left-\[-20px\] {
+  left: -20px;
+}
+
+.left-\[-25px\] {
+  left: -25px;
+}
+
+.left-\[-15px\] {
+  left: -15px;
+}
+
+.left-\[-30px\] {
+  left: -30px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1086,6 +1102,14 @@ video {
 
 .w-\[227px\] {
   width: 227px;
+}
+
+.w-\[400px\] {
+  width: 400px;
+}
+
+.w-\[450px\] {
+  width: 450px;
 }
 
 .min-w-full {
