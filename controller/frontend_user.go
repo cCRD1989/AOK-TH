@@ -1532,6 +1532,7 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 			Email:    email,
 			Tokenid:  unit.GenerateSecureToken(32),
 			Status:   0,
+			IP:       ctx.ClientIP(),
 		}
 
 		if err := db.Conn.Save(&TokenCode).Error; err != nil {

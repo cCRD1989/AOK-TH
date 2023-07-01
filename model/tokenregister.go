@@ -11,5 +11,6 @@ type LogTokenregister struct {
 	Email    string `gorm:"type:varchar(100);uniqueIndex;not null"`
 	Tokenid  string `gorm:"type:varchar(32);uniqueIndex;not null"`
 	Status   int    `gorm:"not null"`
+	IP       string `gorm:"type:varchar(50);not null"`
 	gorm.Model
 }
