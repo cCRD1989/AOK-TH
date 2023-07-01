@@ -3,7 +3,7 @@
 <nav class="bg-[url('/public/data/img/REGISTER-BG.png')] bg-top bg-no-repeat bg-black">
 
     <section class="flex justify-center">
-        <div class="h-[980px] w-[638px] bg-[#141414AB] mt-5 relative flex justify-center">
+        <div class="h-[1000px] w-[638px] bg-[#141414AB] mt-5 relative flex justify-center">
 
             <div class="w-[80%]">
                 <div>
@@ -63,7 +63,7 @@
 
 
                                 <div class="text-white flex mt-5">
-                                    <input class="w-5" type="checkbox" name="checkbox" id="" required>
+                                    <input class="min-w-[25px]" type="checkbox" name="checkbox" id="" required>
                                     <div class="pl-3">
 
 
@@ -71,9 +71,10 @@
                                             href="/privacypolicy">Privacy Policy</a> and <a
                                             style="color: rgb(216, 124, 11);" href="/service">Service Agreement</a>
 
-                                        ฉันมีอายุอย่างน้อย 13 ปีขึ้นไป และยอมรับ <a style="color: rgb(216, 124, 11);" href="/privacypolicy">ข้อตกลงความเป็นส่วนตัว</a>  และ
+                                        ฉันมีอายุอย่างน้อย 13 ปีขึ้นไป และยอมรับ <a style="color: rgb(216, 124, 11);"
+                                            href="/privacypolicy">ข้อตกลงความเป็นส่วนตัว</a> และ
                                         <a style="color: rgb(216, 124, 11);" href="/service">เงื่อนไขการให้บริการ</a>
-                                        
+
 
                                     </div>
 
@@ -96,13 +97,10 @@
                 {{ if eq .message "open" }}
                 <div class="absolute top-[25%]">
                     <div
-                        class="text-center w-[540px] h-[422px] bg-[url('/public/data/img/old_paper.png')] bg-center bg-no-repeat  flex flex-col justify-center items-center text-[40px] font-bold text-[#006717]">
+                        class="w-[390px] h-[262px] md:w-[540px] md:h-[422px] bg-[url('/public/data/img/old_paper.png')] bg-contain bg-top bg-no-repeat flex flex-col justify-center items-center text-[20px] md:text-[40px] font-bold text-[#006717]">
                         <p>Register Success <br> สมัครสมาชิกสำเร็จ</p>
-                        <!-- <a href="/home">
-                            <img src="/public/data/img/close-btn.png" alt="">
-                        </a> -->
                         <div
-                            class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[247px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
+                            class="bg-[url('/public/data/img/BTN_ENTY.png')] w-[227px] h-[64px] bg-no-repeat bg-contain bg-center text-lg font-bold flex justify-center items-center">
 
                             <a href="/home">เข้าสู่เว็บไซต์</a>
                         </div>
