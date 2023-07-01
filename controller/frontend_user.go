@@ -1512,6 +1512,7 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 			"user":    user,
 			"message": "",
 		})
+		return
 	}
 
 	// สุ่ม IDCode
