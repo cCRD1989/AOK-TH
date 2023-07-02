@@ -14,6 +14,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"net/smtp"
 	"net/url"
 	"os"
 	"reflect"
@@ -808,6 +809,38 @@ func (f *Frontend) UserTokenCodeSend(user, email, tokencode string) {
 	}
 }
 
+func (f *Frontend) SmtpUserTokenCodeSend(user, email, tokencode string) {
+	// Define the SMTP server configuration
+	smtpHost := os.Getenv("smtpHost")
+	smtpPort := 587
+	smtpUsername := os.Getenv("smtpUsername")
+	smtpPassword := os.Getenv("smtpPassword")
+
+	// Define the email content
+	from := os.Getenv("smtpUsername")
+	to := email
+
+	subject := "AOK-TH Item Code."
+	body := fmt.Sprintf("Hello : %s\r\nAOK-TH Item Code : %s", user, tokencode)
+
+	// Construct the email message
+	message := []byte("To: " + to + "\r\n" +
+		"From: " + from + "\r\n" +
+		"Subject: " + subject + "\r\n" +
+		"\r\n" +
+		body)
+
+	// Establish a connection with the SMTP server
+	auth := smtp.PlainAuth("", smtpUsername, smtpPassword, smtpHost)
+	err := smtp.SendMail(fmt.Sprintf("%s:%d", smtpHost, smtpPort), auth, from, []string{to}, message)
+	if err != nil {
+		fmt.Println("sendemail err", err)
+	} else {
+		fmt.Println("Email sent successfully!")
+
+	}
+}
+
 func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
 	icode := ctx.DefaultQuery("idCode", "")
 
@@ -842,7 +875,6 @@ func (f *Frontend) UserEmailVerify(ctx *gin.Context) {
 
 		}
 	}
-
 }
 
 func (f *Frontend) UserGetMonster(ctx *gin.Context) {
@@ -1540,7 +1572,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 
 			fmt.Println("ไอดีหรืออีเมล์เคยรับไปแล้ว ไม่สามารถบันทึกข้อมูลได้")
 		} else {
-			f.UserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
+			//f.UserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
+			f.SmtpUserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
 			fmt.Println("ลงทะเบียนล่วงหน้าสำเร็จ")
 		}
 	} else {

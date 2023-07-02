@@ -1116,6 +1116,22 @@ video {
   width: 99%;
 }
 
+.w-\[99\] {
+  width: 99;
+}
+
+.w-\[95\%\] {
+  width: 95%;
+}
+
+.w-\[80\] {
+  width: 80;
+}
+
+.w-\[8\] {
+  width: 8;
+}
+
 .min-w-full {
   min-width: 100%;
 }
