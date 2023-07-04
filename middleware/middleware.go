@@ -47,6 +47,7 @@ func UserSession() gin.HandlerFunc {
 			// Find the user wuth token St
 			user := aokmodel.Userlogin{}
 			user = user.FindUserByName(authedUser.Username)
+			
 			if user.Username == "" {
 				fmt.Println("Check ID Token")
 				ctx.Next()
