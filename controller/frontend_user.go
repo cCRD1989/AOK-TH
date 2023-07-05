@@ -1572,8 +1572,8 @@ func (f *Frontend) Auth_custom_regis(ctx *gin.Context) {
 
 			fmt.Println("ไอดีหรืออีเมล์เคยรับไปแล้ว ไม่สามารถบันทึกข้อมูลได้")
 		} else {
-			//f.UserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
-			f.SmtpUserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
+			f.UserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
+			//f.SmtpUserTokenCodeSend(TokenCode.Username, TokenCode.Email, TokenCode.Tokenid)
 			fmt.Println("ลงทะเบียนล่วงหน้าสำเร็จ")
 		}
 	} else {
