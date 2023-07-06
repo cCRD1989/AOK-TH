@@ -403,12 +403,16 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 				ctx.Status(http.StatusBadRequest)
 				return
 			}
+			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup)
+			fmt.Println(">>>>>>>>>>>>>>>>>>", request.Channel)
+			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup.Bonus)
 
 			//ดึงเงินที่อยู่ใน id นั้น
 			idcash := aokmodel.Userlogin{}
 			db.AOK_DB.First(&idcash, "username = ?", data.UserId)
 
 			CASH := caseint + (caseint * (BonusTopup.Bonus / 100))
+
 			//idcash.Cash += (caseint + (caseint * (BonusTopup.Bonus / 100)))
 
 			log_cash := model.LogMailTopup{

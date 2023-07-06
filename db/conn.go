@@ -55,6 +55,7 @@ func Migrate() {
 			&model.LogNews{},
 			&model.LogMailTopup{},
 			&model.Bankingbonus{},
+			&model.Topuprecheck{},
 		)
 
 	// err := Conn.AutoMigrate(
