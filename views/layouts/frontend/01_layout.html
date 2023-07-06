@@ -16,6 +16,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
 
 
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
 </head>
 
 <body>
@@ -33,6 +35,64 @@
 
 
 
+
+
+	<script>
+
+		$(document).ready(function () {
+			$(".bank_point").click(function (e) {
+				let data = $(this).attr("value");
+				//console.log(data);
+
+				//e.preventDefault();
+
+				let formUrl = "/topups/getBonus/";
+				let reqMethod = "post";
+				let formData = $(this).serialize();
+
+				$.ajax({
+					url: formUrl,
+					type: reqMethod,
+					data: formData,
+					success: function (data) {
+						//let result = data//JSON.parse(data)
+						if (data.status == "success") {
+
+						
+							let price = parseInt($(".cashprice1").attr("value"));
+							$(".price1").html(price + ((data.Bonus / 100) * price));
+
+							price = parseInt($(".cashprice2").attr("value"));
+							$(".price2").html(price + ((data.Bonus / 100) * price));
+
+							price = parseInt($(".cashprice3").attr("value"));
+							$(".price3").html(price + ((data.Bonus / 100) * price));
+
+							price = parseInt($(".cashprice4").attr("value"));
+							$(".price4").html(price + ((data.Bonus / 100) * price));
+
+							price = parseInt($(".cashprice5").attr("value"));
+							$(".price5").html(price + ((data.Bonus / 100) * price));
+
+							price = parseInt($(".cashprice6").attr("value"));
+							$(".price6").html(price + ((data.Bonus / 100) * price));
+
+							price = parseInt($(".cashprice7").attr("value"));
+							$(".price7").html(price + ((data.Bonus / 100) * price));
+
+							price = parseInt($(".cashprice8").attr("value"));
+							$(".price8").html(price + ((data.Bonus / 100) * price));
+
+						
+						} else {
+
+						}
+					}
+				});
+			});
+		});
+
+	</script>
 
 
 

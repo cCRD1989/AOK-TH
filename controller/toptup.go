@@ -5,6 +5,7 @@ import (
 	"ccrd/dto"
 	"ccrd/model"
 	"ccrd/model/aokmodel"
+	"ccrd/unit"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
@@ -50,16 +51,62 @@ func Paytopups(ctx *gin.Context) {
 	}
 }
 
+func GetBonusBanking(ctx *gin.Context) {
+
+	channel := ctx.DefaultPostForm("channel", "")
+
+	errs := unit.Validate(map[string]interface{}{
+		"channel": channel,
+	}, map[string]string{
+
+		"channel": "required|alphanum",
+	})
+	if errs != nil {
+		return
+	}
+
+	Bonus := model.Bankingbonus{}
+	if err := db.Conn.Where("channel =?", channel).First(&Bonus).Error; err != nil {
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"status": "success",
+		"Bonus":  strconv.Itoa(Bonus.Bonus),
+	})
+}
+
 // ทำรายการ
 func PaytopupsAddPoint(ctx *gin.Context) {
 
 	usernameId := ctx.PostForm("username")
-	price := ctx.PostForm("price")
+	price := ctx.PostForm("price") + "THB"
 	channel := ctx.PostForm("channel")
 
 	// ตรวจสอบ User Cookie
 	usr, _ := ctx.Get("user")
 	user, _ := usr.(aokmodel.Userlogin)
+
+	errs := unit.Validate(map[string]interface{}{
+		"username": usernameId,
+		"price":    price,
+		"channel":  channel,
+	}, map[string]string{
+
+		"username": "required|alphanum",
+		"price":    "required|alphanum",
+		"channel":  "required|alphanum",
+	})
+	if errs != nil {
+		ctx.HTML(http.StatusOK, "frontend/topup.html", gin.H{
+			"title":   "Age Of Khagan | เติมเงิน",
+			"message": "ข้อมูลไม่ถูกต้อง",
+			"ff":      "",
+			"user":    user,
+			"bg":      "/public/data/img/TOPUP_BG.png",
+		})
+		return
+	}
 
 	if usernameId == user.Username {
 
@@ -158,7 +205,6 @@ func PaytopupsAddPoint(ctx *gin.Context) {
 	} else {
 		ctx.Redirect(http.StatusFound, "/")
 	}
-
 }
 
 // หน้าเช็ค UserCheck ID ที่กรอกเข้ามา
@@ -334,13 +380,14 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			Detail:    "",
 			Channel:   request.Channel,
 			Price:     request.Amount + request.Currency,
+			Bonus:     0,
 			Sig:       request.Sig,
 			IPAddress: ctx.ClientIP(),
 		})
 
 		if request.Status == "200" {
 
-			// เงินที่จะเติม
+			// รายการเงินที่จะเติม ตามที่ลูกค้ากดเข้ามา
 			caseint, err := strconv.Atoi(request.Amount)
 			if err != nil {
 				fmt.Println("str to int ไม่ได้ ", data.Price)
@@ -348,20 +395,69 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 				return
 			}
 
+			//Bonus โปรแกรมเติมเงิน ที่มีโปบนัสเพิ่ม %
+
+			BonusTopup := model.Bankingbonus{}
+			if err := db.Conn.Where("channel = ?", request.Channel).First(&BonusTopup).Error; err != nil {
+				fmt.Println("ค้นหาโบนัสไม่เจอ", err.Error())
+				ctx.Status(http.StatusBadRequest)
+			}
+
 			//ดึงเงินที่อยู่ใน id นั้น
 			idcash := aokmodel.Userlogin{}
 			db.AOK_DB.First(&idcash, "username = ?", data.UserId)
 
-			idcash.Cash += caseint
+			CASH := caseint + (caseint * (BonusTopup.Bonus / 100))
+			//idcash.Cash += (caseint + (caseint * (BonusTopup.Bonus / 100)))
 
-			if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("username = ?", idcash.Username).Update("cash", idcash.Cash).Error; err != nil {
-				fmt.Println("บันทึกแคชไม่สำเร็จ", err.Error())
+			log_cash := model.LogMailTopup{
+				Eventid:    "9",
+				Senderid:   idcash.Id,
+				Sendername: "SYSTEM",
+				Receiverid: idcash.Id,
+				Title:      "Bonus Pre Topup",
+				Content:    "คุณได้รับ (Bonus Pre Topup) จำนวน " + strconv.Itoa(CASH) + " CASH",
+				Gold:       0,
+				Cash:       CASH,
+				Currencies: " ",
+				Items:      " ",
+			}
+			if err := db.AOK_DB.Save(&log_cash).Error; err != nil {
+				fmt.Println("AOKบันทึกแคชไม่สำเร็จ", err.Error())
 				ctx.Status(http.StatusBadRequest)
 				return
 			}
 
+			if err := db.Conn.Save(&log_cash).Error; err != nil {
+				fmt.Println("LOGบันทึกแคชไม่สำเร็จ", err.Error())
+				ctx.Status(http.StatusBadRequest)
+				return
+			}
+
+			db.Conn.Save(&model.Topuprecheck{
+				UserId:    data.UserId,
+				Txid:      request.Txid,
+				Orderid:   request.Orderid,
+				Status:    "Done",
+				Detail:    request.Detail,
+				Channel:   request.Channel,
+				Price:     request.Amount + request.Currency,
+				Bonus:     strconv.Itoa(BonusTopup.Bonus),
+				Sig:       request.Sig,
+				IPAddress: ctx.ClientIP(),
+			})
+
+			//ของเก่า
+			// if err := db.AOK_DB.Model(&aokmodel.Userlogin{}).Where("username = ?", idcash.Username).Update("cash", idcash.Cash).Error; err != nil {
+			// 	fmt.Println("บันทึกแคชไม่สำเร็จ", err.Error())
+			// 	ctx.Status(http.StatusBadRequest)
+			// 	return
+			// }
+
 			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
-			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success")
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success").Update("bonus", BonusTopup.Bonus)
+
+			//
 
 			// Send  200  Ok Success
 			ctx.JSON(http.StatusOK, dto.TopupResponse{

@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300&display=swap" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
 </head>
 
 <body>
@@ -130,13 +132,141 @@
                             </div>
                         </div>
 
-                        <!-- เลือกจำนวนเงินที่เติม -->
-                        <div class="text-white">
-
-                            <p>2.Choose item/เลือกไอเท็ม</p>
+                        <!-- เลือกช่องทางการชำระ -->
+                        <div class="text-white pt-5">
+                            <p>2.Choose Payment/เลือกช่องทางการชำระ</p>
 
                             <div class="grid grid-cols-2 gap-1">
 
+                                <!--  Truemoney Wallet -->
+                                <div>
+                                    <input type="radio" name="channel" id="channel1" value="truewallet"
+                                        class="peer hidden bank_point" required />
+                                    <label for="channel1"
+                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                        <div
+                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="/public/data/img/true-money.png" alt="">
+                                                Truemoney Wallet
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!--  Krungsri -->
+                                <div>
+                                    <input type="radio" name="channel" id="channel2" value="bay" class="peer hidden bank_point"
+                                        required />
+                                    <label for="channel2"
+                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                        <div
+                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="/public/data/img/BAY.png" alt="">
+                                                Krungsri
+                                            </div>
+
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!--  Bangkok Bank -->
+                                <div>
+                                    <input type="radio" name="channel" id="channel3" value="bbl" class="peer hidden bank_point"
+                                        required />
+                                    <label for="channel3"
+                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                        <div
+                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="/public/data/img/BBL.png" alt="">
+                                                Bangkok Bank
+                                            </div>
+
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!--  Krung Thai Bank -->
+                                <div>
+                                    <input type="radio" name="channel" id="channel4" value="ktb" class="peer hidden bank_point"
+                                        required />
+                                    <label for="channel4"
+                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                        <div
+                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="/public/data/img/KTB.png" alt="">
+                                                Krung Thai Bank
+                                            </div>
+
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!--  Siam Commercial Bank -->
+                                <div>
+                                    <input type="radio" name="channel" id="channel5" value="scb" class="peer hidden bank_point"
+                                        required />
+                                    <label for="channel5"
+                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                        <div
+                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="/public/data/img/SCB.png" alt="">
+                                                Siam Commercial Bank
+                                            </div>
+
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <input type="radio" name="channel" id="channel6" value="kbank" class="peer hidden bank_point"
+                                        required />
+                                    <label for="channel6"
+                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                        <div
+                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                            <div class="flex items-center gap-3">
+                                                <img src="/public/data/img/KBANK.png" alt="">
+                                                Kasikorn Bank
+                                            </div>
+
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!-- Kasikorn Bank -->
+                                <div>
+                                    <input type="radio" name="channel" id="channel7" value="promptpay"
+                                        class="peer hidden bank_point" required />
+                                    <label for="channel7"
+                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                        <div
+                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                            <div class="flex items-center gap-3">
+                                                <img class="rounded-full" src="/public/data/img/payment.png" alt="">
+                                                QR Promptpay
+                                            </div>
+
+                                        </div>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- เลือกจำนวนเงินที่เติม -->
+                        <div class="text-white">
+
+                            <p>3.Choose item/เลือกไอเท็ม</p>
+
+                            <div class="grid grid-cols-2 gap-1">
+
+                                <!-- price1 50 -->
                                 <div>
                                     <input type="radio" name="price" id="1" value="50THB" class="peer hidden"
                                         required />
@@ -146,7 +276,7 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                100
+                                                50
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
                                                 ฿50
@@ -155,7 +285,8 @@
 
                                     </label>
                                 </div>
-
+                                
+                                <!-- price2 100 -->
                                 <div>
                                     <input type="radio" name="price" id="2" value="100THB" class="peer hidden"
                                         required />
@@ -165,7 +296,7 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                200
+                                                100
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
                                                 ฿100
@@ -175,8 +306,9 @@
                                     </label>
                                 </div>
 
+                                <!-- price3 300 -->
                                 <div>
-                                    <input type="radio" name="price" id="3" value="200THB" class="peer hidden"
+                                    <input type="radio" name="price" id="3" value="300THB" class="peer hidden"
                                         required />
                                     <label for="3"
                                         class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
@@ -184,18 +316,19 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                1000
+                                                300
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
-                                                ฿200
+                                                ฿300
                                             </div>
                                         </div>
 
                                     </label>
                                 </div>
 
+                                <!-- price4 500 -->
                                 <div>
-                                    <input type="radio" name="price" id="4" value="100THB" class="peer hidden"
+                                    <input type="radio" name="price" id="4" value="500THB" class="peer hidden"
                                         required />
                                     <label for="4"
                                         class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
@@ -203,18 +336,19 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                100
+                                                500
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
-                                                ฿100
+                                                ฿500
                                             </div>
                                         </div>
 
                                     </label>
                                 </div>
 
+                                <!-- price5 1000 -->
                                 <div>
-                                    <input type="radio" name="price" id="5" value="100THB" class="peer hidden"
+                                    <input type="radio" name="price" id="5" value="1000THB" class="peer hidden"
                                         required />
                                     <label for="5"
                                         class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
@@ -222,18 +356,19 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                100
+                                                1,000
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
-                                                ฿100
+                                                ฿1,000
                                             </div>
                                         </div>
 
                                     </label>
                                 </div>
 
+                                <!-- price6 3000 -->
                                 <div>
-                                    <input type="radio" name="price" id="6" value="100THB" class="peer hidden"
+                                    <input type="radio" name="price" id="6" value="3000THB" class="peer hidden"
                                         required />
                                     <label for="6"
                                         class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
@@ -241,18 +376,19 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                100
+                                                3,000
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
-                                                ฿100
+                                                ฿3,000
                                             </div>
                                         </div>
 
                                     </label>
                                 </div>
 
+                                <!-- price7 5000 -->
                                 <div>
-                                    <input type="radio" name="price" id="7" value="100THB" class="peer hidden"
+                                    <input type="radio" name="price" id="7" value="5000THB" class="peer hidden"
                                         required />
                                     <label for="7"
                                         class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
@@ -260,18 +396,19 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                100
+                                                5,000
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
-                                                ฿100
+                                                ฿5,000
                                             </div>
                                         </div>
 
                                     </label>
                                 </div>
 
+                                <!-- price8 10000 -->
                                 <div>
-                                    <input type="radio" name="price" id="8" value="100THB" class="peer hidden"
+                                    <input type="radio" name="price" id="8" value="10000THB" class="peer hidden"
                                         required />
                                     <label for="8"
                                         class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
@@ -279,10 +416,10 @@
                                             class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                             <div class="flex items-center">
                                                 <img src="/public/data/img/gold.png" alt="">
-                                                100
+                                                10,000
                                             </div>
                                             <div class="text-[#FFFFFF4D]">
-                                                ฿100
+                                                ฿10,000
                                             </div>
                                         </div>
 
@@ -290,128 +427,6 @@
                                 </div>
 
                             </div>
-                        </div>
-
-                        <!-- เลือกช่องทางการชำระ -->
-                        <div class="text-white pt-5">
-                            <p>3.Choose Payment/เลือกช่องทางการชำระ</p>
-
-                            <div class="grid grid-cols-2 gap-1">
-
-                                <div>
-                                    <input type="radio" name="channel" id="channel1" value="50THB" class="peer hidden"
-                                        required />
-                                    <label for="channel1"
-                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                        <div
-                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-center items-center p-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="/public/data/img/true-money.png" alt="">
-                                                True money
-                                            </div>
-
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <input type="radio" name="channel" id="channel2" value="50THB" class="peer hidden"
-                                        required />
-                                    <label for="channel2"
-                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                        <div
-                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-center items-center p-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="/public/data/img/BAY.png" alt="">
-                                                BAY
-                                            </div>
-
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <input type="radio" name="channel" id="channel3" value="50THB" class="peer hidden"
-                                        required />
-                                    <label for="channel3"
-                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                        <div
-                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-center items-center p-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="/public/data/img/BBL.png" alt="">
-                                                BBL
-                                            </div>
-
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <input type="radio" name="channel" id="channel4" value="50THB" class="peer hidden"
-                                        required />
-                                    <label for="channel4"
-                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                        <div
-                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-center items-center p-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="/public/data/img/KTB.png" alt="">
-                                                KTB
-                                            </div>
-
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <input type="radio" name="channel" id="channel5" value="50THB" class="peer hidden"
-                                        required />
-                                    <label for="channel5"
-                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                        <div
-                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-center items-center p-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="/public/data/img/SCB.png" alt="">
-                                                SCB
-                                            </div>
-
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <input type="radio" name="channel" id="channel6" value="50THB" class="peer hidden"
-                                        required />
-                                    <label for="channel6"
-                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                        <div
-                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-center items-center p-4">
-                                            <div class="flex items-center gap-3">
-                                                <img src="/public/data/img/KBANK.png" alt="">
-                                                KBANK
-                                            </div>
-
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <div>
-                                    <input type="radio" name="channel" id="channel7" value="50THB" class="peer hidden"
-                                        required />
-                                    <label for="channel7"
-                                        class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                        <div
-                                            class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-center items-center p-4">
-                                            <div class="flex items-center gap-3">
-                                                <img class="rounded-full" src="/public/data/img/payment.png" alt="">
-                                                Prompt Pay
-                                            </div>
-
-                                        </div>
-                                    </label>
-                                </div>
-
-                            </div>
-
                         </div>
 
 
@@ -430,12 +445,15 @@
 
                 </div>
 
-                <section class="absolute top-[7%] w-[440px] h-[600px] bg-[url('/public/data/img/RECEIPT.png')] bg-center bg-no-repeat">
+                <section
+                    class="hidden absolute top-[7%] w-[440px] h-[600px] bg-[url('/public/data/img/RECEIPT.png')] bg-center bg-no-repeat">
 
                     <div class="w-[60%] mx-auto">
-    
-                        <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .detail }} <br> <span>ชำระเงินสำเร็จ</span></p>
-    
+
+                        <p class="pt-32 text-center uppercase text-[32px] font-extrabold text-[#006717]">{{ .detail }}
+                            <br> <span>ชำระเงินสำเร็จ</span>
+                        </p>
+
                         <div>
                             <div class="flex justify-between font-bold py-3">
                                 <p>Amount<br> <span class="text-[14px]">จำนวนเงิน</span></p>
@@ -443,18 +461,20 @@
                             </div>
                             <div class="flex justify-between font-bold py-3">
                                 <p>Status <br> <span class="text-[14px] text-[#B52700]">สถานะ</span> </p>
-                                <p class="text-[#006717] text-center">•{{ .detail }} <br> <span class="text-[#797979] text-[14px]">สำเร็จ</span></p>
+                                <p class="text-[#006717] text-center">•{{ .detail }} <br> <span
+                                        class="text-[#797979] text-[14px]">สำเร็จ</span></p>
                             </div>
                             <div class="flex justify-between font-bold py-3 uppercase">
                                 <p>Payment Methods <br> <span class="text-[14px]">ช่องทาง</span> </p>
                                 <p>{{ .channel }}</p>
                             </div>
                         </div>
-    
-                        <a  href="/" class="absolute bottom-[18%]"><img src="/public/data/img/close-btn.png" alt="" width="80%"></a>
+
+                        <a href="/" class="absolute bottom-[18%]"><img src="/public/data/img/close-btn.png" alt=""
+                                width="80%"></a>
                     </div>
-    
-    
+
+
                 </section>
 
 
@@ -465,7 +485,43 @@
         <div class="pb-20"></div>
     </nav>
 
+    <script>
 
+        $(document).ready(function () {
+            $(".bank_point").click(function (e) {
+                let data = $(this).attr("value");
+                console.log(data);
+
+                //e.preventDefault();
+
+                let formUrl = "/topups/getBonus/";
+                let reqMethod = "post";
+                let formData = $(this).serialize();
+
+                $.ajax({
+                    url: formUrl,
+                    type: reqMethod,
+                    data: formData,
+                    success: function (data) {
+                        //let result = data//JSON.parse(data)
+                        if (data.status == "success") {
+                            // Swal.fire("สำเร็จ", data.msg, data.status).then(function () {
+                            //     // $('.fromlogin').toggle('none');
+                            //     //window.location.reload();
+                            // });
+
+                        } else {
+                            // Swal.fire("ล้มเหลว", data.msg, data.status).then(function () {
+                            //     // $('.fromlogin').toggle('none');
+
+                            // });
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
 
 
 </body>

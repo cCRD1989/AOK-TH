@@ -1,6 +1,8 @@
 package main
 
 import (
+	"ccrd/db"
+	"ccrd/model"
 	"ccrd/server/khanscr"
 	"fmt"
 	"html/template"
@@ -89,6 +91,17 @@ func CutString(name string, n int) string {
 	return name[:n] + "..."
 }
 
+// get Bonus topup
+func getBonustopup(id int) string {
+
+	bonus := model.Bankingbonus{}
+	if err := db.Conn.Where("Channel = ?", "price").First(&bonus).Error; err != nil {
+		return "Err."
+	}
+
+	return strings.Split(bonus.Banking, ",")[id]
+}
+
 func createViews() multitemplate.Render {
 	var fn = template.FuncMap{
 		"getPlayersOnlineCount": getPlayersOnlineCount,
@@ -103,6 +116,7 @@ func createViews() multitemplate.Render {
 		"CutString":             CutString,
 		"numbercomma":           numbercomma,
 		"formatnewline":         formatnewline,
+		"getBonustopup":         getBonustopup,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")

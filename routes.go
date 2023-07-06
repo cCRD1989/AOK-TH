@@ -72,12 +72,13 @@ func serveRoutes(r *gin.Engine) {
 	// private.GET("/google", frontend_user.Auth_google) //index.html
 
 	// // AIP Razer notify **************************************************************************
-	// topup_user := controller.Topup{}
-	// topup_Group := r.Group("/topup")
-	// topup_Group.GET("", topup_user.Paytopup)                 // API notify url
-	// topup_Group.GET("/processingpay", topup_user.PayProcess) //redirect url
-	// r.GET("/topups", controller.Paytopups)                   // เปิดหน้าเติมเงิน
-	// r.POST("/topups/point", controller.PaytopupsAddPoint)    // กด order
+	topup_user := controller.Topup{}
+	topup_Group := r.Group("/topup")
+	topup_Group.GET("", topup_user.Paytopup)                 // API notify url
+	topup_Group.GET("/processingpay", topup_user.PayProcess) // redirect url
+	r.GET("/topups", controller.Paytopups)                   // เปิดหน้าเติมเงิน
+	r.POST("/topups/getBonus", controller.GetBonusBanking)   // คำนวนโบนัสใหม่
+	r.POST("/topups/point", controller.PaytopupsAddPoint)    // กด order
 	// // AIP Razer notify**************************************************************************
 
 	// r.GET("/topups/:user", controller.UserCheck)
