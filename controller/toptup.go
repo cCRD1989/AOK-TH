@@ -427,7 +427,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 				Currencies: " ",
 				Items:      " ",
 			}
-			
+
 			if err := db.AOK_DB.Save(&log_cash).Error; err != nil {
 				fmt.Println("AOKบันทึกแคชไม่สำเร็จ", err.Error())
 				ctx.Status(http.StatusBadRequest)
@@ -461,10 +461,10 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			// }
 
 			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
-			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success").Update("bonus", strconv.Itoa(BonusTopup.Bonus))
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success")
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Success").Update("bonus", strconv.Itoa(BonusTopup.Bonus))
 
 			//
-
 			// Send  200  Ok Success
 			ctx.JSON(http.StatusOK, dto.TopupResponse{
 				Txid:   request.Txid,
