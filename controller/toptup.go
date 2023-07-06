@@ -408,17 +408,12 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			idcash := aokmodel.Userlogin{}
 			db.AOK_DB.First(&idcash, "username = ?", data.UserId)
 
-			B := BonusTopup.Bonus
-			P := float64(caseint * (B / 100))
-
-			CASH := caseint + int(P)
+			CASH := caseint + int(float64(caseint)*(float64(BonusTopup.Bonus)/float64(100)))
 
 			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", request.Channel)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup.Bonus)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", CASH)
-			fmt.Println(">>>>>>>>>>>>>>>>>>", B)
-			fmt.Println(">>>>>>>>>>>>>>>>>>", P)
 
 			log_cash := model.LogMailTopup{
 				Eventid:    "9",
@@ -432,6 +427,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 				Currencies: " ",
 				Items:      " ",
 			}
+			
 			if err := db.AOK_DB.Save(&log_cash).Error; err != nil {
 				fmt.Println("AOKบันทึกแคชไม่สำเร็จ", err.Error())
 				ctx.Status(http.StatusBadRequest)
@@ -451,8 +447,8 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 				Status:    "Done",
 				Detail:    request.Detail,
 				Channel:   request.Channel,
-				Price:     request.Amount + request.Currency,
-				Bonus:     strconv.Itoa(int(B)),
+				Price:     request.Amount,
+				Bonus:     strconv.Itoa(BonusTopup.Bonus),
 				Sig:       request.Sig,
 				IPAddress: ctx.ClientIP(),
 			})
@@ -465,7 +461,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			// }
 
 			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
-			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success").Update("bonus", int(B))
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success").Update("bonus", strconv.Itoa(BonusTopup.Bonus))
 
 			//
 
