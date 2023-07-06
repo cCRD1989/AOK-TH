@@ -408,12 +408,17 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			idcash := aokmodel.Userlogin{}
 			db.AOK_DB.First(&idcash, "username = ?", data.UserId)
 
-			CASH := caseint + (caseint * (BonusTopup.Bonus / 100))
+			B := BonusTopup.Bonus
+			P := float64(caseint * (B / 100))
+
+			CASH := caseint + int(P)
 
 			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", request.Channel)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup.Bonus)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", CASH)
+			fmt.Println(">>>>>>>>>>>>>>>>>>", B)
+			fmt.Println(">>>>>>>>>>>>>>>>>>", P)
 
 			log_cash := model.LogMailTopup{
 				Eventid:    "9",
@@ -447,7 +452,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 				Detail:    request.Detail,
 				Channel:   request.Channel,
 				Price:     request.Amount + request.Currency,
-				Bonus:     strconv.Itoa(BonusTopup.Bonus),
+				Bonus:     strconv.Itoa(int(B)),
 				Sig:       request.Sig,
 				IPAddress: ctx.ClientIP(),
 			})
@@ -460,7 +465,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			// }
 
 			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
-			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success").Update("bonus", BonusTopup.Bonus)
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success").Update("bonus", int(B))
 
 			//
 
