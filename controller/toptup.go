@@ -398,9 +398,10 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			//Bonus โปรแกรมเติมเงิน ที่มีโปบนัสเพิ่ม %
 
 			BonusTopup := model.Bankingbonus{}
-			if err := db.Conn.Where("channel = ?", request.Channel).First(&BonusTopup).Error; err != nil {
+			if err := db.Conn.Where("Channel = ?", request.Channel).First(&BonusTopup).Error; err != nil {
 				fmt.Println("ค้นหาโบนัสไม่เจอ", err.Error())
 				ctx.Status(http.StatusBadRequest)
+				return
 			}
 
 			//ดึงเงินที่อยู่ใน id นั้น
