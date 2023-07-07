@@ -1344,13 +1344,17 @@ func (f *Frontend) UserGetDownload(ctx *gin.Context) {
 	}
 	db.Conn.Save(&visit)
 
-	// linkpc := model.Setting{}
-	// db.Conn.Where("Keys  =?", "pc").First(&linkpc)
+	linkpc := model.Setup{}
+	db.Conn.Where("Type=?", "pc").First(&linkpc)
 
-	link := fmt.Sprintf("public/download/%s", "Age Of Khagan 0.0.0.1 Setup (x64).exe")
-	// fmt.Println(link)
+	//"Age Of Khagan 0.0.0.1 Setup (x64).exe"
+	link := fmt.Sprintf("public/download/%s", linkpc.Value)
 
-	ctx.Redirect(http.StatusTemporaryRedirect, link)
+	if linkpc.Value == "#" {
+		ctx.Redirect(http.StatusTemporaryRedirect, "/")
+	} else {
+		ctx.Redirect(http.StatusTemporaryRedirect, link)
+	}
 
 }
 

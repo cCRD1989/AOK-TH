@@ -4,9 +4,8 @@ import (
 	"gorm.io/gorm"
 )
 
-type Setting struct {
-	Type  byte
-	Keys  string
+type Setup struct {
+	Type  string
 	Value string
 	gorm.Model
 }
