@@ -1344,17 +1344,20 @@ func (f *Frontend) UserGetDownload(ctx *gin.Context) {
 	}
 	db.Conn.Save(&visit)
 
-	linkpc := model.Setup{}
-	db.Conn.Where("Type=?", "pc").First(&linkpc)
+	// linkpc := model.Setup{}
+	// db.Conn.Where("Type=?", "pc").First(&linkpc)
 
-	//"Age Of Khagan 0.0.0.1 Setup (x64).exe"
-	link := fmt.Sprintf("public/download/%s", linkpc.Value)
+	// //"Age Of Khagan 0.0.0.1 Setup (x64).exe"
+	// link := fmt.Sprintf("public/download/%s", linkpc.Value)
 
-	if linkpc.Value == "#" {
-		ctx.Redirect(http.StatusTemporaryRedirect, "/")
-	} else {
-		ctx.Redirect(http.StatusTemporaryRedirect, link)
-	}
+	// if linkpc.Value == "#" {
+	// 	ctx.Redirect(http.StatusTemporaryRedirect, "/")
+	// } else {
+	// 	ctx.Redirect(http.StatusTemporaryRedirect, link)
+	// }
+
+	ctx.Redirect(http.StatusTemporaryRedirect, "https://files.ageofkhaganth.com/Age_Of_Khagan_0.0_0.1%20Setup_(x64).exe")
+	//https://file.ageofkhaganth.com/Age Of Khagan 0.0.0.1 Setup (x64).exe
 
 }
 
