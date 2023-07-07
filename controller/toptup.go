@@ -16,8 +16,10 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/gin-gonic/gin"
+	"golang.org/x/exp/slices"
 )
 
 type Topup struct{}
@@ -71,8 +73,9 @@ func GetBonusBanking(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"status": "success",
-		"Bonus":  strconv.Itoa(Bonus.Bonus),
+		"status":      "success",
+		"Prices":      strings.Split(Bonus.Prices, ","),
+		"Pricesbonus": strings.Split(Bonus.Pricesbonus, ","),
 	})
 }
 
@@ -396,23 +399,27 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 			}
 
 			//Bonus โปรแกรมเติมเงิน ที่มีโปบนัสเพิ่ม %
-
-			BonusTopup := model.Bankingbonus{}
-			if err := db.Conn.Where("Channel = ?", request.Channel).First(&BonusTopup).Error; err != nil {
+			BonusChannel := model.Bankingbonus{}
+			if err := db.Conn.Where("Channel = ?", request.Channel).First(&BonusChannel).Error; err != nil {
 				fmt.Println("ค้นหาโบนัสไม่เจอ", err.Error())
 				ctx.Status(http.StatusBadRequest)
 				return
 			}
+			//ค้นหาตัวชี้ของราคาในโบนัส
+			Bonsslice := strings.Split(BonusChannel.Prices, ",")
+
+			idx := slices.Index(Bonsslice, request.Amount)
+			Bonus, _ := strconv.Atoi(strings.Split(BonusChannel.Pricesbonus, ",")[idx])
 
 			//ดึงเงินที่อยู่ใน id นั้น
 			idcash := aokmodel.Userlogin{}
 			db.AOK_DB.First(&idcash, "username = ?", data.UserId)
 
-			CASH := caseint + int(float64(caseint)*(float64(BonusTopup.Bonus)/float64(100)))
+			CASH := caseint + int(float64(caseint)*(float64(Bonus)/float64(100)))
 
-			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup)
+			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusChannel)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", request.Channel)
-			fmt.Println(">>>>>>>>>>>>>>>>>>", BonusTopup.Bonus)
+			fmt.Println(">>>>>>>>>>>>>>>>>>", Bonus)
 			fmt.Println(">>>>>>>>>>>>>>>>>>", CASH)
 
 			log_cash := model.LogMailTopup{
@@ -448,7 +455,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 				Detail:    request.Detail,
 				Channel:   request.Channel,
 				Price:     request.Amount,
-				Bonus:     strconv.Itoa(BonusTopup.Bonus),
+				Bonus:     strconv.Itoa(Bonus),
 				Sig:       request.Sig,
 				IPAddress: ctx.ClientIP(),
 			})
@@ -462,7 +469,7 @@ func (t *Topup) Paytopup(ctx *gin.Context) {
 
 			//รอดำเนินการ บันทึกเพิ่มอีก log ในส่วนของ NotificationTopup Status:"Success"
 			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Wait").Update("status", "Success")
-			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Success").Update("bonus", strconv.Itoa(BonusTopup.Bonus))
+			db.Conn.Model(&model.LogTopup{}).Where("orderid = ?", request.Orderid).Where("data_type = ?", "NotificationTopup").Where("status = ?", "Success").Update("bonus", strconv.Itoa(Bonus))
 
 			//
 			// Send  200  Ok Success

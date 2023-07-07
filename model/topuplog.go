@@ -48,9 +48,12 @@ func (m *LogMailTopup) TableName() string {
 }
 
 type Bankingbonus struct {
-	Banking string `gorm:"type:varchar(100);not null"`
-	Channel string `gorm:"type:varchar(100);not null"`
-	Bonus   int    `gorm:"type:int(11);not null;default:0"`
+	Banking     string `gorm:"type:varchar(100);not null"`
+	Channel     string `gorm:"type:varchar(100);not null"`
+	Bonus       int    `gorm:"type:int(11);not null;default:0"`
+	Prices      string `gorm:"type:varchar(100);not null"`
+	Pricesbonus string `gorm:"type:varchar(100);not null"`
+
 	gorm.Model
 }
 

@@ -27,67 +27,34 @@
                                 id="username" name="username" type="text" value="{{ .user.Username }}"
                                 placeholder="Enter your player/username" required readonly>
 
-                            <a href="#"
+                            <!-- <a href="#"
                                 class="text-black bg-[#FFC117] w-[130px] h-[70px] rounded-xl flex items-center justify-center text-center">
 
                                 Check <br> ตรวจสอบ
 
-                            </a>
+                            </a> -->
 
                         </div>
                     </div>
 
                     <!-- เลือกช่องทางการชำระ -->
                     <div class="text-white pt-5">
-                        <p>2.Choose Payment/เลือกช่องทางการชำระ</p>
+                        <p class="p-5">2.Choose Payment/เลือกช่องทางการชำระ</p>
 
                         <div class="grid grid-cols-2 gap-1">
 
 
-                            <!--  Truemoney Wallet -->
+                            <!--   Kasikorn Bank -->
                             <div>
-                                <input type="radio" name="channel" id="channel1" value="truewallet"
+                                <input type="radio" name="channel" id="channel6" value="kbank"
                                     class="peer hidden bank_point" required />
-                                <label for="channel1"
+                                <label for="channel6"
                                     class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
                                     <div
                                         class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
                                         <div class="flex items-center gap-3">
-                                            <img src="/public/data/img/true-money.png" alt="">
-                                            Truemoney Wallet
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <!--  Krungsri -->
-                            <div>
-                                <input type="radio" name="channel" id="channel2" value="bay"
-                                    class="peer hidden bank_point" required />
-                                <label for="channel2"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
-                                        <div class="flex items-center gap-3">
-                                            <img src="/public/data/img/BAY.png" alt="">
-                                            Krungsri
-                                        </div>
-
-                                    </div>
-                                </label>
-                            </div>
-
-                            <!--  Bangkok Bank -->
-                            <div>
-                                <input type="radio" name="channel" id="channel3" value="bbl"
-                                    class="peer hidden bank_point" required />
-                                <label for="channel3"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
-                                        <div class="flex items-center gap-3">
-                                            <img src="/public/data/img/BBL.png" alt="">
-                                            Bangkok Bank
+                                            <img src="/public/data/img/KBANK.png" alt="">
+                                            Kasikorn Bank <span class="font-bold text-orange-400">Bonus</span>
                                         </div>
 
                                     </div>
@@ -104,7 +71,42 @@
                                         class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
                                         <div class="flex items-center gap-3">
                                             <img src="/public/data/img/KTB.png" alt="">
-                                            Krung Thai Bank
+                                            Krung Thai Bank<span class="font-bold text-orange-400">Bonus</span>
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+
+                            <!--  Bangkok Bank -->
+                            <div>
+                                <input type="radio" name="channel" id="channel3" value="bbl"
+                                    class="peer hidden bank_point" required />
+                                <label for="channel3"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/BBL.png" alt="">
+                                            Bangkok Bank<span class="font-bold text-orange-400">Bonus</span>
+                                        </div>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!--  Krungsri -->
+                            <div>
+                                <input type="radio" name="channel" id="channel2" value="bay"
+                                    class="peer hidden bank_point" required />
+                                <label for="channel2"
+                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
+                                    <div
+                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="/public/data/img/BAY.png" alt="">
+                                            Krungsri
                                         </div>
 
                                     </div>
@@ -128,24 +130,26 @@
                                 </label>
                             </div>
 
+                            <!--  Truemoney Wallet -->
                             <div>
-                                <input type="radio" name="channel" id="channel6" value="kbank"
+                                <input type="radio" name="channel" id="channel1" value="truewallet"
                                     class="peer hidden bank_point" required />
-                                <label for="channel6"
+                                <label for="channel1"
                                     class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
                                     <div
                                         class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-start items-center p-4">
                                         <div class="flex items-center gap-3">
-                                            <img src="/public/data/img/KBANK.png" alt="">
-                                            Kasikorn Bank
+                                            <img src="/public/data/img/true-money.png" alt="">
+                                            Truemoney Wallet
                                         </div>
-
                                     </div>
                                 </label>
                             </div>
 
-                            <!-- Kasikorn Bank -->
-                            <div>
+
+
+                            <!--  QR Promptpay -->
+                            <!-- <div>
                                 <input type="radio" name="channel" id="channel7" value="promptpay"
                                     class="peer hidden bank_point" required />
                                 <label for="channel7"
@@ -159,7 +163,7 @@
 
                                     </div>
                                 </label>
-                            </div>
+                            </div> -->
 
                         </div>
 
@@ -168,162 +172,34 @@
                     <!-- เลือกจำนวนเงินที่เติม -->
                     <div class="text-white">
 
-                        <p>3.Choose item/เลือกไอเท็ม</p>
+                        <p class="p-5">3.Choose item/เลือกไอเท็ม</p>
 
                         <div class="grid grid-cols-2 gap-1">
 
+                            {{ range $key, $value := getBonustopupPrice }}
 
-                            <!-- price1 50 -->
                             <div>
-                                <input type="radio" name="price" id="1" value="{{ getBonustopup 0 }}" class="peer hidden cashprice1" required />
+                                <input type="radio" name="price" id="1" value="{{ $value }}" class="peer hidden cashprice1"
+                                    required />
                                 <label for="1"
                                     class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
                                     <div
                                         class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
                                         <div class="flex items-center">
                                             <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price1">{{ getBonustopup 0 }}</p>
+                                            {{ $Bonus:= getBonustopupBonus $key }}
+                                            <p class="price{{$key}}">{{ sumBonus $value $Bonus }}</p>
                                         </div>
                                         <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 0 }}
+                                            ฿{{ $value }}
                                         </div>
                                     </div>
 
                                 </label>
                             </div>
+                            {{ end }}
 
-                            <!-- price2 100 -->
-                            <div>
-                                <input type="radio" name="price" id="2" value="{{ getBonustopup 1 }}" class="peer hidden cashprice2" required />
-                                <label for="2"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
-                                        <div class="flex items-center">
-                                            <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price2">{{ getBonustopup 1 }}</p>
-                                        </div>
-                                        <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 1 }}
-                                        </div>
-                                    </div>
 
-                                </label>
-                            </div>
-
-                            <!-- price3 300 -->
-                            <div>
-                                <input type="radio" name="price" id="3" value="{{ getBonustopup 2 }}" class="peer hidden cashprice3" required />
-                                <label for="3"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
-                                        <div class="flex items-center">
-                                            <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price3">{{ getBonustopup 2 }}</p>
-                                        </div>
-                                        <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 2 }}
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-
-                            <!-- price4 500 -->
-                            <div>
-                                <input type="radio" name="price" id="4" value="{{ getBonustopup 3 }}" class="peer hidden cashprice4" required />
-                                <label for="4"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
-                                        <div class="flex items-center">
-                                            <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price4">{{ getBonustopup 3 }}</p>
-                                        </div>
-                                        <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 3 }}
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-
-                            <!-- price5 1000 -->
-                            <div>
-                                <input type="radio" name="price" id="5" value="{{ getBonustopup 4 }}" class="peer hidden cashprice5" required />
-                                <label for="5"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
-                                        <div class="flex items-center">
-                                            <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price5">{{ getBonustopup 4 }}</p>
-                                        </div>
-                                        <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 4 }}
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-
-                            <!-- price6 3000 -->
-                            <div>
-                                <input type="radio" name="price" id="6" value="{{ getBonustopup 5 }}" class="peer hidden cashprice6" required />
-                                <label for="6"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
-                                        <div class="flex items-center">
-                                            <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price6">{{ getBonustopup 5 }}</p>
-                                        </div>
-                                        <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 5 }}
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-
-                            <!-- price7 5000 -->
-                            <div>
-                                <input type="radio" name="price" id="7" value="{{ getBonustopup 6 }}" class="peer hidden cashprice7" required />
-                                <label for="7"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
-                                        <div class="flex items-center">
-                                            <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price7">{{ getBonustopup 6 }}</p>
-                                        </div>
-                                        <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 6 }}
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-
-                            <!-- price8 10000 -->
-                            <div>
-                                <input type="radio" name="price" id="8" value="{{ getBonustopup 7 }}" class="peer hidden cashprice8" required />
-                                <label for="8"
-                                    class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
-                                    <div
-                                        class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">
-                                        <div class="flex items-center">
-                                            <img src="/public/data/img/gold.png" alt="">
-                                            <p class="price8">{{ getBonustopup 7 }}</p>
-                                        </div>
-                                        <div class="text-[#FFFFFF4D]">
-                                            ฿{{ getBonustopup 7 }}
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
 
                         </div>
                     </div>

@@ -58,32 +58,32 @@
 						//let result = data//JSON.parse(data)
 						if (data.status == "success") {
 
-						
-							let price = parseInt($(".cashprice1").attr("value"));
-							$(".price1").html(price + ((data.Bonus / 100) * price));
 
-							price = parseInt($(".cashprice2").attr("value"));
-							$(".price2").html(price + ((data.Bonus / 100) * price));
+							let price = parseInt(data.Prices[0]);//parseInt($(".cashprice1").attr("value"));
+							$(".price0").html(parseInt(price + ((data.Pricesbonus[0] / 100) * price)));
 
-							price = parseInt($(".cashprice3").attr("value"));
-							$(".price3").html(price + ((data.Bonus / 100) * price));
+							price = parseInt(data.Prices[1]);//parseInt($(".cashprice2").attr("value"));
+							$(".price1").html(parseInt(price + ((data.Pricesbonus[1] / 100) * price)));
 
-							price = parseInt($(".cashprice4").attr("value"));
-							$(".price4").html(price + ((data.Bonus / 100) * price));
+							price = parseInt(data.Prices[2]);//parseInt($(".cashprice3").attr("value"));
+							$(".price2").html(parseInt(price + ((data.Pricesbonus[2] / 100) * price)));
 
-							price = parseInt($(".cashprice5").attr("value"));
-							$(".price5").html(price + ((data.Bonus / 100) * price));
+							price = parseInt(data.Prices[3]);//parseInt($(".cashprice4").attr("value"));
+							$(".price3").html(parseInt(price + ((data.Pricesbonus[3] / 100) * price)));
 
-							price = parseInt($(".cashprice6").attr("value"));
-							$(".price6").html(price + ((data.Bonus / 100) * price));
+							price = parseInt(data.Prices[4]);//parseInt($(".cashprice5").attr("value"));
+							$(".price4").html(parseInt(price + ((data.Pricesbonus[4] / 100) * price)));
 
-							price = parseInt($(".cashprice7").attr("value"));
-							$(".price7").html(price + ((data.Bonus / 100) * price));
+							price = parseInt(data.Prices[5]);//parseInt($(".cashprice6").attr("value"));
+							$(".price5").html(parseInt(price + ((data.Pricesbonus[5] / 100) * price)));
 
-							price = parseInt($(".cashprice8").attr("value"));
-							$(".price8").html(price + ((data.Bonus / 100) * price));
+							price = parseInt(data.Prices[6]);//parseInt($(".cashprice7").attr("value"));
+							$(".price6").html(parseInt(price + ((data.Pricesbonus[6] / 100) * price)));
 
-						
+							price = parseInt(data.Prices[7]);//parseInt($(".cashprice8").attr("value"));
+							$(".price7").html(parseInt(price + ((data.Pricesbonus[7] / 100) * price)));
+
+
 						} else {
 
 						}

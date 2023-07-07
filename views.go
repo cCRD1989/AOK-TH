@@ -92,14 +92,32 @@ func CutString(name string, n int) string {
 }
 
 // get Bonus topup
-func getBonustopup(id int) string {
-
+func getBonustopupPrice() []string {
 	bonus := model.Bankingbonus{}
-	if err := db.Conn.Where("Channel = ?", "price").First(&bonus).Error; err != nil {
-		return "Err."
+	if err := db.Conn.Where("Channel = ?", "kbank").First(&bonus).Error; err != nil {
+		return nil
 	}
+	fmt.Println(bonus.Prices)
+	return strings.Split(bonus.Prices, ",")
+}
 
-	return strings.Split(bonus.Banking, ",")[id]
+// get Bonus topup
+func getBonustopupBonus(id int) string {
+	bonus := model.Bankingbonus{}
+	if err := db.Conn.Where("Channel = ?", "kbank").First(&bonus).Error; err != nil {
+		return "nil"
+	}
+	return strings.Split(bonus.Pricesbonus, ",")[id]
+}
+
+func sumBonus(price, bonus string) string {
+
+	price1, _ := strconv.Atoi(price)
+	bonus1, _ := strconv.Atoi(bonus)
+
+	sum := price1 + int(float64(price1)*(float64(bonus1)/float64(100)))
+
+	return strconv.Itoa(sum)
 }
 
 func createViews() multitemplate.Render {
@@ -116,7 +134,9 @@ func createViews() multitemplate.Render {
 		"CutString":             CutString,
 		"numbercomma":           numbercomma,
 		"formatnewline":         formatnewline,
-		"getBonustopup":         getBonustopup,
+		"getBonustopupPrice":    getBonustopupPrice,
+		"getBonustopupBonus":    getBonustopupBonus,
+		"sumBonus":              sumBonus,
 	}
 	var r = multitemplate.New()
 	var vtpath = filepath.Join("views", "templates")
