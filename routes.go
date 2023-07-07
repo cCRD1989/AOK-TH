@@ -49,7 +49,8 @@ func serveRoutes(r *gin.Engine) {
 	frontend_userGroup.GET("/newall", frontend_user.UserNewAll)       //newpage
 
 	frontend_userGroup.GET("/logout", frontend_user.UserGetLogout) //UserGetLogout
-	// frontend_userGroup.GET("/download/:id", frontend_user.UserGetDownload)
+
+	frontend_userGroup.GET("/download", frontend_user.UserGetDownload)
 
 	//privacypolicy
 	frontend_userGroup.GET("/privacypolicy", frontend_user.UserGetPrivacypolicy)

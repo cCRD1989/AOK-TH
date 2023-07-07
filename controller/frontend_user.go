@@ -1338,31 +1338,20 @@ func (f *Frontend) UserGetLogout(ctx *gin.Context) {
 
 func (f *Frontend) UserGetDownload(ctx *gin.Context) {
 
-	id := ctx.Param("id")
-	if id == "Window" {
-		visit := model.LogWeb{
-			DataType:  "download_window",
-			IPAddress: ctx.ClientIP(),
-		}
-		db.Conn.Save(&visit)
-		ctx.Redirect(http.StatusTemporaryRedirect, "public/download/window.rar")
-	} else if id == "Android" {
-		visit := model.LogWeb{
-			DataType:  "download_android",
-			IPAddress: ctx.ClientIP(),
-		}
-		db.Conn.Save(&visit)
-		ctx.Redirect(http.StatusTemporaryRedirect, "public/download/android.rar")
-	} else if id == "App" {
-		visit := model.LogWeb{
-			DataType:  "download_App",
-			IPAddress: ctx.ClientIP(),
-		}
-		db.Conn.Save(&visit)
-		ctx.Redirect(http.StatusTemporaryRedirect, "public/download/app.rar")
-	} else {
-		ctx.Redirect(http.StatusFound, "/")
+	visit := model.LogWeb{
+		DataType:  "DownloadPC",
+		IPAddress: ctx.ClientIP(),
 	}
+	db.Conn.Save(&visit)
+
+	// linkpc := model.Setting{}
+	// db.Conn.Where("Keys  =?", "pc").First(&linkpc)
+
+	link := fmt.Sprintf("public/download/%s", "Age Of Khagan 0.0.0.1 Setup (x64).exe")
+	// fmt.Println(link)
+
+	ctx.Redirect(http.StatusTemporaryRedirect, link)
+
 }
 
 func (f *Frontend) Auth_google(ctx *gin.Context) {
