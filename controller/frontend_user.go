@@ -101,10 +101,18 @@ func (model *Model) FindAll(x interface{}) *Model {
 	var err error
 	var dbt = db.AOK_DB
 
+	var c = model.gin
+	var qKeyword = c.DefaultQuery("qkeyword", model.QueryKeyword)
+
 	switch v := x.(type) {
 
 	case *[]aokmodel.Character:
-		err = model.buildSQL(dbt.Model(v)).Joins("JOIN characterattribute ON characters.id = characterattribute.characterId").Find(v).Error
+
+		if qKeyword == "level" || qKeyword == "durlukin" || qKeyword == "nurin" {
+			err = model.buildSQL(dbt.Model(v)).Find(v).Error
+		} else {
+			err = model.buildSQL(dbt.Model(v)).Joins("JOIN characterattribute ON characters.id = characterattribute.characterId").Find(v).Error
+		}
 
 	default:
 		fmt.Println("default", reflect.TypeOf(x))
@@ -161,7 +169,9 @@ func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
 
 		if qKeyword == "level" {
 			if ClassId == 0 {
+
 				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
+				//db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
 			} else {
 				db.Select("characters.Id, Userid, characters.Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Where("characters.Dataid = ?", ClassId).Limit(10).Order("LEVEL DESC")
 			}
@@ -205,6 +215,7 @@ func (model *Model) buildSQL(db *gorm.DB) *gorm.DB {
 		}
 
 	} else {
+
 		db.Select("Id, Userid, Dataid, Charactername, Level, Factionid, Currenthp, Currentmp, Guildid").Limit(10).Order("LEVEL DESC")
 	}
 
