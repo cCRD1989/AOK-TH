@@ -179,9 +179,9 @@
                             {{ range $key, $value := getBonustopupPrice }}
 
                             <div>
-                                <input type="radio" name="price" id="1" value="{{ $value }}" class="peer hidden cashprice1"
+                                <input type="radio" name="price" id="{{ $key }}" value="{{ $value }}" class="peer hidden cashprice1"
                                     required />
-                                <label for="1"
+                                <label for="{{ $key }}"
                                     class="block cursor-pointer select-none rounded-xl text-center peer-checked:bg-[#FFC11780] peer-checked:font-bold peer-checked:text-white">
                                     <div
                                         class="w-full h-[70px] bg-[#00000080] rounded-lg flex justify-between items-center p-4">

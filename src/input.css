@@ -15,13 +15,13 @@
     }
 
     .chilltabal1 {
-      @apply min-w-[10rem] min-h-[4rem] flex items-center font-extrabold
+      @apply min-w-[5rem] min-h-[4rem] flex items-center font-extrabold
     }
     .chilltabal2 {
-      @apply min-w-[10rem] min-h-[4rem] md:flex items-center font-extrabold hidden
+      @apply min-w-[5rem] min-h-[4rem] md:flex items-center font-extrabold hidden
     }
     .chilltabal3 {
-      @apply min-w-[10rem] min-h-[4rem] md:flex items-center hidden
+      @apply min-w-[5rem] min-h-[4rem] md:flex items-center hidden
     }
 }
 

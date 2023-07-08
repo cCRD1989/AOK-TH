@@ -252,30 +252,30 @@
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
             <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
-        <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
-        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-end">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-end">{{ $value.Guildids }}</div>
 
         {{ if eq $.logsModel.QueryKeyword "level" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "hp" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Currenthp }}</div>
         {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "nurin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Level }}</div>
 
         {{ else if eq $.logsModel.QueryKeyword "str" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "dex" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "con" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "int" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "wis" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "cha" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="hidden chilltabal3 w-full md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
 
         {{ end }}
 
@@ -289,30 +289,30 @@
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
             <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
-        <div class="chilltabal3 w-full"> {{ GatCharacterClass $value.Dataid }} </div>
-        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-end"> {{ GatCharacterClass $value.Dataid }} </div>
+        <div class="chilltabal3 w-full hidden md:flex justify-end">{{ $value.Guildids }}</div>
 
         {{ if eq $.logsModel.QueryKeyword "level" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "hp" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Currenthp }}</div>
         {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "nurin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Level }}</div>
 
         {{ else if eq $.logsModel.QueryKeyword "str" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "dex" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "con" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "int" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "wis" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "cha" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
 
         {{ end }}
     </div>
@@ -325,30 +325,30 @@
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
             <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
-        <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
-        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-end">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-end">{{ $value.Guildids }}</div>
 
         {{ if eq $.logsModel.QueryKeyword "level" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "hp" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Currenthp }}</div>
         {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "nurin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Level }}</div>
 
         {{ else if eq $.logsModel.QueryKeyword "str" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "dex" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "con" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "int" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "wis" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "cha" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
 
 
         {{ end }}
@@ -366,30 +366,30 @@
             <img class="rounded-full" src="/public/data/img/image 1.png" alt="">
             <p>{{ CutString $value.Charactername 20 }}</p>
         </div>
-        <div class="chilltabal3 w-full">{{ GatCharacterClass $value.Dataid }}</div>
-        <div class="chilltabal3 w-full">{{ $value.Guildids }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-end">{{ GatCharacterClass $value.Dataid }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-end">{{ $value.Guildids }}</div>
 
         {{ if eq $.logsModel.QueryKeyword "level" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "hp" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Currenthp }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Currenthp }}</div>
         {{ else if eq $.logsModel.QueryKeyword "durlukin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Level }}</div>
         {{ else if eq $.logsModel.QueryKeyword "nurin" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Level }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Level }}</div>
 
         {{ else if eq $.logsModel.QueryKeyword "str" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "dex" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "con" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "int" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "wis" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
         {{ else if eq $.logsModel.QueryKeyword "cha" }}
-        <div class="chilltabal3 w-full flex justify-center">{{ numbercomma $value.Attribute }}</div>
+        <div class="chilltabal3 w-full hidden md:flex justify-center">{{ numbercomma $value.Attribute }}</div>
 
 
         {{ end }}

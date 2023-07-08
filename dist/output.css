@@ -563,7 +563,7 @@ video {
 .chilltabal1 {
   display: flex;
   min-height: 4rem;
-  min-width: 10rem;
+  min-width: 5rem;
   align-items: center;
   font-weight: 800;
 }
@@ -571,7 +571,7 @@ video {
 .chilltabal2 {
   display: none;
   min-height: 4rem;
-  min-width: 10rem;
+  min-width: 5rem;
   align-items: center;
   font-weight: 800;
 }
@@ -585,7 +585,7 @@ video {
 .chilltabal3 {
   display: none;
   min-height: 4rem;
-  min-width: 10rem;
+  min-width: 5rem;
   align-items: center;
 }
 
@@ -1322,10 +1322,6 @@ video {
 
 .bg-\[url\(\'\/public\/data\/img\/NewPage-BG\.png\'\)\] {
   background-image: url('/public/data/img/NewPage-BG.png');
-}
-
-.bg-\[url\(\'\/public\/data\/img\/PAPER-BG-M\.png\'\)\] {
-  background-image: url('/public/data/img/PAPER-BG-M.png');
 }
 
 .bg-\[url\(\'\/public\/data\/img\/PAPER-BG\.png\'\)\] {
