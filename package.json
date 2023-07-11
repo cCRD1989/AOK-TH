@@ -4,5 +4,8 @@
   },
   "scripts": {
     "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "dependencies": {
+    "jquery": "^3.7.0"
   }
 }

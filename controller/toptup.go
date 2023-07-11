@@ -554,3 +554,54 @@ func (t *Topup) PayProcess(ctx *gin.Context) {
 		})
 	}
 }
+
+func (t *Topup) Bonus(ctx *gin.Context) {
+
+	return
+
+	data := []aokmodel.Userlogin{}
+
+	db.AOK_DB.Select("Id, Username, Accesstoken").Find(&data)
+
+	for _, v := range data {
+		//if v.Accesstoken != "" {
+		log_cash := model.LogMailTopup{
+			Eventid:    "4",
+			Senderid:   v.Id,
+			Sendername: "GM",
+			Receiverid: v.Id,
+			Title:      "Skill Reset",
+			Content:    "",
+			Gold:       0,
+			Cash:       3000,
+			Currencies: " ",
+			Items:      "-633051229",
+		}
+
+		if err := db.AOK_DB.Save(&log_cash).Error; err != nil {
+			fmt.Println("AOKบันทึกแคชไม่สำเร็จ", err.Error())
+			return
+		}
+		//}
+	}
+	fmt.Println("")
+	fmt.Println("สำเร็จ จำนวน ", len(data))
+
+	// log_cash := model.LogMailTopup{
+	// 	Eventid:    "1",
+	// 	Senderid:   data.Id,
+	// 	Sendername: "GM",
+	// 	Receiverid: data.Id,
+	// 	Title:      "Bonus Pre Item",
+	// 	Content:    "",
+	// 	Gold:       0,
+	// 	Cash:       0,
+	// 	Currencies: " ",
+	// 	Items:      "-120352093",
+	// }
+
+	// if err := db.AOK_DB.Save(&log_cash).Error; err != nil {
+	// 	fmt.Println("AOKบันทึกแคชไม่สำเร็จ", err.Error())
+	// 	return
+	// }
+}

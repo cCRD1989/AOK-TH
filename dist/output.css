@@ -943,6 +943,10 @@ video {
   width: 247px;
 }
 
+.w-\[248px\] {
+  width: 248px;
+}
+
 .w-\[30\%\] {
   width: 30%;
 }
@@ -1025,6 +1029,10 @@ video {
 
 .w-\[90px\] {
   width: 90px;
+}
+
+.w-\[94\%\] {
+  width: 94%;
 }
 
 .w-\[95\%\] {
@@ -1281,6 +1289,11 @@ video {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+.bg-indigo-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+}
+
 .bg-orange-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
@@ -1430,6 +1443,11 @@ video {
 
 .p-\[10px\] {
   padding: 10px;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-5 {
@@ -1654,6 +1672,10 @@ video {
   font-weight: 400;
 }
 
+.font-semibold {
+  font-weight: 600;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -1731,6 +1753,11 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.text-sky-900 {
+  --tw-text-opacity: 1;
+  color: rgb(12 74 110 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1758,6 +1785,12 @@ video {
   opacity: 0.8;
 }
 
+.shadow-inner {
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -1772,6 +1805,11 @@ video {
 
 .shadow-\[\#d58428c1\] {
   --tw-shadow-color: #d58428c1;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-black {
+  --tw-shadow-color: #000;
   --tw-shadow: var(--tw-shadow-colored);
 }
 
@@ -2393,6 +2431,12 @@ video {
 .peer:checked ~ .peer-checked\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+  .sm\:w-\[50\%\] {
+    width: 50%;
+  }
 }
 
 @media (min-width: 768px) {

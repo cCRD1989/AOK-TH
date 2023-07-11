@@ -80,7 +80,18 @@ func serveRoutes(r *gin.Engine) {
 	r.GET("/topups", controller.Paytopups)                   // เปิดหน้าเติมเงิน
 	r.POST("/topups/getBonus", controller.GetBonusBanking)   // คำนวนโบนัสใหม่
 	r.POST("/topups/point", controller.PaytopupsAddPoint)    // กด order
+
+	//r.GET("/topups/point/5588", topup_user.Bonus) //
+
 	// // AIP Razer notify**************************************************************************
+
+	// itemscode
+	// itemscode
+	// itemscode
+	ItemCode := controller.ItemCode{}
+	ItemCode_Group := r.Group("/itemscode")
+	ItemCode_Group.GET("", ItemCode.PItemcode)
+	ItemCode_Group.POST("/check", ItemCode.Itemcode)
 
 	// r.GET("/topups/:user", controller.UserCheck)
 	// r.GET("/topups/play", controller.Payment) // เมื่อลูกค้า กด ออเดอร์ เข้ามา
