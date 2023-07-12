@@ -1289,9 +1289,9 @@ video {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
-.bg-indigo-800 {
+.bg-orange-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+  background-color: rgb(251 146 60 / var(--tw-bg-opacity));
 }
 
 .bg-orange-500 {
@@ -1307,6 +1307,90 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\] {
+  background-color: ;
+}
+
+.bg-\[\#\] {
+  background-color: #;
+}
+
+.bg-\[\#000\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#eeac28\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(238 172 40 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#eeac2885\] {
+  background-color: #eeac2885;
+}
+
+.bg-\[\#eeac28b8\] {
+  background-color: #eeac28b8;
+}
+
+.bg-\[\#eed428b8\] {
+  background-color: #eed428b8;
+}
+
+.bg-\[\#d4af37\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#d4af37d7\] {
+  background-color: #d4af37d7;
+}
+
+.bg-\[\#d4af37ea\] {
+  background-color: #d4af37ea;
+}
+
+.bg-\[\#e8b923\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(232 185 35 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#e8ba2352\] {
+  background-color: #e8ba2352;
+}
+
+.bg-\[\#e8ba237e\] {
+  background-color: #e8ba237e;
+}
+
+.bg-\[\#deb83c7e\] {
+  background-color: #deb83c7e;
+}
+
+.bg-\[\#deb83c90\] {
+  background-color: #deb83c90;
+}
+
+.bg-\[\#deb83cb8\] {
+  background-color: #deb83cb8;
+}
+
+.bg-\[\#dfb429b8\] {
+  background-color: #dfb429b8;
+}
+
+.bg-\[\#dfb529be\] {
+  background-color: #dfb529be;
+}
+
+.bg-\[\#dfb529d4\] {
+  background-color: #dfb529d4;
+}
+
+.bg-\[\#ffffffd4\] {
+  background-color: #ffffffd4;
 }
 
 .bg-\[url\(\'\'\)\] {
@@ -1395,6 +1479,10 @@ video {
 
 .bg-\[url\(\'\/public\/data\/img\/pay-btn\.png\'\)\] {
   background-image: url('/public/data/img/pay-btn.png');
+}
+
+.bg-\[url\(\'\/public\/data\/img\/LOGOUT-BOTTON1\.png\'\)\] {
+  background-image: url('/public/data/img/LOGOUT-BOTTON1.png');
 }
 
 .bg-contain {
@@ -1777,6 +1865,26 @@ video {
   text-decoration-line: underline;
 }
 
+.placeholder-gray-900::-moz-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-gray-900::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-black::-moz-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-black::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-placeholder-opacity));
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -1815,6 +1923,31 @@ video {
 
 .shadow-orange-600 {
   --tw-shadow-color: #ea580c;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-\[\] {
+  --tw-shadow-color: ;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-\[\#000\] {
+  --tw-shadow-color: #000;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-\[\#fff\] {
+  --tw-shadow-color: #fff;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-\[\#000000b5\] {
+  --tw-shadow-color: #000000b5;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-\[\#ffffffb5\] {
+  --tw-shadow-color: #ffffffb5;
   --tw-shadow: var(--tw-shadow-colored);
 }
 
@@ -2412,6 +2545,16 @@ video {
 
 .hover\:opacity-\[1\]:hover {
   opacity: 1;
+}
+
+.focus\:placeholder-red-600:focus::-moz-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-placeholder-opacity));
+}
+
+.focus\:placeholder-red-600:focus::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-placeholder-opacity));
 }
 
 .group:hover .group-hover\:scale-100 {
